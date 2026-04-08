@@ -14,10 +14,10 @@ export default function BlogPreview() {
     <section className="px-6">
       <div className="max-w-[1200px] mx-auto">
         <div className="flex items-end justify-between mb-10">
-          <div>
+          <div className="max-w-[400px]">
             <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Blog</p>
             <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">
-              Conteúdo para pais<br className="hidden lg:block" /> e educadores
+              Conteúdo para pais e educadores
             </h2>
           </div>
           <a href="/blog" className="hidden sm:flex text-sm font-bold text-wire-black border border-wire-300 rounded-lg px-5 py-2.5 items-center gap-1.5 hover:bg-wire-50 transition-colors">

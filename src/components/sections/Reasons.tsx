@@ -101,10 +101,10 @@ export default function Reasons() {
   return (
     <section id="metodologia" className="px-6">
       <div className="max-w-[1200px] mx-auto">
-        <div className="text-center mb-12">
+        <div className="mb-12 max-w-[480px]">
           <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Diferenciais</p>
-          <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black mb-3">
-            Por que escolher<br className="hidden lg:block" /> a Ensina Mais?
+          <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">
+            Por que escolher a Ensina Mais?
           </h2>
         </div>
 

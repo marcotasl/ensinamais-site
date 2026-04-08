@@ -23,10 +23,10 @@ export default function Courses() {
   return (
     <section id="cursos" className="px-6">
       <div className="max-w-[1200px] mx-auto">
-        <div className="text-center mb-12">
+        <div className="mb-12 max-w-[560px]">
           <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Nossos Cursos</p>
-          <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black mb-3">
-            Desenvolvemos múltiplos<br className="hidden lg:block" /> saberes desde a infância
+          <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">
+            Desenvolvemos múltiplos saberes desde a infância
           </h2>
         </div>
 
