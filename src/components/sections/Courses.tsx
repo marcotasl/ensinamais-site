@@ -2,20 +2,21 @@
 
 import { ArrowRight } from "lucide-react";
 import Placeholder from "@/components/ui/Placeholder";
-import { COURSES } from "@/lib/constants";
 
 /*
- * Bento layout:
- * ┌──────────────┬──────────┐
- * │              │          │
- * │  Apoio       │ Robótica │
- * │  Escolar     │          │
- * │  (featured)  ├──────────┤
- * │              │          │
- * │              │ Program. │
- * ├──────────────┤          │
- * │   Inglês     │          │
- * └──────────────┴──────────┘
+ * Bento courses — dense, visual-first, each card unique
+ *
+ * ┌───────────────────┬───────────┐
+ * │                   │           │
+ * │  Apoio Escolar    │ Robótica  │  row 1: image bg + text overlay
+ * │  (image bg,       │ (tall,    │
+ * │   heading large)  │  image)   │
+ * ├─────────┬─────────┤           │
+ * │         │         │           │
+ * │ Program.│ Inglês  ├───────────┤
+ * │ (dark)  │ (light) │  CTA card │
+ * │         │         │           │
+ * └─────────┴─────────┴───────────┘
  */
 
 export default function Courses() {
@@ -27,68 +28,55 @@ export default function Courses() {
           <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black mb-3">
             Desenvolvemos múltiplos<br className="hidden lg:block" /> saberes desde a infância
           </h2>
-          <p className="text-lg text-wire-500 max-w-[480px] mx-auto">
-            Do apoio escolar às profissões do futuro, com metodologia própria e acompanhamento individualizado.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-2 gap-4 lg:auto-rows-[240px]">
-          {COURSES.map((course, i) => {
-            // Bento sizing: first = tall left, second = top right, third = bottom right tall, fourth = bottom left
-            const span = [
-              "lg:col-span-7 lg:row-span-2",   // Apoio Escolar — large left
-              "lg:col-span-5 lg:row-span-1",   // Robótica — top right
-              "lg:col-span-5 lg:row-span-1",   // Programação — bottom right
-              "lg:col-span-7 lg:row-span-1",   // Inglês — wide bottom... wait, that's 3 rows
-            ][i];
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 lg:grid-rows-2 gap-3 lg:auto-rows-[220px]">
 
-            // Actually let me reconsider for 2 rows:
-            // Row 1: Apoio (7col) + Robótica (5col)
-            // Row 2: Inglês (5col) + Programação (7col)
-            const spanFixed = [
-              "lg:col-span-7",  // Apoio — large
-              "lg:col-span-5",  // Robótica — compact
-              "lg:col-span-5",  // Programação — compact
-              "lg:col-span-7",  // Inglês — large
-            ][i];
+          {/* Apoio Escolar — wide, image bg with text overlay */}
+          <a href="/cursos/apoio-escolar" className="card-tilt group lg:col-span-7 lg:row-span-1 rounded-2xl overflow-hidden relative" data-tilt="left">
+            <Placeholder className="absolute inset-0 rounded-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-wire-900/80 via-wire-900/30 to-transparent" />
+            <div className="relative h-full p-7 flex flex-col justify-end min-h-[200px]">
+              <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">4 a 15 anos</p>
+              <h3 className="text-2xl font-black text-white mb-1">Apoio Escolar</h3>
+              <p className="text-sm text-white/70 max-w-[320px]">Português e Matemática com ensino híbrido e acompanhamento contínuo.</p>
+            </div>
+          </a>
 
-            const isFeatured = i === 0 || i === 3;
+          {/* Robótica — tall right, image fills */}
+          <a href="/cursos/robotica" className="card-tilt group lg:col-span-5 lg:row-span-2 rounded-2xl overflow-hidden relative" data-tilt="right">
+            <Placeholder className="absolute inset-0 rounded-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-wire-900/80 via-wire-900/20 to-transparent" />
+            <div className="relative h-full p-7 flex flex-col justify-end min-h-[200px] lg:min-h-0">
+              <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">4 a 15 anos</p>
+              <h3 className="text-2xl font-black text-white mb-1">Robótica Educacional</h3>
+              <p className="text-sm text-white/70">Raciocínio lógico, criatividade e resolução de problemas na prática.</p>
+            </div>
+          </a>
 
-            return (
-              <a
-                key={i}
-                href={`/cursos/${course.title.toLowerCase().replace(/\s+/g, "-").normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
-                data-tilt={i % 2 === 0 ? "left" : "right"}
-                className={`card-tilt group block bg-white rounded-2xl overflow-hidden border border-wire-200 hover:shadow-lg ${spanFixed}`}
-              >
-                {isFeatured ? (
-                  /* Featured: horizontal layout */
-                  <div className="flex flex-col sm:flex-row h-full">
-                    <Placeholder className="sm:w-[45%] h-48 sm:h-full rounded-none shrink-0" label={course.title} />
-                    <div className="p-6 flex flex-col justify-center flex-1">
-                      <h3 className="text-xl font-extrabold text-wire-black mb-2">{course.title}</h3>
-                      <p className="text-[15px] leading-relaxed text-wire-500 mb-4">{course.desc}</p>
-                      <span className="inline-flex items-center gap-1 text-sm font-bold text-wire-700 group-hover:text-wire-black">
-                        Saiba mais <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
-                      </span>
-                    </div>
-                  </div>
-                ) : (
-                  /* Compact: vertical layout */
-                  <div className="flex flex-col h-full">
-                    <Placeholder className="w-full h-36 rounded-none shrink-0" label={course.title} />
-                    <div className="p-5 flex flex-col justify-center flex-1">
-                      <h3 className="text-xl font-extrabold text-wire-black mb-2">{course.title}</h3>
-                      <p className="text-[15px] leading-relaxed text-wire-500 mb-3 line-clamp-2">{course.desc}</p>
-                      <span className="inline-flex items-center gap-1 text-sm font-bold text-wire-700 group-hover:text-wire-black">
-                        Saiba mais <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
-                      </span>
-                    </div>
-                  </div>
-                )}
-              </a>
-            );
-          })}
+          {/* Programação — compact, dark bg */}
+          <a href="/cursos/programacao" className="card-tilt group lg:col-span-4 lg:row-span-1 rounded-2xl bg-wire-800 p-6 flex flex-col justify-between min-h-[200px]" data-tilt="left">
+            <div>
+              <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-2">6 a 14 anos</p>
+              <h3 className="text-xl font-black text-white">Programação</h3>
+            </div>
+            <div className="flex items-end justify-between">
+              <p className="text-sm text-wire-400 max-w-[200px]">Games, apps, Minecraft e lógica de programação.</p>
+              <ArrowRight size={18} className="text-wire-500 group-hover:text-white transition-colors shrink-0" />
+            </div>
+          </a>
+
+          {/* Inglês — compact, light bg */}
+          <a href="/cursos/ingles" className="card-tilt group lg:col-span-3 lg:row-span-1 rounded-2xl bg-wire-100 p-6 flex flex-col justify-between min-h-[200px]" data-tilt="right">
+            <h3 className="text-xl font-black text-wire-black">Inglês</h3>
+            <div>
+              <p className="text-sm text-wire-600 mb-3">Fluência desde a infância com abordagem comunicativa.</p>
+              <span className="text-sm font-bold text-wire-700 group-hover:text-wire-black flex items-center gap-1">
+                Saiba mais <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
+              </span>
+            </div>
+          </a>
+
         </div>
       </div>
     </section>

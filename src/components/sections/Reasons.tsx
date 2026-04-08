@@ -1,27 +1,98 @@
 "use client";
 
-import Placeholder from "@/components/ui/Placeholder";
-import { REASONS } from "@/lib/constants";
+import { ImageIcon } from "lucide-react";
 
 /*
- * Bento layout (6 items):
- * ┌─────────┬──────────────────┬─────────┐
- * │    1    │        2         │    3    │
- * │         │    (wide)        │         │
- * ├─────────┴────────┬─────────┴─────────┤
- * │                  │         5         │
- * │    4 (wide)      ├───────────────────┤
- * │                  │         6         │
- * └──────────────────┴───────────────────┘
+ * Dense bento — each card has ONE dominant element.
+ * No card tries to do everything. Variety creates rhythm.
+ *
+ * ┌──────────┬───────────────────┐
+ * │ HEADING  │  PARAGRAPH        │  row 1
+ * │ only     │  + small heading  │
+ * ├────┬─────┼─────────┬─────────┤
+ * │ICON│ NUM │ HEADING │  IMAGE  │  row 2
+ * │only│ big │  only   │  only   │
+ * ├────┴─────┴─────────┴─────────┤
+ * │  FULL WIDTH — statement      │  row 3
+ * └──────────────────────────────┘
  */
 
-const BENTO_SPANS = [
-  "lg:col-span-3",                      // 1 — small
-  "lg:col-span-6",                      // 2 — wide center
-  "lg:col-span-3",                      // 3 — small
-  "lg:col-span-7",                      // 4 — wide left
-  "lg:col-span-5",                      // 5 — right top
-  "lg:col-span-5 lg:col-start-8",      // 6 — right bottom
+const CARDS = [
+  {
+    // 1 — Big heading only
+    span: "sm:col-span-1 lg:col-span-5",
+    bg: "bg-wire-900",
+    content: (
+      <h3 className="text-2xl lg:text-3xl font-black text-white leading-tight">
+        Ensino<br />individualizado<br />sem turmas
+      </h3>
+    ),
+  },
+  {
+    // 2 — Paragraph with small label
+    span: "sm:col-span-1 lg:col-span-7",
+    bg: "bg-wire-100",
+    content: (
+      <div className="flex flex-col justify-between h-full">
+        <p className="text-xs font-bold text-wire-400 uppercase tracking-widest">Aulas Digitais</p>
+        <p className="text-lg lg:text-xl leading-relaxed text-wire-700 mt-4">
+          Gamificação, dinâmicas e jogos educativos que transformam o aprendizado
+          em uma experiência envolvente e significativa para a criança.
+        </p>
+      </div>
+    ),
+  },
+  {
+    // 3 — Icon/visual only
+    span: "sm:col-span-1 lg:col-span-3",
+    bg: "bg-wire-200",
+    content: (
+      <div className="flex items-center justify-center h-full">
+        <div className="w-20 h-20 rounded-2xl bg-wire-300 flex items-center justify-center">
+          <ImageIcon size={32} className="text-wire-500" />
+        </div>
+      </div>
+    ),
+  },
+  {
+    // 4 — Big number
+    span: "sm:col-span-1 lg:col-span-3",
+    bg: "bg-wire-800",
+    content: (
+      <div className="flex flex-col justify-end h-full">
+        <span className="text-5xl font-black text-white leading-none">10+</span>
+        <span className="text-sm font-semibold text-wire-400 mt-2">Anos de<br />metodologia comprovada</span>
+      </div>
+    ),
+  },
+  {
+    // 5 — Medium heading
+    span: "sm:col-span-1 lg:col-span-6",
+    bg: "bg-wire-50 border border-wire-200",
+    content: (
+      <div className="flex flex-col justify-between h-full">
+        <p className="text-xs font-bold text-wire-400 uppercase tracking-widest">Turma da Mônica</p>
+        <h3 className="text-xl font-extrabold text-wire-black mt-4">
+          Licenciamento exclusivo que gera identificação
+          imediata e confiança nas famílias brasileiras.
+        </h3>
+      </div>
+    ),
+  },
+  {
+    // 6 — Full width statement
+    span: "sm:col-span-2 lg:col-span-12",
+    bg: "bg-wire-900",
+    content: (
+      <div className="flex items-center justify-between gap-8">
+        <h3 className="text-xl lg:text-2xl font-black text-white max-w-[600px]">
+          Robótica, programação e inglês preparando crianças
+          para as profissões do futuro.
+        </h3>
+        <span className="hidden sm:block text-sm font-bold text-wire-500 shrink-0">Profissões do Futuro →</span>
+      </div>
+    ),
+  },
 ];
 
 export default function Reasons() {
@@ -33,34 +104,17 @@ export default function Reasons() {
           <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black mb-3">
             Por que escolher<br className="hidden lg:block" /> a Ensina Mais?
           </h2>
-          <p className="text-lg text-wire-500 max-w-[460px] mx-auto">
-            Tecnologia, personalização e o universo que as crianças amam — tudo em um só lugar.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4">
-          {REASONS.map((reason, i) => {
-            const isWide = i === 1 || i === 3;
-
-            return (
-              <div
-                key={i}
-                className={`card-lift bg-white rounded-2xl border border-wire-200 hover:shadow-lg ${BENTO_SPANS[i]} ${isWide ? "p-8" : "p-6"}`}
-              >
-                <div className="flex items-start gap-4">
-                  <Placeholder className={`${isWide ? "w-14 h-14" : "w-12 h-12"} rounded-xl shrink-0`} />
-                  <div>
-                    <h3 className={`${isWide ? "text-xl" : "text-lg"} font-extrabold text-wire-black mb-2`}>
-                      {reason.title}
-                    </h3>
-                    <p className="text-[15px] leading-relaxed text-wire-500">
-                      {reason.desc}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3">
+          {CARDS.map((card, i) => (
+            <div
+              key={i}
+              className={`card-lift rounded-2xl p-6 lg:p-7 min-h-[160px] ${card.span} ${card.bg}`}
+            >
+              {card.content}
+            </div>
+          ))}
         </div>
       </div>
     </section>
