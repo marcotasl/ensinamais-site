@@ -1,13 +1,23 @@
-const BRANDS = ["ABF", "PEGN", "Google Partner", "Facebook Partner", "Endeavor", "MoveEdu"];
+const BRANDS = [
+  "ABF",
+  "PEGN",
+  "Google Partner",
+  "Facebook Partner",
+  "Endeavor",
+  "MoveEdu",
+  "Selo de Excelência ABF",
+  "Estúdio Maurício de Sousa",
+];
 
 export default function TrustBar() {
   return (
-    <section className="bg-gray-50 border-y border-gray-200 py-7 px-6">
-      <div className="max-w-[1200px] mx-auto flex items-center justify-center gap-10 flex-wrap opacity-50">
-        {BRANDS.map((brand) => (
+    <section className="bg-white border-y border-gray-100 py-5 overflow-hidden">
+      <div className="flex animate-marquee gap-16 whitespace-nowrap">
+        {/* Double the items for seamless loop */}
+        {[...BRANDS, ...BRANDS].map((brand, i) => (
           <span
-            key={brand}
-            className="text-sm font-extrabold text-gray-500 tracking-wide uppercase"
+            key={i}
+            className="text-sm font-extrabold text-gray-400 tracking-wide uppercase shrink-0"
           >
             {brand}
           </span>
