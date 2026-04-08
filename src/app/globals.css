@@ -96,8 +96,8 @@ h4 { line-height: 1.25; }
 .card-tilt {
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
 }
-.card-tilt:nth-child(odd):hover  { transform: rotate(-1.5deg) translateY(-4px); }
-.card-tilt:nth-child(even):hover { transform: rotate(1.5deg) translateY(-4px); }
+.card-tilt[data-tilt="left"]:hover  { transform: rotate(-1.5deg) translateY(-4px); }
+.card-tilt[data-tilt="right"]:hover { transform: rotate(1.5deg) translateY(-4px); }
 
 /* Diferenciais — clean lift */
 .card-lift {
