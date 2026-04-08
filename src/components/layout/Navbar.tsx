@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { GraduationCap, Menu, X } from "lucide-react";
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 
 export default function Navbar() {
@@ -24,26 +25,15 @@ export default function Navbar() {
     >
       <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-[72px]">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5">
-          <div className="w-[42px] h-[42px] rounded-[14px] bg-gradient-to-br from-em-green to-em-green-dark flex items-center justify-center shadow-[0_4px_14px_rgba(124,179,66,0.3)]">
-            <GraduationCap size={22} color="#fff" strokeWidth={2.5} />
-          </div>
-          <div>
-            <div
-              className={`font-black text-lg leading-tight transition-colors duration-400 ${
-                scrolled ? "text-em-dark" : "text-white"
-              }`}
-            >
-              Ensina Mais
-            </div>
-            <div
-              className={`text-[9px] font-bold tracking-widest uppercase transition-colors duration-400 ${
-                scrolled ? "text-gray-500" : "text-white/70"
-              }`}
-            >
-              Turma da Monica
-            </div>
-          </div>
+        <a href="#" className="flex items-center">
+          <Image
+            src={scrolled ? "/images/logo/logo-preta-nav.png" : "/images/logo/logo-branca-nav.png"}
+            alt="Ensina Mais - Turma da Monica"
+            width={160}
+            height={48}
+            priority
+            className="h-10 w-auto object-contain transition-opacity duration-300"
+          />
         </a>
 
         {/* Desktop links */}
@@ -71,7 +61,7 @@ export default function Navbar() {
           </a>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
+            className={`lg:hidden p-2 rounded-lg transition-colors cursor-pointer ${
               scrolled ? "text-em-dark" : "text-white"
             }`}
           >
@@ -84,6 +74,16 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg">
           <div className="max-w-[1200px] mx-auto px-6 py-4 flex flex-col gap-3">
+            {/* Logo no mobile menu */}
+            <div className="pb-3 border-b border-gray-100 mb-1">
+              <Image
+                src="/images/logo/logo-preta-nav.png"
+                alt="Ensina Mais - Turma da Monica"
+                width={140}
+                height={42}
+                className="h-9 w-auto object-contain"
+              />
+            </div>
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}

@@ -1,4 +1,5 @@
-import { GraduationCap, Phone, Mail, MapPin } from "lucide-react";
+import Image from "next/image";
+import { Phone, Mail, MapPin } from "lucide-react";
 import { FOOTER_LINKS } from "@/lib/constants";
 
 const SOCIAL = [
@@ -21,16 +22,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] gap-10 pb-11 border-b border-white/10">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-[42px] h-[42px] rounded-[14px] bg-white/15 flex items-center justify-center">
-                <GraduationCap size={22} color="#fff" />
-              </div>
-              <div>
-                <div className="font-black text-lg text-white">Ensina Mais</div>
-                <div className="text-[9px] font-bold text-white/50 tracking-widest uppercase">
-                  Turma da Monica
-                </div>
-              </div>
+            <div className="mb-4">
+              <Image
+                src="/images/logo/logo-branca-nav.png"
+                alt="Ensina Mais - Turma da Monica"
+                width={160}
+                height={48}
+                className="h-11 w-auto object-contain"
+              />
             </div>
             <p className="text-[13px] text-white/55 leading-relaxed max-w-[280px] mb-5">
               Rede de apoio escolar licenciada Turma da Monica. Desenvolvemos criancas e
