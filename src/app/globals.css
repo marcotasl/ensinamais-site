@@ -84,21 +84,37 @@ h4 { line-height: 1.25; }
  * Button (sm)    | 0.875rem (14px) | 0.875rem (14px) | 700     | 0
  */
 
-/* Playful card rotations — subtle, like scattered cards on a table */
-.card-playful:nth-child(1) { --card-rotate: -1.2deg; }
-.card-playful:nth-child(2) { --card-rotate: 0.8deg; }
-.card-playful:nth-child(3) { --card-rotate: -0.6deg; }
-.card-playful:nth-child(4) { --card-rotate: 1deg; }
-.card-playful:nth-child(5) { --card-rotate: -0.9deg; }
-.card-playful:nth-child(6) { --card-rotate: 0.7deg; }
+/*
+ * Interaction vocabulary — one effect per section, never repeated adjacent
+ *
+ * Courses:       hover-tilt (slight rotation on hover)
+ * Diferenciais:  hover-lift (clean vertical lift)
+ * Depoimentos:   hover-glow (border glow + subtle scale)
+ */
 
-.card-playful {
-  transform: rotate(var(--card-rotate, 0deg));
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+/* Courses — playful tilt on hover only */
+.card-tilt {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+.card-tilt:nth-child(odd):hover  { transform: rotate(-1.5deg) translateY(-4px); }
+.card-tilt:nth-child(even):hover { transform: rotate(1.5deg) translateY(-4px); }
+
+/* Diferenciais — clean lift */
+.card-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-8px);
 }
 
-.card-playful:hover {
-  transform: rotate(0deg) translateY(-6px);
+/* Depoimentos — glow + scale */
+.card-glow {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card-glow:hover {
+  transform: scale(1.02);
+  border-color: #bfbfbf;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
 }
 
 /* Marquee animation for TrustBar */

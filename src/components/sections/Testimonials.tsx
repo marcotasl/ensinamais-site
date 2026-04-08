@@ -14,7 +14,7 @@ export default function Testimonials() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {TESTIMONIALS.map((t, i) => (
-            <div key={i} className="card-playful bg-white rounded-2xl p-7 border border-wire-200 flex flex-col h-full hover:shadow-lg">
+            <div key={i} className="card-glow bg-white rounded-2xl p-7 border border-wire-200 flex flex-col h-full">
               <div className="flex gap-0.5 mb-4">
                 {Array(t.stars).fill(0).map((_, j) => <Star key={j} size={14} fill="#d9d9d9" color="#d9d9d9" />)}
               </div>

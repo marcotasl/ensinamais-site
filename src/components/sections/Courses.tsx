@@ -21,7 +21,7 @@ export default function Courses() {
             <a
               key={i}
               href={`/cursos/${course.title.toLowerCase().replace(/\s+/g, "-").normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
-              className="card-playful group block bg-white rounded-2xl overflow-hidden border border-wire-200 hover:shadow-lg h-full"
+              className="card-tilt group block bg-white rounded-2xl overflow-hidden border border-wire-200 hover:shadow-lg h-full"
             >
               <Placeholder className="w-full h-40 rounded-none" label={course.title} />
               <div className="p-5">

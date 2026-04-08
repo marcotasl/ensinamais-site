@@ -17,7 +17,7 @@ export default function Reasons() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {REASONS.map((reason, i) => (
-            <div key={i} className="card-playful bg-white rounded-2xl p-7 border border-wire-200 hover:shadow-lg">
+            <div key={i} className="card-lift bg-white rounded-2xl p-7 border border-wire-200 hover:shadow-lg">
               <Placeholder className="w-14 h-14 rounded-xl mb-4" />
               <h3 className="text-xl font-extrabold text-wire-black mb-2">{reason.title}</h3>
               <p className="text-[15px] leading-relaxed text-wire-500">{reason.desc}</p>
