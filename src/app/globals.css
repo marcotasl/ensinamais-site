@@ -57,10 +57,15 @@ input::placeholder {
   color: #a3a3a3;
 }
 
-/* Prevent orphan lines in headings */
+/* Prevent orphan lines + tight leading in headings */
 h1, h2, h3, h4 {
   text-wrap: balance;
 }
+
+h1 { line-height: 1.05; }
+h2 { line-height: 1.1; }
+h3 { line-height: 1.2; }
+h4 { line-height: 1.25; }
 
 /*
  * Typographic Scale — Ensina Mais
@@ -78,6 +83,23 @@ h1, h2, h3, h4 {
  * Button (lg)    | 1rem (16px)     | 1rem (16px)     | 700     | 0
  * Button (sm)    | 0.875rem (14px) | 0.875rem (14px) | 700     | 0
  */
+
+/* Playful card rotations — subtle, like scattered cards on a table */
+.card-playful:nth-child(1) { --card-rotate: -1.2deg; }
+.card-playful:nth-child(2) { --card-rotate: 0.8deg; }
+.card-playful:nth-child(3) { --card-rotate: -0.6deg; }
+.card-playful:nth-child(4) { --card-rotate: 1deg; }
+.card-playful:nth-child(5) { --card-rotate: -0.9deg; }
+.card-playful:nth-child(6) { --card-rotate: 0.7deg; }
+
+.card-playful {
+  transform: rotate(var(--card-rotate, 0deg));
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+
+.card-playful:hover {
+  transform: rotate(0deg) translateY(-6px);
+}
 
 /* Marquee animation for TrustBar */
 @keyframes marquee {
