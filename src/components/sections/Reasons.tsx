@@ -86,7 +86,7 @@ const CARDS = [
     span: "sm:col-span-2 lg:col-span-12",
     bg: "bg-wire-900",
     content: (
-      <div className="flex items-center justify-between gap-8">
+      <div className="flex items-center justify-between gap-8 h-full">
         <h3 className="text-xl lg:text-2xl font-black text-white max-w-[600px]">
           Robótica, programação e inglês preparando crianças
           para as profissões do futuro.
