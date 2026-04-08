@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: "Nunito", sans-serif;
+
+  /* Green */
+  --color-em-green: #7CB342;
+  --color-em-green-dark: #5A8A2A;
+  --color-em-green-light: #C5E1A5;
+  --color-em-green-pale: #F1F8E9;
+
+  /* Blue */
+  --color-em-blue: #039BE5;
+  --color-em-blue-dark: #0277BD;
+  --color-em-blue-light: #B3E5FC;
+  --color-em-blue-pale: #E1F5FE;
+
+  /* Coral */
+  --color-em-coral: #EF5350;
+  --color-em-coral-dark: #C62828;
+  --color-em-coral-light: #FFCDD2;
+  --color-em-coral-pale: #FFEBEE;
+
+  /* Purple */
+  --color-em-purple: #5C6BC0;
+  --color-em-purple-dark: #3949AB;
+  --color-em-purple-light: #C5CAE9;
+
+  /* Teal */
+  --color-em-teal: #00897B;
+  --color-em-teal-dark: #00695C;
+
+  /* Yellow */
+  --color-em-yellow: #FDD835;
+  --color-em-yellow-dark: #F9A825;
+
+  /* Orange */
+  --color-em-orange: #FF9800;
+
+  /* Dark */
+  --color-em-dark: #1A2744;
+  --color-em-dark-soft: #2D3A4F;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input::placeholder {
+  color: #94A3B8;
+}
