@@ -10,10 +10,11 @@ A agência responsável é a **Virtus Design** (virtusdesign.com.br).
 
 ## Arquivos de Referência
 
+- `docs/ensina-mais-ux-blueprint.md` — **DOCUMENTO PRINCIPAL.** Blueprint estratégico com diagnóstico, personas, jornadas de conversão, sitemap completo, blueprint por página (homepage, cursos, metodologia, escolas, franquia, blog, sobre), componentes globais, SEO, métricas e fases de implementação. **Leia PRIMEIRO.**
 - `docs/ensina-mais-design-tokens-v2.md` — Design tokens extraídos da identidade visual da marca (paleta, tipografia, espaçamento, componentes, anatomia da página)
 - `docs/ensina-mais-landing-v3.jsx` — Protótipo React funcional da landing page (componentes, dados, layout, animações). Usar como base para os componentes Next.js.
 
-**Leia ambos os arquivos antes de qualquer implementação.**
+**Leia o blueprint antes de qualquer implementação de nova seção ou página.**
 
 ## Stack Técnica
 
