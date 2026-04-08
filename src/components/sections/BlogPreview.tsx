@@ -16,7 +16,7 @@ export default function BlogPreview() {
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-10 gap-4">
           <div>
             <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Blog</p>
-            <h2 className="text-3xl lg:text-4xl font-black text-wire-black">Conteúdo para pais e educadores</h2>
+            <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">Conteúdo para pais<br className="hidden lg:block" /> e educadores</h2>
           </div>
           <a href="/blog" className="text-sm font-bold text-wire-700 flex items-center gap-1.5 hover:text-wire-black shrink-0">
             Ver todos <ArrowRight size={14} />

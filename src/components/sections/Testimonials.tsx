@@ -9,7 +9,7 @@ export default function Testimonials() {
       <div className="max-w-[1200px] mx-auto">
         <div className="text-center mb-12">
           <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Depoimentos</p>
-          <h2 className="text-3xl lg:text-4xl font-black text-wire-black">O que os pais dizem</h2>
+          <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">O que os pais dizem</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

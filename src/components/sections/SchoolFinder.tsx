@@ -18,8 +18,8 @@ export default function SchoolFinder() {
       <div className="max-w-[1200px] mx-auto bg-wire-50 rounded-2xl py-16 px-6 lg:px-12 border border-wire-200">
         <div className="text-center mb-10">
           <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Nossas Escolas</p>
-          <h2 className="text-3xl lg:text-4xl font-black text-wire-black mb-3">Encontre a escola mais perto de você</h2>
-          <p className="text-lg text-wire-500 max-w-[480px] mx-auto">Mais de 100 unidades espalhadas pelo Brasil.</p>
+          <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black mb-3">Encontre a escola<br className="hidden lg:block" /> mais perto de você</h2>
+          <p className="text-lg text-wire-500 max-w-[420px] mx-auto">Mais de 100 unidades espalhadas pelo Brasil inteiro.</p>
         </div>
 
         <div className="max-w-[560px] mx-auto mb-12">

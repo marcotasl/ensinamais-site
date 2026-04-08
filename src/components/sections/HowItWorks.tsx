@@ -18,8 +18,8 @@ export default function HowItWorks() {
 
           <div>
             <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-3">Como Funciona</p>
-            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight mb-10">
-              Metodologia que respeita o ritmo do seu filho
+            <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-white leading-tight mb-10">
+              Metodologia que respeita<br className="hidden lg:block" /> o ritmo do seu filho
             </h2>
 
             <div className="flex flex-col gap-8">

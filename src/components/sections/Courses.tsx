@@ -10,9 +10,9 @@ export default function Courses() {
       <div className="max-w-[1200px] mx-auto">
         <div className="text-center mb-12">
           <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Nossos Cursos</p>
-          <h2 className="text-3xl lg:text-4xl font-black text-wire-black mb-3">Desenvolvemos múltiplos saberes</h2>
-          <p className="text-lg text-wire-500 max-w-[520px] mx-auto">
-            Do apoio escolar às profissões do futuro — cada curso com metodologia própria e acompanhamento individualizado.
+          <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black mb-3">Desenvolvemos múltiplos<br className="hidden lg:block" /> saberes desde a infância</h2>
+          <p className="text-lg text-wire-500 max-w-[480px] mx-auto">
+            Do apoio escolar às profissões do futuro, com metodologia própria e acompanhamento individualizado.
           </p>
         </div>
 
@@ -25,8 +25,8 @@ export default function Courses() {
             >
               <Placeholder className="w-full h-40 rounded-none" label={course.title} />
               <div className="p-5">
-                <h3 className="text-lg font-extrabold text-wire-black mb-2">{course.title}</h3>
-                <p className="text-sm leading-relaxed text-wire-500 mb-4">{course.desc}</p>
+                <h3 className="text-xl font-extrabold text-wire-black mb-2">{course.title}</h3>
+                <p className="text-[15px] leading-relaxed text-wire-500 mb-4">{course.desc}</p>
                 <span className="inline-flex items-center gap-1 text-sm font-bold text-wire-700 group-hover:text-wire-black">
                   Saiba mais <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
                 </span>

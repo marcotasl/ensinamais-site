@@ -18,7 +18,7 @@ export default function FranchiseCTA() {
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center">
           <div>
             <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-3">Seja um Franqueado</p>
-            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight mb-5">Quer ter sua própria escola Ensina Mais?</h2>
+            <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-white leading-tight mb-5">Quer ter sua própria<br className="hidden lg:block" /> escola Ensina Mais?</h2>
             <p className="text-lg leading-relaxed text-wire-500 mb-10 max-w-[460px]">
               A microfranquia de educação mais premiada do Brasil. Invista em um negócio com propósito e rentabilidade comprovada.
             </p>

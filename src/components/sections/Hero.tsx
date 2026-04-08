@@ -32,7 +32,7 @@ export default function Hero({ banners }: HeroProps) {
         {/* Text */}
         <div>
           <span className="inline-block text-xs font-bold text-wire-400 uppercase tracking-widest mb-4 bg-white/10 px-3 py-1.5 rounded-full">{slide.subtitle}</span>
-          <h1 className="text-[clamp(2.4rem,5vw,3.8rem)] font-black leading-[1.05] text-white mb-6">{slide.title}</h1>
+          <h1 className="text-[clamp(2rem,4vw,3rem)] font-black tracking-tight leading-[1.1] text-white mb-6">{slide.title}</h1>
           <p className="text-lg leading-relaxed text-wire-400 max-w-[460px] mb-8">{slide.desc}</p>
           <div className="flex gap-3">
             <a href={slide.ctaHref} className="text-base font-bold text-wire-black bg-white rounded-xl px-8 py-4 inline-flex items-center gap-2 hover:bg-wire-100 transition-colors">
