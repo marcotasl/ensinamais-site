@@ -4,8 +4,6 @@ import Image from "next/image";
 import { ClipboardCheck, UserCog, BarChart3, ArrowRight } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import Badge from "@/components/ui/Badge";
-import Wave from "@/components/layout/Wave";
-
 const STEPS = [
   {
     number: "01",
@@ -32,9 +30,7 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <>
-      <Wave color="#039BE5" flip height={70} />
-      <section className="bg-em-blue py-20 px-6 relative overflow-hidden">
+    <section className="bg-em-blue py-20 px-6 relative overflow-hidden">
         {/* Background decorative */}
         <div className="absolute top-0 right-0 w-1/3 h-full bg-white/[0.03] rounded-l-[100px] pointer-events-none" />
 
@@ -123,8 +119,6 @@ export default function HowItWorks() {
             </div>
           </div>
         </div>
-      </section>
-      <Wave color="#039BE5" height={70} />
-    </>
+    </section>
   );
 }

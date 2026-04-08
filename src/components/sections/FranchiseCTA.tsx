@@ -5,8 +5,6 @@ import { Building2, ArrowRight, TrendingUp, Clock, DollarSign, Banknote } from "
 import FadeIn from "@/components/ui/FadeIn";
 import Badge from "@/components/ui/Badge";
 import Counter from "@/components/ui/Counter";
-import Wave from "@/components/layout/Wave";
-
 const FRANCHISE_STATS = [
   { icon: DollarSign, number: 120, prefix: "R$", suffix: "k", label: "Investimento inicial" },
   { icon: Banknote, number: 30, prefix: "R$", suffix: "k/mês", label: "Faturamento médio" },
@@ -16,9 +14,7 @@ const FRANCHISE_STATS = [
 
 export default function FranchiseCTA() {
   return (
-    <>
-      <Wave color="#3949AB" flip height={70} />
-      <section id="franquia" className="bg-gradient-to-br from-em-purple-dark to-em-purple py-20 px-6 relative overflow-hidden">
+    <section id="franquia" className="bg-gradient-to-br from-em-purple-dark to-em-purple py-20 px-6 relative overflow-hidden">
         {/* Decorative */}
         <div className="absolute inset-0 bg-[url('/images/textures/pattern-light.png')] bg-cover opacity-[0.03] mix-blend-overlay pointer-events-none" />
         <div className="absolute -bottom-20 -right-20 opacity-10 pointer-events-none hidden lg:block">
@@ -115,8 +111,6 @@ export default function FranchiseCTA() {
             </FadeIn>
           </div>
         </div>
-      </section>
-      <Wave color="#3949AB" height={70} />
-    </>
+    </section>
   );
 }
