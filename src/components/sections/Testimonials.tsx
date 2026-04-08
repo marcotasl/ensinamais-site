@@ -1,57 +1,94 @@
 "use client";
 
-import { Star } from "lucide-react";
+import { useState, useCallback } from "react";
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { TESTIMONIALS } from "@/lib/constants";
 
-/*
- * Bento layout (3 items):
- * ┌──────────────────┬──────────┐
- * │                  │          │
- * │   1 (featured)   │    2     │
- * │                  │          │
- * │                  ├──────────┤
- * │                  │          │
- * │                  │    3     │
- * └──────────────────┴──────────┘
- */
-
 export default function Testimonials() {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const total = TESTIMONIALS.length;
+
+  const next = useCallback(() => {
+    setDirection(1);
+    setCurrent((p) => (p + 1) % total);
+  }, [total]);
+
+  const prev = useCallback(() => {
+    setDirection(-1);
+    setCurrent((p) => (p - 1 + total) % total);
+  }, [total]);
+
+  const t = TESTIMONIALS[current];
+
   return (
     <section id="depoimentos" className="px-6">
-      <div className="max-w-[1200px] mx-auto">
+      <div className="max-w-[800px] mx-auto">
         <div className="text-center mb-12">
           <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Depoimentos</p>
-          <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">O que os pais dizem</h2>
+          <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">
+            O que os pais dizem
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-          {TESTIMONIALS.map((t, i) => {
-            const isFeatured = i === 0;
-            return (
-              <div
-                key={i}
-                className={`card-glow bg-white rounded-2xl border border-wire-200 flex flex-col ${
-                  isFeatured ? "lg:col-span-7 lg:row-span-2 p-8 lg:p-10" : "lg:col-span-5 p-7"
-                }`}
-              >
-                <div className="flex gap-0.5 mb-4">
-                  {Array(t.stars).fill(0).map((_, j) => (
-                    <Star key={j} size={isFeatured ? 18 : 14} fill="#d9d9d9" color="#d9d9d9" />
-                  ))}
-                </div>
-                <p className={`${isFeatured ? "text-xl lg:text-2xl" : "text-base"} leading-relaxed text-wire-700 flex-1 mb-6`}>
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div className="flex items-center gap-3 pt-4 border-t border-wire-100">
-                  <div className={`${isFeatured ? "w-12 h-12" : "w-10 h-10"} rounded-full bg-wire-200`} />
-                  <div>
-                    <div className={`${isFeatured ? "text-base" : "text-sm"} font-bold text-wire-black`}>{t.name}</div>
-                    <div className="text-xs text-wire-400">{t.city}</div>
-                  </div>
+        {/* Carousel */}
+        <div className="relative">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={current}
+              custom={direction}
+              variants={{
+                enter: (dir: number) => ({ x: dir > 0 ? 40 : -40, opacity: 0 }),
+                center: { x: 0, opacity: 1 },
+                exit: (dir: number) => ({ x: dir > 0 ? -40 : 40, opacity: 0 }),
+              }}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="text-center"
+            >
+              <Quote size={32} className="text-wire-300 mx-auto mb-6" />
+
+              <p className="text-xl lg:text-2xl leading-relaxed text-wire-700 mb-8 max-w-[640px] mx-auto">
+                &ldquo;{t.quote}&rdquo;
+              </p>
+
+              <div className="flex items-center justify-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-wire-200" />
+                <div className="text-left">
+                  <div className="text-base font-bold text-wire-black">{t.name}</div>
+                  <div className="text-sm text-wire-400">{t.city}</div>
                 </div>
               </div>
-            );
-          })}
+
+              <div className="flex gap-0.5 justify-center mt-4">
+                {Array(t.stars).fill(0).map((_, j) => (
+                  <Star key={j} size={14} fill="#d9d9d9" color="#d9d9d9" />
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Navigation */}
+        <div className="flex items-center justify-center gap-6 mt-10">
+          <button onClick={prev} className="w-10 h-10 rounded-full border border-wire-300 flex items-center justify-center text-wire-500 hover:border-wire-500 hover:text-wire-black transition-colors cursor-pointer">
+            <ChevronLeft size={18} />
+          </button>
+          <div className="flex gap-2">
+            {TESTIMONIALS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+                className={`h-1.5 rounded-full transition-all cursor-pointer ${i === current ? "w-6 bg-wire-black" : "w-1.5 bg-wire-300"}`}
+              />
+            ))}
+          </div>
+          <button onClick={next} className="w-10 h-10 rounded-full border border-wire-300 flex items-center justify-center text-wire-500 hover:border-wire-500 hover:text-wire-black transition-colors cursor-pointer">
+            <ChevronRight size={18} />
+          </button>
         </div>
       </div>
     </section>
