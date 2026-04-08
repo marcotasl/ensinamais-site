@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ArrowRight, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Badge from "@/components/ui/Badge";
-import Wave from "@/components/layout/Wave";
 import type { FallbackBanner } from "@/lib/fallback-banners";
 
 interface HeroProps {
@@ -176,7 +175,6 @@ export default function Hero({ banners }: HeroProps) {
         </div>
       )}
 
-      <Wave color="#fff" height={80} />
     </section>
   );
 }

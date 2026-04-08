@@ -38,7 +38,7 @@ const POSTS = [
 
 export default function BlogPreview() {
   return (
-    <section className="bg-white py-20 px-6">
+    <section className="bg-white py-20 px-6 mx-4 lg:mx-8 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
       <div className="max-w-[1200px] mx-auto">
         <FadeIn>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12 gap-4">

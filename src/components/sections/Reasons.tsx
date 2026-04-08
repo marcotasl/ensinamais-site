@@ -21,7 +21,7 @@ export default function Reasons() {
   return (
     <section
       id="metodologia"
-      className="bg-white py-20 px-6 relative overflow-hidden"
+      className="bg-white py-20 px-6 relative overflow-hidden mx-4 lg:mx-8 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)]"
     >
       <Blob color="#EF5350" size={300} top="-60px" right="-80px" opacity={0.06} />
 

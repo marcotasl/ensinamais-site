@@ -11,7 +11,7 @@ export default function Testimonials() {
   return (
     <section
       id="depoimentos"
-      className="bg-white py-10 px-6 relative overflow-hidden"
+      className="bg-white py-10 px-6 relative overflow-hidden mx-4 lg:mx-8 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)]"
       style={{ paddingBottom: 80 }}
     >
       <Blob color="#FDD835" size={250} top="20px" left="-60px" opacity={0.08} />

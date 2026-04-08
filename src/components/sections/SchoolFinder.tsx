@@ -44,7 +44,7 @@ export default function SchoolFinder() {
   const [search, setSearch] = useState("");
 
   return (
-    <section id="escolas" className="bg-gray-50 py-20 px-6">
+    <section id="escolas" className="bg-gray-50 py-20 px-6 mx-4 lg:mx-8 rounded-2xl">
       <div className="max-w-[1200px] mx-auto">
         <FadeIn>
           <div className="text-center mb-12">

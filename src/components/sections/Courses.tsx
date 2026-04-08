@@ -16,7 +16,7 @@ const COURSE_CHARACTERS: Record<string, string> = {
 
 export default function Courses() {
   return (
-    <section id="cursos" className="bg-white py-20 px-6">
+    <section id="cursos" className="bg-white py-16 px-6 mx-4 lg:mx-8 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
       <div className="max-w-[1200px] mx-auto">
         <FadeIn>
           <div className="text-center mb-14">

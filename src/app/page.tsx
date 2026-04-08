@@ -38,26 +38,28 @@ export default async function Home() {
       <Navbar />
       {/* 1. Hero — Carrossel de banners */}
       <Hero banners={banners} />
-      {/* 2. Barra de Confiança — Logos em marquee */}
-      <TrustBar />
-      {/* 3. Formulário de Lead — Conversão primária */}
-      <LeadForm />
-      {/* 4. Cursos — 4 cards com CTA para página individual */}
-      <Courses />
-      {/* 5. Como Funciona — 3 steps da metodologia */}
-      <HowItWorks />
-      {/* 6. Números — Stats da marca com counters animados */}
-      <Numbers />
-      {/* 7. Diferenciais — 6 cards de motivos para escolher */}
-      <Reasons />
-      {/* 8. Depoimentos — 3 cards de pais */}
-      <Testimonials />
-      {/* 9. Buscador de Escolas — Preview com busca e 3 escolas */}
-      <SchoolFinder />
-      {/* 10. CTA Franquia — Seção B2B com stats e renders */}
-      <FranchiseCTA />
-      {/* 11. Blog Preview — 3 posts recentes */}
-      <BlogPreview />
+      <div className="flex flex-col gap-6 lg:gap-8">
+        {/* 2. Barra de Confiança — Logos em marquee */}
+        <TrustBar />
+        {/* 3. Formulário de Lead — Conversão primária */}
+        <LeadForm />
+        {/* 4. Cursos — 4 cards com CTA para página individual */}
+        <Courses />
+        {/* 5. Como Funciona — 3 steps da metodologia */}
+        <HowItWorks />
+        {/* 6. Números — Stats da marca com counters animados */}
+        <Numbers />
+        {/* 7. Diferenciais — 6 cards de motivos para escolher */}
+        <Reasons />
+        {/* 8. Depoimentos — 3 cards de pais */}
+        <Testimonials />
+        {/* 9. Buscador de Escolas — Preview com busca e 3 escolas */}
+        <SchoolFinder />
+        {/* 10. CTA Franquia — Seção B2B com stats e renders */}
+        <FranchiseCTA />
+        {/* 11. Blog Preview — 3 posts recentes */}
+        <BlogPreview />
+      </div>
       {/* 12. Footer */}
       <Footer />
       {/* WhatsApp flutuante */}

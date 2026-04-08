@@ -13,7 +13,7 @@ const BRAND_STATS = [
 
 export default function Numbers() {
   return (
-    <section className="bg-em-green py-20 px-6 relative overflow-hidden">
+    <section className="bg-em-green py-20 px-6 relative overflow-hidden rounded-2xl mx-4 lg:mx-8">
       {/* Decorative */}
       <div className="absolute inset-0 bg-[url('/images/textures/pattern-light.png')] bg-cover opacity-[0.06] mix-blend-overlay pointer-events-none" />
 

@@ -14,7 +14,7 @@ const FRANCHISE_STATS = [
 
 export default function FranchiseCTA() {
   return (
-    <section id="franquia" className="bg-gradient-to-br from-em-purple-dark to-em-purple py-20 px-6 relative overflow-hidden">
+    <section id="franquia" className="bg-gradient-to-br from-em-purple-dark to-em-purple py-20 px-6 relative overflow-hidden rounded-2xl mx-4 lg:mx-8">
         {/* Decorative */}
         <div className="absolute inset-0 bg-[url('/images/textures/pattern-light.png')] bg-cover opacity-[0.03] mix-blend-overlay pointer-events-none" />
         <div className="absolute -bottom-20 -right-20 opacity-10 pointer-events-none hidden lg:block">

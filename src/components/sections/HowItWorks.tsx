@@ -31,7 +31,7 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section className="bg-em-blue py-20 px-6 relative overflow-hidden">
+    <section className="bg-em-blue py-20 px-6 relative overflow-hidden rounded-2xl mx-4 lg:mx-8">
       {/* Background decorative */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-white/[0.03] rounded-l-[100px] pointer-events-none" />
 

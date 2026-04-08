@@ -11,7 +11,7 @@ const BRANDS = [
 
 export default function TrustBar() {
   return (
-    <section className="bg-white border-y border-gray-100 py-5 overflow-hidden">
+    <section className="bg-white py-6 overflow-hidden">
       <div className="flex animate-marquee gap-16 whitespace-nowrap">
         {/* Double the items for seamless loop */}
         {[...BRANDS, ...BRANDS].map((brand, i) => (
