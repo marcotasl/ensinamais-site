@@ -7,25 +7,23 @@ import Badge from "@/components/ui/Badge";
 import Blob from "@/components/ui/Blob";
 import { REASONS, REASON_COLORS } from "@/lib/constants";
 
+// Personagem TM por diferencial
+const REASON_CHARACTERS = [
+  "/images/turma-da-monica/pose-4.png",  // Cebolinha apontando — Ensino Individualizado
+  "/images/turma-da-monica/pose-12.png", // Cebolinha desenhando — Aulas Digitais
+  "/images/turma-da-monica/pose-15.png", // Milena confiante — Acompanhamento
+  "/images/turma-da-monica/pose-1.png",  // Magali + Mônica — Turma da Mônica
+  "/images/turma-da-monica/pose-16.png", // Franjinha cientista — Metodologia Comprovada
+  "/images/turma-da-monica/pose-9.png",  // Cebolinha braços abertos — Profissões do Futuro
+];
+
 export default function Reasons() {
   return (
     <section
       id="metodologia"
-      className="bg-white py-15 px-6 relative overflow-hidden"
-      style={{ paddingTop: 60, paddingBottom: 80 }}
+      className="bg-white py-20 px-6 relative overflow-hidden"
     >
       <Blob color="#EF5350" size={300} top="-60px" right="-80px" opacity={0.06} />
-
-      {/* Cebolinha decorativo */}
-      <div className="absolute bottom-8 right-8 pointer-events-none opacity-15 hidden lg:block">
-        <Image
-          src="/images/turma-da-monica/pose-9.png"
-          alt=""
-          width={160}
-          height={160}
-          className="drop-shadow-sm"
-        />
-      </div>
 
       <div className="max-w-[1200px] mx-auto relative z-2">
         <FadeIn>
@@ -33,7 +31,7 @@ export default function Reasons() {
             <Badge className="mb-3 bg-em-coral-pale text-em-coral">
               <Sparkles size={12} /> Diferenciais
             </Badge>
-            <h2 className="text-[clamp(1.7rem,3.5vw,2.4rem)] font-black text-em-dark mb-3">
+            <h2 className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-em-dark mb-3">
               Por que escolher a Ensina Mais?
             </h2>
             <p className="text-base text-gray-500 max-w-[520px] mx-auto">
@@ -54,11 +52,15 @@ export default function Reasons() {
                     className="absolute top-0 left-0 right-0 h-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     style={{ background: color }}
                   />
-                  <div
-                    className="w-[52px] h-[52px] rounded-2xl flex items-center justify-center mb-4"
-                    style={{ background: `${color}12` }}
-                  >
-                    <reason.icon size={24} style={{ color }} strokeWidth={2} />
+                  {/* TM character */}
+                  <div className="w-16 h-16 mb-4 relative">
+                    <Image
+                      src={REASON_CHARACTERS[i]}
+                      alt=""
+                      width={64}
+                      height={64}
+                      className="object-contain drop-shadow-sm"
+                    />
                   </div>
                   <h3 className="text-lg font-extrabold text-em-dark mb-2">
                     {reason.title}

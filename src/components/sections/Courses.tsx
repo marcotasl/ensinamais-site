@@ -6,6 +6,14 @@ import FadeIn from "@/components/ui/FadeIn";
 import Badge from "@/components/ui/Badge";
 import { COURSES } from "@/lib/constants";
 
+// Personagem TM por curso
+const COURSE_CHARACTERS: Record<string, string> = {
+  "Apoio Escolar": "/images/turma-da-monica/pose-12.png", // Cebolinha desenhando
+  "Robótica Educacional": "/images/turma-da-monica/pose-16.png", // Franjinha cientista
+  "Programação": "/images/turma-da-monica/pose-4.png", // Cebolinha apresentando
+  "Inglês": "/images/turma-da-monica/pose-1.png", // Magali + Mônica
+};
+
 export default function Courses() {
   return (
     <section id="cursos" className="bg-white py-20 px-6">
@@ -55,11 +63,15 @@ export default function Courses() {
 
                 {/* Content */}
                 <div className="p-6">
-                  <div
-                    className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4"
-                    style={{ background: course.light }}
-                  >
-                    <course.icon size={22} style={{ color: course.color }} strokeWidth={2} />
+                  {/* TM character instead of icon */}
+                  <div className="w-16 h-16 mb-4 relative">
+                    <Image
+                      src={COURSE_CHARACTERS[course.title] || "/images/turma-da-monica/pose-5.png"}
+                      alt=""
+                      width={64}
+                      height={64}
+                      className="object-contain drop-shadow-sm"
+                    />
                   </div>
                   <h3 className="text-xl font-extrabold text-em-dark mb-2">
                     {course.title}
