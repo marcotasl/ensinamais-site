@@ -22,7 +22,7 @@ export const COURSES: Course[] = [
     desc: "Reforco individualizado em Portugues e Matematica com ensino hibrido e acompanhamento continuo.",
     color: "#039BE5",
     light: "#E1F5FE",
-    img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=480&h=340&fit=crop&crop=faces",
+    img: "/images/courses/apoio-escolar.jpg",
   },
   {
     icon: Cpu,
@@ -30,7 +30,7 @@ export const COURSES: Course[] = [
     desc: "Da montagem a programacao: raciocinio logico, criatividade e resolucao de problemas na pratica.",
     color: "#7CB342",
     light: "#F1F8E9",
-    img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=480&h=340&fit=crop",
+    img: "/images/courses/robotica.jpg",
   },
   {
     icon: Monitor,
@@ -38,7 +38,7 @@ export const COURSES: Course[] = [
     desc: "Games, apps, Minecraft e logica de programacao para criancas e adolescentes dos 6 aos 14 anos.",
     color: "#FF9800",
     light: "#FFF3E0",
-    img: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=480&h=340&fit=crop",
+    img: "/images/courses/programacao.jpg",
   },
   {
     icon: Globe,
@@ -46,7 +46,7 @@ export const COURSES: Course[] = [
     desc: "Fluencia desde a infancia com abordagem comunicativa e imersao no universo bilingue.",
     color: "#EF5350",
     light: "#FFEBEE",
-    img: "https://images.unsplash.com/photo-1529390079861-591de354faf5?w=480&h=340&fit=crop&crop=faces",
+    img: "/images/courses/ingles.jpg",
   },
 ];
 
@@ -95,21 +95,21 @@ export const TESTIMONIALS: Testimonial[] = [
     quote: "Meu filho estava com muita dificuldade em matematica. Em poucos meses na Ensina Mais, a evolucao foi incrivel. Ele ganhou confianca e as notas subiram!",
     name: "Carla Mendes",
     city: "Sao Paulo, SP",
-    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=faces",
+    img: "/images/turma-da-monica/pose-14.png",
     stars: 5,
   },
   {
     quote: "A robotica despertou no meu filho um interesse que eu nunca tinha visto. Ele chega em casa animado, querendo construir coisas e explicar como funciona!",
     name: "Roberto Silva",
     city: "Campinas, SP",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=faces",
+    img: "/images/turma-da-monica/pose-4.png",
     stars: 5,
   },
   {
     quote: "A metodologia individualizada faz toda a diferenca. Minha filha tem acompanhamento personalizado e agora ama ir pra aula. Recomendo muito!",
     name: "Juliana Ferreira",
     city: "Rio de Janeiro, RJ",
-    img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=faces",
+    img: "/images/turma-da-monica/pose-15.png",
     stars: 5,
   },
 ];
@@ -147,8 +147,8 @@ export const FOOTER_LINKS: FooterLinkGroup[] = [
 export const REASON_COLORS = ["#039BE5", "#7CB342", "#EF5350", "#FDD835", "#5C6BC0", "#FF9800"];
 
 export const SCHOOL_IMAGES = [
-  "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=300&fit=crop",
-  "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&h=300&fit=crop",
-  "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=300&fit=crop",
-  "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=400&h=300&fit=crop",
+  { src: "/images/schools/fachada-1.jpg", label: "Fachada da unidade" },
+  { src: "/images/schools/fachada-2.jpg", label: "Unidade colonial" },
+  { src: "/images/schools/recepcao.jpg", label: "Recepcao" },
+  { src: "/images/schools/lab-computacao.jpg", label: "Laboratorio de informatica" },
 ];

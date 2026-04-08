@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Sparkles } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import Badge from "@/components/ui/Badge";
@@ -14,6 +15,17 @@ export default function Reasons() {
       style={{ paddingTop: 60, paddingBottom: 80 }}
     >
       <Blob color="#EF5350" size={300} top="-60px" right="-80px" opacity={0.06} />
+
+      {/* Cebolinha decorativo */}
+      <div className="absolute bottom-8 right-8 pointer-events-none opacity-15 hidden lg:block">
+        <Image
+          src="/images/turma-da-monica/pose-9.png"
+          alt=""
+          width={160}
+          height={160}
+          className="drop-shadow-sm"
+        />
+      </div>
 
       <div className="max-w-[1200px] mx-auto relative z-2">
         <FadeIn>

@@ -48,7 +48,7 @@ export default function Testimonials() {
                     alt={t.name}
                     width={44}
                     height={44}
-                    className="rounded-[14px] object-cover"
+                    className="w-11 h-11 rounded-[14px] object-contain bg-em-green-pale p-1"
                   />
                   <div>
                     <div className="text-sm font-extrabold text-em-dark">{t.name}</div>

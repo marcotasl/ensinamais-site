@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Building2, ArrowRight } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import Badge from "@/components/ui/Badge";
@@ -20,6 +21,16 @@ export default function Stats() {
       >
         <Blob color="#fff" size={350} bottom="-80px" right="-80px" opacity={0.04} />
         <DotGrid color="rgba(255,255,255,0.05)" top="30px" right="50px" />
+
+        {/* Personagens TM decorativos */}
+        <div className="absolute bottom-4 left-4 pointer-events-none opacity-10 hidden lg:block">
+          <Image
+            src="/images/turma-da-monica/pose-5.png"
+            alt=""
+            width={200}
+            height={160}
+          />
+        </div>
 
         <div className="max-w-[1200px] mx-auto relative z-2">
           <FadeIn>

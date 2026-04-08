@@ -88,11 +88,11 @@ export default function Hero() {
         {/* Images */}
         <FadeIn delay={0.2}>
           <div className="relative hidden lg:block">
-            {/* Main image */}
+            {/* Main image - aluna sorrindo no computador */}
             <div className="relative rounded-[28px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.2)] border-4 border-white/15">
               <Image
-                src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&h=440&fit=crop&crop=faces"
-                alt="Criancas estudando na Ensina Mais"
+                src="/images/hero/aluna-computador.jpg"
+                alt="Aluna sorrindo no computador da Ensina Mais"
                 width={600}
                 height={440}
                 priority
@@ -110,7 +110,7 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* TM badge */}
+            {/* TM badge com Cebolinha */}
             <div className="absolute -top-4 -right-4 w-[100px] h-[100px] rounded-3xl bg-em-yellow shadow-[0_8px_24px_rgba(253,216,53,0.3)] flex flex-col items-center justify-center rotate-6 z-3">
               <Sparkles size={24} className="text-em-dark" strokeWidth={2.5} />
               <span className="text-[10px] font-extrabold text-em-dark uppercase tracking-tight mt-0.5">
@@ -121,14 +121,25 @@ export default function Hero() {
               </span>
             </div>
 
-            {/* Secondary image */}
+            {/* Secondary image - professora com alunos */}
             <div className="absolute -bottom-5 -left-5 rounded-[20px] overflow-hidden w-[140px] h-[100px] shadow-[0_8px_24px_rgba(0,0,0,0.15)] border-[3px] border-white z-3">
               <Image
-                src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=280&h=200&fit=crop&crop=faces"
-                alt="Alunos da Ensina Mais"
+                src="/images/hero/professora-alunos.jpg"
+                alt="Professora ajudando alunos na Ensina Mais"
                 width={280}
                 height={200}
                 className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Turma da Monica - grupo correndo (decorativo) */}
+            <div className="absolute -bottom-10 -right-8 z-4 pointer-events-none">
+              <Image
+                src="/images/turma-da-monica/pose-6.png"
+                alt="Turma da Monica"
+                width={180}
+                height={140}
+                className="drop-shadow-lg"
               />
             </div>
           </div>

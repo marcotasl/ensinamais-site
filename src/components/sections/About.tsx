@@ -32,8 +32,8 @@ export default function About() {
             <div className="relative">
               <div className="rounded-3xl overflow-hidden shadow-[0_16px_48px_rgba(0,0,0,0.2)]">
                 <Image
-                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=560&h=420&fit=crop&crop=faces"
-                  alt="Aluno estudando"
+                  src="/images/about/sala-aula-panoramica.jpg"
+                  alt="Vista panoramica da sala de aula Ensina Mais"
                   width={560}
                   height={420}
                   className="w-full block object-cover"
@@ -48,6 +48,17 @@ export default function About() {
                   <div className="text-lg font-black text-em-dark">2.800+</div>
                   <div className="text-[11px] text-gray-500">Alunos matriculados</div>
                 </div>
+              </div>
+
+              {/* Franjinha decorativo */}
+              <div className="absolute -top-6 -left-6 z-3 pointer-events-none hidden lg:block">
+                <Image
+                  src="/images/turma-da-monica/pose-16.png"
+                  alt="Franjinha"
+                  width={80}
+                  height={80}
+                  className="drop-shadow-md"
+                />
               </div>
             </div>
           </FadeIn>

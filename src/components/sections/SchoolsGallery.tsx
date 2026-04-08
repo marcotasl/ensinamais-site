@@ -26,12 +26,12 @@ export default function SchoolsGallery() {
         </FadeIn>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {SCHOOL_IMAGES.map((src, i) => (
+          {SCHOOL_IMAGES.map((img, i) => (
             <FadeIn key={i} delay={i * 0.08}>
               <div className="group rounded-[20px] overflow-hidden relative cursor-pointer transition-transform duration-300 hover:scale-[1.03]">
                 <Image
-                  src={src}
-                  alt={`Unidade Ensina Mais ${i + 1}`}
+                  src={img.src}
+                  alt={img.label}
                   width={400}
                   height={300}
                   className="w-full aspect-[4/3] object-cover block"
@@ -39,7 +39,7 @@ export default function SchoolsGallery() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-4 left-4">
                     <Badge className="bg-white/90 text-em-dark">
-                      <MapPin size={11} /> Unidade Exemplo
+                      <MapPin size={11} /> {img.label}
                     </Badge>
                   </div>
                 </div>
