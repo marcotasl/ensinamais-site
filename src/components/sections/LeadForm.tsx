@@ -17,7 +17,7 @@ export default function LeadForm() {
               Agende uma <span className="text-em-green">aula experimental gratuita</span>
             </h3>
             <p className="text-sm text-gray-500">
-              Conheca a unidade mais perto de voce. Sem compromisso.
+              Conheça a unidade mais perto de você. Sem compromisso.
             </p>
           </div>
 

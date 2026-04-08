@@ -36,9 +36,9 @@ export default function Reasons() {
             <h2 className="text-[clamp(1.7rem,3.5vw,2.4rem)] font-black text-em-dark mb-3">
               Por que escolher a Ensina Mais?
             </h2>
-            <p className="text-[15px] text-gray-500 max-w-[520px] mx-auto">
-              Uma metodologia que une tecnologia, personalizacao e o universo que as
-              criancas amam.
+            <p className="text-base text-gray-500 max-w-[520px] mx-auto">
+              Uma metodologia que une tecnologia, personalização e o universo que as
+              crianças amam.
             </p>
           </div>
         </FadeIn>
@@ -60,10 +60,10 @@ export default function Reasons() {
                   >
                     <reason.icon size={24} style={{ color }} strokeWidth={2} />
                   </div>
-                  <h3 className="text-[17px] font-extrabold text-em-dark mb-2">
+                  <h3 className="text-lg font-extrabold text-em-dark mb-2">
                     {reason.title}
                   </h3>
-                  <p className="text-[13px] leading-relaxed text-gray-500">
+                  <p className="text-sm leading-relaxed text-gray-500">
                     {reason.desc}
                   </p>
                 </div>

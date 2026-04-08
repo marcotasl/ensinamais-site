@@ -87,7 +87,7 @@ export default function Navbar() {
               width={160}
               height={48}
               priority
-              className="h-10 w-auto object-contain"
+              className="h-14 w-auto object-contain"
             />
           </a>
 
@@ -104,7 +104,7 @@ export default function Navbar() {
                   >
                     <a
                       href={item.href}
-                      className={`flex items-center gap-1 text-sm font-bold px-3 py-2 rounded-lg transition-colors duration-200 ${textColor} ${hoverColor}`}
+                      className={`flex items-center gap-1 text-[15px] font-bold px-3 py-2 rounded-lg transition-colors duration-200 ${textColor} ${hoverColor}`}
                     >
                       {item.label}
                       <ChevronDown
@@ -126,7 +126,7 @@ export default function Navbar() {
                   >
                     <a
                       href={item.href}
-                      className={`flex items-center gap-1 text-sm font-bold px-3 py-2 rounded-lg transition-colors duration-200 ${textColor} ${hoverColor}`}
+                      className={`flex items-center gap-1 text-[15px] font-bold px-3 py-2 rounded-lg transition-colors duration-200 ${textColor} ${hoverColor}`}
                     >
                       {item.label}
                       <ChevronDown
@@ -159,7 +159,7 @@ export default function Navbar() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className={`text-sm font-bold px-3 py-2 rounded-lg transition-colors duration-200 ${textColor} ${hoverColor}`}
+                  className={`text-[15px] font-bold px-3 py-2 rounded-lg transition-colors duration-200 ${textColor} ${hoverColor}`}
                 >
                   {item.label}
                 </a>
@@ -173,7 +173,7 @@ export default function Navbar() {
               href="https://franquias.moveedu.com.br/"
               target="_blank"
               rel="noopener noreferrer"
-              className={`text-xs font-bold px-3 py-2 rounded-lg transition-colors duration-200 flex items-center gap-1.5 ${
+              className={`text-sm font-bold px-3 py-2 rounded-lg transition-colors duration-200 flex items-center gap-1.5 ${
                 isDark
                   ? "text-em-purple hover:text-em-purple-dark"
                   : "text-white/80 hover:text-white"
@@ -184,7 +184,7 @@ export default function Navbar() {
 
             <a
               href="#"
-              className={`text-xs font-bold px-3 py-2 rounded-lg border transition-colors duration-200 flex items-center gap-1.5 ${
+              className={`text-sm font-bold px-3 py-2 rounded-lg border transition-colors duration-200 flex items-center gap-1.5 ${
                 isDark
                   ? "text-em-dark border-gray-200 hover:bg-gray-50"
                   : "text-white border-white/30 hover:bg-white/10"
@@ -195,10 +195,10 @@ export default function Navbar() {
 
             <a
               href="#lead"
-              className="text-[13px] font-extrabold text-em-dark bg-em-yellow rounded-xl px-5 py-2.5 shadow-[0_4px_14px_rgba(253,216,53,0.25)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(253,216,53,0.4)] transition-all duration-200"
+              className="text-sm font-extrabold text-em-dark bg-em-yellow rounded-xl px-6 py-3 shadow-[0_4px_14px_rgba(253,216,53,0.25)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(253,216,53,0.4)] transition-all duration-200"
             >
-              Agendar aula
-            </a>
+              Agendar Aula
+  </a>
           </div>
 
           {/* Mobile toggle */}
@@ -291,7 +291,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
             alt="Ensina Mais"
             width={140}
             height={42}
-            className="h-9 w-auto"
+            className="h-12 w-auto"
           />
         </div>
 
@@ -395,7 +395,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
             onClick={onClose}
             className="text-center text-sm font-extrabold text-em-dark bg-em-yellow rounded-xl px-5 py-3.5 shadow-[0_4px_14px_rgba(253,216,53,0.25)]"
           >
-            Agendar aula gratis
+            Agendar Aula Grátis
           </a>
           <a
             href="#"

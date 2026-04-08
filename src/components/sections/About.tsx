@@ -9,9 +9,9 @@ import DotGrid from "@/components/ui/DotGrid";
 import Wave from "@/components/layout/Wave";
 
 const CHECKLIST = [
-  "Ensino sem formacao de turmas — cada aluno no seu ritmo",
-  "Aulas digitais com gamificacao e interatividade",
-  "Avaliacao pre-matricula para plano personalizado",
+  "Ensino sem formação de turmas — cada aluno no seu ritmo",
+  "Aulas digitais com gamificação e interatividade",
+  "Avaliação pré-matrícula para plano personalizado",
 ];
 
 export default function About() {
@@ -71,15 +71,15 @@ export default function About() {
               </Badge>
 
               <h2 className="text-[clamp(1.7rem,3.5vw,2.4rem)] font-black text-white leading-tight mb-4">
-                Como transformamos a educacao de base no Brasil
+                Como transformamos a educação de base no Brasil
               </h2>
 
-              <p className="text-[15px] leading-relaxed text-white/[0.88] mb-6">
+              <p className="text-base lg:text-lg leading-relaxed text-white/[0.88] mb-6">
                 Desde 2012, a Ensina Mais concilia o melhor da{" "}
-                <strong className="text-white">Educacao e da Tecnologia</strong> com
+                <strong className="text-white">Educação e da Tecnologia</strong> com
                 ensino individualizado, aulas digitais interativas e o universo da Turma
-                da Monica. Desenvolvemos criancas e adolescentes em multiplos saberes — do
-                apoio escolar as profissoes do futuro.
+                da Mônica. Desenvolvemos crianças e adolescentes em múltiplos saberes — do
+                apoio escolar às profissões do futuro.
               </p>
 
               <div className="flex flex-col gap-3 mb-7">
@@ -88,7 +88,7 @@ export default function About() {
                     <div className="w-6 h-6 rounded-lg bg-white/15 flex items-center justify-center shrink-0">
                       <Check size={13} className="text-em-yellow" strokeWidth={3} />
                     </div>
-                    <span className="text-sm font-semibold text-white/[0.92]">{text}</span>
+                    <span className="text-base font-semibold text-white/[0.92]">{text}</span>
                   </div>
                 ))}
               </div>
@@ -97,7 +97,7 @@ export default function About() {
                 href="#cursos"
                 className="text-sm font-extrabold text-em-blue bg-white rounded-[14px] px-7 py-3.5 inline-flex items-center gap-2 shadow-[0_6px_20px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 transition-all duration-250"
               >
-                Conheca a metodologia <ChevronRight size={16} />
+                Conheça a metodologia <ChevronRight size={16} />
               </a>
             </div>
           </FadeIn>

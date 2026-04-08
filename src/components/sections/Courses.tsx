@@ -11,8 +11,8 @@ import { COURSES } from "@/lib/constants";
 
 const FEATURES = [
   "Ensino individualizado sem turmas",
-  "Material didatico interdisciplinar",
-  "Acompanhamento continuo dos pais",
+  "Material didático interdisciplinar",
+  "Acompanhamento contínuo dos pais",
 ];
 
 export default function Courses() {
@@ -39,7 +39,7 @@ export default function Courses() {
                 <GraduationCap size={12} /> Nossos Cursos
               </Badge>
               <h2 className="text-[clamp(1.7rem,3.5vw,2.4rem)] font-black text-em-dark">
-                Desenvolvemos multiplos saberes
+                Desenvolvemos múltiplos saberes
               </h2>
             </div>
           </FadeIn>
@@ -107,10 +107,10 @@ export default function Courses() {
                   >
                     <course.icon size={28} style={{ color: course.color }} strokeWidth={2} />
                   </div>
-                  <h3 className="text-[26px] font-black text-em-dark mb-3">
+                  <h3 className="text-3xl font-black text-em-dark mb-3">
                     {course.title}
                   </h3>
-                  <p className="text-[15px] leading-relaxed text-gray-500 mb-6">
+                  <p className="text-base lg:text-lg leading-relaxed text-gray-500 mb-6">
                     {course.desc}
                   </p>
                   <div className="flex flex-col gap-2.5 mb-7">

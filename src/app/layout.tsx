@@ -9,22 +9,22 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Ensina Mais – Turma da Monica | Apoio Escolar, Robotica, Programacao e Ingles",
+  title: "Ensina Mais – Turma da Mônica | Apoio Escolar, Robótica, Programação e Inglês",
   description:
-    "Rede de apoio escolar licenciada Turma da Monica com metodologia individualizada. Apoio Escolar, Robotica, Programacao e Ingles para criancas e adolescentes.",
+    "Rede de apoio escolar licenciada Turma da Mônica com metodologia individualizada. Apoio Escolar, Robótica, Programação e Inglês para crianças e adolescentes. Mais de 100 escolas no Brasil.",
   openGraph: {
-    title: "Ensina Mais – Turma da Monica",
+    title: "Ensina Mais – Turma da Mônica",
     description:
-      "Apoio escolar com metodologia individualizada e o universo da Turma da Monica. Mais de 100 escolas no Brasil.",
+      "Apoio escolar com metodologia individualizada e o universo da Turma da Mônica. Robótica, Programação e Inglês em mais de 100 escolas no Brasil.",
     type: "website",
     locale: "pt_BR",
     siteName: "Ensina Mais",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ensina Mais – Turma da Monica",
+    title: "Ensina Mais – Turma da Mônica",
     description:
-      "Apoio escolar com metodologia individualizada. Robotica, Programacao e Ingles.",
+      "Apoio escolar com metodologia individualizada. Robótica, Programação e Inglês para crianças e adolescentes.",
   },
 };
 

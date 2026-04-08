@@ -62,7 +62,7 @@ export default function LeadCaptureForm() {
         disabled={isSubmitting}
         className="w-full text-[15px] font-extrabold text-white bg-gradient-to-br from-em-green to-em-green-dark rounded-[14px] py-4 flex items-center justify-center gap-2 shadow-[0_6px_20px_rgba(124,179,66,0.25)] hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(124,179,66,0.35)] transition-all duration-250 disabled:opacity-60 cursor-pointer"
       >
-        Quero agendar minha aula gratis <ArrowRight size={16} />
+        Quero agendar minha aula grátis <ArrowRight size={16} />
       </button>
     </form>
   );

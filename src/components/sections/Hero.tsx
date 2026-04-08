@@ -96,11 +96,11 @@ export default function Hero({ banners }: HeroProps) {
                 <Star size={13} fill="#FDD835" color="#FDD835" /> {slide.subtitle}
               </Badge>
 
-              <h1 className="text-[clamp(2.2rem,5vw,3.4rem)] font-black leading-[1.1] text-white mb-5 drop-shadow-sm">
+              <h1 className="text-[clamp(2.4rem,5vw,3.4rem)] font-black leading-[1.1] text-white mb-5 drop-shadow-sm">
                 {slide.title}
               </h1>
 
-              <p className="text-base lg:text-[17px] leading-relaxed text-white/90 max-w-[480px] mb-8 drop-shadow-sm">
+              <p className="text-lg lg:text-xl leading-relaxed text-white/90 max-w-[480px] mb-8 drop-shadow-sm">
                 {slide.desc}
               </p>
 

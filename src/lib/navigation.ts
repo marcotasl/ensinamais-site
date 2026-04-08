@@ -8,7 +8,7 @@ export interface SubCourse {
 export interface CourseCategory {
   title: string;
   color: string;
-  icon: string; // lucide icon name
+  icon: string;
   courses: SubCourse[];
 }
 
@@ -24,24 +24,24 @@ export const COURSE_CATEGORIES: CourseCategory[] = [
     color: "#039BE5",
     icon: "BookOpen",
     courses: [
-      { label: "Matematica — 2h semanais", href: "/cursos/apoio-escolar/matematica-2h" },
-      { label: "Matematica — 4h semanais", href: "/cursos/apoio-escolar/matematica-4h" },
-      { label: "Portugues — 2h semanais", href: "/cursos/apoio-escolar/portugues-2h" },
-      { label: "Portugues — 4h semanais", href: "/cursos/apoio-escolar/portugues-4h" },
+      { label: "Matemática — 2h semanais", href: "/cursos/apoio-escolar/matematica-2h" },
+      { label: "Matemática — 4h semanais", href: "/cursos/apoio-escolar/matematica-4h" },
+      { label: "Português — 2h semanais", href: "/cursos/apoio-escolar/portugues-2h" },
+      { label: "Português — 4h semanais", href: "/cursos/apoio-escolar/portugues-4h" },
     ],
   },
   {
-    title: "Robotica",
+    title: "Robótica",
     color: "#7CB342",
     icon: "Cpu",
     courses: [
-      { label: "Robotica Educacional", href: "/cursos/robotica/educacional" },
-      { label: "Robotica Little Kids", href: "/cursos/robotica/little-kids" },
-      { label: "Robotica Infantil", href: "/cursos/robotica/infantil" },
+      { label: "Robótica Educacional", href: "/cursos/robotica/educacional" },
+      { label: "Robótica Little Kids", href: "/cursos/robotica/little-kids" },
+      { label: "Robótica Infantil", href: "/cursos/robotica/infantil" },
     ],
   },
   {
-    title: "Programacao",
+    title: "Programação",
     color: "#FF9800",
     icon: "Monitor",
     courses: [
@@ -53,11 +53,11 @@ export const COURSE_CATEGORIES: CourseCategory[] = [
     ],
   },
   {
-    title: "Ingles",
+    title: "Inglês",
     color: "#EF5350",
     icon: "Globe",
     courses: [
-      { label: "Ingles — Presencial", href: "/cursos/ingles/presencial" },
+      { label: "Inglês — Presencial", href: "/cursos/ingles/presencial" },
     ],
   },
 ];
@@ -66,19 +66,18 @@ export const MAIN_NAV: NavDropdown[] = [
   {
     label: "Cursos",
     href: "/cursos",
-    // mega menu handled separately
   },
   {
     label: "Escolas",
     href: "/escolas",
   },
   {
-    label: "Sobre Nos",
+    label: "Sobre Nós",
     href: "/sobre",
     children: [
-      { label: "Conheca a Ensina Mais", href: "/sobre" },
+      { label: "Conheça a Ensina Mais", href: "/sobre" },
       { label: "Metodologia", href: "/sobre/metodologia" },
-      { label: "Beneficios", href: "/sobre/beneficios" },
+      { label: "Benefícios", href: "/sobre/beneficios" },
     ],
   },
   {

@@ -7,7 +7,7 @@ export default function TrustBar() {
         {BRANDS.map((brand) => (
           <span
             key={brand}
-            className="text-[13px] font-extrabold text-gray-500 tracking-wide uppercase"
+            className="text-sm font-extrabold text-gray-500 tracking-wide uppercase"
           >
             {brand}
           </span>

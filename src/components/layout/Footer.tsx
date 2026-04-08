@@ -12,7 +12,7 @@ const SOCIAL = [
 const CONTACT = [
   { icon: Phone, text: "(17) 3214-8699" },
   { icon: Mail, text: "sac@moveedu.com.br" },
-  { icon: MapPin, text: "Av. Bady Bassitt, 4960 — Sao Jose do Rio Preto, SP" },
+  { icon: MapPin, text: "Av. Bady Bassitt, 4960 — São José do Rio Preto, SP" },
 ];
 
 export default function Footer() {
@@ -28,11 +28,11 @@ export default function Footer() {
                 alt="Ensina Mais - Turma da Monica"
                 width={160}
                 height={48}
-                className="h-11 w-auto object-contain"
+                className="h-14 w-auto object-contain"
               />
             </div>
             <p className="text-[13px] text-white/55 leading-relaxed max-w-[280px] mb-5">
-              Rede de apoio escolar licenciada Turma da Monica. Desenvolvemos criancas e
+              Rede de apoio escolar licenciada pela Turma da Mônica. Desenvolvemos crianças e
               adolescentes para o futuro desde 2012.
             </p>
             <div className="flex gap-2.5">
@@ -90,10 +90,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="py-4 flex justify-between items-center flex-wrap gap-3">
           <span className="text-xs text-white/30">
-            &copy; 2025 Ensina Mais – Turma da Monica. Uma marca do Grupo MoveEdu.
+            &copy; 2025 Ensina Mais – Turma da Mônica. Uma marca do Grupo MoveEdu.
           </span>
           <div className="flex gap-4">
-            {["Politica de Privacidade", "Termos de Uso"].map((label) => (
+            {["Política de Privacidade", "Termos de Uso"].map((label) => (
               <a
                 key={label}
                 href="#"

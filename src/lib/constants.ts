@@ -19,31 +19,31 @@ export const COURSES: Course[] = [
   {
     icon: BookOpen,
     title: "Apoio Escolar",
-    desc: "Reforco individualizado em Portugues e Matematica com ensino hibrido e acompanhamento continuo.",
+    desc: "Reforço individualizado em Português e Matemática com ensino híbrido, acompanhamento contínuo e relatórios de evolução para os pais.",
     color: "#039BE5",
     light: "#E1F5FE",
     img: "/images/courses/apoio-escolar.jpg",
   },
   {
     icon: Cpu,
-    title: "Robotica Educacional",
-    desc: "Da montagem a programacao: raciocinio logico, criatividade e resolucao de problemas na pratica.",
+    title: "Robótica Educacional",
+    desc: "Da montagem à programação: uma trilha completa que exercita raciocínio lógico, criatividade e resolução de problemas na prática.",
     color: "#7CB342",
     light: "#F1F8E9",
     img: "/images/courses/robotica.jpg",
   },
   {
     icon: Monitor,
-    title: "Programacao",
-    desc: "Games, apps, Minecraft e logica de programacao para criancas e adolescentes dos 6 aos 14 anos.",
+    title: "Programação",
+    desc: "Games, apps, Minecraft e lógica de programação — de forma divertida e leve, atendendo às novas demandas do mercado com abordagem STEAM.",
     color: "#FF9800",
     light: "#FFF3E0",
     img: "/images/courses/programacao.jpg",
   },
   {
     icon: Globe,
-    title: "Ingles",
-    desc: "Fluencia desde a infancia com abordagem comunicativa e imersao no universo bilingue.",
+    title: "Inglês",
+    desc: "Fluência desde a infância com abordagem comunicativa, imersão no universo bilíngue e material didático exclusivo para cada faixa etária.",
     color: "#EF5350",
     light: "#FFEBEE",
     img: "/images/courses/ingles.jpg",
@@ -54,59 +54,59 @@ export const REASONS: Reason[] = [
   {
     icon: Users,
     title: "Ensino Individualizado",
-    desc: "Cada aluno no seu ritmo, sem formacao de turmas, com mediacao de instrutor especializado.",
+    desc: "Cada aluno no seu próprio ritmo, sem formação de turmas, com mediação de instrutores especializados e plano pedagógico personalizado.",
   },
   {
     icon: Zap,
     title: "Aulas Digitais Interativas",
-    desc: "Gamificacao, dinamicas e jogos que transformam aprendizado em experiencia envolvente.",
+    desc: "Gamificação, dinâmicas e jogos educativos que transformam o aprendizado em uma experiência envolvente e significativa para a criança.",
   },
   {
     icon: TrendingUp,
-    title: "Feedback em Tempo Real",
-    desc: "Pais e alunos acompanham a evolucao com avaliacoes continuas e relatorios de desempenho.",
+    title: "Acompanhamento em Tempo Real",
+    desc: "Pais e responsáveis acompanham a evolução do aluno com avaliações contínuas, relatórios de desempenho e feedback dos educadores.",
   },
   {
     icon: Heart,
-    title: "Universo Turma da Monica",
-    desc: "Licenciamento exclusivo que gera identificacao imediata e confianca nas familias brasileiras.",
+    title: "Universo Turma da Mônica",
+    desc: "Licenciamento exclusivo do Estúdio Maurício de Sousa que gera identificação imediata e confiança nas famílias brasileiras.",
   },
   {
     icon: Award,
     title: "Metodologia Comprovada",
-    desc: "12+ anos de resultados com o melhor das teorias construtivista e sociocultural.",
+    desc: "Mais de 10 anos de resultados consistentes, unindo o melhor das teorias construtivista e sociocultural com tecnologia educacional.",
   },
   {
     icon: Sparkles,
-    title: "Profissoes do Futuro",
-    desc: "Robotica, programacao e ingles preparando criancas para um mercado em transformacao.",
+    title: "Profissões do Futuro",
+    desc: "Robótica, programação e inglês preparando crianças e adolescentes para um mercado de trabalho em constante transformação.",
   },
 ];
 
 export const STATS: Stat[] = [
-  { icon: DollarSign, number: "90", prefix: "R$", suffix: " mil", label: "Investimento inicial" },
-  { icon: TrendingUp, number: "40", prefix: "", suffix: "%", label: "Rentabilidade media" },
-  { icon: Clock, number: "12", prefix: "", suffix: " meses", label: "Retorno do investimento" },
+  { icon: DollarSign, number: "120", prefix: "R$", suffix: " mil", label: "Investimento inicial" },
+  { icon: TrendingUp, number: "40", prefix: "", suffix: "%", label: "Lucratividade média" },
+  { icon: Clock, number: "12", prefix: "", suffix: " meses", label: "Payback estimado" },
   { icon: Building2, number: "100", prefix: "+", suffix: "", label: "Escolas no Brasil" },
 ];
 
 export const TESTIMONIALS: Testimonial[] = [
   {
-    quote: "Meu filho estava com muita dificuldade em matematica. Em poucos meses na Ensina Mais, a evolucao foi incrivel. Ele ganhou confianca e as notas subiram!",
+    quote: "Meu filho estava com muita dificuldade em matemática. Em poucos meses na Ensina Mais, a evolução foi incrível — ele ganhou confiança e as notas subiram de verdade!",
     name: "Carla Mendes",
-    city: "Sao Paulo, SP",
+    city: "São Paulo, SP",
     img: "/images/turma-da-monica/pose-14.png",
     stars: 5,
   },
   {
-    quote: "A robotica despertou no meu filho um interesse que eu nunca tinha visto. Ele chega em casa animado, querendo construir coisas e explicar como funciona!",
+    quote: "A robótica despertou no meu filho um interesse que eu nunca tinha visto. Ele chega em casa animado, querendo construir coisas e explicar como tudo funciona.",
     name: "Roberto Silva",
     city: "Campinas, SP",
     img: "/images/turma-da-monica/pose-4.png",
     stars: 5,
   },
   {
-    quote: "A metodologia individualizada faz toda a diferenca. Minha filha tem acompanhamento personalizado e agora ama ir pra aula. Recomendo muito!",
+    quote: "A metodologia individualizada faz toda a diferença. Minha filha tem acompanhamento personalizado e agora adora ir pra aula. Recomendo de olhos fechados!",
     name: "Juliana Ferreira",
     city: "Rio de Janeiro, RJ",
     img: "/images/turma-da-monica/pose-15.png",
@@ -128,7 +128,7 @@ export const FOOTER_LINKS: FooterLinkGroup[] = [
     links: [
       { label: "Cursos", href: "#cursos" },
       { label: "Metodologia", href: "#metodologia" },
-      { label: "Beneficios", href: "#metodologia" },
+      { label: "Benefícios", href: "#metodologia" },
       { label: "Escolas", href: "#escolas" },
       { label: "Blog", href: "#" },
     ],
@@ -138,7 +138,7 @@ export const FOOTER_LINKS: FooterLinkGroup[] = [
     links: [
       { label: "Seja um Franqueado", href: "#franquia" },
       { label: "Portal do Aluno", href: "#" },
-      { label: "Sobre Nos", href: "#sobre" },
+      { label: "Sobre Nós", href: "#sobre" },
       { label: "Fale Conosco", href: "#lead" },
     ],
   },
@@ -149,6 +149,6 @@ export const REASON_COLORS = ["#039BE5", "#7CB342", "#EF5350", "#FDD835", "#5C6B
 export const SCHOOL_IMAGES = [
   { src: "/images/schools/fachada-1.jpg", label: "Fachada da unidade" },
   { src: "/images/schools/fachada-2.jpg", label: "Unidade colonial" },
-  { src: "/images/schools/recepcao.jpg", label: "Recepcao" },
-  { src: "/images/schools/lab-computacao.jpg", label: "Laboratorio de informatica" },
+  { src: "/images/schools/recepcao.jpg", label: "Recepção" },
+  { src: "/images/schools/lab-computacao.jpg", label: "Laboratório de informática" },
 ];

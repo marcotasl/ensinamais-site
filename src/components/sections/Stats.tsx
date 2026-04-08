@@ -39,10 +39,10 @@ export default function Stats() {
                 <Building2 size={12} /> Seja um Franqueado
               </Badge>
               <h2 className="text-[clamp(1.7rem,3.5vw,2.4rem)] font-black text-white mb-2.5">
-                Invista no futuro da educacao
+                Invista no futuro da educação
               </h2>
-              <p className="text-[15px] text-white/75 max-w-[480px] mx-auto">
-                Micro franquia com o melhor custo-beneficio do mercado de educacao no
+              <p className="text-base text-white/75 max-w-[480px] mx-auto">
+                Micro franquia com o melhor custo-benefício do mercado de educação no
                 Brasil.
               </p>
             </div>
@@ -62,7 +62,7 @@ export default function Stats() {
                       suffix={stat.suffix}
                     />
                   </div>
-                  <div className="text-[13px] font-semibold text-white/70 mt-1.5">
+                  <div className="text-sm font-semibold text-white/70 mt-1.5">
                     {stat.label}
                   </div>
                 </div>

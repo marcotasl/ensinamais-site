@@ -20,7 +20,7 @@ export default function Testimonials() {
         <FadeIn>
           <div className="text-center mb-11">
             <Badge className="mb-3 bg-em-yellow/[0.12] text-em-dark">
-              <Heart size={12} className="text-em-coral" fill="#EF5350" /> Historias Reais
+              <Heart size={12} className="text-em-coral" fill="#EF5350" /> Histórias Reais
             </Badge>
             <h2 className="text-[clamp(1.7rem,3.5vw,2.4rem)] font-black text-em-dark">
               O que os pais dizem
@@ -39,7 +39,7 @@ export default function Testimonials() {
                       <Star key={j} size={16} fill="#FDD835" color="#FDD835" />
                     ))}
                 </div>
-                <p className="text-sm leading-relaxed text-em-dark-soft flex-1 mb-5">
+                <p className="text-base leading-relaxed text-em-dark-soft flex-1 mb-5">
                   &ldquo;{t.quote}&rdquo;
                 </p>
                 <div className="flex items-center gap-3 border-t border-gray-200 pt-4">
@@ -51,7 +51,7 @@ export default function Testimonials() {
                     className="w-11 h-11 rounded-[14px] object-contain bg-em-green-pale p-1"
                   />
                   <div>
-                    <div className="text-sm font-extrabold text-em-dark">{t.name}</div>
+                    <div className="text-base font-extrabold text-em-dark">{t.name}</div>
                     <div className="text-xs text-gray-400">{t.city}</div>
                   </div>
                 </div>
