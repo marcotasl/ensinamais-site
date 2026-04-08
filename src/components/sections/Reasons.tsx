@@ -23,9 +23,11 @@ const CARDS = [
     span: "sm:col-span-1 lg:col-span-5",
     bg: "bg-wire-900",
     content: (
-      <h3 className="text-2xl lg:text-3xl font-black text-white leading-tight">
-        Ensino<br />individualizado<br />sem turmas
-      </h3>
+      <div className="flex items-center h-full">
+        <h3 className="text-2xl lg:text-3xl font-black text-white">
+          Ensino<br />individualizado<br />sem turmas
+        </h3>
+      </div>
     ),
   },
   {
