@@ -1,107 +1,52 @@
 "use client";
 
-import Image from "next/image";
-import { ArrowRight, BookOpen, Calendar } from "lucide-react";
-import FadeIn from "@/components/ui/FadeIn";
-import Badge from "@/components/ui/Badge";
+import { ArrowRight, Calendar } from "lucide-react";
+import Placeholder from "@/components/ui/Placeholder";
 
-// Posts estáticos — serão substituídos por WP Headless
 const POSTS = [
-  {
-    title: "5 sinais de que seu filho precisa de apoio escolar",
-    excerpt: "Notas caindo, desmotivação e dificuldade com tarefas podem indicar que é hora de buscar reforço. Saiba como identificar e agir cedo.",
-    category: "Apoio Escolar",
-    date: "28 Mar 2026",
-    img: "/images/courses/apoio-escolar.jpg",
-    href: "/blog/sinais-apoio-escolar",
-    color: "#039BE5",
-  },
-  {
-    title: "Robótica educacional: por que crianças de 4 anos já podem começar",
-    excerpt: "A robótica desenvolve raciocínio lógico, coordenação e trabalho em equipe desde a primeira infância. Entenda como funciona na prática.",
-    category: "Robótica",
-    date: "22 Mar 2026",
-    img: "/images/courses/robotica.jpg",
-    href: "/blog/robotica-para-criancas",
-    color: "#7CB342",
-  },
-  {
-    title: "Como escolher a melhor franquia de educação em 2026",
-    excerpt: "Investimento, suporte, território exclusivo e rentabilidade — os critérios essenciais para tomar uma decisão segura no mercado educacional.",
-    category: "Franquia",
-    date: "15 Mar 2026",
-    img: "/images/franchise/render-fachada.jpg",
-    href: "/blog/melhor-franquia-educacao",
-    color: "#5C6BC0",
-  },
+  { title: "5 sinais de que seu filho precisa de apoio escolar", category: "Apoio Escolar", date: "28 Mar 2026", href: "/blog/sinais-apoio-escolar" },
+  { title: "Robótica educacional: por que crianças de 4 anos já podem começar", category: "Robótica", date: "22 Mar 2026", href: "/blog/robotica-para-criancas" },
+  { title: "Como escolher a melhor franquia de educação em 2026", category: "Franquia", date: "15 Mar 2026", href: "/blog/melhor-franquia-educacao" },
 ];
 
 export default function BlogPreview() {
   return (
-    <section className="bg-white py-20 px-6 mx-4 lg:mx-8 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+    <section className="px-6">
       <div className="max-w-[1200px] mx-auto">
-        <FadeIn>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12 gap-4">
-            <div>
-              <Badge className="mb-3 bg-em-coral-pale text-em-coral">
-                <BookOpen size={13} /> Blog
-              </Badge>
-              <h2 className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-em-dark">
-                Conteúdo para pais e educadores
-              </h2>
-            </div>
-            <a
-              href="/blog"
-              className="text-base font-bold text-em-coral hover:text-em-coral-dark flex items-center gap-1.5 transition-colors shrink-0"
-            >
-              Ver todos os posts <ArrowRight size={15} />
-            </a>
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-10 gap-4">
+          <div>
+            <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Blog</p>
+            <h2 className="text-3xl lg:text-4xl font-black text-wire-black">Conteúdo para pais e educadores</h2>
           </div>
-        </FadeIn>
+          <a href="/blog" className="text-sm font-bold text-wire-700 flex items-center gap-1.5 hover:text-wire-black shrink-0">
+            Ver todos <ArrowRight size={14} />
+          </a>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {POSTS.map((post, i) => (
-            <FadeIn key={i} delay={i * 0.08}>
-              <a
-                href={post.href}
-                className="group block bg-white rounded-3xl overflow-hidden border border-gray-200 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_48px_rgba(0,0,0,0.08)] h-full flex flex-col"
-              >
-                {/* Thumbnail */}
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={post.img}
-                    alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span
-                      className="text-[11px] font-bold text-white rounded-full px-3 py-1.5"
-                      style={{ background: post.color }}
-                    >
-                      {post.category}
-                    </span>
-                  </div>
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Featured */}
+          <a href={POSTS[0].href} className="group block bg-white rounded-2xl overflow-hidden border border-wire-200 hover:shadow-md transition-all">
+            <Placeholder className="w-full h-56 rounded-none" label="Thumbnail do post" />
+            <div className="p-6">
+              <span className="text-xs font-bold text-wire-400 uppercase">{POSTS[0].category}</span>
+              <h3 className="text-xl font-extrabold text-wire-black mt-2 mb-3 group-hover:text-wire-700">{POSTS[0].title}</h3>
+              <span className="text-xs text-wire-400 flex items-center gap-1"><Calendar size={11} /> {POSTS[0].date}</span>
+            </div>
+          </a>
 
-                {/* Content */}
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex items-center gap-1.5 text-xs text-gray-400 font-medium mb-3">
-                    <Calendar size={12} /> {post.date}
-                  </div>
-                  <h3 className="text-lg font-extrabold text-em-dark mb-3 leading-snug group-hover:text-em-coral transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-gray-500 flex-1">
-                    {post.excerpt}
-                  </p>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-bold text-em-coral mt-4">
-                    Ler artigo <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
-                  </span>
+          {/* List */}
+          <div className="flex flex-col gap-4">
+            {POSTS.slice(1).map((post, i) => (
+              <a key={i} href={post.href} className="group flex gap-4 bg-white rounded-2xl overflow-hidden border border-wire-200 hover:shadow-md transition-all p-4">
+                <Placeholder className="w-28 h-24 shrink-0 rounded-xl" />
+                <div className="flex flex-col justify-center">
+                  <span className="text-xs font-bold text-wire-400 uppercase">{post.category}</span>
+                  <h3 className="text-base font-extrabold text-wire-black mt-1 mb-1.5 group-hover:text-wire-700 leading-snug">{post.title}</h3>
+                  <span className="text-xs text-wire-400 flex items-center gap-1"><Calendar size={11} /> {post.date}</span>
                 </div>
               </a>
-            </FadeIn>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

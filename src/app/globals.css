@@ -3,43 +3,43 @@
 @theme inline {
   --font-sans: "Nunito", sans-serif;
 
-  /* Green */
-  --color-em-green: #7CB342;
-  --color-em-green-dark: #5A8A2A;
-  --color-em-green-light: #C5E1A5;
-  --color-em-green-pale: #F1F8E9;
+  /* Wireframe grayscale palette */
+  --color-wire-black: #1a1a1a;
+  --color-wire-900: #2d2d2d;
+  --color-wire-800: #404040;
+  --color-wire-700: #555555;
+  --color-wire-600: #6b6b6b;
+  --color-wire-500: #8a8a8a;
+  --color-wire-400: #a3a3a3;
+  --color-wire-300: #bfbfbf;
+  --color-wire-200: #d9d9d9;
+  --color-wire-100: #ededed;
+  --color-wire-50: #f5f5f5;
+  --color-wire-white: #ffffff;
 
-  /* Blue */
-  --color-em-blue: #039BE5;
-  --color-em-blue-dark: #0277BD;
-  --color-em-blue-light: #B3E5FC;
-  --color-em-blue-pale: #E1F5FE;
-
-  /* Coral */
-  --color-em-coral: #EF5350;
-  --color-em-coral-dark: #C62828;
-  --color-em-coral-light: #FFCDD2;
-  --color-em-coral-pale: #FFEBEE;
-
-  /* Purple */
-  --color-em-purple: #5C6BC0;
-  --color-em-purple-dark: #3949AB;
-  --color-em-purple-light: #C5CAE9;
-
-  /* Teal */
-  --color-em-teal: #00897B;
-  --color-em-teal-dark: #00695C;
-
-  /* Yellow */
-  --color-em-yellow: #FDD835;
-  --color-em-yellow-dark: #F9A825;
-
-  /* Orange */
-  --color-em-orange: #FF9800;
-
-  /* Dark */
-  --color-em-dark: #1A2744;
-  --color-em-dark-soft: #2D3A4F;
+  /* Keep color tokens as grays for now */
+  --color-em-green: #555555;
+  --color-em-green-dark: #404040;
+  --color-em-green-light: #d9d9d9;
+  --color-em-green-pale: #f5f5f5;
+  --color-em-blue: #555555;
+  --color-em-blue-dark: #404040;
+  --color-em-blue-light: #d9d9d9;
+  --color-em-blue-pale: #f5f5f5;
+  --color-em-coral: #555555;
+  --color-em-coral-dark: #404040;
+  --color-em-coral-light: #d9d9d9;
+  --color-em-coral-pale: #f5f5f5;
+  --color-em-purple: #555555;
+  --color-em-purple-dark: #404040;
+  --color-em-purple-light: #d9d9d9;
+  --color-em-teal: #555555;
+  --color-em-teal-dark: #404040;
+  --color-em-yellow: #d9d9d9;
+  --color-em-yellow-dark: #bfbfbf;
+  --color-em-orange: #8a8a8a;
+  --color-em-dark: #1a1a1a;
+  --color-em-dark-soft: #2d2d2d;
 }
 
 html {
@@ -50,10 +50,11 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #fafafa;
 }
 
 input::placeholder {
-  color: #94A3B8;
+  color: #a3a3a3;
 }
 
 /* Marquee animation for TrustBar */

@@ -47,7 +47,7 @@ export default function LeadCaptureForm() {
               type={field.type}
               placeholder={field.placeholder}
               {...register(field.name)}
-              className="w-full text-sm font-medium px-4 py-3.5 rounded-xl border-2 border-gray-200 bg-gray-50 outline-none transition-all duration-200 focus:border-em-green focus:bg-white focus:ring-4 focus:ring-em-green/10"
+              className="w-full text-base font-medium px-4 py-3.5 rounded-xl border border-wire-300 bg-white outline-none transition-all duration-200 focus:border-wire-600 focus:ring-2 focus:ring-wire-200"
             />
             {errors[field.name] && (
               <p className="text-xs text-em-coral mt-1 ml-1">
@@ -60,7 +60,7 @@ export default function LeadCaptureForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full text-[15px] font-extrabold text-white bg-gradient-to-br from-em-green to-em-green-dark rounded-[14px] py-4 flex items-center justify-center gap-2 shadow-[0_6px_20px_rgba(124,179,66,0.25)] hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(124,179,66,0.35)] transition-all duration-250 disabled:opacity-60 cursor-pointer"
+        className="w-full text-base font-bold text-white bg-wire-black rounded-xl py-4 flex items-center justify-center gap-2 hover:bg-wire-900 transition-all duration-200 disabled:opacity-60 cursor-pointer"
       >
         Quero agendar minha aula grátis <ArrowRight size={16} />
       </button>
