@@ -113,9 +113,11 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="py-5 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-3">
           <span className="text-xs text-wire-600">&copy; 2025 Ensina Mais – Turma da Mônica. Grupo MoveEdu. Todos os direitos reservados.</span>
-          <div className="flex gap-4">
+          <div className="flex gap-4 items-center">
             <a href="/politica-de-privacidade" className="text-xs text-wire-600 hover:text-wire-400 transition-colors">Política de Privacidade</a>
             <a href="/termos-de-uso" className="text-xs text-wire-600 hover:text-wire-400 transition-colors">Termos de Uso</a>
+            <span className="text-wire-700">·</span>
+            <a href="https://virtusdesign.com.br" target="_blank" rel="noopener noreferrer" className="text-xs text-wire-600 hover:text-wire-400 transition-colors">Desenvolvido por <span className="font-semibold">Virtus Design</span></a>
           </div>
         </div>
       </div>
