@@ -29,6 +29,7 @@ async function saveComments(comments: Comment[]) {
   await put(BLOB_PATH, JSON.stringify(comments), {
     access: "public",
     addRandomSuffix: false,
+    allowOverwrite: true,
     contentType: "application/json",
     token: process.env.BLOB_READ_WRITE_TOKEN,
   });
