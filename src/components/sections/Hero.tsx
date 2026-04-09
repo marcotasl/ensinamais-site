@@ -28,14 +28,14 @@ export default function Hero({ banners }: HeroProps) {
 
   return (
     <section className="bg-wire-900 pt-16 min-h-[80vh] flex flex-col relative rounded-b-[46px]">
-      <div className="flex-1 max-w-[1200px] mx-auto px-6 py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+      <div className="flex-1 max-w-[1200px] mx-auto px-4 sm:px-6 py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center w-full">
         {/* Text */}
         <div>
           <span className="inline-block text-xs font-bold text-wire-400 uppercase tracking-widest mb-4 bg-white/10 px-3 py-1.5 rounded-full">{slide.subtitle}</span>
           <h1 className="text-[clamp(2rem,4vw,3rem)] font-black tracking-tight text-white mb-6">{slide.title}</h1>
-          <p className="text-lg leading-relaxed text-wire-400 max-w-[460px] mb-8">{slide.desc}</p>
+          <p className="text-base sm:text-lg leading-relaxed text-wire-400 max-w-[460px] mb-8">{slide.desc}</p>
           <div className="flex gap-3">
-            <a href={slide.ctaHref} className="text-base font-bold text-wire-black bg-white rounded-xl px-8 py-4 inline-flex items-center gap-2 hover:bg-wire-100 transition-colors">
+            <a href={slide.ctaHref} className="text-sm sm:text-base font-bold text-wire-black bg-white rounded-xl px-6 sm:px-8 py-3.5 sm:py-4 inline-flex items-center gap-2 hover:bg-wire-100 transition-colors">
               {slide.ctaText} <ArrowRight size={16} />
             </a>
           </div>
@@ -49,7 +49,7 @@ export default function Hero({ banners }: HeroProps) {
 
       {/* Nav */}
       {total > 1 && (
-        <div className="max-w-[1200px] mx-auto w-full px-6 pb-8 flex items-center justify-between">
+        <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 pb-6 sm:pb-8 flex items-center justify-between">
           <div className="flex gap-2">
             <button onClick={prev} className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:bg-white/10 cursor-pointer"><ChevronLeft size={18} /></button>
             <button onClick={next} className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:bg-white/10 cursor-pointer"><ChevronRight size={18} /></button>

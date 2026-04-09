@@ -16,7 +16,7 @@ export default function BlogPreview() {
         <div className="flex items-end justify-between mb-10">
           <div className="max-w-[400px]">
             <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Blog</p>
-            <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">
+            <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">
               Conteúdo para pais e educadores
             </h2>
           </div>
@@ -30,7 +30,7 @@ export default function BlogPreview() {
             <a key={i} href={post.href} className="group block">
               <Placeholder className="w-full aspect-[16/10] rounded-2xl mb-4" />
               <p className="text-xs font-bold text-wire-400 uppercase tracking-wide mb-1.5">{post.category} · {post.date}</p>
-              <h3 className="text-lg font-extrabold text-wire-black group-hover:text-wire-600 transition-colors leading-snug">{post.title}</h3>
+              <h3 className="text-base sm:text-lg font-extrabold text-wire-black group-hover:text-wire-600 transition-colors leading-snug">{post.title}</h3>
             </a>
           ))}
         </div>

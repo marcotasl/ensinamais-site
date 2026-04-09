@@ -59,7 +59,7 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-wire-900 pt-16 px-6 mt-8">
+    <footer className="bg-wire-900 pt-12 sm:pt-16 px-4 sm:px-6 mt-8">
       <div className="max-w-[1200px] mx-auto">
         {/* Top: Brand + CTA */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 pb-12 border-b border-white/10">
@@ -82,7 +82,7 @@ export default function Footer() {
         </div>
 
         {/* Middle: Link columns + Contact */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 py-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 py-10 sm:py-12">
           {FOOTER_COLUMNS.map((col) => (
             <div key={col.title}>
               <h4 className="text-xs font-bold text-wire-500 mb-4 uppercase tracking-widest">{col.title}</h4>

@@ -25,7 +25,7 @@ export default function Courses() {
       <div className="max-w-[1200px] mx-auto">
         <div className="mb-12 max-w-[560px]">
           <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Nossos Cursos</p>
-          <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">
+          <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">
             Desenvolvemos múltiplos saberes desde a infância
           </h2>
         </div>

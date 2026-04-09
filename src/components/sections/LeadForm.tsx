@@ -5,9 +5,9 @@ import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 export default function LeadForm() {
   return (
     <section id="lead" className="px-6 relative z-10 pointer-events-none">
-      <div className="max-w-[900px] mx-auto bg-white rounded-2xl px-6 py-10 sm:px-10 border border-wire-200 shadow-sm -mt-16 pointer-events-auto">
+      <div className="max-w-[900px] mx-auto bg-white rounded-2xl px-4 py-8 sm:px-10 sm:py-10 border border-wire-200 shadow-sm -mt-16 pointer-events-auto">
         <div className="text-center mb-8">
-          <h2 className="text-2xl lg:text-3xl font-black text-wire-black mb-2">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-wire-black mb-2">
             Agende uma aula<br className="hidden sm:block" /> experimental gratuita
           </h2>
           <p className="text-base text-wire-500">

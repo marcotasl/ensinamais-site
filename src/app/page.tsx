@@ -36,7 +36,7 @@ export default async function Home() {
       <Navbar />
       <Hero banners={banners} />
       <LeadForm />
-      <div className="flex flex-col gap-12 lg:gap-16 py-12 lg:py-16">
+      <div className="flex flex-col gap-8 sm:gap-12 lg:gap-16 py-8 sm:py-12 lg:py-16">
         <Courses />
         <HowItWorks />
         <Numbers />

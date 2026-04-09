@@ -62,7 +62,7 @@ const CARDS = [
     bg: "bg-wire-800",
     content: (
       <div className="flex flex-col justify-end h-full">
-        <span className="text-5xl font-black text-white leading-none">10+</span>
+        <span className="text-4xl sm:text-5xl font-black text-white leading-none">10+</span>
         <span className="text-sm font-semibold text-wire-400 mt-2">Anos de<br />metodologia comprovada</span>
       </div>
     ),
@@ -103,7 +103,7 @@ export default function Reasons() {
       <div className="max-w-[1200px] mx-auto">
         <div className="mb-12 max-w-[480px]">
           <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Diferenciais</p>
-          <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">
+          <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">
             Por que escolher a Ensina Mais?
           </h2>
         </div>
@@ -112,7 +112,7 @@ export default function Reasons() {
           {CARDS.map((card, i) => (
             <div
               key={i}
-              className={`card-lift rounded-2xl p-6 lg:p-7 min-h-[160px] ${card.span} ${card.bg}`}
+              className={`card-lift rounded-2xl p-5 sm:p-6 lg:p-7 min-h-[140px] sm:min-h-[160px] ${card.span} ${card.bg}`}
             >
               {card.content}
             </div>

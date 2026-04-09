@@ -27,7 +27,7 @@ export default function Testimonials() {
       <div className="max-w-[800px] mx-auto">
         <div className="text-center mb-12">
           <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Depoimentos</p>
-          <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">
+          <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">
             O que os pais dizem
           </h2>
         </div>
@@ -51,7 +51,7 @@ export default function Testimonials() {
             >
               <Quote size={32} className="text-wire-300 mx-auto mb-6" />
 
-              <p className="text-xl lg:text-2xl leading-relaxed text-wire-700 mb-8 max-w-[640px] mx-auto">
+              <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-wire-700 mb-6 sm:mb-8 max-w-[640px] mx-auto">
                 &ldquo;{t.quote}&rdquo;
               </p>
 

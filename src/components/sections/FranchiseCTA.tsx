@@ -61,25 +61,25 @@ function Carousel() {
 
 export default function FranchiseCTA() {
   return (
-    <section id="franquia" className="bg-wire-black py-20 px-6 mx-4 lg:mx-8 rounded-2xl">
+    <section id="franquia" className="bg-wire-black py-12 sm:py-20 px-4 sm:px-6 mx-3 sm:mx-4 lg:mx-8 rounded-2xl">
       <div className="max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-stretch">
           <div>
             <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-3">Seja um Franqueado</p>
-            <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-white mb-5">Quer ter sua própria<br className="hidden lg:block" /> escola Ensina Mais?</h2>
-            <p className="text-lg leading-relaxed text-wire-500 mb-10 max-w-[460px]">
+            <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-white mb-4 sm:mb-5">Quer ter sua própria<br className="hidden lg:block" /> escola Ensina Mais?</h2>
+            <p className="text-base sm:text-lg leading-relaxed text-wire-500 mb-8 sm:mb-10 max-w-[460px]">
               A microfranquia de educação mais premiada do Brasil. Invista em um negócio com propósito e rentabilidade comprovada.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-8 sm:mb-10">
               {STATS.map((stat, i) => (
-                <div key={i} className="bg-white/5 rounded-xl p-5 border border-white/10 flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-                    <stat.icon size={22} className="text-wire-400" />
+                <div key={i} className="bg-white/5 rounded-xl p-4 sm:p-5 border border-white/10 flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+                    <stat.icon size={20} className="text-wire-400" />
                   </div>
                   <div>
                     <div className="text-sm text-wire-500 mb-1">{stat.label}</div>
-                    <div className="text-2xl font-black text-white">
+                    <div className="text-xl sm:text-2xl font-black text-white">
                       <Counter end={stat.number} prefix={stat.prefix || ""} suffix={stat.suffix} />
                     </div>
                   </div>
@@ -88,10 +88,10 @@ export default function FranchiseCTA() {
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <a href="/franquia" className="text-base font-bold text-wire-black bg-white rounded-xl px-8 py-4 inline-flex items-center gap-2 hover:bg-wire-100 transition-colors">
+              <a href="/franquia" className="text-sm sm:text-base font-bold text-wire-black bg-white rounded-xl px-6 sm:px-8 py-3.5 sm:py-4 inline-flex items-center gap-2 hover:bg-wire-100 transition-colors">
                 Quero ser franqueado <ArrowRight size={16} />
               </a>
-              <a href="#" className="text-base font-semibold text-white border border-white/20 rounded-xl px-8 py-4 inline-flex items-center gap-2 hover:bg-white/5 transition-colors">
+              <a href="#" className="text-sm sm:text-base font-semibold text-white border border-white/20 rounded-xl px-6 sm:px-8 py-3.5 sm:py-4 inline-flex items-center gap-2 hover:bg-white/5 transition-colors">
                 Receber apresentação
               </a>
             </div>
