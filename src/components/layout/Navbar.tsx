@@ -19,7 +19,10 @@ export default function Navbar() {
   const isDark = scrolled || megaOpen || activeDropdown;
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-300 ${isDark ? "bg-white border-b border-wire-200" : "bg-transparent"}`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-300 ${isDark ? "bg-white border-b border-wire-200" : "bg-transparent"}`}
+      onMouseLeave={() => { setMegaOpen(false); setActiveDropdown(null); }}
+    >
       <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-16">
         {/* Logo placeholder */}
         <a href="/" className="flex items-center gap-2">
@@ -38,8 +41,7 @@ export default function Navbar() {
                 else if (item.children) setActiveDropdown(item.label);
               }}
               onMouseLeave={() => {
-                if (item.label === "Cursos") setTimeout(() => setMegaOpen(false), 100);
-                else setActiveDropdown(null);
+                if (item.label !== "Cursos") setActiveDropdown(null);
               }}
             >
               <a
@@ -80,11 +82,7 @@ export default function Navbar() {
 
       {/* Mega menu */}
       {megaOpen && (
-        <div
-          className="hidden lg:block bg-white border-t border-wire-100"
-          onMouseEnter={() => setMegaOpen(true)}
-          onMouseLeave={() => setMegaOpen(false)}
-        >
+        <div className="hidden lg:block bg-white border-t border-wire-100">
           <div className="max-w-[1200px] mx-auto px-6 py-8 grid grid-cols-4 gap-8">
             {COURSE_CATEGORIES.map((cat) => (
               <div key={cat.title}>
