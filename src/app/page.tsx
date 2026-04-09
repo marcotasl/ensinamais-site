@@ -1,7 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
-import TrustBar from "@/components/sections/TrustBar";
 import LeadForm from "@/components/sections/LeadForm";
 import Courses from "@/components/sections/Courses";
 import HowItWorks from "@/components/sections/HowItWorks";
@@ -36,9 +35,8 @@ export default async function Home() {
     <main className="min-h-screen bg-[#fafafa]">
       <Navbar />
       <Hero banners={banners} />
+      <LeadForm />
       <div className="flex flex-col gap-12 lg:gap-16 py-12 lg:py-16">
-        <TrustBar />
-        <LeadForm />
         <Courses />
         <HowItWorks />
         <Numbers />

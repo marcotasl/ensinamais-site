@@ -16,17 +16,19 @@ export default function SchoolFinder() {
   return (
     <section id="escolas" className="px-6">
       <div className="max-w-[1200px] mx-auto bg-wire-50 rounded-2xl py-16 px-6 lg:px-12 border border-wire-200">
-        <div className="mb-10 max-w-[480px]">
-          <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Nossas Escolas</p>
-          <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black mb-3">Encontre a escola mais perto de você</h2>
-          <p className="text-lg text-wire-500">Mais de 100 unidades espalhadas pelo Brasil inteiro.</p>
-        </div>
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-12">
+          <div className="max-w-[480px]">
+            <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Nossas Escolas</p>
+            <h2 className="text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black mb-3">Encontre a escola mais perto de você</h2>
+            <p className="text-lg text-wire-500">Mais de 100 unidades espalhadas pelo Brasil inteiro.</p>
+          </div>
 
-        <div className="max-w-[560px] mx-auto mb-12">
-          <div className="relative">
-            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-wire-400" />
-            <input type="text" placeholder="Digite sua cidade ou CEP..." value={search} onChange={(e) => setSearch(e.target.value)} className="w-full text-base pl-12 pr-28 py-4 rounded-xl border border-wire-300 bg-white outline-none focus:border-wire-600 transition-colors" />
-            <button className="absolute right-2 top-1/2 -translate-y-1/2 text-sm font-bold text-white bg-wire-black rounded-lg px-5 py-2.5 cursor-pointer hover:bg-wire-900 transition-colors">Buscar</button>
+          <div className="w-full lg:max-w-[480px]">
+            <div className="relative">
+              <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-wire-400" />
+              <input type="text" placeholder="Digite sua cidade ou CEP..." value={search} onChange={(e) => setSearch(e.target.value)} className="w-full text-lg pl-12 pr-28 py-5 rounded-xl border border-wire-300 bg-white outline-none focus:border-wire-600 transition-colors" />
+              <button className="absolute right-2 top-1/2 -translate-y-1/2 text-sm font-bold text-white bg-wire-black rounded-lg px-5 py-2.5 cursor-pointer hover:bg-wire-900 transition-colors">Buscar</button>
+            </div>
           </div>
         </div>
 

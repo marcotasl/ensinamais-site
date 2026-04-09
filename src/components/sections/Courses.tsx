@@ -38,7 +38,7 @@ export default function Courses() {
             <div className="absolute inset-0 bg-gradient-to-t from-wire-900/80 via-wire-900/30 to-transparent" />
             <div className="relative h-full p-7 flex flex-col justify-end min-h-[200px]">
               <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">4 a 15 anos</p>
-              <h3 className="text-2xl font-black text-white mb-1">Apoio Escolar</h3>
+              <h3 className="text-3xl font-black text-white mb-1">Apoio Escolar</h3>
               <p className="text-sm text-white/70 max-w-[320px]">Português e Matemática com ensino híbrido e acompanhamento contínuo.</p>
             </div>
           </a>
@@ -49,7 +49,7 @@ export default function Courses() {
             <div className="absolute inset-0 bg-gradient-to-t from-wire-900/80 via-wire-900/20 to-transparent" />
             <div className="relative h-full p-7 flex flex-col justify-end min-h-[200px] lg:min-h-0">
               <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">4 a 15 anos</p>
-              <h3 className="text-2xl font-black text-white mb-1">Robótica Educacional</h3>
+              <h3 className="text-3xl font-black text-white mb-1">Robótica Educacional</h3>
               <p className="text-sm text-white/70">Raciocínio lógico, criatividade e resolução de problemas na prática.</p>
             </div>
           </a>
@@ -58,7 +58,7 @@ export default function Courses() {
           <a href="/cursos/programacao" className="card-tilt group lg:col-span-4 lg:row-span-1 rounded-2xl bg-wire-800 p-6 flex flex-col justify-between min-h-[200px]" data-tilt="left">
             <div>
               <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-2">6 a 14 anos</p>
-              <h3 className="text-xl font-black text-white">Programação</h3>
+              <h3 className="text-2xl font-black text-white">Programação</h3>
             </div>
             <div className="flex items-end justify-between">
               <p className="text-sm text-wire-400 max-w-[200px]">Games, apps, Minecraft e lógica de programação.</p>
@@ -68,7 +68,7 @@ export default function Courses() {
 
           {/* Inglês — compact, light bg */}
           <a href="/cursos/ingles" className="card-tilt group lg:col-span-3 lg:row-span-1 rounded-2xl bg-wire-100 p-6 flex flex-col justify-between min-h-[200px]" data-tilt="right">
-            <h3 className="text-xl font-black text-wire-black">Inglês</h3>
+            <h3 className="text-2xl font-black text-wire-black">Inglês</h3>
             <div>
               <p className="text-sm text-wire-600 mb-3">Fluência desde a infância com abordagem comunicativa.</p>
               <span className="text-sm font-bold text-wire-700 group-hover:text-wire-black flex items-center gap-1">

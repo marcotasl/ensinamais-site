@@ -27,7 +27,7 @@ export default function Hero({ banners }: HeroProps) {
   const slide = banners[current];
 
   return (
-    <section className="bg-wire-900 pt-16 min-h-[80vh] flex flex-col relative">
+    <section className="bg-wire-900 pt-16 min-h-[80vh] flex flex-col relative rounded-b-[46px]">
       <div className="flex-1 max-w-[1200px] mx-auto px-6 py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
         {/* Text */}
         <div>
