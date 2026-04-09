@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
+import CommentOverlay from "@/components/ui/CommentOverlay";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -35,7 +36,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${nunito.variable} antialiased`}>
-      <body className="min-h-screen bg-white overflow-x-hidden">{children}</body>
+      <body className="min-h-screen bg-white overflow-x-hidden relative">
+        {children}
+        <CommentOverlay />
+      </body>
     </html>
   );
 }
