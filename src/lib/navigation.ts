@@ -7,6 +7,8 @@ export interface SubCourse {
 
 export interface CourseCategory {
   title: string;
+  slug: string;
+  href: string;
   color: string;
   icon: string;
   courses: SubCourse[];
@@ -21,6 +23,8 @@ export interface NavDropdown {
 export const COURSE_CATEGORIES: CourseCategory[] = [
   {
     title: "Apoio Escolar",
+    slug: "apoio-escolar",
+    href: "/cursos/apoio-escolar",
     color: "#039BE5",
     icon: "BookOpen",
     courses: [
@@ -32,6 +36,8 @@ export const COURSE_CATEGORIES: CourseCategory[] = [
   },
   {
     title: "Robótica",
+    slug: "robotica",
+    href: "/cursos/robotica",
     color: "#7CB342",
     icon: "Cpu",
     courses: [
@@ -42,22 +48,26 @@ export const COURSE_CATEGORIES: CourseCategory[] = [
   },
   {
     title: "Programação",
+    slug: "programacao",
+    href: "/cursos/programacao",
     color: "#FF9800",
     icon: "Monitor",
     courses: [
       { label: "Trilha Code", href: "/cursos/programacao/trilha-code" },
-      { label: "Games — dos 6 aos 14 anos", href: "/cursos/programacao/games" },
+      { label: "Games", href: "/cursos/programacao/games" },
       { label: "Apps", href: "/cursos/programacao/apps" },
       { label: "Youtuber", href: "/cursos/programacao/youtuber" },
-      { label: "Minecraft", href: "/cursos/programacao/minecraft" },
+      { label: "Minecraft Educacional", href: "/cursos/programacao/minecraft" },
     ],
   },
   {
     title: "Inglês",
+    slug: "ingles",
+    href: "/cursos/ingles",
     color: "#EF5350",
     icon: "Globe",
     courses: [
-      { label: "Inglês — Presencial", href: "/cursos/ingles/presencial" },
+      { label: "Inglês Presencial", href: "/cursos/ingles/presencial" },
     ],
   },
 ];
