@@ -1,154 +1,84 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import { GraduationCap, ArrowRight, Check } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-import FadeIn from "@/components/ui/FadeIn";
-import Badge from "@/components/ui/Badge";
-import Wave from "@/components/layout/Wave";
-import { COURSES } from "@/lib/constants";
+import { ArrowRight } from "lucide-react";
+import Placeholder from "@/components/ui/Placeholder";
 
-const FEATURES = [
-  "Ensino individualizado sem turmas",
-  "Material didatico interdisciplinar",
-  "Acompanhamento continuo dos pais",
-];
+/*
+ * Bento courses — dense, visual-first, each card unique
+ *
+ * ┌───────────────────┬───────────┐
+ * │                   │           │
+ * │  Apoio Escolar    │ Robótica  │  row 1: image bg + text overlay
+ * │  (image bg,       │ (tall,    │
+ * │   heading large)  │  image)   │
+ * ├─────────┬─────────┤           │
+ * │         │         │           │
+ * │ Program.│ Inglês  ├───────────┤
+ * │ (dark)  │ (light) │  CTA card │
+ * │         │         │           │
+ * └─────────┴─────────┴───────────┘
+ */
 
 export default function Courses() {
-  const [active, setActive] = useState(0);
-  const course = COURSES[active];
-
   return (
-    <>
-      <Wave color="#F1F8E9" flip height={60} />
-      <section
-        id="cursos"
-        className="bg-em-green-pale py-10 px-6 relative overflow-hidden"
-        style={{ paddingBottom: 80 }}
-      >
-        {/* Background watermark */}
-        <div className="absolute right-[5%] bottom-[10%] text-[clamp(120px,18vw,220px)] font-black text-em-green opacity-[0.06] leading-none pointer-events-none select-none">
-          E+
+    <section id="cursos" className="px-6">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="mb-12 max-w-[560px]">
+          <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Nossos Cursos</p>
+          <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">
+            Desenvolvemos múltiplos saberes desde a infância
+          </h2>
         </div>
 
-        <div className="max-w-[1200px] mx-auto relative z-2">
-          <FadeIn>
-            <div className="text-center mb-10">
-              <Badge className="mb-3 bg-em-green/[0.09] text-em-green-dark">
-                <GraduationCap size={12} /> Nossos Cursos
-              </Badge>
-              <h2 className="text-[clamp(1.7rem,3.5vw,2.4rem)] font-black text-em-dark">
-                Desenvolvemos multiplos saberes
-              </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 lg:grid-rows-2 gap-3 lg:auto-rows-[220px]">
+
+          {/* Apoio Escolar — wide, image bg with text overlay */}
+          <a href="/cursos/apoio-escolar" className="card-tilt group lg:col-span-7 lg:row-span-1 rounded-2xl overflow-hidden relative" data-tilt="left">
+            <Placeholder className="absolute inset-0 rounded-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-wire-900/80 via-wire-900/30 to-transparent" />
+            <div className="relative h-full p-7 flex flex-col justify-end min-h-[200px]">
+              <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">4 a 15 anos</p>
+              <h3 className="text-3xl font-black text-white mb-1">Apoio Escolar</h3>
+              <p className="text-sm text-white/70 max-w-[320px]">Português e Matemática com ensino híbrido e acompanhamento contínuo.</p>
             </div>
-          </FadeIn>
+          </a>
 
-          {/* Tab buttons */}
-          <FadeIn delay={0.1}>
-            <div className="flex gap-2.5 justify-center mb-9 flex-wrap">
-              {COURSES.map((c, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActive(i)}
-                  className="text-sm font-bold rounded-[14px] px-5 py-3 flex items-center gap-2 transition-all duration-250 cursor-pointer"
-                  style={{
-                    color: active === i ? "#fff" : "#1A2744",
-                    background: active === i ? c.color : "#fff",
-                    border: active === i ? "none" : "2px solid #E2E8F0",
-                    boxShadow: active === i ? `0 6px 20px ${c.color}40` : "none",
-                  }}
-                >
-                  <c.icon size={16} /> {c.title}
-                </button>
-              ))}
+          {/* Robótica — tall right, image fills */}
+          <a href="/cursos/robotica" className="card-tilt group lg:col-span-5 lg:row-span-2 rounded-2xl overflow-hidden relative" data-tilt="right">
+            <Placeholder className="absolute inset-0 rounded-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-wire-900/80 via-wire-900/20 to-transparent" />
+            <div className="relative h-full p-7 flex flex-col justify-end min-h-[200px] lg:min-h-0">
+              <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">4 a 15 anos</p>
+              <h3 className="text-3xl font-black text-white mb-1">Robótica Educacional</h3>
+              <p className="text-sm text-white/70">Raciocínio lógico, criatividade e resolução de problemas na prática.</p>
             </div>
-          </FadeIn>
+          </a>
 
-          {/* Course detail card */}
-          <FadeIn delay={0.15}>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-0 bg-white rounded-[28px] p-2 shadow-[0_12px_40px_rgba(0,0,0,0.06)] border border-gray-200"
-              >
-                {/* Image */}
-                <div className="rounded-3xl overflow-hidden relative">
-                  <Image
-                    src={course.img}
-                    alt={course.title}
-                    width={480}
-                    height={360}
-                    className="w-full h-[300px] lg:h-[360px] object-cover block"
-                  />
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: `linear-gradient(to top, ${course.color}CC 0%, transparent 60%)`,
-                    }}
-                  />
-                  <div className="absolute bottom-6 left-6">
-                    <Badge className="bg-white/95 text-em-dark">
-                      <course.icon size={12} style={{ color: course.color }} />{" "}
-                      {course.title}
-                    </Badge>
-                  </div>
-                </div>
+          {/* Programação — compact, dark bg */}
+          <a href="/cursos/programacao" className="card-tilt group lg:col-span-4 lg:row-span-1 rounded-2xl bg-wire-800 p-6 flex flex-col justify-between min-h-[200px]" data-tilt="left">
+            <div>
+              <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-2">6 a 14 anos</p>
+              <h3 className="text-2xl font-black text-white">Programação</h3>
+            </div>
+            <div className="flex items-end justify-between">
+              <p className="text-sm text-wire-400 max-w-[200px]">Games, apps, Minecraft e lógica de programação.</p>
+              <ArrowRight size={18} className="text-wire-500 group-hover:text-white transition-colors shrink-0" />
+            </div>
+          </a>
 
-                {/* Text */}
-                <div className="p-6 lg:pl-2 lg:pr-6">
-                  <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5"
-                    style={{ background: course.light }}
-                  >
-                    <course.icon size={28} style={{ color: course.color }} strokeWidth={2} />
-                  </div>
-                  <h3 className="text-[26px] font-black text-em-dark mb-3">
-                    {course.title}
-                  </h3>
-                  <p className="text-[15px] leading-relaxed text-gray-500 mb-6">
-                    {course.desc}
-                  </p>
-                  <div className="flex flex-col gap-2.5 mb-7">
-                    {FEATURES.map((feat, i) => (
-                      <div key={i} className="flex items-center gap-2.5">
-                        <div
-                          className="w-[22px] h-[22px] rounded-[7px] flex items-center justify-center"
-                          style={{ background: course.light }}
-                        >
-                          <Check
-                            size={12}
-                            style={{ color: course.color }}
-                            strokeWidth={3}
-                          />
-                        </div>
-                        <span className="text-[13px] font-semibold text-em-dark">
-                          {feat}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                  <a
-                    href="#lead"
-                    className="text-sm font-extrabold text-white rounded-[14px] px-7 py-3.5 inline-flex items-center gap-2 transition-all duration-250 hover:-translate-y-0.5"
-                    style={{
-                      background: course.color,
-                      boxShadow: `0 6px 20px ${course.color}40`,
-                    }}
-                  >
-                    Quero saber mais <ArrowRight size={15} />
-                  </a>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </FadeIn>
+          {/* Inglês — compact, light bg */}
+          <a href="/cursos/ingles" className="card-tilt group lg:col-span-3 lg:row-span-1 rounded-2xl bg-wire-100 p-6 flex flex-col justify-between min-h-[200px]" data-tilt="right">
+            <h3 className="text-2xl font-black text-wire-black">Inglês</h3>
+            <div>
+              <p className="text-sm text-wire-600 mb-3">Fluência desde a infância com abordagem comunicativa.</p>
+              <span className="text-sm font-bold text-wire-700 group-hover:text-wire-black flex items-center gap-1">
+                Saiba mais <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
+              </span>
+            </div>
+          </a>
+
         </div>
-      </section>
-      <Wave color="#F1F8E9" height={60} />
-    </>
+      </div>
+    </section>
   );
 }

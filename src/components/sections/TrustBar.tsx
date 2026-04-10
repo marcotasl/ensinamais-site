@@ -1,16 +1,11 @@
-const BRANDS = ["ABF", "PEGN", "Google Partner", "Facebook Partner", "Endeavor", "MoveEdu"];
+const BRANDS = ["ABF", "PEGN", "Google Partner", "Endeavor", "MoveEdu", "Estúdio Maurício de Sousa"];
 
 export default function TrustBar() {
   return (
-    <section className="bg-gray-50 border-y border-gray-200 py-7 px-6">
-      <div className="max-w-[1200px] mx-auto flex items-center justify-center gap-10 flex-wrap opacity-50">
-        {BRANDS.map((brand) => (
-          <span
-            key={brand}
-            className="text-[13px] font-extrabold text-gray-500 tracking-wide uppercase"
-          >
-            {brand}
-          </span>
+    <section className="py-6 overflow-hidden">
+      <div className="flex animate-marquee gap-12 whitespace-nowrap">
+        {[...BRANDS, ...BRANDS].map((brand, i) => (
+          <span key={i} className="text-sm font-bold text-wire-400 uppercase tracking-wide shrink-0">{brand}</span>
         ))}
       </div>
     </section>
