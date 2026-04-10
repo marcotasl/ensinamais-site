@@ -96,10 +96,10 @@ export default async function CoursePage({ params }: Props) {
                     { icon: Clock, value: course.frequency, label: "Frequência" },
                     { icon: Timer, value: course.duration, label: "Duração" },
                   ].map((spec) => (
-                    <div key={spec.label} className="bg-wire-50 rounded-xl p-4 text-center flex flex-col items-center justify-center">
-                      <spec.icon size={20} className="text-wire-500 mx-auto mb-2" />
-                      <span className="block text-sm font-black text-wire-black">{spec.value}</span>
-                      <span className="block text-xs text-wire-400 mt-0.5">{spec.label}</span>
+                    <div key={spec.label} className="bg-wire-50 rounded-xl p-5 text-center flex flex-col items-center justify-center">
+                      <spec.icon size={28} className="text-wire-500 mx-auto mb-3" />
+                      <span className="block text-base font-black text-wire-black">{spec.value}</span>
+                      <span className="block text-sm text-wire-400 mt-1">{spec.label}</span>
                     </div>
                   ))}
                 </div>
