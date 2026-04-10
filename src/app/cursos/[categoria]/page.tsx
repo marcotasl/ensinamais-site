@@ -67,7 +67,7 @@ export default async function CategoryPage({ params }: Props) {
       </section>
 
       {/* Cursos da categoria */}
-      <section className="px-4 sm:px-6 -mt-12 relative z-10">
+      <section className="px-4 sm:px-6 pt-16 sm:pt-20">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <div className="mb-8 text-center">
