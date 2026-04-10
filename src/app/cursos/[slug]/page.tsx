@@ -136,6 +136,30 @@ export default async function CoursePage({ params }: Props) {
         </div>
       </section>
 
+      {/* Para quem é recomendado */}
+      <section className="px-4 sm:px-6 pb-16 sm:pb-20">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-16 items-center">
+            <div>
+              <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Público</p>
+              <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-wire-black">
+                Para quem {course.title} é recomendado?
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {course.audience.map((item) => (
+                <div key={item} className="flex items-start gap-3 bg-white rounded-xl border border-wire-200 p-4">
+                  <div className="w-6 h-6 rounded-full bg-wire-100 flex items-center justify-center shrink-0 mt-0.5">
+                    <Check size={14} className="text-wire-500" />
+                  </div>
+                  <span className="text-sm text-wire-600 leading-relaxed">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Modules — como funciona */}
       <section className="px-4 sm:px-6 pb-16 sm:pb-20">
         <div className="max-w-[1200px] mx-auto">
