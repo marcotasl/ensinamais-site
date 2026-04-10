@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Placeholder from "@/components/ui/Placeholder";
+import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 import { COURSES_DATA } from "@/lib/courses-data";
 import type { Metadata } from "next";
 
@@ -64,18 +65,18 @@ export default function CursosPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="px-4 sm:px-6 py-16 sm:py-20">
-        <div className="max-w-[700px] mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-black text-wire-black mb-4">
-            Não sabe qual curso escolher?
-          </h2>
-          <p className="text-base sm:text-lg text-wire-500 mb-8">
-            Agende uma avaliação gratuita. Nossos instrutores vão identificar as necessidades do seu filho e recomendar o melhor caminho.
-          </p>
-          <a href="/#lead" className="text-sm sm:text-base font-bold text-white bg-wire-black rounded-xl px-8 py-4 inline-flex items-center gap-2 hover:bg-wire-900 transition-colors">
-            Agendar avaliação gratuita <ArrowRight size={16} />
-          </a>
+      {/* Lead Form */}
+      <section id="lead" className="px-4 sm:px-6 py-16 sm:py-20">
+        <div className="max-w-[900px] mx-auto bg-white rounded-2xl px-4 py-8 sm:px-10 sm:py-10 border border-wire-200 shadow-sm">
+          <div className="text-center mb-8">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-wire-black mb-2">
+              Não sabe qual curso escolher?
+            </h2>
+            <p className="text-base text-wire-500">
+              Agende uma avaliação gratuita. Nossos instrutores vão recomendar o melhor caminho para seu filho.
+            </p>
+          </div>
+          <LeadCaptureForm />
         </div>
       </section>
     </main>

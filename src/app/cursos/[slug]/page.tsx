@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
-import { ArrowRight, Star, Clock, MapPin, Calendar, ChevronDown } from "lucide-react";
+import { ArrowRight, Star, Clock, MapPin, Calendar } from "lucide-react";
 import Placeholder from "@/components/ui/Placeholder";
+import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 import { COURSES_DATA, getCourseBySlug } from "@/lib/courses-data";
 import type { Metadata } from "next";
 import CourseFAQ from "./CourseFAQ";
@@ -56,7 +57,7 @@ export default async function CoursePage({ params }: Props) {
               </div>
             </div>
 
-            <a href="/#lead" className="text-sm sm:text-base font-bold text-wire-black bg-white rounded-xl px-6 sm:px-8 py-3.5 sm:py-4 inline-flex items-center gap-2 hover:bg-wire-100 transition-colors">
+            <a href="#lead" className="text-sm sm:text-base font-bold text-wire-black bg-white rounded-xl px-6 sm:px-8 py-3.5 sm:py-4 inline-flex items-center gap-2 hover:bg-wire-100 transition-colors">
               Agendar aula grátis <ArrowRight size={16} />
             </a>
           </div>
@@ -178,18 +179,18 @@ export default async function CoursePage({ params }: Props) {
         </div>
       </section>
 
-      {/* CTA Final */}
-      <section className="px-4 sm:px-6 pb-16 sm:pb-20">
-        <div className="max-w-[1200px] mx-auto bg-wire-900 rounded-2xl py-12 sm:py-16 px-6 sm:px-12 text-center">
-          <h2 className="text-2xl sm:text-3xl font-black text-white mb-4">
-            Agende uma aula de {course.title} grátis
-          </h2>
-          <p className="text-base sm:text-lg text-wire-400 mb-8 max-w-[460px] mx-auto">
-            Conheça a unidade mais perto de você e veja na prática como funciona o curso.
-          </p>
-          <a href="/#lead" className="text-sm sm:text-base font-bold text-wire-black bg-white rounded-xl px-8 py-4 inline-flex items-center gap-2 hover:bg-wire-100 transition-colors">
-            Agendar aula grátis <ArrowRight size={16} />
-          </a>
+      {/* Lead Form */}
+      <section id="lead" className="px-4 sm:px-6 pb-16 sm:pb-20">
+        <div className="max-w-[900px] mx-auto bg-white rounded-2xl px-4 py-8 sm:px-10 sm:py-10 border border-wire-200 shadow-sm">
+          <div className="text-center mb-8">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-wire-black mb-2">
+              Agende uma aula de {course.title} grátis
+            </h2>
+            <p className="text-base text-wire-500">
+              Preencha seus dados e entraremos em contato em até 24h.
+            </p>
+          </div>
+          <LeadCaptureForm />
         </div>
       </section>
 
