@@ -18,6 +18,7 @@ export interface CourseDetail {
   workload: string;
   img: string;
   skills: { icon: LucideIcon; title: string; desc: string }[];
+  audience: string[];
   benefits: string[];
   modules: { title: string; desc: string }[];
   methodology: string;
@@ -47,6 +48,12 @@ export const COURSES_DATA: CourseDetail[] = [
       { icon: BookOpen, title: "Leitura e Escrita", desc: "Compreensão textual, produção de texto e gramática aplicada." },
       { icon: Lightbulb, title: "Autonomia no Estudo", desc: "Técnicas de estudo e organização para aprender sozinho." },
       { icon: Users, title: "Confiança Escolar", desc: "Superação de dificuldades e melhora da autoestima acadêmica." },
+    ],
+    audience: [
+      "Crianças de 4 a 15 anos com dificuldades em Português ou Matemática",
+      "Alunos que precisam de reforço escolar individualizado",
+      "Pais que buscam acompanhamento contínuo da evolução do filho",
+      "Estudantes em fase de alfabetização ou transição de ciclo escolar",
     ],
     benefits: [
       "Acompanhamento individual com educadores especializados",
@@ -98,6 +105,12 @@ export const COURSES_DATA: CourseDetail[] = [
       { icon: Users, title: "Trabalho em Equipe", desc: "Projetos colaborativos que desenvolvem comunicação e liderança." },
       { icon: Lightbulb, title: "Criatividade", desc: "Liberdade para criar, testar e iterar soluções próprias." },
     ],
+    audience: [
+      "Crianças de 4 a 15 anos interessadas em construir e inventar",
+      "Alunos curiosos que gostam de entender como as coisas funcionam",
+      "Pais que buscam atividades que desenvolvam raciocínio lógico",
+      "Crianças que querem participar de competições de robótica",
+    ],
     benefits: [
       "Kits de robótica completos fornecidos pela escola",
       "Aulas práticas com montagem e programação real",
@@ -146,6 +159,12 @@ export const COURSES_DATA: CourseDetail[] = [
       { icon: Gamepad2, title: "Criação de Games", desc: "Desenvolvimento de jogos 2D e 3D com ferramentas profissionais." },
       { icon: Smartphone, title: "Desenvolvimento de Apps", desc: "Criação de aplicativos móveis com interfaces funcionais." },
       { icon: Lightbulb, title: "Pensamento Computacional", desc: "Decomposição de problemas complexos em etapas simples." },
+    ],
+    audience: [
+      "Crianças de 6 a 14 anos que gostam de games e tecnologia",
+      "Alunos que querem criar seus próprios jogos, apps ou vídeos",
+      "Pais que buscam preparar os filhos para profissões do futuro",
+      "Jovens interessados em produção de conteúdo digital (YouTube, streaming)",
     ],
     benefits: [
       "Equipamentos e software fornecidos pela escola",
@@ -197,6 +216,12 @@ export const COURSES_DATA: CourseDetail[] = [
       { icon: BookOpen, title: "Leitura e Escrita", desc: "Compreensão de textos e produção escrita progressiva." },
       { icon: Brain, title: "Pensamento Bilíngue", desc: "Transição natural entre português e inglês no raciocínio." },
       { icon: Users, title: "Imersão Cultural", desc: "Contato com a cultura anglófona através de música, filmes e jogos." },
+    ],
+    audience: [
+      "Crianças de 4 a 15 anos que nunca tiveram contato com inglês",
+      "Alunos que já estudam inglês e querem acelerar a fluência",
+      "Pais que valorizam a educação bilíngue desde a infância",
+      "Jovens que querem se preparar para intercâmbios e provas de proficiência",
     ],
     benefits: [
       "Material didático exclusivo por faixa etária",
