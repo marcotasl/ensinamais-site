@@ -89,7 +89,7 @@ export default async function CoursePage({ params }: Props) {
       <section className="px-4 sm:px-6 py-16 sm:py-20">
         <div className="max-w-[1200px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-8 lg:gap-16 items-start">
-            <div>
+            <div className="lg:sticky lg:top-24">
               <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Módulos</p>
               <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-wire-black mb-4">
                 Como funciona o curso
