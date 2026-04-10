@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { ArrowRight, Star, Clock, MapPin, Calendar } from "lucide-react";
+import { ArrowRight, Star, Clock, MapPin, Calendar, BookOpen, Check, Timer } from "lucide-react";
 import Placeholder from "@/components/ui/Placeholder";
 import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 import { COURSES_DATA, getCourseBySlug } from "@/lib/courses-data";
@@ -45,7 +45,7 @@ export default async function CoursePage({ params }: Props) {
               {course.longDesc}
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-8">
+            <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2 text-sm text-wire-400">
                 <Calendar size={16} /> {course.ageRange}
               </div>
@@ -55,11 +55,13 @@ export default async function CoursePage({ params }: Props) {
               <div className="flex items-center gap-2 text-sm text-wire-400">
                 <Clock size={16} /> {course.frequency}
               </div>
+              <div className="flex items-center gap-2 text-sm text-wire-400">
+                <Timer size={16} /> {course.workload}
+              </div>
             </div>
-
           </div>
 
-          {/* Lead form — vertical */}
+          {/* Lead form */}
           <div id="lead" className="bg-white/10 backdrop-blur rounded-2xl p-6 sm:p-8 border border-white/15">
             <h3 className="text-lg font-extrabold text-white mb-1">Agende uma aula grátis</h3>
             <p className="text-sm text-wire-500 mb-5">Preencha e entraremos em contato em até 24h.</p>
@@ -68,9 +70,58 @@ export default async function CoursePage({ params }: Props) {
         </div>
       </section>
 
-      {/* Skills — o que seu filho aprende */}
+      {/* Visão Geral — Objetivo */}
       <section className="px-4 sm:px-6 -mt-12 relative z-10">
         <div className="max-w-[1200px] mx-auto">
+          <div className="bg-white rounded-2xl border border-wire-200 p-6 sm:p-8 lg:p-10">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-12 items-start">
+              <div>
+                <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Visão Geral</p>
+                <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-wire-black mb-4">
+                  Objetivo do curso
+                </h2>
+                <p className="text-base text-wire-500 leading-relaxed">
+                  {course.objective}
+                </p>
+              </div>
+
+              {/* Specs grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="bg-wire-50 rounded-xl p-4 text-center">
+                  <Calendar size={20} className="text-wire-500 mx-auto mb-2" />
+                  <span className="block text-sm font-black text-wire-black">{course.ageRange}</span>
+                  <span className="block text-xs text-wire-400 mt-0.5">Faixa etária</span>
+                </div>
+                <div className="bg-wire-50 rounded-xl p-4 text-center">
+                  <MapPin size={20} className="text-wire-500 mx-auto mb-2" />
+                  <span className="block text-sm font-black text-wire-black">{course.modality}</span>
+                  <span className="block text-xs text-wire-400 mt-0.5">Modalidade</span>
+                </div>
+                <div className="bg-wire-50 rounded-xl p-4 text-center">
+                  <Clock size={20} className="text-wire-500 mx-auto mb-2" />
+                  <span className="block text-sm font-black text-wire-black">{course.frequency}</span>
+                  <span className="block text-xs text-wire-400 mt-0.5">Frequência</span>
+                </div>
+                <div className="bg-wire-50 rounded-xl p-4 text-center">
+                  <Timer size={20} className="text-wire-500 mx-auto mb-2" />
+                  <span className="block text-sm font-black text-wire-black">{course.duration}</span>
+                  <span className="block text-xs text-wire-400 mt-0.5">Duração</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* O que seu filho aprende */}
+      <section className="px-4 sm:px-6 py-16 sm:py-20">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="mb-10 max-w-[480px]">
+            <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Competências</p>
+            <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-wire-black">
+              O que seu filho aprende
+            </h2>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {course.skills.map((skill) => (
               <div key={skill.title} className="bg-white rounded-2xl border border-wire-200 p-6">
@@ -86,7 +137,7 @@ export default async function CoursePage({ params }: Props) {
       </section>
 
       {/* Modules — como funciona */}
-      <section className="px-4 sm:px-6 py-16 sm:py-20">
+      <section className="px-4 sm:px-6 pb-16 sm:pb-20">
         <div className="max-w-[1200px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-8 lg:gap-16 items-start">
             <div className="lg:sticky lg:top-24">
@@ -116,36 +167,34 @@ export default async function CoursePage({ params }: Props) {
         </div>
       </section>
 
-      {/* Methodology image + text */}
-      <section className="px-4 sm:px-6">
+      {/* Benefícios de estudar na Ensina Mais */}
+      <section className="px-4 sm:px-6 pb-16 sm:pb-20">
         <div className="max-w-[1200px] mx-auto bg-wire-900 rounded-2xl py-12 sm:py-16 px-6 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <Placeholder className="w-full h-[300px] sm:h-[360px] rounded-2xl" label="Foto aluno + instrutor" />
             <div>
-              <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-3">Metodologia</p>
-              <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white mb-5">
-                Ensino individualizado,<br className="hidden sm:block" /> sem formação de turmas
+              <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-3">Benefícios</p>
+              <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white mb-6">
+                Por que estudar na<br className="hidden sm:block" /> Ensina Mais?
               </h2>
-              <p className="text-base sm:text-lg text-wire-400 leading-relaxed mb-6">
-                {course.methodology}
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <div className="bg-white/5 border border-white/10 rounded-xl px-5 py-3">
-                  <span className="text-2xl font-black text-white">{course.frequency}</span>
-                  <span className="block text-xs text-wire-500 mt-0.5">de aula</span>
-                </div>
-                <div className="bg-white/5 border border-white/10 rounded-xl px-5 py-3">
-                  <span className="text-2xl font-black text-white">{course.duration}</span>
-                  <span className="block text-xs text-wire-500 mt-0.5">por módulo</span>
-                </div>
+              <div className="flex flex-col gap-3">
+                {course.benefits.map((benefit) => (
+                  <div key={benefit} className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check size={14} className="text-wire-400" />
+                    </div>
+                    <span className="text-base text-wire-300">{benefit}</span>
+                  </div>
+                ))}
               </div>
             </div>
+
+            <Placeholder className="w-full h-[300px] sm:h-[360px] rounded-2xl" label="Foto aluno + instrutor" />
           </div>
         </div>
       </section>
 
       {/* Testimonial */}
-      <section className="px-4 sm:px-6 py-16 sm:py-20">
+      <section className="px-4 sm:px-6 pb-16 sm:pb-20">
         <div className="max-w-[700px] mx-auto text-center">
           <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-6">Depoimento</p>
           <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-wire-700 mb-8">
@@ -176,6 +225,21 @@ export default async function CoursePage({ params }: Props) {
             </h2>
           </div>
           <CourseFAQ items={course.faq} />
+        </div>
+      </section>
+
+      {/* CTA Final */}
+      <section className="px-4 sm:px-6 pb-16 sm:pb-20">
+        <div className="max-w-[1200px] mx-auto bg-wire-100 rounded-2xl py-12 sm:py-16 px-6 sm:px-12 text-center">
+          <h2 className="text-2xl sm:text-3xl font-black text-wire-black mb-4">
+            Pronto para começar?
+          </h2>
+          <p className="text-base sm:text-lg text-wire-500 mb-8 max-w-[460px] mx-auto">
+            Agende uma aula experimental gratuita e conheça na prática o curso de {course.title}.
+          </p>
+          <a href="#lead" className="text-sm sm:text-base font-bold text-white bg-wire-black rounded-xl px-8 py-4 inline-flex items-center gap-2 hover:bg-wire-900 transition-colors">
+            Agendar aula grátis <ArrowRight size={16} />
+          </a>
         </div>
       </section>
 

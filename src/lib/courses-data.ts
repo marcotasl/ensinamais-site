@@ -7,6 +7,7 @@ export interface CourseDetail {
   subtitle: string;
   desc: string;
   longDesc: string;
+  objective: string;
   icon: LucideIcon;
   color: string;
   light: string;
@@ -14,8 +15,10 @@ export interface CourseDetail {
   modality: string;
   duration: string;
   frequency: string;
+  workload: string;
   img: string;
   skills: { icon: LucideIcon; title: string; desc: string }[];
+  benefits: string[];
   modules: { title: string; desc: string }[];
   methodology: string;
   testimonial: { quote: string; name: string; city: string };
@@ -29,6 +32,7 @@ export const COURSES_DATA: CourseDetail[] = [
     subtitle: "Português e Matemática",
     desc: "Reforço individualizado em Português e Matemática com ensino híbrido, acompanhamento contínuo e relatórios de evolução para os pais.",
     longDesc: "Cada aluno tem seu próprio ritmo. Na Ensina Mais, o apoio escolar combina aulas digitais interativas com mediação de instrutores especializados, garantindo que seu filho supere dificuldades em Português e Matemática de forma personalizada e eficaz.",
+    objective: "Desenvolver competências em Português e Matemática através de ensino individualizado, com aulas digitais interativas e acompanhamento contínuo de instrutores especializados. O aluno evolui no seu próprio ritmo, com avaliações diagnósticas e relatórios de progresso para os pais.",
     icon: BookOpen,
     color: "#039BE5",
     light: "#E1F5FE",
@@ -36,12 +40,21 @@ export const COURSES_DATA: CourseDetail[] = [
     modality: "Presencial",
     duration: "2 meses por módulo",
     frequency: "2h ou 4h semanais",
+    workload: "8 horas por módulo",
     img: "/images/courses/apoio-escolar.jpg",
     skills: [
       { icon: Brain, title: "Raciocínio Lógico", desc: "Resolução de problemas matemáticos com pensamento estruturado." },
       { icon: BookOpen, title: "Leitura e Escrita", desc: "Compreensão textual, produção de texto e gramática aplicada." },
       { icon: Lightbulb, title: "Autonomia no Estudo", desc: "Técnicas de estudo e organização para aprender sozinho." },
       { icon: Users, title: "Confiança Escolar", desc: "Superação de dificuldades e melhora da autoestima acadêmica." },
+    ],
+    benefits: [
+      "Acompanhamento individual com educadores especializados",
+      "Aulas 100% digitais e interativas",
+      "Material didático exclusivo com atividades práticas",
+      "Portal dos pais com relatórios de evolução",
+      "Plataforma online com conteúdo extra disponível 24h",
+      "Games educativos que desenvolvem habilidades cognitivas",
     ],
     modules: [
       { title: "Matemática — 2h semanais", desc: "Operações, geometria, frações e resolução de problemas no ritmo do aluno." },
@@ -69,6 +82,7 @@ export const COURSES_DATA: CourseDetail[] = [
     subtitle: "Da montagem à programação",
     desc: "Raciocínio lógico, criatividade e resolução de problemas na prática com kits de robótica educacional.",
     longDesc: "A robótica educacional da Ensina Mais vai além de montar robôs. É uma metodologia STEAM completa que desenvolve raciocínio lógico, criatividade, trabalho em equipe e capacidade de resolver problemas reais — habilidades essenciais para o futuro.",
+    objective: "Desenvolver habilidades STEAM através da montagem e programação de robôs. O aluno aprende raciocínio lógico, trabalho em equipe e resolução de problemas em um ambiente prático e divertido, seguindo o ciclo de desafio, construção, programação e apresentação.",
     icon: Cpu,
     color: "#7CB342",
     light: "#F1F8E9",
@@ -76,12 +90,21 @@ export const COURSES_DATA: CourseDetail[] = [
     modality: "Presencial",
     duration: "2 meses por módulo",
     frequency: "2h semanais",
+    workload: "8 horas por módulo",
     img: "/images/courses/robotica.jpg",
     skills: [
       { icon: Puzzle, title: "Resolução de Problemas", desc: "Desafios práticos que exigem criatividade e pensamento crítico." },
       { icon: Brain, title: "Raciocínio Lógico", desc: "Sequências, condicionais e loops aplicados à construção de robôs." },
       { icon: Users, title: "Trabalho em Equipe", desc: "Projetos colaborativos que desenvolvem comunicação e liderança." },
       { icon: Lightbulb, title: "Criatividade", desc: "Liberdade para criar, testar e iterar soluções próprias." },
+    ],
+    benefits: [
+      "Kits de robótica completos fornecidos pela escola",
+      "Aulas práticas com montagem e programação real",
+      "Instrutores especializados em metodologia STEAM",
+      "Participação em competições de robótica",
+      "Desenvolvimento de soft skills como liderança e comunicação",
+      "Projetos em equipe que simulam desafios do mundo real",
     ],
     modules: [
       { title: "Robótica Infantil", desc: "Para os pequenos de 4 a 6 anos. Montagens simples com peças grandes e conceitos básicos de movimento." },
@@ -108,6 +131,7 @@ export const COURSES_DATA: CourseDetail[] = [
     subtitle: "Games, apps e lógica",
     desc: "Games, apps, Minecraft e lógica de programação de forma divertida, preparando para as profissões do futuro.",
     longDesc: "Da criação de jogos no Scratch à programação de apps reais, nossos cursos de programação ensinam lógica computacional de forma divertida e prática. Seu filho aprende a pensar como um programador — uma habilidade essencial para qualquer carreira.",
+    objective: "Ensinar lógica de programação e pensamento computacional através da criação de projetos reais — jogos, apps, vídeos e mundos virtuais. O aluno desenvolve habilidades técnicas e criativas enquanto se diverte com plataformas como Scratch, Unity, AppInventor e Minecraft.",
     icon: Monitor,
     color: "#FF9800",
     light: "#FFF3E0",
@@ -115,12 +139,21 @@ export const COURSES_DATA: CourseDetail[] = [
     modality: "Presencial",
     duration: "2 meses por módulo",
     frequency: "2h semanais",
+    workload: "8 horas por módulo",
     img: "/images/courses/programacao.jpg",
     skills: [
       { icon: Code, title: "Lógica de Programação", desc: "Algoritmos, variáveis, condicionais e loops de forma visual e prática." },
       { icon: Gamepad2, title: "Criação de Games", desc: "Desenvolvimento de jogos 2D e 3D com ferramentas profissionais." },
       { icon: Smartphone, title: "Desenvolvimento de Apps", desc: "Criação de aplicativos móveis com interfaces funcionais." },
       { icon: Lightbulb, title: "Pensamento Computacional", desc: "Decomposição de problemas complexos em etapas simples." },
+    ],
+    benefits: [
+      "Equipamentos e software fornecidos pela escola",
+      "Projetos práticos com resultado tangível a cada módulo",
+      "Gamificação que mantém o engajamento alto",
+      "Introdução progressiva a linguagens reais (JavaScript, Python)",
+      "Plataforma online com exercícios extras",
+      "Preparação para profissões do futuro com abordagem STEAM",
     ],
     modules: [
       { title: "Trilha Code", desc: "Fundamentos de lógica de programação com Scratch e ferramentas visuais." },
@@ -149,6 +182,7 @@ export const COURSES_DATA: CourseDetail[] = [
     subtitle: "Fluência desde a infância",
     desc: "Fluência desde a infância com abordagem comunicativa, imersão e material didático exclusivo por faixa etária.",
     longDesc: "O inglês da Ensina Mais vai além da gramática. Com abordagem comunicativa e imersiva, seu filho desenvolve fluência natural desde cedo, usando o idioma em situações reais do dia a dia — com material didático exclusivo para cada faixa etária.",
+    objective: "Desenvolver fluência em inglês desde a infância com abordagem comunicativa e imersiva. O aluno aprende a se expressar naturalmente no idioma, sem tradução literal, através de jogos, músicas, dinâmicas e situações do cotidiano.",
     icon: Globe,
     color: "#EF5350",
     light: "#FFEBEE",
@@ -156,12 +190,21 @@ export const COURSES_DATA: CourseDetail[] = [
     modality: "Presencial",
     duration: "Semestral",
     frequency: "2h semanais",
+    workload: "Programa semestral completo",
     img: "/images/courses/ingles.jpg",
     skills: [
       { icon: Languages, title: "Comunicação Oral", desc: "Conversação, pronúncia e fluência desde as primeiras aulas." },
       { icon: BookOpen, title: "Leitura e Escrita", desc: "Compreensão de textos e produção escrita progressiva." },
       { icon: Brain, title: "Pensamento Bilíngue", desc: "Transição natural entre português e inglês no raciocínio." },
       { icon: Users, title: "Imersão Cultural", desc: "Contato com a cultura anglófona através de música, filmes e jogos." },
+    ],
+    benefits: [
+      "Material didático exclusivo por faixa etária",
+      "Abordagem comunicativa com máxima exposição ao inglês",
+      "Aulas com jogos, músicas e dinâmicas imersivas",
+      "Instrutores com fluência comprovada",
+      "Acompanhamento individual do progresso",
+      "Imersão progressiva — do português de apoio à aula 100% em inglês",
     ],
     modules: [
       { title: "Inglês Presencial", desc: "Programa completo com material didático exclusivo, abordagem comunicativa e imersão progressiva por faixa etária." },
