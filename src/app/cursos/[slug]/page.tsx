@@ -117,7 +117,7 @@ export default async function CoursePage({ params }: Props) {
 
       {/* Methodology image + text */}
       <section className="px-4 sm:px-6">
-        <div className="max-w-[1200px] mx-auto bg-wire-900 rounded-2xl py-12 sm:py-16 px-4 sm:px-6 lg:px-12 mx-0 sm:mx-0">
+        <div className="max-w-[1200px] mx-auto bg-wire-900 rounded-2xl py-12 sm:py-16 px-6 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <Placeholder className="w-full h-[300px] sm:h-[360px] rounded-2xl" label="Foto aluno + instrutor" />
             <div>
