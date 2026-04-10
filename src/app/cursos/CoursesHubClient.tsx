@@ -90,7 +90,7 @@ export default function CoursesHubClient() {
           <FadeIn delay={0.15}>
             <div className="max-w-[640px] mx-auto">
               <div className="relative">
-                <Search size={20} className="absolute left-5 top-1/2 -translate-y-1/2 text-wire-400" />
+                <Search size={20} strokeWidth={2.5} className="absolute left-5 top-1/2 -translate-y-1/2 text-white/70 pointer-events-none z-10" />
                 <input
                   type="text"
                   placeholder="Buscar curso (ex: matemática, robótica, games...)"
