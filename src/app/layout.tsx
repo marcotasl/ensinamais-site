@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Newsletter from "@/components/sections/Newsletter";
 import CommentOverlay from "@/components/ui/CommentOverlay";
+import WireframeNotice from "@/components/ui/WireframeNotice";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -45,6 +46,7 @@ export default function RootLayout({
         <Newsletter />
         <Footer />
         <CommentOverlay />
+        <WireframeNotice />
       </body>
     </html>
   );
