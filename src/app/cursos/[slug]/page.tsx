@@ -78,7 +78,7 @@ export default async function CoursePage({ params }: Props) {
         <FadeIn>
           <div className="max-w-[1200px] mx-auto">
             <div className="bg-white rounded-2xl border border-wire-200 p-6 sm:p-8 lg:p-10">
-              <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-12 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-12 items-stretch">
                 <div>
                   <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Visão Geral</p>
                   <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-wire-black mb-4">
@@ -89,14 +89,14 @@ export default async function CoursePage({ params }: Props) {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 h-full">
                   {[
                     { icon: Calendar, value: course.ageRange, label: "Faixa etária" },
                     { icon: MapPin, value: course.modality, label: "Modalidade" },
                     { icon: Clock, value: course.frequency, label: "Frequência" },
                     { icon: Timer, value: course.duration, label: "Duração" },
                   ].map((spec) => (
-                    <div key={spec.label} className="bg-wire-50 rounded-xl p-4 text-center">
+                    <div key={spec.label} className="bg-wire-50 rounded-xl p-4 text-center flex flex-col items-center justify-center">
                       <spec.icon size={20} className="text-wire-500 mx-auto mb-2" />
                       <span className="block text-sm font-black text-wire-black">{spec.value}</span>
                       <span className="block text-xs text-wire-400 mt-0.5">{spec.label}</span>
