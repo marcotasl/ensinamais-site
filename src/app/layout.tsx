@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import Newsletter from "@/components/sections/Newsletter";
 import CommentOverlay from "@/components/ui/CommentOverlay";
 import "./globals.css";
 
@@ -41,6 +42,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-white overflow-x-hidden relative">
         <Navbar />
         {children}
+        <Newsletter />
         <Footer />
         <CommentOverlay />
       </body>
