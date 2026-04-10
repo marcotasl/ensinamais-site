@@ -86,7 +86,9 @@ export default function Navbar() {
           <div className="max-w-[1200px] mx-auto px-6 py-8 grid grid-cols-4 gap-8">
             {COURSE_CATEGORIES.map((cat) => (
               <div key={cat.title}>
-                <h4 className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-3">{cat.title}</h4>
+                <a href={cat.href} className="block text-sm font-black text-wire-black uppercase tracking-widest mb-3 hover:text-wire-600 transition-colors">
+                  {cat.title}
+                </a>
                 {cat.courses.map((c) => (
                   <a key={c.label} href={c.href} className="block text-sm text-wire-600 hover:text-wire-black py-1.5">{c.label}</a>
                 ))}

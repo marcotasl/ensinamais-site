@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import Placeholder from "@/components/ui/Placeholder";
 import FadeIn from "@/components/ui/FadeIn";
 import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
-import { COURSES_DATA } from "@/lib/courses-data";
+import { CATEGORIES, getCoursesByCategory } from "@/lib/courses-data";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -31,40 +31,44 @@ export default function CursosPage() {
       {/* Course cards */}
       <section className="px-4 sm:px-6 -mt-10 relative z-10">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {COURSES_DATA.map((course, i) => (
-            <FadeIn key={course.slug} delay={i * 0.1}>
-              <a
-                href={`/cursos/${course.slug}`}
-                className="card-lift group bg-white rounded-2xl border border-wire-200 overflow-hidden hover:shadow-lg transition-all block"
-              >
-                <Placeholder className="w-full h-48 sm:h-56 rounded-none" label={course.title} />
-                <div className="p-6 sm:p-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-wire-100 flex items-center justify-center">
-                      <course.icon size={20} className="text-wire-600" />
+          {CATEGORIES.map((category, i) => {
+            const courseCount = getCoursesByCategory(category.slug).length;
+            const courses = getCoursesByCategory(category.slug);
+            return (
+              <FadeIn key={category.slug} delay={i * 0.1}>
+                <a
+                  href={`/cursos/${category.slug}`}
+                  className="card-lift group bg-white rounded-2xl border border-wire-200 overflow-hidden hover:shadow-lg transition-all block h-full"
+                >
+                  <Placeholder className="w-full h-48 sm:h-56 rounded-none" label={category.title} />
+                  <div className="p-6 sm:p-8">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-xl bg-wire-100 flex items-center justify-center">
+                        <category.icon size={20} className="text-wire-600" />
+                      </div>
+                      <div>
+                        <h2 className="text-xl font-black text-wire-black">{category.title}</h2>
+                        <span className="text-xs font-semibold text-wire-400">{category.ageRange} · {courseCount} {courseCount === 1 ? "curso" : "cursos"}</span>
+                      </div>
                     </div>
-                    <div>
-                      <h2 className="text-xl font-black text-wire-black">{course.title}</h2>
-                      <span className="text-xs font-semibold text-wire-400">{course.ageRange} · {course.modality}</span>
+                    <p className="text-sm text-wire-600 leading-relaxed mb-5">{category.desc}</p>
+
+                    <div className="flex flex-wrap gap-2 mb-5">
+                      {courses.map((c) => (
+                        <span key={c.slug} className="text-xs font-semibold text-wire-500 bg-wire-100 rounded-lg px-3 py-1.5">
+                          {c.title}
+                        </span>
+                      ))}
                     </div>
-                  </div>
-                  <p className="text-sm text-wire-600 leading-relaxed mb-5">{course.desc}</p>
 
-                  <div className="flex flex-wrap gap-2 mb-5">
-                    {course.modules.map((m) => (
-                      <span key={m.title} className="text-xs font-semibold text-wire-500 bg-wire-100 rounded-lg px-3 py-1.5">
-                        {m.title}
-                      </span>
-                    ))}
+                    <span className="text-sm font-bold text-wire-black group-hover:text-wire-600 flex items-center gap-1.5 transition-colors">
+                      Ver categoria <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                    </span>
                   </div>
-
-                  <span className="text-sm font-bold text-wire-black group-hover:text-wire-600 flex items-center gap-1.5 transition-colors">
-                    Conhecer o curso <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </a>
-            </FadeIn>
-          ))}
+                </a>
+              </FadeIn>
+            );
+          })}
         </div>
       </section>
 
