@@ -57,13 +57,13 @@ export default async function CoursePage({ params }: Props) {
               </div>
             </div>
 
-            <a href="#lead" className="text-sm sm:text-base font-bold text-wire-black bg-white rounded-xl px-6 sm:px-8 py-3.5 sm:py-4 inline-flex items-center gap-2 hover:bg-wire-100 transition-colors">
-              Agendar aula grátis <ArrowRight size={16} />
-            </a>
           </div>
 
-          <div className="hidden lg:block">
-            <Placeholder className="w-full h-[380px] rounded-2xl" label={`Foto ${course.title}`} />
+          {/* Lead form — vertical */}
+          <div id="lead" className="bg-white/10 backdrop-blur rounded-2xl p-6 sm:p-8 border border-white/15">
+            <h3 className="text-lg font-extrabold text-white mb-1">Agende uma aula grátis</h3>
+            <p className="text-sm text-wire-500 mb-5">Preencha e entraremos em contato em até 24h.</p>
+            <LeadCaptureForm layout="vertical" dark buttonText={`Quero aula de ${course.title}`} />
           </div>
         </div>
       </section>
@@ -176,21 +176,6 @@ export default async function CoursePage({ params }: Props) {
             </h2>
           </div>
           <CourseFAQ items={course.faq} />
-        </div>
-      </section>
-
-      {/* Lead Form */}
-      <section id="lead" className="px-4 sm:px-6 pb-16 sm:pb-20">
-        <div className="max-w-[900px] mx-auto bg-white rounded-2xl px-4 py-8 sm:px-10 sm:py-10 border border-wire-200 shadow-sm">
-          <div className="text-center mb-8">
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-wire-black mb-2">
-              Agende uma aula de {course.title} grátis
-            </h2>
-            <p className="text-base text-wire-500">
-              Preencha seus dados e entraremos em contato em até 24h.
-            </p>
-          </div>
-          <LeadCaptureForm />
         </div>
       </section>
 

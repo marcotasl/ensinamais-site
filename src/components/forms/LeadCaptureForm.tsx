@@ -17,7 +17,13 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-export default function LeadCaptureForm() {
+interface LeadCaptureFormProps {
+  layout?: "horizontal" | "vertical";
+  buttonText?: string;
+  dark?: boolean;
+}
+
+export default function LeadCaptureForm({ layout = "horizontal", buttonText, dark = false }: LeadCaptureFormProps) {
   const {
     register,
     handleSubmit,
@@ -40,14 +46,18 @@ export default function LeadCaptureForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+      <div className={`grid gap-3 mb-4 ${layout === "vertical" ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"}`}>
         {fields.map((field) => (
           <div key={field.name}>
             <input
               type={field.type}
               placeholder={field.placeholder}
               {...register(field.name)}
-              className="w-full text-base font-medium px-4 py-3.5 rounded-xl border border-wire-300 bg-white outline-none transition-all duration-200 focus:border-wire-600 focus:ring-2 focus:ring-wire-200"
+              className={`w-full text-base font-medium px-4 py-3.5 rounded-xl border outline-none transition-all duration-200 ${
+                dark
+                  ? "border-white/20 bg-white/10 text-white placeholder:text-wire-500 focus:border-white/40 focus:ring-2 focus:ring-white/10"
+                  : "border-wire-300 bg-white focus:border-wire-600 focus:ring-2 focus:ring-wire-200"
+              }`}
             />
             {errors[field.name] && (
               <p className="text-xs text-em-coral mt-1 ml-1">
@@ -60,9 +70,13 @@ export default function LeadCaptureForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full text-base font-bold text-white bg-wire-black rounded-xl py-4 flex items-center justify-center gap-2 hover:bg-wire-900 transition-all duration-200 disabled:opacity-60 cursor-pointer"
+        className={`w-full text-base font-bold rounded-xl py-4 flex items-center justify-center gap-2 transition-all duration-200 disabled:opacity-60 cursor-pointer ${
+          dark
+            ? "text-wire-black bg-white hover:bg-wire-100"
+            : "text-white bg-wire-black hover:bg-wire-900"
+        }`}
       >
-        Quero agendar minha aula grátis <ArrowRight size={16} />
+        {buttonText || "Quero agendar minha aula grátis"} <ArrowRight size={16} />
       </button>
     </form>
   );
