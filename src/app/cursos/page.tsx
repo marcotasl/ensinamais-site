@@ -1,93 +1,11 @@
-import { ArrowRight } from "lucide-react";
-import Placeholder from "@/components/ui/Placeholder";
-import FadeIn from "@/components/ui/FadeIn";
-import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
-import { CATEGORIES, getCoursesByCategory } from "@/lib/courses-data";
 import type { Metadata } from "next";
+import CoursesHubClient from "./CoursesHubClient";
 
 export const metadata: Metadata = {
   title: "Cursos | Ensina Mais – Turma da Mônica",
-  description: "Apoio Escolar, Robótica Educacional, Programação e Inglês para crianças e adolescentes de 4 a 15 anos. Metodologia individualizada com o universo da Turma da Mônica.",
+  description: "Apoio Escolar, Robótica Educacional, Programação e Inglês para crianças e adolescentes de 4 a 15 anos. Encontre o curso ideal para seu filho.",
 };
 
 export default function CursosPage() {
-  return (
-    <main className="min-h-screen bg-[#fafafa]">
-      {/* Hero */}
-      <section className="bg-wire-900 pt-24 pb-20 px-4 sm:px-6 rounded-b-[46px]">
-        <div className="max-w-[1200px] mx-auto">
-          <FadeIn>
-            <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-3">Nossos Cursos</p>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white mb-5 max-w-[600px]">
-              Desenvolvemos múltiplos saberes desde a infância
-            </h1>
-            <p className="text-base sm:text-lg text-wire-400 max-w-[520px] leading-relaxed">
-              4 frentes de ensino para crianças e adolescentes de 4 a 15 anos, com metodologia individualizada e o universo da Turma da Mônica.
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Course cards */}
-      <section className="px-4 sm:px-6 -mt-10 relative z-10">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {CATEGORIES.map((category, i) => {
-            const courseCount = getCoursesByCategory(category.slug).length;
-            const courses = getCoursesByCategory(category.slug);
-            return (
-              <FadeIn key={category.slug} delay={i * 0.1}>
-                <a
-                  href={`/cursos/${category.slug}`}
-                  className="card-lift group bg-white rounded-2xl border border-wire-200 overflow-hidden hover:shadow-lg transition-all block h-full"
-                >
-                  <Placeholder className="w-full h-48 sm:h-56 rounded-none" label={category.title} />
-                  <div className="p-6 sm:p-8">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-xl bg-wire-100 flex items-center justify-center">
-                        <category.icon size={20} className="text-wire-600" />
-                      </div>
-                      <div>
-                        <h2 className="text-xl font-black text-wire-black">{category.title}</h2>
-                        <span className="text-xs font-semibold text-wire-400">{category.ageRange} · {courseCount} {courseCount === 1 ? "curso" : "cursos"}</span>
-                      </div>
-                    </div>
-                    <p className="text-sm text-wire-600 leading-relaxed mb-5">{category.desc}</p>
-
-                    <div className="flex flex-wrap gap-2 mb-5">
-                      {courses.map((c) => (
-                        <span key={c.slug} className="text-xs font-semibold text-wire-500 bg-wire-100 rounded-lg px-3 py-1.5">
-                          {c.title}
-                        </span>
-                      ))}
-                    </div>
-
-                    <span className="text-sm font-bold text-wire-black group-hover:text-wire-600 flex items-center gap-1.5 transition-colors">
-                      Ver categoria <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </div>
-                </a>
-              </FadeIn>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Lead Form */}
-      <section id="lead" className="px-4 sm:px-6 py-16 sm:py-20">
-        <FadeIn>
-          <div className="max-w-[900px] mx-auto bg-white rounded-2xl px-4 py-8 sm:px-10 sm:py-10 border border-wire-200 shadow-sm">
-            <div className="text-center mb-8">
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-wire-black mb-2">
-                Não sabe qual curso escolher?
-              </h2>
-              <p className="text-base text-wire-500">
-                Agende uma avaliação gratuita. Nossos instrutores vão recomendar o melhor caminho para seu filho.
-              </p>
-            </div>
-            <LeadCaptureForm />
-          </div>
-        </FadeIn>
-      </section>
-    </main>
-  );
+  return <CoursesHubClient />;
 }
