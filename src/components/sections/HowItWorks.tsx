@@ -4,9 +4,9 @@ import { ArrowRight } from "lucide-react";
 import Placeholder from "@/components/ui/Placeholder";
 
 const STEPS = [
-  { number: "01", title: "Avaliação Inicial", desc: "A jornada começa com uma avaliação diagnóstica completa. Identificamos as forças e os pontos de atenção do aluno para criar um plano de estudos sob medida." },
-  { number: "02", title: "Plano Individualizado", desc: "Cada aluno tem seu próprio caminho. Sem formação de turmas — o ritmo é individual, com aulas digitais interativas e mediação do instrutor a cada etapa." },
-  { number: "03", title: "Acompanhamento Contínuo", desc: "Relatórios de evolução para os pais, avaliações periódicas e feedback constante. Você acompanha cada conquista do seu filho em tempo real." },
+  { number: "01", title: "Avaliação Inicial", desc: "A jornada começa entendendo as forças, as dificuldades e o jeito de aprender de cada aluno. O resultado é um plano feito sob medida." },
+  { number: "02", title: "Plano Individualizado", desc: "Cada criança segue um percurso próprio, sem depender do ritmo de uma turma. As aulas combinam recursos digitais, atividades orientadas e mediação do instrutor para apoiar a evolução passo a passo." },
+  { number: "03", title: "Acompanhamento Contínuo", desc: "Os pais acompanham o desenvolvimento de perto, com feedbacks, avaliações periódicas e relatórios que mostram os avanços da criança ao longo da jornada." },
 ];
 
 export default function HowItWorks() {
@@ -18,9 +18,12 @@ export default function HowItWorks() {
 
           <div>
             <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-3">Como Funciona</p>
-            <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-white mb-8 sm:mb-10">
-              Metodologia que respeita<br className="hidden lg:block" /> o ritmo do seu filho
+            <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-white mb-4">
+              Uma metodologia que entende antes de ensinar.
             </h2>
+            <p className="text-base sm:text-lg text-wire-400 leading-relaxed mb-8 sm:mb-10 max-w-[520px]">
+              Antes de indicar qualquer caminho, a gente entende quem é o seu filho, o que já sabe, onde tem dificuldades e como aprende melhor.
+            </p>
 
             <div className="flex flex-col gap-8">
               {STEPS.map((step, i) => (
