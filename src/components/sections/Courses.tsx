@@ -44,7 +44,7 @@ export default function Courses() {
           </a>
 
           {/* Robótica — tall right, image fills */}
-          <a href="/cursos/robotica" className="card-tilt group lg:col-span-5 lg:row-span-2 rounded-2xl overflow-hidden relative" data-tilt="right">
+          <a href="/cursos/robotica-ensina" className="card-tilt group lg:col-span-5 lg:row-span-2 rounded-2xl overflow-hidden relative" data-tilt="right">
             <Placeholder className="absolute inset-0 rounded-none" />
             <div className="absolute inset-0 bg-gradient-to-t from-wire-900/80 via-wire-900/20 to-transparent" />
             <div className="relative h-full p-7 flex flex-col justify-end min-h-[200px] lg:min-h-0">
@@ -55,7 +55,7 @@ export default function Courses() {
           </a>
 
           {/* Programação — compact, dark bg */}
-          <a href="/cursos/programacao" className="card-tilt group lg:col-span-4 lg:row-span-1 rounded-2xl bg-wire-800 p-6 flex flex-col justify-between min-h-[200px]" data-tilt="left">
+          <a href="/cursos/programacao-ensina" className="card-tilt group lg:col-span-4 lg:row-span-1 rounded-2xl bg-wire-800 p-6 flex flex-col justify-between min-h-[200px]" data-tilt="left">
             <div>
               <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-2">6 a 14 anos</p>
               <h3 className="text-2xl font-black text-white">Programação</h3>
@@ -67,7 +67,7 @@ export default function Courses() {
           </a>
 
           {/* Inglês — compact, light bg */}
-          <a href="/cursos/ingles" className="card-tilt group lg:col-span-3 lg:row-span-1 rounded-2xl bg-wire-100 p-6 flex flex-col justify-between min-h-[200px]" data-tilt="right">
+          <a href="/cursos/ingles-ensina" className="card-tilt group lg:col-span-3 lg:row-span-1 rounded-2xl bg-wire-100 p-6 flex flex-col justify-between min-h-[200px]" data-tilt="right">
             <h3 className="text-2xl font-black text-wire-black">Inglês</h3>
             <div>
               <p className="text-sm text-wire-600 mb-3">Fluência desde a infância com abordagem comunicativa.</p>

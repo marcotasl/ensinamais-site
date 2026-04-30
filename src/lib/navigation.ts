@@ -1,4 +1,5 @@
 // Sitemap baseado no site atual ensinamais.com.br
+// URLs preservadas do XML real (sem redirects).
 
 export interface SubCourse {
   label: string;
@@ -28,46 +29,46 @@ export const COURSE_CATEGORIES: CourseCategory[] = [
     color: "#039BE5",
     icon: "BookOpen",
     courses: [
-      { label: "Matemática — 2h semanais", href: "/cursos/apoio-escolar/matematica-2h" },
-      { label: "Matemática — 4h semanais", href: "/cursos/apoio-escolar/matematica-4h" },
-      { label: "Português — 2h semanais", href: "/cursos/apoio-escolar/portugues-2h" },
-      { label: "Português — 4h semanais", href: "/cursos/apoio-escolar/portugues-4h" },
+      { label: "Matemática — 2h semanais", href: "/cursos/apoio-escolar/matematica-apoio-escolar-2-horas-presencial" },
+      { label: "Matemática — 4h semanais", href: "/cursos/apoio-escolar/matematica-apoio-escolar-4-horas-presencial" },
+      { label: "Português — 2h semanais", href: "/cursos/apoio-escolar/portugues-apoio-escolar-2-horas-semanais-presencial" },
+      { label: "Português — 4h semanais", href: "/cursos/apoio-escolar/portugues-apoio-escolar-4-horas-semanais-presencial" },
     ],
   },
   {
     title: "Robótica",
-    slug: "robotica",
-    href: "/cursos/robotica",
+    slug: "robotica-ensina",
+    href: "/cursos/robotica-ensina",
     color: "#7CB342",
     icon: "Cpu",
     courses: [
-      { label: "Robótica Educacional", href: "/cursos/robotica/educacional" },
-      { label: "Robótica Little Kids", href: "/cursos/robotica/little-kids" },
-      { label: "Robótica Infantil", href: "/cursos/robotica/infantil" },
+      { label: "Robótica Educacional", href: "/cursos/robotica-ensina/robotica-educacional-presencial" },
+      { label: "Robótica Little Kids", href: "/cursos/robotica-ensina/robotica-little-kids-presencial" },
+      { label: "Robótica Infantil", href: "/cursos/robotica-ensina/robotica-infantil-presencial" },
     ],
   },
   {
     title: "Programação",
-    slug: "programacao",
-    href: "/cursos/programacao",
+    slug: "programacao-ensina",
+    href: "/cursos/programacao-ensina",
     color: "#FF9800",
     icon: "Monitor",
     courses: [
-      { label: "Trilha Code", href: "/cursos/programacao/trilha-code" },
-      { label: "Games", href: "/cursos/programacao/games" },
-      { label: "Apps", href: "/cursos/programacao/apps" },
-      { label: "Youtuber", href: "/cursos/programacao/youtuber" },
-      { label: "Minecraft Educacional", href: "/cursos/programacao/minecraft" },
+      { label: "Trilha Code", href: "/cursos/programacao-ensina/trilha-code-presencial" },
+      { label: "Games", href: "/cursos/programacao-ensina/games-presencial" },
+      { label: "Apps", href: "/cursos/programacao-ensina/apps-presencial" },
+      { label: "Youtuber", href: "/cursos/programacao-ensina/curso-youtuber" },
+      { label: "Minecraft Educacional", href: "/cursos/programacao-ensina/curso-minecraft" },
     ],
   },
   {
     title: "Inglês",
-    slug: "ingles",
-    href: "/cursos/ingles",
+    slug: "ingles-ensina",
+    href: "/cursos/ingles-ensina",
     color: "#EF5350",
     icon: "Globe",
     courses: [
-      { label: "Inglês Presencial", href: "/cursos/ingles/presencial" },
+      { label: "Inglês Presencial", href: "/cursos/ingles-ensina/ingles-presencial" },
     ],
   },
 ];
@@ -83,11 +84,12 @@ export const MAIN_NAV: NavDropdown[] = [
   },
   {
     label: "Sobre Nós",
-    href: "/sobre",
+    href: "/sobre-nos",
     children: [
-      { label: "Conheça a Ensina Mais", href: "/sobre" },
-      { label: "Metodologia", href: "/sobre/metodologia" },
-      { label: "Benefícios", href: "/sobre/beneficios" },
+      { label: "Conheça a Ensina Mais", href: "/conheca-a-ensinamais" },
+      { label: "Nossa História", href: "/nossa-historia" },
+      { label: "Metodologia", href: "/metodologia" },
+      { label: "Benefícios", href: "/beneficios" },
     ],
   },
   {
@@ -96,7 +98,7 @@ export const MAIN_NAV: NavDropdown[] = [
   },
   {
     label: "Fale Conosco",
-    href: "/contato",
+    href: "/fale-conosco",
   },
 ];
 

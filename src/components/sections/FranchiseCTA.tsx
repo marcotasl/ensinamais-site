@@ -88,7 +88,7 @@ export default function FranchiseCTA() {
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <a href="/franquia" className="text-sm sm:text-base font-bold text-wire-black bg-white rounded-xl px-6 sm:px-8 py-3.5 sm:py-4 inline-flex items-center gap-2 hover:bg-wire-100 transition-colors">
+              <a href="/seja-um-franqueado" className="text-sm sm:text-base font-bold text-wire-black bg-white rounded-xl px-6 sm:px-8 py-3.5 sm:py-4 inline-flex items-center gap-2 hover:bg-wire-100 transition-colors">
                 Quero ser franqueado <ArrowRight size={16} />
               </a>
               <a href="#" className="text-sm sm:text-base font-semibold text-white border border-white/20 rounded-xl px-6 sm:px-8 py-3.5 sm:py-4 inline-flex items-center gap-2 hover:bg-white/5 transition-colors">

@@ -48,7 +48,7 @@ export const CATEGORIES: Category[] = [
     ],
   },
   {
-    slug: "robotica",
+    slug: "robotica-ensina",
     title: "Robótica",
     subtitle: "Educacional e Infantil",
     desc: "Raciocínio lógico, criatividade e resolução de problemas na prática com kits de robótica educacional.",
@@ -74,7 +74,7 @@ export const CATEGORIES: Category[] = [
     ],
   },
   {
-    slug: "programacao",
+    slug: "programacao-ensina",
     title: "Programação",
     subtitle: "Games, apps e lógica",
     desc: "Games, apps, Minecraft e lógica de programação de forma divertida, preparando para as profissões do futuro.",
@@ -100,7 +100,7 @@ export const CATEGORIES: Category[] = [
     ],
   },
   {
-    slug: "ingles",
+    slug: "ingles-ensina",
     title: "Inglês",
     subtitle: "Fluência desde a infância",
     desc: "Fluência desde a infância com abordagem comunicativa, imersão e material didático exclusivo por faixa etária.",
@@ -160,7 +160,7 @@ export interface Course {
 export const COURSES: Course[] = [
   // APOIO ESCOLAR
   {
-    slug: "matematica-2h",
+    slug: "matematica-apoio-escolar-2-horas-presencial",
     categorySlug: "apoio-escolar",
     title: "Matemática — 2h semanais",
     subtitle: "Reforço de matemática",
@@ -199,7 +199,7 @@ export const COURSES: Course[] = [
     ],
   },
   {
-    slug: "matematica-4h",
+    slug: "matematica-apoio-escolar-4-horas-presencial",
     categorySlug: "apoio-escolar",
     title: "Matemática — 4h semanais",
     subtitle: "Reforço intensivo de matemática",
@@ -238,7 +238,7 @@ export const COURSES: Course[] = [
     ],
   },
   {
-    slug: "portugues-2h",
+    slug: "portugues-apoio-escolar-2-horas-semanais-presencial",
     categorySlug: "apoio-escolar",
     title: "Português — 2h semanais",
     subtitle: "Reforço de português",
@@ -277,7 +277,7 @@ export const COURSES: Course[] = [
     ],
   },
   {
-    slug: "portugues-4h",
+    slug: "portugues-apoio-escolar-4-horas-semanais-presencial",
     categorySlug: "apoio-escolar",
     title: "Português — 4h semanais",
     subtitle: "Reforço intensivo de português",
@@ -319,8 +319,8 @@ export const COURSES: Course[] = [
 
   // ROBÓTICA
   {
-    slug: "educacional",
-    categorySlug: "robotica",
+    slug: "robotica-educacional-presencial",
+    categorySlug: "robotica-ensina",
     title: "Robótica Educacional",
     subtitle: "Projetos avançados e competições",
     desc: "Robótica avançada com programação, eletrônica e participação em competições.",
@@ -359,8 +359,8 @@ export const COURSES: Course[] = [
     ],
   },
   {
-    slug: "little-kids",
-    categorySlug: "robotica",
+    slug: "robotica-little-kids-presencial",
+    categorySlug: "robotica-ensina",
     title: "Robótica Little Kids",
     subtitle: "Introdução lúdica à robótica",
     desc: "Introdução à robótica para crianças de 6 a 8 anos com peças maiores e programação visual.",
@@ -398,8 +398,8 @@ export const COURSES: Course[] = [
     ],
   },
   {
-    slug: "infantil",
-    categorySlug: "robotica",
+    slug: "robotica-infantil-presencial",
+    categorySlug: "robotica-ensina",
     title: "Robótica Infantil",
     subtitle: "Primeiros passos na tecnologia",
     desc: "Primeiros passos na robótica para crianças de 4 a 6 anos com montagens simples e seguras.",
@@ -439,8 +439,8 @@ export const COURSES: Course[] = [
 
   // PROGRAMAÇÃO
   {
-    slug: "trilha-code",
-    categorySlug: "programacao",
+    slug: "trilha-code-presencial",
+    categorySlug: "programacao-ensina",
     title: "Trilha Code",
     subtitle: "Fundamentos de programação",
     desc: "Fundamentos de lógica de programação com Scratch e ferramentas visuais.",
@@ -478,8 +478,8 @@ export const COURSES: Course[] = [
     ],
   },
   {
-    slug: "games",
-    categorySlug: "programacao",
+    slug: "games-presencial",
+    categorySlug: "programacao-ensina",
     title: "Games",
     subtitle: "Criação de jogos 2D e 3D",
     desc: "Criação de jogos 2D e 3D com ferramentas profissionais — dos 6 aos 14 anos.",
@@ -518,8 +518,8 @@ export const COURSES: Course[] = [
     ],
   },
   {
-    slug: "apps",
-    categorySlug: "programacao",
+    slug: "apps-presencial",
+    categorySlug: "programacao-ensina",
     title: "Apps",
     subtitle: "Desenvolvimento de aplicativos",
     desc: "Desenvolvimento de aplicativos para dispositivos móveis.",
@@ -558,8 +558,8 @@ export const COURSES: Course[] = [
     ],
   },
   {
-    slug: "youtuber",
-    categorySlug: "programacao",
+    slug: "curso-youtuber",
+    categorySlug: "programacao-ensina",
     title: "Youtuber",
     subtitle: "Produção de conteúdo digital",
     desc: "Edição de vídeo, roteiro e produção de conteúdo digital para YouTube.",
@@ -598,8 +598,8 @@ export const COURSES: Course[] = [
     ],
   },
   {
-    slug: "minecraft",
-    categorySlug: "programacao",
+    slug: "curso-minecraft",
+    categorySlug: "programacao-ensina",
     title: "Minecraft Educacional",
     subtitle: "Programação dentro do Minecraft",
     desc: "Programação e lógica dentro do universo Minecraft.",
@@ -639,8 +639,8 @@ export const COURSES: Course[] = [
 
   // INGLÊS
   {
-    slug: "presencial",
-    categorySlug: "ingles",
+    slug: "ingles-presencial",
+    categorySlug: "ingles-ensina",
     title: "Inglês Presencial",
     subtitle: "Fluência com abordagem comunicativa",
     desc: "Programa completo de inglês presencial com abordagem comunicativa e imersiva.",
