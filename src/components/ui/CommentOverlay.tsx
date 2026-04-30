@@ -87,11 +87,33 @@ export default function CommentOverlay() {
     <>
       {/* Click capture layer */}
       {active && (
-        <div
-          className="fixed inset-0 z-[998]"
-          style={{ cursor: placing ? "default" : "crosshair" }}
-          onClick={handlePageClick}
-        />
+        <>
+          <div
+            className="fixed inset-0 z-[997] pointer-events-none rounded-2xl"
+            style={{ boxShadow: "inset 0 0 0 4px rgb(37 99 235)" }}
+          />
+          <div
+            className="fixed top-4 left-1/2 -translate-x-1/2 z-[1001] pointer-events-none bg-blue-600 text-white rounded-full pl-4 pr-1.5 py-1.5 shadow-lg flex items-center gap-2"
+          >
+            <MessageSquare size={16} />
+            <span className="text-sm font-semibold">
+              Modo comentário ativo · clique na página para adicionar um pin
+            </span>
+            <button
+              type="button"
+              onClick={() => { setActive(false); setPlacing(null); setOpenPin(null); }}
+              aria-label="Sair do modo comentário"
+              className="pointer-events-auto w-6 h-6 rounded-full hover:bg-white/20 flex items-center justify-center cursor-pointer transition-colors"
+            >
+              <X size={14} />
+            </button>
+          </div>
+          <div
+            className="fixed inset-0 z-[998]"
+            style={{ cursor: placing ? "default" : "crosshair" }}
+            onClick={handlePageClick}
+          />
+        </>
       )}
 
       {/* Comment pins */}
