@@ -8,7 +8,6 @@ import Reasons from "@/components/sections/Reasons";
 import TurmaDaMonica from "@/components/sections/TurmaDaMonica";
 import Testimonials from "@/components/sections/Testimonials";
 import SchoolFinder from "@/components/sections/SchoolFinder";
-import FranchiseCTA from "@/components/sections/FranchiseCTA";
 import BlogPreview from "@/components/sections/BlogPreview";
 import { getBanners } from "@/lib/wordpress";
 import { FALLBACK_BANNERS } from "@/lib/fallback-banners";
@@ -44,7 +43,6 @@ export default async function Home() {
         <Numbers />
         <Testimonials />
         <SchoolFinder />
-        <FranchiseCTA />
         <BlogPreview />
       </div>
     </main>
