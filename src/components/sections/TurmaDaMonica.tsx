@@ -31,7 +31,7 @@ export default function TurmaDaMonica() {
                 Turma da Mônica na aprendizagem
               </p>
               <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.25rem] font-black tracking-tight text-wire-black mb-4 leading-tight">
-                Aprender fica mais leve quando a criança se identifica com a jornada.
+                Aprender fica mais leve quando a criança se identifica com a jornada
               </h2>
               <p className="text-base sm:text-lg text-wire-600 leading-relaxed">
                 Na Ensina Mais, a Mônica, o Cebolinha, a Magali e outros personagens fazem parte da jornada. Aprender fica muito mais fácil!

@@ -31,10 +31,10 @@ export default function EmotionalIntro() {
         <FadeIn>
           <div className="text-center max-w-[760px] mx-auto mb-10 sm:mb-14">
             <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-3">
-              Antes de ensinar, a gente entende.
+              Antes de ensinar, a gente entende
             </p>
             <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black mb-4">
-              Aprender não precisa ser motivo de pressão.
+              Aprender não precisa ser motivo de pressão
             </h2>
             <p className="text-base sm:text-lg text-wire-600 leading-relaxed">
               Cada criança tem seu tempo, seus desafios e seu jeito de aprender. Com o acompanhamento certo, ela pode ganhar confiança, criar rotina e avançar com mais segurança.

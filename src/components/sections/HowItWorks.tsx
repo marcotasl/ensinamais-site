@@ -19,7 +19,7 @@ export default function HowItWorks() {
           <div>
             <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-3">Como Funciona</p>
             <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-white mb-4">
-              Uma metodologia que entende antes de ensinar.
+              Uma metodologia que entende antes de ensinar
             </h2>
             <p className="text-base sm:text-lg text-wire-400 leading-relaxed mb-8 sm:mb-10 max-w-[520px]">
               Antes de indicar qualquer caminho, a gente entende quem é o seu filho, o que já sabe, onde tem dificuldades e como aprende melhor.
