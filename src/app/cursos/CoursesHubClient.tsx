@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { Search, ArrowRight, SlidersHorizontal, X } from "lucide-react";
 import Placeholder from "@/components/ui/Placeholder";
 import FadeIn from "@/components/ui/FadeIn";
+import LearningPaths from "@/components/sections/LearningPaths";
 import { CATEGORIES, COURSES, type Course } from "@/lib/courses-data";
 
 const MODALITIES = ["Presencial", "Semi-presencial"];
@@ -82,7 +83,7 @@ export default function CoursesHubClient() {
               Encontre o curso ideal para seu filho
             </h1>
             <p className="text-base sm:text-lg text-wire-400 max-w-[560px] mx-auto leading-relaxed mb-10">
-              {COURSES.length} cursos em {CATEGORIES.length} áreas de conhecimento para crianças e adolescentes de 4 a 15 anos.
+              {COURSES.length} cursos em {CATEGORIES.length} áreas de conhecimento, com trilhas e combos para diferentes objetivos da família.
             </p>
           </FadeIn>
 
@@ -104,8 +105,10 @@ export default function CoursesHubClient() {
         </div>
       </section>
 
+      <LearningPaths leadHref="/fale-conosco" className="pt-12 sm:pt-16" />
+
       {/* Main content: sidebar + results */}
-      <section className="px-4 sm:px-6 py-12 sm:py-16">
+      <section id="catalogo" className="px-4 sm:px-6 py-12 sm:py-16">
         <div className="max-w-[1200px] mx-auto">
           {/* Mobile filter toggle */}
           <div className="lg:hidden mb-6 flex items-center justify-between">

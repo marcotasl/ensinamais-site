@@ -2,6 +2,7 @@ import Hero from "@/components/sections/Hero";
 import LeadForm from "@/components/sections/LeadForm";
 import EmotionalIntro from "@/components/sections/EmotionalIntro";
 import Courses from "@/components/sections/Courses";
+import LearningPaths from "@/components/sections/LearningPaths";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Numbers from "@/components/sections/Numbers";
 import Reasons from "@/components/sections/Reasons";
@@ -37,6 +38,7 @@ export default async function Home() {
       <div className="flex flex-col gap-8 sm:gap-12 lg:gap-16 py-8 sm:py-12 lg:py-16">
         <EmotionalIntro />
         <Courses />
+        <LearningPaths />
         <HowItWorks />
         <Reasons />
         <TurmaDaMonica />
