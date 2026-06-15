@@ -1,85 +1,99 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
-import Placeholder from "@/components/ui/Placeholder";
+import { ArrowRight, BookOpen, Bot, Code2, Languages } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-/*
- * Bento courses — dense, visual-first, each card unique
- *
- * ┌───────────────────┬───────────┐
- * │                   │           │
- * │  Apoio Escolar    │ Robótica  │  row 1: image bg + text overlay
- * │  (image bg,       │ (tall,    │
- * │   heading large)  │  image)   │
- * ├─────────┬─────────┤           │
- * │         │         │           │
- * │ Program.│ Inglês  ├───────────┤
- * │ (dark)  │ (light) │  CTA card │
- * │         │         │           │
- * └─────────┴─────────┴───────────┘
- */
+interface Course {
+  href: string;
+  title: string;
+  age: string;
+  desc: string;
+  Icon: LucideIcon;
+  bg: string;
+  bgImage: string;
+  span: string;
+  tilt: string;
+}
+
+const COURSES: Course[] = [
+  {
+    href: "/cursos/apoio-escolar",
+    title: "Apoio Escolar",
+    age: "6 a 14 anos",
+    desc: "Português e Matemática com plano feito para cada criança, com acompanhamento contínuo e evolução real.",
+    Icon: BookOpen,
+    bg: "bg-em-blue",
+    bgImage: "/images/courses/bento-apoio-escolar.webp",
+    span: "lg:col-span-7 lg:row-span-1",
+    tilt: "lg:tilt-l1",
+  },
+  {
+    href: "/cursos/robotica-ensina",
+    title: "Robótica Educacional",
+    age: "4 a 14 anos",
+    desc: "Raciocínio lógico, criatividade e resolução de problemas na prática, habilidades que o futuro vai exigir.",
+    Icon: Bot,
+    bg: "bg-em-green",
+    bgImage: "/images/courses/bento-robotica.webp",
+    span: "lg:col-span-5 lg:row-span-2",
+    tilt: "lg:tilt-r1",
+  },
+  {
+    href: "/cursos/programacao-ensina",
+    title: "Programação",
+    age: "8 a 14 anos",
+    desc: "Aprende a criar e resolver. Games, apps e lógica que ensinam a pensar.",
+    Icon: Code2,
+    bg: "bg-em-orange",
+    bgImage: "/images/courses/bento-programacao.webp",
+    span: "lg:col-span-4 lg:row-span-1",
+    tilt: "lg:tilt-l1",
+  },
+  {
+    href: "/cursos/ingles-ensina",
+    title: "Inglês",
+    age: "6 a 14 anos",
+    desc: "Fluência desde a infância com abordagem comunicativa.",
+    Icon: Languages,
+    bg: "bg-em-coral",
+    bgImage: "/images/courses/bento-ingles.webp",
+    span: "lg:col-span-3 lg:row-span-1",
+    tilt: "lg:tilt-r1",
+  },
+];
 
 export default function Courses() {
   return (
     <section id="cursos" className="px-6">
       <div className="max-w-[1200px] mx-auto">
-        <div className="mb-12 max-w-[560px]">
-          <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Nossos Cursos</p>
-          <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-wire-black">
-            Tudo que seu filho ou filha precisa, dentro e além da escola
+        <div className="mb-12 max-w-[640px]">
+          <p className="eyebrow text-em-blue mb-3">Nossos Cursos</p>
+          <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-em-dark leading-[1.1]">
+            Tudo que seu filho ou filha precisa, <span className="marker-blue">dentro e além</span> da escola
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 lg:grid-rows-2 gap-3 lg:auto-rows-[220px]">
-
-          {/* Apoio Escolar — wide, image bg with text overlay */}
-          <a href="/cursos/apoio-escolar" className="card-tilt group lg:col-span-7 lg:row-span-1 rounded-2xl overflow-hidden relative" data-tilt="left">
-            <Placeholder className="absolute inset-0 rounded-none" />
-            <div className="absolute inset-0 bg-gradient-to-t from-wire-900/80 via-wire-900/30 to-transparent" />
-            <div className="relative h-full p-7 flex flex-col justify-end min-h-[200px]">
-              <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">6 a 14 anos</p>
-              <h3 className="text-3xl font-black text-white mb-1">Apoio Escolar</h3>
-              <p className="text-sm text-white/70 max-w-[340px]">Português e Matemática com plano feito para cada criança, com acompanhamento contínuo e evolução real.</p>
-            </div>
-          </a>
-
-          {/* Robótica — tall right, image fills */}
-          <a href="/cursos/robotica-ensina" className="card-tilt group lg:col-span-5 lg:row-span-2 rounded-2xl overflow-hidden relative" data-tilt="right">
-            <Placeholder className="absolute inset-0 rounded-none" />
-            <div className="absolute inset-0 bg-gradient-to-t from-wire-900/80 via-wire-900/20 to-transparent" />
-            <div className="relative h-full p-7 flex flex-col justify-end min-h-[200px] lg:min-h-0">
-              <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">4 a 14 anos</p>
-              <h3 className="text-3xl font-black text-white mb-1">Robótica Educacional</h3>
-              <p className="text-sm text-white/70">Raciocínio lógico, criatividade e resolução de problemas na prática, habilidades que o futuro vai exigir.</p>
-            </div>
-          </a>
-
-          {/* Programação — compact, dark bg */}
-          <a href="/cursos/programacao-ensina" className="card-tilt group lg:col-span-4 lg:row-span-1 rounded-2xl bg-wire-800 p-6 flex flex-col justify-between min-h-[200px]" data-tilt="left">
-            <div>
-              <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-2">8 a 14 anos</p>
-              <h3 className="text-2xl font-black text-white">Programação</h3>
-            </div>
-            <div className="flex items-end justify-between">
-              <p className="text-sm text-wire-400 max-w-[220px]">Aprende a criar e resolver. Games, apps e lógica que ensinam a pensar.</p>
-              <ArrowRight size={18} className="text-wire-500 group-hover:text-white transition-colors shrink-0" />
-            </div>
-          </a>
-
-          {/* Inglês — compact, light bg */}
-          <a href="/cursos/ingles-ensina" className="card-tilt group lg:col-span-3 lg:row-span-1 rounded-2xl bg-wire-100 p-6 flex flex-col justify-between min-h-[200px]" data-tilt="right">
-            <div>
-              <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-2">6 a 14 anos</p>
-              <h3 className="text-2xl font-black text-wire-black">Inglês</h3>
-            </div>
-            <div>
-              <p className="text-sm text-wire-600 mb-3">Fluência desde a infância com abordagem comunicativa.</p>
-              <span className="text-sm font-bold text-wire-700 group-hover:text-wire-black flex items-center gap-1">
-                Saiba mais <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
-              </span>
-            </div>
-          </a>
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 lg:grid-rows-2 gap-5 lg:gap-6 lg:auto-rows-[240px]">
+          {COURSES.map((c) => (
+            <a
+              key={c.href}
+              href={c.href}
+              className={`group relative rounded-3xl ${c.span} ${c.bg} ${c.tilt} tilt-hover-straighten p-7 sm:p-8 flex flex-col justify-between min-h-[240px] shadow-[0_18px_42px_-22px_rgba(26,39,68,0.35)] overflow-hidden bg-cover bg-no-repeat bg-right-bottom`}
+              style={{ backgroundImage: `url(${c.bgImage})` }}
+            >
+              <div className="relative">
+                <c.Icon size={32} strokeWidth={2} className="text-white mb-5" />
+                <p className="text-xs font-bold text-white/85 uppercase tracking-widest mb-2">{c.age}</p>
+                <h3 className="text-2xl sm:text-3xl font-black text-white max-w-[260px] leading-tight">{c.title}</h3>
+              </div>
+              <div className="relative flex items-end justify-between gap-4">
+                <p className="text-sm text-white/90 max-w-[280px] leading-relaxed">{c.desc}</p>
+                <span className="shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/15 backdrop-blur text-white group-hover:bg-white group-hover:text-em-dark transition-colors">
+                  <ArrowRight size={18} />
+                </span>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
     </section>

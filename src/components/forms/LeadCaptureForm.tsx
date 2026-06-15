@@ -56,7 +56,7 @@ export default function LeadCaptureForm({ layout = "horizontal", buttonText, dar
               className={`w-full text-base font-medium px-4 py-3.5 rounded-xl border outline-none transition-all duration-200 ${
                 dark
                   ? "border-white/20 bg-white/10 text-white placeholder:text-wire-500 focus:border-white/40 focus:ring-2 focus:ring-white/10"
-                  : "border-wire-300 bg-white focus:border-wire-600 focus:ring-2 focus:ring-wire-200"
+                  : "border-wire-300 bg-white focus:border-em-green focus:ring-2 focus:ring-em-green-light/20"
               }`}
             />
             {errors[field.name] && (
@@ -72,8 +72,8 @@ export default function LeadCaptureForm({ layout = "horizontal", buttonText, dar
         disabled={isSubmitting}
         className={`w-full text-base font-bold rounded-xl py-4 flex items-center justify-center gap-2 transition-all duration-200 disabled:opacity-60 cursor-pointer ${
           dark
-            ? "text-wire-black bg-white hover:bg-wire-100"
-            : "text-white bg-wire-black hover:bg-wire-900"
+            ? "text-em-dark bg-white hover:bg-em-green-pale shadow-button"
+            : "text-white bg-em-green hover:bg-em-green-dark shadow-button"
         }`}
       >
         {buttonText || "Quero agendar minha aula grátis"} <ArrowRight size={16} />

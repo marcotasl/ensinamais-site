@@ -35,7 +35,7 @@ export const COURSES: Course[] = [
   {
     icon: Monitor,
     title: "Programação",
-    desc: "Games, apps, Minecraft e lógica de programação — de forma divertida e leve, atendendo às novas demandas do mercado com abordagem STEAM.",
+    desc: "Games, apps, Minecraft e lógica de programação, de forma divertida e leve, atendendo às novas demandas do mercado com abordagem STEAM.",
     color: "#FF9800",
     light: "#FFF3E0",
     img: "/images/courses/programacao.jpg",
@@ -92,24 +92,24 @@ export const STATS: Stat[] = [
 
 export const TESTIMONIALS: Testimonial[] = [
   {
-    quote: "Meu filho estava com muita dificuldade em matemática. Em poucos meses na Ensina Mais, a evolução foi incrível — ele ganhou confiança e as notas subiram de verdade!",
+    quote: "Meu filho estava com muita dificuldade em matemática. Em poucos meses na Ensina Mais, a evolução foi incrível, ele ganhou confiança e as notas subiram de verdade!",
     name: "Carla Mendes",
     city: "São Paulo, SP",
-    img: "/images/turma-da-monica/pose-14.png",
+    img: "/images/turma-da-monica/pose-14.webp",
     stars: 5,
   },
   {
     quote: "A robótica despertou no meu filho um interesse que eu nunca tinha visto. Ele chega em casa animado, querendo construir coisas e explicar como tudo funciona.",
     name: "Roberto Silva",
     city: "Campinas, SP",
-    img: "/images/turma-da-monica/pose-4.png",
+    img: "/images/turma-da-monica/pose-4.webp",
     stars: 5,
   },
   {
     quote: "A metodologia individualizada faz toda a diferença. Minha filha tem acompanhamento personalizado e agora adora ir pra aula. Recomendo de olhos fechados!",
     name: "Juliana Ferreira",
     city: "Rio de Janeiro, RJ",
-    img: "/images/turma-da-monica/pose-15.png",
+    img: "/images/turma-da-monica/pose-15.webp",
     stars: 5,
   },
 ];

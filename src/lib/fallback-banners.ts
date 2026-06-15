@@ -20,8 +20,8 @@ export const FALLBACK_BANNERS: FallbackBanner[] = [
     ctaText: "Agende uma aula experimental gratuita",
     ctaHref: "#lead",
     overlayColor: "#5A8A2A",
-    image: "/images/turma-da-monica/pose-6.png",
-    bgImage: "/images/hero/banner-sala-aula.jpg",
+    image: "/images/turma-da-monica/pose-6.webp",
+    bgImage: "/images/hero/heading.webp",
   },
   {
     id: 2,
@@ -42,7 +42,7 @@ export const FALLBACK_BANNERS: FallbackBanner[] = [
     ctaText: "Conheça nossos cursos",
     ctaHref: "#cursos",
     overlayColor: "#3949AB",
-    image: "/images/turma-da-monica/pose-10.png",
+    image: "/images/turma-da-monica/pose-10.webp",
     bgImage: "/images/hero/banner-recepcao.jpg",
   },
 ];

@@ -1,7 +1,44 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Museo";
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("/fonts/Museo100.otf") format("opentype");
+}
+@font-face {
+  font-family: "Museo";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/Museo300.otf") format("opentype");
+}
+@font-face {
+  font-family: "Museo";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/Museo500.otf") format("opentype");
+}
+@font-face {
+  font-family: "Museo";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/Museo700.otf") format("opentype");
+}
+@font-face {
+  font-family: "Museo";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("/fonts/Museo900.otf") format("opentype");
+}
+
 @theme inline {
-  --font-sans: "Nunito", sans-serif;
+  --font-sans: "Museo", "Georgia", serif;
+  --font-display: "Museo", "Georgia", serif;
 
   /* Wireframe grayscale palette */
   --color-wire-black: #1a1a1a;
@@ -17,29 +54,36 @@
   --color-wire-50: #f5f5f5;
   --color-wire-white: #ffffff;
 
-  /* Keep color tokens as grays for now */
-  --color-em-green: #555555;
-  --color-em-green-dark: #404040;
-  --color-em-green-light: #d9d9d9;
-  --color-em-green-pale: #f5f5f5;
-  --color-em-blue: #555555;
-  --color-em-blue-dark: #404040;
-  --color-em-blue-light: #d9d9d9;
-  --color-em-blue-pale: #f5f5f5;
-  --color-em-coral: #555555;
-  --color-em-coral-dark: #404040;
-  --color-em-coral-light: #d9d9d9;
-  --color-em-coral-pale: #f5f5f5;
-  --color-em-purple: #555555;
-  --color-em-purple-dark: #404040;
-  --color-em-purple-light: #d9d9d9;
-  --color-em-teal: #555555;
-  --color-em-teal-dark: #404040;
-  --color-em-yellow: #d9d9d9;
-  --color-em-yellow-dark: #bfbfbf;
-  --color-em-orange: #8a8a8a;
-  --color-em-dark: #1a1a1a;
-  --color-em-dark-soft: #2d2d2d;
+  /* Primary Brand colors */
+  --color-em-green: #8BC34A;
+  --color-em-green-dark: #6EA832;
+  --color-em-green-light: #C5E1A5;
+  --color-em-green-pale: #F1F8E9;
+
+  --color-em-blue: #00AEEF;
+  --color-em-blue-dark: #0288D1;
+  --color-em-blue-light: #B3E5FC;
+  --color-em-blue-pale: #E1F5FE;
+
+  --color-em-coral: #EF5350;
+  --color-em-coral-dark: #D32F2F;
+  --color-em-coral-light: #FFCDD2;
+  --color-em-coral-pale: #FFEBEE;
+
+  --color-em-purple: #5C6BC0;
+  --color-em-purple-dark: #3949AB;
+  --color-em-purple-light: #C5CAE9;
+
+  --color-em-teal: #00897B;
+  --color-em-teal-dark: #00695C;
+
+  --color-em-yellow: #FFCC00;
+  --color-em-yellow-dark: #F9A825;
+
+  --color-em-orange: #FF9800;
+
+  --color-em-dark: #1A2744;
+  --color-em-dark-soft: #2D3A4F;
 }
 
 html {
@@ -51,15 +95,32 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #fafafa;
+  /* desabilita faux-bold sintético do browser (Museo tem todos os pesos reais) */
+  font-synthesis: none;
 }
 
 input::placeholder {
   color: #a3a3a3;
 }
 
-/* Prevent orphan lines + tight leading in headings */
+/* Tight leading + 'pretty' wrap (menos encaixotado que balance) em headings */
 h1, h2, h3, h4 {
-  text-wrap: balance;
+  text-wrap: pretty;
+}
+
+/* ChunkFive Ex padrão em h1/h2 com letter-spacing tighter + shadow simples.
+   Cor do texto NÃO é forçada — cada section controla via Tailwind (text-em-dark em light, text-white em dark). */
+h1, h2 {
+  letter-spacing: -0.01em;
+  text-shadow: 2px 2px 0 var(--color-em-dark);
+}
+
+/* Em fundos claros (heading com cor escura), sombra usa azul claro pra contrast.
+   Museo é ultra-thin (weight 100), sombra menor (2px) preserva a leveza do traço. */
+h1.text-em-dark, h2.text-em-dark,
+h1.text-em-dark-soft, h2.text-em-dark-soft,
+h1.text-wire-black, h2.text-wire-black {
+  text-shadow: 2px 2px 0 var(--color-em-blue-light);
 }
 
 h1 { line-height: 1.05; }
@@ -125,4 +186,100 @@ h4 { line-height: 1.25; }
 
 .animate-marquee {
   animation: marquee 30s linear infinite;
+}
+
+/* ============================================================
+ * Playful identity utilities — Ensina Mais
+ * Shapes orgânicas, rotações sutis, marker highlight, sticker icons.
+ * Quebra a sensação de grid retangular.
+ * ============================================================ */
+
+/* Blob shapes (border-radius irregular pra cards orgânicos) */
+.shape-blob-1 { border-radius: 58% 42% 64% 36% / 48% 58% 42% 52%; }
+.shape-blob-2 { border-radius: 36% 64% 48% 52% / 58% 42% 58% 42%; }
+.shape-blob-3 { border-radius: 50% 50% 38% 62% / 62% 38% 50% 50%; }
+.shape-blob-4 { border-radius: 64% 36% 56% 44% / 42% 56% 44% 58%; }
+
+/* Squircle suave (mais arredondado que rounded-2xl, menos que blob) */
+.shape-squircle { border-radius: 32px 38px 36px 30px / 30px 36px 38px 32px; }
+
+/* Tilts sutis pra quebrar o grid */
+.tilt-l1 { transform: rotate(-1.5deg); }
+.tilt-l2 { transform: rotate(-2.5deg); }
+.tilt-r1 { transform: rotate(1.5deg); }
+.tilt-r2 { transform: rotate(2.5deg); }
+.tilt-hover-straighten { transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+.tilt-hover-straighten:hover { transform: rotate(0deg) translateY(-6px); }
+
+/* Marker / highlighter behind text — efeito caneta marca-texto */
+.marker-yellow {
+  background: linear-gradient(180deg, transparent 55%, var(--color-em-yellow) 55%);
+  padding: 0 0.18em;
+}
+.marker-green {
+  background: linear-gradient(180deg, transparent 55%, var(--color-em-green-light) 55%);
+  padding: 0 0.18em;
+}
+.marker-coral {
+  background: linear-gradient(180deg, transparent 55%, var(--color-em-coral-light) 55%);
+  padding: 0 0.18em;
+}
+.marker-blue {
+  background: linear-gradient(180deg, transparent 55%, var(--color-em-blue-light) 55%);
+  padding: 0 0.18em;
+}
+.marker-pink {
+  background: linear-gradient(180deg, transparent 55%, var(--color-em-coral) 55%);
+  padding: 0 0.18em;
+}
+
+/* Eyebrow padrão em todas as sections — maiúsculo, tracking widest, peso forte */
+.eyebrow {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+/* Sticker icon: círculo colorido com sombrinha pra dar "adesivo" */
+.sticker-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  box-shadow: 0 6px 0 -2px rgba(0,0,0,0.06), 0 8px 18px -8px rgba(26,39,68,0.25);
+}
+
+.shadow-button {
+  box-shadow: 0 14px 30px -18px rgba(26,39,68,0.5);
+}
+
+/* Wobble suave pra elementos lúdicos (loop) */
+@keyframes wobble {
+  0%, 100% { transform: rotate(-2deg); }
+  50%      { transform: rotate(2deg); }
+}
+.animate-wobble { animation: wobble 4.5s ease-in-out infinite; transform-origin: center; }
+
+/* Float vertical sutil pra 3D icons flutuantes entre sections */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-14px) rotate(3deg); }
+}
+.animate-float { animation: float-y 6s ease-in-out infinite; transform-origin: center; }
+
+/* Scribble underline reutilizável (svg inline via class + background) */
+.scribble-underline {
+  position: relative;
+  display: inline-block;
+}
+.scribble-underline::after {
+  content: "";
+  position: absolute;
+  left: -4%; right: -4%;
+  bottom: -10px;
+  height: 10px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6 C 40 1, 80 9, 120 4 S 200 8, 218 3' fill='none' stroke='%23FFCC00' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }

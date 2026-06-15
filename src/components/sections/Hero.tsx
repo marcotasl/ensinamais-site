@@ -1,66 +1,58 @@
-"use client";
-
-import { useState, useEffect, useCallback } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import Placeholder from "@/components/ui/Placeholder";
+import { ArrowRight } from "lucide-react";
 import type { FallbackBanner } from "@/lib/fallback-banners";
 
 interface HeroProps {
   banners: FallbackBanner[];
 }
 
-const AUTOPLAY_MS = 6000;
-
 export default function Hero({ banners }: HeroProps) {
-  const [current, setCurrent] = useState(0);
-  const total = banners.length;
-
-  const next = useCallback(() => setCurrent((p) => (p + 1) % total), [total]);
-  const prev = useCallback(() => setCurrent((p) => (p - 1 + total) % total), [total]);
-
-  useEffect(() => {
-    if (total <= 1) return;
-    const t = setInterval(next, AUTOPLAY_MS);
-    return () => clearInterval(t);
-  }, [next, total]);
-
-  const slide = banners[current];
+  const slide = banners[0];
 
   return (
-    <section className="bg-wire-900 pt-16 min-h-[80vh] flex flex-col relative rounded-b-[46px]">
-      <div className="flex-1 max-w-[1200px] mx-auto px-4 sm:px-6 py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center w-full">
-        {/* Text */}
-        <div>
-          <span className="inline-block text-xs font-bold text-wire-400 uppercase tracking-widest mb-4 bg-white/10 px-3 py-1.5 rounded-full">{slide.subtitle}</span>
-          <h1 className="text-[clamp(2rem,4vw,3rem)] font-black tracking-tight text-white mb-6">{slide.title}</h1>
-          <p className="text-base sm:text-lg leading-relaxed text-wire-400 max-w-[460px] mb-8">{slide.desc}</p>
-          <div className="flex gap-3">
-            <a href={slide.ctaHref} className="text-sm sm:text-base font-bold text-wire-black bg-white rounded-xl px-6 sm:px-8 py-3.5 sm:py-4 inline-flex items-center gap-2 hover:bg-wire-100 transition-colors">
-              {slide.ctaText} <ArrowRight size={16} />
-            </a>
-          </div>
+    <section className="relative pt-20 min-h-[80vh] flex items-stretch overflow-hidden rounded-b-[46px]">
+      {/* BG image full bleed */}
+      <img
+        src={slide.bgImage}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {/* Overlay gradient: dark green on the left fading to transparent on the right */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(95deg, rgba(26,39,68,0.92) 0%, rgba(26,39,68,0.78) 38%, rgba(26,39,68,0.32) 68%, rgba(26,39,68,0) 88%)",
+        }}
+      />
+      {/* Subtle accent radial in top-right */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 50% 35% at 95% 18%, rgba(140,195,74,0.32), rgba(140,195,74,0) 65%)",
+        }}
+      />
+
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 py-14 lg:py-24 grid grid-cols-1 lg:grid-cols-12 items-center">
+        <div className="lg:col-span-7 xl:col-span-6">
+          <span className="eyebrow inline-block text-em-yellow mb-5 bg-white/10 backdrop-blur px-3 py-1.5 rounded-full">
+            {slide.subtitle}
+          </span>
+          <h1 className="text-[clamp(2rem,4.4vw,3.25rem)] font-black tracking-tight text-white mb-6 max-w-[640px]">
+            {slide.title}
+          </h1>
+          <p className="text-base sm:text-lg leading-relaxed text-white/85 max-w-[520px] mb-8">
+            {slide.desc}
+          </p>
+          <a
+            href={slide.ctaHref}
+            className="text-sm sm:text-base font-bold text-em-dark bg-em-yellow rounded-full px-6 sm:px-8 py-3.5 sm:py-4 inline-flex items-center gap-2 hover:bg-em-yellow-dark hover:text-white transition-colors shadow-button"
+          >
+            {slide.ctaText} <ArrowRight size={16} />
+          </a>
         </div>
 
-        {/* Image placeholder */}
-        <div className="hidden lg:block">
-          <Placeholder className="w-full h-[360px] rounded-2xl" label="Hero Image / Personagem TM" />
-        </div>
       </div>
-
-      {/* Nav */}
-      {total > 1 && (
-        <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 pb-6 sm:pb-8 flex items-center justify-between">
-          <div className="flex gap-2">
-            <button onClick={prev} className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:bg-white/10 cursor-pointer"><ChevronLeft size={18} /></button>
-            <button onClick={next} className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:bg-white/10 cursor-pointer"><ChevronRight size={18} /></button>
-          </div>
-          <div className="flex gap-2">
-            {banners.map((_, i) => (
-              <button key={i} onClick={() => setCurrent(i)} className={`h-1.5 rounded-full transition-all cursor-pointer ${i === current ? "w-8 bg-white" : "w-1.5 bg-white/30"}`} />
-            ))}
-          </div>
-        </div>
-      )}
     </section>
   );
 }
