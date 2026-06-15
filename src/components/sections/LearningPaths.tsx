@@ -95,22 +95,24 @@ export default function LearningPaths({ leadHref = "#lead", className = "" }: Le
                     {path.desc}
                   </p>
 
-                  <div className="relative flex flex-wrap gap-2 mb-6">
-                    {path.items.map((item) =>
-                      item.href ? (
-                        <a
-                          key={item.label}
-                          href={item.href}
-                          className="text-xs font-bold text-em-dark bg-white/85 rounded-full px-3 py-1.5 shadow-[0_8px_16px_-14px_rgba(26,39,68,0.28)] hover:bg-white transition-colors"
-                        >
-                          {item.label}
-                        </a>
-                      ) : (
-                        <span key={item.label} className="text-xs font-bold text-em-dark bg-white/70 rounded-full px-3 py-1.5">
-                          {item.label}
-                        </span>
-                      ),
-                    )}
+                  <div className="relative -mx-1 mb-6 overflow-x-auto pb-1 md:mx-0 md:overflow-visible md:pb-0">
+                    <div className="flex w-max gap-2 px-1 md:w-auto md:flex-wrap md:px-0">
+                      {path.items.map((item) =>
+                        item.href ? (
+                          <a
+                            key={item.label}
+                            href={item.href}
+                            className="shrink-0 text-xs font-bold text-em-dark bg-white/85 rounded-full px-3 py-1.5 shadow-[0_8px_16px_-14px_rgba(26,39,68,0.28)] hover:bg-white transition-colors"
+                          >
+                            {item.label}
+                          </a>
+                        ) : (
+                          <span key={item.label} className="shrink-0 text-xs font-bold text-em-dark bg-white/70 rounded-full px-3 py-1.5">
+                            {item.label}
+                          </span>
+                        ),
+                      )}
+                    </div>
                   </div>
 
                   <a
