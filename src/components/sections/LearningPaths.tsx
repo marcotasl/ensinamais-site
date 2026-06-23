@@ -56,7 +56,7 @@ export default function LearningPaths({ leadHref = "#lead", className = "" }: Le
           </FadeIn>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-5 lg:gap-6">
           {LEARNING_PATHS.map((path, index) => {
             const Icon = path.Icon;
             const ctaHref = path.id === "orientacao" ? leadHref : path.ctaHref;
@@ -65,65 +65,62 @@ export default function LearningPaths({ leadHref = "#lead", className = "" }: Le
             return (
               <FadeIn key={path.id} delay={Math.min(index * 0.08, 0.24)}>
                 <article
-                  className={`group relative h-full min-h-[390px] rounded-3xl ${path.light} ${style.tilt} tilt-hover-straighten p-6 sm:p-7 shadow-[0_18px_42px_-22px_rgba(26,39,68,0.24)] flex flex-col overflow-hidden`}
+                  className={`group relative rounded-3xl ${path.light} ${style.tilt} tilt-hover-straighten shadow-[0_18px_42px_-22px_rgba(26,39,68,0.24)] flex flex-col overflow-hidden`}
                 >
                   <div
-                    aria-hidden
-                    className="absolute inset-x-0 top-0 h-32 bg-cover bg-center opacity-80"
+                    className="relative h-24 sm:h-28 bg-cover bg-center"
                     style={{ backgroundImage: `url(${style.pattern})` }}
-                  />
-                  <span
-                    aria-hidden
-                    className="absolute -right-3 top-4 text-[5.5rem] font-black leading-none text-white/55"
                   >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-
-                  <div className="relative flex items-start justify-between gap-4 mb-8">
-                    <span className={`text-[11px] font-black uppercase tracking-widest text-white ${path.color} rounded-full px-3 py-1.5 shadow-[0_8px_18px_-12px_rgba(26,39,68,0.35)]`}>
-                      {path.eyebrow}
+                    <span
+                      aria-hidden
+                      className="absolute right-3 top-1 text-[4.25rem] font-black leading-none text-white/45"
+                    >
+                      {String(index + 1).padStart(2, "0")}
                     </span>
-                    <span className={`sticker-icon ${style.iconBg} text-white shrink-0`}>
+                  </div>
+
+                  <div className="relative flex flex-1 flex-col px-6 sm:px-7 pb-6 sm:pb-7">
+                    <span className={`sticker-icon ${style.iconBg} text-white shrink-0 self-start -mt-7 mb-4 shadow-[0_12px_24px_-12px_rgba(26,39,68,0.4)]`}>
                       <Icon size={28} strokeWidth={1.8} />
                     </span>
-                  </div>
 
-                  <h3 className="relative text-xl sm:text-2xl font-black text-em-dark leading-tight mb-3">
-                    {path.title}
-                  </h3>
-                  <p className="relative text-sm sm:text-base text-em-dark-soft/82 leading-relaxed mb-6">
-                    {path.desc}
-                  </p>
+                    <h3 className="text-xl sm:text-2xl font-black text-em-dark leading-tight mb-3">
+                      {path.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-em-dark-soft/82 leading-relaxed mb-6">
+                      {path.desc}
+                    </p>
 
-                  <div className="relative -mx-1 mb-6 overflow-x-auto pb-1 md:mx-0 md:overflow-visible md:pb-0">
-                    <div className="flex w-max gap-2 px-1 md:w-auto md:flex-wrap md:px-0">
-                      {path.items.map((item) =>
-                        item.href ? (
-                          <a
-                            key={item.label}
-                            href={item.href}
-                            className="shrink-0 text-xs font-bold text-em-dark bg-white/85 rounded-full px-3 py-1.5 shadow-[0_8px_16px_-14px_rgba(26,39,68,0.28)] hover:bg-white transition-colors"
-                          >
-                            {item.label}
-                          </a>
-                        ) : (
-                          <span key={item.label} className="shrink-0 text-xs font-bold text-em-dark bg-white/70 rounded-full px-3 py-1.5">
-                            {item.label}
-                          </span>
-                        ),
-                      )}
+                    <div className="-mx-1 mb-6 overflow-x-auto pb-1 md:mx-0 md:overflow-visible md:pb-0">
+                      <div className="flex w-max gap-2 px-1 md:w-auto md:flex-wrap md:px-0">
+                        {path.items.map((item) =>
+                          item.href ? (
+                            <a
+                              key={item.label}
+                              href={item.href}
+                              className="shrink-0 text-xs font-bold text-em-dark bg-white/85 rounded-full px-3 py-1.5 shadow-[0_8px_16px_-14px_rgba(26,39,68,0.28)] hover:bg-white transition-colors"
+                            >
+                              {item.label}
+                            </a>
+                          ) : (
+                            <span key={item.label} className="shrink-0 text-xs font-bold text-em-dark bg-white/70 rounded-full px-3 py-1.5">
+                              {item.label}
+                            </span>
+                          ),
+                        )}
+                      </div>
                     </div>
-                  </div>
 
-                  <a
-                    href={ctaHref}
-                    className="relative mt-auto text-sm font-black text-em-dark inline-flex items-center justify-between gap-3 bg-white/85 rounded-full pl-4 pr-2 py-2 hover:bg-white transition-colors"
-                  >
-                    {path.ctaLabel}
-                    <span className={`${path.color} text-white rounded-full w-8 h-8 inline-flex items-center justify-center group-hover:translate-x-0.5 transition-transform`}>
-                      <ArrowRight size={15} strokeWidth={2.4} />
-                    </span>
-                  </a>
+                    <a
+                      href={ctaHref}
+                      className="mt-auto text-sm font-black text-em-dark inline-flex items-center justify-between gap-3 bg-white/85 rounded-full pl-4 pr-2 py-2 hover:bg-white transition-colors"
+                    >
+                      {path.ctaLabel}
+                      <span className={`${path.color} text-white rounded-full w-8 h-8 inline-flex items-center justify-center group-hover:translate-x-0.5 transition-transform`}>
+                        <ArrowRight size={15} strokeWidth={2.4} />
+                      </span>
+                    </a>
+                  </div>
                 </article>
               </FadeIn>
             );
