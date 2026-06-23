@@ -72,7 +72,7 @@ export default function BlogHubClient() {
         </div>
       </section>
 
-      <CloudDivider variant={3} cloudColor="#fafafa" flip height={120} className="bg-em-purple" />
+      <CloudDivider variant={3} cloudColor="#5C6BC0" flip height={120} className="mt-[-1px]" />
 
       {/* Featured post */}
       {!search && activeCategory === "Todos" && (

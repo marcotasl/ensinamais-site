@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
-import CloudDivider from "@/components/ui/CloudDivider";
 import Placeholder from "@/components/ui/Placeholder";
 import ValidationNotice from "@/components/ui/ValidationNotice";
 
@@ -90,8 +89,6 @@ export default function InstitutionalStub({
           </FadeIn>
         </div>
       </section>
-
-      <CloudDivider variant={1} cloudColor="#fafafa" flip className="mt-[-1px]" />
 
       <section className="px-4 sm:px-6 pt-6 pb-16 sm:pb-20 lg:pb-24">
         <div className="max-w-[1200px] mx-auto">
