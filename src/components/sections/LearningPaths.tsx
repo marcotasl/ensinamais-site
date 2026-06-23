@@ -56,7 +56,7 @@ export default function LearningPaths({ leadHref = "#lead", className = "" }: Le
           </FadeIn>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
           {LEARNING_PATHS.map((path, index) => {
             const Icon = path.Icon;
             const ctaHref = path.id === "orientacao" ? leadHref : path.ctaHref;
