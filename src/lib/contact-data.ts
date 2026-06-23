@@ -16,7 +16,7 @@ export const CONTACT_CHANNELS: ContactChannel[] = [
     info: [
       { label: "Telefone", value: "(17) 3214-8699", href: "tel:+551732148699" },
       { label: "E-mail", value: "sac@moveedu.com.br", href: "mailto:sac@moveedu.com.br" },
-      { label: "Endereço", value: "Av. Bady Bassitt, 4960 — Jardim Alto Rio Preto, São José do Rio Preto/SP" },
+      { label: "Endereço", value: "Av. Bady Bassitt, 4960, Jardim Alto Rio Preto, São José do Rio Preto/SP" },
       { label: "CEP", value: "15025-000" },
     ],
   },
@@ -27,7 +27,7 @@ export const CONTACT_CHANNELS: ContactChannel[] = [
     info: [
       { label: "Telefone", value: "(17) 3214-8699", href: "tel:+551732148699" },
       { label: "E-mail", value: "sac@moveedu.com.br", href: "mailto:sac@moveedu.com.br" },
-      { label: "Horário de atendimento", value: "Seg a Sex — 8h às 18h  ·  Sáb — 8h às 12h" },
+      { label: "Horário de atendimento", value: "Seg a Sex, 8h às 18h  ·  Sáb, 8h às 12h" },
     ],
   },
   {

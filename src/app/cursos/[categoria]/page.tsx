@@ -10,6 +10,57 @@ interface Props {
   params: Promise<{ categoria: string }>;
 }
 
+// Mapeia cada categoria pra um conjunto de classes da paleta de marca (em-*).
+// courses-data guarda só hex; aqui traduzimos pra tokens Tailwind do design system.
+type BrandTheme = {
+  marker: string;
+  sticker: string;
+  pale: string;
+  accent: string;
+  radial: string;
+};
+
+const CATEGORY_THEME: Record<string, BrandTheme> = {
+  "apoio-escolar": {
+    marker: "marker-blue",
+    sticker: "bg-em-blue",
+    pale: "bg-em-blue-pale",
+    accent: "text-em-blue-dark",
+    radial: "rgba(0,174,239,0.34)",
+  },
+  "robotica-ensina": {
+    marker: "marker-green",
+    sticker: "bg-em-green",
+    pale: "bg-em-green-pale",
+    accent: "text-em-green-dark",
+    radial: "rgba(140,195,74,0.34)",
+  },
+  "programacao-ensina": {
+    marker: "marker-yellow",
+    sticker: "bg-em-orange",
+    pale: "bg-em-yellow/10",
+    accent: "text-em-orange",
+    radial: "rgba(255,152,0,0.32)",
+  },
+  "ingles-ensina": {
+    marker: "marker-coral",
+    sticker: "bg-em-coral",
+    pale: "bg-em-coral-pale",
+    accent: "text-em-coral-dark",
+    radial: "rgba(239,83,80,0.32)",
+  },
+};
+
+const FALLBACK_THEME: BrandTheme = {
+  marker: "marker-green",
+  sticker: "bg-em-green",
+  pale: "bg-em-green-pale",
+  accent: "text-em-green-dark",
+  radial: "rgba(140,195,74,0.34)",
+};
+
+const CARD_TILTS = ["lg:tilt-l1", "lg:tilt-r1", "lg:tilt-l1"] as const;
+
 export function generateStaticParams() {
   return CATEGORIES.map((c) => ({ categoria: c.slug }));
 }
@@ -31,35 +82,43 @@ export default async function CategoryPage({ params }: Props) {
 
   const courses = getCoursesByCategory(categoria);
   const otherCategories = CATEGORIES.filter((c) => c.slug !== categoria);
+  const theme = CATEGORY_THEME[category.slug] ?? FALLBACK_THEME;
+  const CategoryIcon = category.icon;
 
   return (
     <main className="min-h-screen bg-[#fafafa]">
       {/* Hero */}
-      <section className="bg-wire-900 pt-24 pb-28 sm:pb-32 px-4 sm:px-6 rounded-b-[46px]">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <section className="relative bg-em-dark pt-24 pb-28 sm:pb-32 px-4 sm:px-6 rounded-b-[46px] overflow-hidden">
+        {/* Accent radial na cor da categoria */}
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: `radial-gradient(ellipse 50% 40% at 92% 12%, ${theme.radial}, transparent 65%)` }}
+        />
+        <div className="relative max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <FadeIn>
-            <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-3">{category.subtitle}</p>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white mb-5">
+            <p className={`eyebrow mb-4 ${theme.accent}`}>{category.subtitle}</p>
+            <h1 className="text-[clamp(2rem,4.4vw,3.25rem)] font-black tracking-tight text-white mb-6 max-w-[640px]">
               {category.title}
             </h1>
-            <p className="text-base sm:text-lg text-wire-400 max-w-[480px] leading-relaxed mb-8">
+            <p className="text-base sm:text-lg text-white/85 max-w-[520px] leading-relaxed mb-8">
               {category.longDesc}
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 text-sm text-wire-400">
-                <Calendar size={16} /> {category.ageRange}
-              </div>
-              <div className="flex items-center gap-2 text-sm text-wire-400">
-                <category.icon size={16} /> {courses.length} {courses.length === 1 ? "curso" : "cursos"}
-              </div>
+            <div className="flex flex-wrap gap-3">
+              <span className="inline-flex items-center gap-2 text-sm font-bold text-white bg-white/10 backdrop-blur rounded-full px-4 py-2">
+                <Calendar size={16} strokeWidth={1.8} /> {category.ageRange}
+              </span>
+              <span className="inline-flex items-center gap-2 text-sm font-bold text-white bg-white/10 backdrop-blur rounded-full px-4 py-2">
+                <CategoryIcon size={16} strokeWidth={1.8} /> {courses.length} {courses.length === 1 ? "curso" : "cursos"}
+              </span>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div id="lead" className="bg-white/10 backdrop-blur rounded-2xl p-6 sm:p-8 border border-white/15">
+            <div id="lead" className="bg-white/10 backdrop-blur rounded-3xl p-6 sm:p-8 border border-white/15 shadow-[0_24px_56px_-28px_rgba(0,0,0,0.5)]">
               <h3 className="text-lg font-extrabold text-white mb-1">Agende uma aula grátis</h3>
-              <p className="text-sm text-wire-500 mb-5">Preencha e entraremos em contato em até 24h.</p>
+              <p className="text-sm text-white/70 mb-5">Preencha e entraremos em contato em até 24h.</p>
               <LeadCaptureForm layout="vertical" dark buttonText={`Quero aula de ${category.title}`} />
             </div>
           </FadeIn>
@@ -70,43 +129,46 @@ export default async function CategoryPage({ params }: Props) {
       <section className="px-4 sm:px-6 pt-16 sm:pt-20">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
-            <div className="mb-8 text-center">
-              <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Cursos Disponíveis</p>
-              <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-wire-black">
-                Escolha o curso ideal para seu filho
+            <div className="mb-10 text-center max-w-[640px] mx-auto">
+              <p className={`eyebrow mb-3 ${theme.accent}`}>Cursos disponíveis</p>
+              <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-em-dark leading-[1.1]">
+                Escolha o curso <span className={theme.marker}>ideal</span> para seu filho
               </h2>
             </div>
           </FadeIn>
 
-          <div className={`grid gap-4 ${courses.length === 1 ? "max-w-[600px] mx-auto" : "grid-cols-1 sm:grid-cols-2"} ${courses.length >= 3 ? "lg:grid-cols-3" : ""}`}>
-            {courses.map((course, i) => (
-              <FadeIn key={course.slug} delay={i * 0.08}>
-                <a
-                  href={`/cursos/${category.slug}/${course.slug}`}
-                  className="card-lift group bg-white rounded-2xl border border-wire-200 overflow-hidden hover:shadow-lg transition-all block h-full"
-                >
-                  <Placeholder className="w-full h-40 rounded-none" label={course.title} />
-                  <div className="p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-wire-100 flex items-center justify-center">
-                        <course.icon size={20} className="text-wire-600" />
+          <div className={`grid gap-5 lg:gap-6 ${courses.length === 1 ? "max-w-[600px] mx-auto" : "grid-cols-1 sm:grid-cols-2"} ${courses.length >= 3 ? "lg:grid-cols-3" : ""}`}>
+            {courses.map((course, i) => {
+              const CourseIcon = course.icon;
+              return (
+                <FadeIn key={course.slug} delay={Math.min(i * 0.08, 0.24)}>
+                  <a
+                    href={`/cursos/${category.slug}/${course.slug}`}
+                    className={`group block h-full rounded-3xl bg-white overflow-hidden shadow-[0_18px_42px_-22px_rgba(26,39,68,0.24)] card-lift ${CARD_TILTS[i % CARD_TILTS.length]} tilt-hover-straighten`}
+                  >
+                    <Placeholder className="w-full h-40 rounded-none" label={course.title} />
+                    <div className="p-6">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className={`sticker-icon ${theme.sticker} text-white shrink-0`} style={{ width: 44, height: 44 }}>
+                          <CourseIcon size={20} strokeWidth={1.8} />
+                        </span>
+                        <div>
+                          <h3 className="text-base font-black text-em-dark leading-tight">{course.title}</h3>
+                          <span className="text-xs font-bold text-em-dark-soft/60">{course.ageRange}</span>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="text-base font-black text-wire-black">{course.title}</h3>
-                        <span className="text-xs font-semibold text-wire-400">{course.ageRange}</span>
+                      <p className="text-sm text-em-dark-soft/75 leading-relaxed mb-4">{course.desc}</p>
+                      <div className="flex items-center justify-between pt-4 border-t border-wire-100">
+                        <span className="text-xs font-bold text-em-dark-soft/55">{course.frequency}</span>
+                        <span className={`text-sm font-black inline-flex items-center gap-1 ${theme.accent}`}>
+                          Ver curso <ArrowRight size={14} strokeWidth={2.4} className="transition-transform group-hover:translate-x-1" />
+                        </span>
                       </div>
                     </div>
-                    <p className="text-sm text-wire-600 leading-relaxed mb-4">{course.desc}</p>
-                    <div className="flex items-center justify-between pt-4 border-t border-wire-100">
-                      <span className="text-xs font-semibold text-wire-500">{course.frequency}</span>
-                      <span className="text-sm font-bold text-wire-black group-hover:text-wire-600 flex items-center gap-1 transition-colors">
-                        Ver curso <ArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </FadeIn>
-            ))}
+                  </a>
+                </FadeIn>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -115,25 +177,28 @@ export default async function CategoryPage({ params }: Props) {
       <section className="px-4 sm:px-6 py-16 sm:py-20">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
-            <div className="mb-10 max-w-[480px]">
-              <p className="text-xs font-bold text-wire-400 uppercase tracking-widest mb-2">Competências</p>
-              <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-wire-black">
-                O que seu filho desenvolve
+            <div className="mb-10 max-w-[560px]">
+              <p className={`eyebrow mb-3 ${theme.accent}`}>Competências</p>
+              <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-em-dark leading-[1.1]">
+                O que seu filho <span className={theme.marker}>desenvolve</span>
               </h2>
             </div>
           </FadeIn>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {category.skills.map((skill, i) => (
-              <FadeIn key={skill.title} delay={i * 0.1}>
-                <div className="card-lift bg-white rounded-2xl border border-wire-200 p-6 h-full">
-                  <div className="w-11 h-11 rounded-xl bg-wire-100 flex items-center justify-center mb-4">
-                    <skill.icon size={22} className="text-wire-600" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+            {category.skills.map((skill, i) => {
+              const SkillIcon = skill.icon;
+              return (
+                <FadeIn key={skill.title} delay={Math.min(i * 0.08, 0.24)}>
+                  <div className={`h-full rounded-3xl p-6 sm:p-7 shadow-[0_18px_42px_-22px_rgba(26,39,68,0.2)] card-lift ${theme.pale}`}>
+                    <span className={`sticker-icon ${theme.sticker} text-white mb-5`} style={{ width: 48, height: 48 }}>
+                      <SkillIcon size={24} strokeWidth={1.8} />
+                    </span>
+                    <h3 className="text-base font-extrabold text-em-dark mb-2 leading-tight">{skill.title}</h3>
+                    <p className="text-sm text-em-dark-soft/75 leading-relaxed">{skill.desc}</p>
                   </div>
-                  <h3 className="text-base font-extrabold text-wire-black mb-1.5">{skill.title}</h3>
-                  <p className="text-sm text-wire-500 leading-relaxed">{skill.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
+                </FadeIn>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -141,26 +206,31 @@ export default async function CategoryPage({ params }: Props) {
       {/* Benefícios */}
       <section className="px-4 sm:px-6 pb-16 sm:pb-20">
         <FadeIn>
-          <div className="max-w-[1200px] mx-auto bg-wire-900 rounded-2xl py-12 sm:py-16 px-6 sm:px-8 lg:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <div className="relative max-w-[1200px] mx-auto bg-em-dark rounded-[2rem] lg:rounded-[2.75rem] py-12 sm:py-16 px-6 sm:px-8 lg:px-12 overflow-hidden shadow-[0_24px_56px_-28px_rgba(26,39,68,0.48)]">
+            <div
+              aria-hidden
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: `radial-gradient(ellipse 45% 50% at 8% 10%, ${theme.radial}, transparent 60%)` }}
+            />
+            <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
               <div>
-                <p className="text-xs font-bold text-wire-500 uppercase tracking-widest mb-3">Benefícios</p>
-                <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white mb-6">
-                  Por que estudar {category.title}<br className="hidden sm:block" /> na Ensina Mais?
+                <p className="eyebrow text-em-yellow mb-3">Benefícios</p>
+                <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-white mb-6 leading-[1.1]">
+                  Por que estudar {category.title}<br className="hidden sm:block" /> na <span className="marker-yellow">Ensina Mais</span>
                 </h2>
                 <div className="flex flex-col gap-3">
                   {category.benefits.map((benefit) => (
                     <div key={benefit} className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
-                        <Check size={14} className="text-wire-400" />
-                      </div>
-                      <span className="text-base text-wire-300">{benefit}</span>
+                      <span className={`sticker-icon ${theme.sticker} text-white shrink-0 mt-0.5`} style={{ width: 26, height: 26 }}>
+                        <Check size={14} strokeWidth={2.6} />
+                      </span>
+                      <span className="text-base text-white/85 leading-relaxed">{benefit}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <Placeholder className="w-full h-[300px] sm:h-[360px] rounded-2xl" label={`Foto ${category.title}`} />
+              <Placeholder className="w-full h-[300px] sm:h-[360px] rounded-3xl" label={`Foto ${category.title}`} />
             </div>
           </div>
         </FadeIn>
@@ -170,34 +240,38 @@ export default async function CategoryPage({ params }: Props) {
       <section className="px-4 sm:px-6 pb-16 sm:pb-20">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
-            <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-wire-black mb-8">
-              Conheça também
+            <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-em-dark mb-8 leading-[1.1]">
+              Conheça <span className="marker-green">também</span>
             </h2>
           </FadeIn>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {otherCategories.map((c, i) => (
-              <FadeIn key={c.slug} delay={i * 0.1}>
-                <a
-                  href={`/cursos/${c.slug}`}
-                  className="card-tilt group bg-white rounded-2xl border border-wire-200 overflow-hidden hover:shadow-md transition-all block"
-                  data-tilt={i % 2 === 0 ? "left" : "right"}
-                >
-                  <Placeholder className="w-full h-36 rounded-none" label={c.title} />
-                  <div className="p-5">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-8 h-8 rounded-lg bg-wire-100 flex items-center justify-center">
-                        <c.icon size={16} className="text-wire-600" />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 lg:gap-6">
+            {otherCategories.map((c, i) => {
+              const OtherIcon = c.icon;
+              const otherTheme = CATEGORY_THEME[c.slug] ?? FALLBACK_THEME;
+              return (
+                <FadeIn key={c.slug} delay={Math.min(i * 0.08, 0.24)}>
+                  <a
+                    href={`/cursos/${c.slug}`}
+                    className={`group block rounded-3xl bg-white overflow-hidden shadow-[0_18px_42px_-22px_rgba(26,39,68,0.24)] card-tilt`}
+                    data-tilt={i % 2 === 0 ? "left" : "right"}
+                  >
+                    <Placeholder className="w-full h-36 rounded-none" label={c.title} />
+                    <div className="p-6">
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className={`sticker-icon ${otherTheme.sticker} text-white shrink-0`} style={{ width: 40, height: 40 }}>
+                          <OtherIcon size={18} strokeWidth={1.8} />
+                        </span>
+                        <h3 className="text-base font-extrabold text-em-dark leading-tight">{c.title}</h3>
                       </div>
-                      <h3 className="text-base font-extrabold text-wire-black">{c.title}</h3>
+                      <p className="text-sm text-em-dark-soft/75 leading-relaxed mb-3">{c.desc}</p>
+                      <span className={`text-sm font-black inline-flex items-center gap-1 ${otherTheme.accent}`}>
+                        Conhecer <ArrowRight size={14} strokeWidth={2.4} className="transition-transform group-hover:translate-x-1" />
+                      </span>
                     </div>
-                    <p className="text-sm text-wire-500 leading-relaxed mb-3">{c.desc}</p>
-                    <span className="text-sm font-bold text-wire-black group-hover:text-wire-600 flex items-center gap-1 transition-colors">
-                      Conhecer <ArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </div>
-                </a>
-              </FadeIn>
-            ))}
+                  </a>
+                </FadeIn>
+              );
+            })}
           </div>
         </div>
       </section>
