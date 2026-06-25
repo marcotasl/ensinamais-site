@@ -12,6 +12,10 @@ export default function NossaHistoriaPage() {
       eyebrow="Nossa História"
       title="Mais de uma década formando crianças para o futuro"
       lead="Da primeira unidade até a rede com mais de 100 escolas pelo país, conheça os marcos que transformaram a Ensina Mais numa referência em educação complementar com licenciamento Turma da Mônica."
+      validation={{
+        title: "Aguardando conteúdo textual",
+        message: "Headings, lead e blocos abaixo são propostas da Virtus. Aguardando o conteúdo oficial do cliente pra substituir.",
+      }}
       blocks={[
         { title: "Fundação", desc: "Nascemos com a missão de oferecer reforço escolar de qualidade, com metodologia própria e parceria estratégica com a Mauricio de Sousa Produções." },
         { title: "Expansão", desc: "Crescimento orgânico com franqueados parceiros em capitais e cidades médias, sempre mantendo padrão pedagógico e operacional." },

@@ -12,6 +12,10 @@ export default function MetodologiaPage() {
       eyebrow="Metodologia"
       title="Ensino híbrido, individualizado e divertido"
       lead="Cada aluno tem seu próprio ritmo. Nossa metodologia combina conteúdo digital interativo com mediação humana especializada, garantindo evolução real e sustentável."
+      validation={{
+        title: "Aguardando conteúdo textual",
+        message: "Headings, lead e blocos abaixo são propostas da Virtus. Aguardando o conteúdo oficial do cliente pra substituir.",
+      }}
       blocks={[
         { title: "Avaliação diagnóstica", desc: "Toda jornada começa com um diagnóstico personalizado que mapeia pontos fortes, dificuldades e objetivos de cada aluno." },
         { title: "Plano de estudos individual", desc: "A partir do diagnóstico, montamos um percurso adaptado ao ritmo e ao nível do aluno, revisado a cada módulo." },
