@@ -34,7 +34,7 @@ interface LearningPathsProps {
 
 export default function LearningPaths({ leadHref = "#lead", className = "" }: LearningPathsProps) {
   return (
-    <section id="trilhas" className={`relative px-4 sm:px-6 overflow-hidden ${className}`}>
+    <section id="trilhas" className={`relative px-4 sm:px-6 overflow-clip ${className}`}>
       <div
         aria-hidden
         className="absolute inset-x-0 top-8 h-[520px] pointer-events-none opacity-20 bg-repeat"
@@ -128,7 +128,7 @@ export default function LearningPaths({ leadHref = "#lead", className = "" }: Le
         </div>
 
         <FadeIn delay={0.18}>
-          <div id="combos" className="relative mt-10 sm:mt-12 rounded-[2rem] lg:rounded-[2.75rem] bg-em-dark px-5 py-8 sm:p-8 lg:p-10 shadow-[0_24px_56px_-28px_rgba(26,39,68,0.48)] overflow-hidden">
+          <div id="combos" className="relative mt-10 sm:mt-12 rounded-[2rem] lg:rounded-[2.75rem] bg-em-dark px-5 py-8 sm:p-8 lg:p-10 shadow-[0_24px_56px_-28px_rgba(26,39,68,0.48)] overflow-clip">
             <div
               aria-hidden
               className="absolute inset-0 opacity-12 bg-repeat"
