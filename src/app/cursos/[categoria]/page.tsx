@@ -18,6 +18,13 @@ type BrandTheme = {
   pale: string;
   accent: string;
   radial: string;
+  /* Gradient + pattern do hero: pinta o bloco inteiro na cor da frente
+     (em vez do navy genérico), mantendo a copy branca legível. */
+  heroGradient: string;
+  heroPattern: string;
+  /* Eyebrow no hero precisa contraste em fundo colorido, não no navy
+     escuro , yellow fica visível em todos os 4 gradients. */
+  heroEyebrow: string;
 };
 
 const CATEGORY_THEME: Record<string, BrandTheme> = {
@@ -27,6 +34,9 @@ const CATEGORY_THEME: Record<string, BrandTheme> = {
     pale: "bg-em-blue-pale",
     accent: "text-em-blue-dark",
     radial: "rgba(0,174,239,0.34)",
+    heroGradient: "bg-gradient-to-br from-em-blue-dark via-em-blue to-em-blue-light",
+    heroPattern: "/images/3d/pattern-dense.webp",
+    heroEyebrow: "text-em-yellow",
   },
   "robotica-ensina": {
     marker: "marker-green",
@@ -34,6 +44,9 @@ const CATEGORY_THEME: Record<string, BrandTheme> = {
     pale: "bg-em-green-pale",
     accent: "text-em-green-dark",
     radial: "rgba(140,195,74,0.34)",
+    heroGradient: "bg-gradient-to-br from-em-green-dark via-em-green to-em-green-light",
+    heroPattern: "/images/3d/pattern-dense.webp",
+    heroEyebrow: "text-em-yellow",
   },
   "programacao-ensina": {
     marker: "marker-yellow",
@@ -41,6 +54,9 @@ const CATEGORY_THEME: Record<string, BrandTheme> = {
     pale: "bg-em-yellow/10",
     accent: "text-em-orange",
     radial: "rgba(255,152,0,0.32)",
+    heroGradient: "bg-gradient-to-br from-em-orange-dark via-em-orange to-em-yellow",
+    heroPattern: "/images/3d/pattern-dense.webp",
+    heroEyebrow: "text-em-dark",
   },
   "ingles-ensina": {
     marker: "marker-coral",
@@ -48,6 +64,9 @@ const CATEGORY_THEME: Record<string, BrandTheme> = {
     pale: "bg-em-coral-pale",
     accent: "text-em-coral-dark",
     radial: "rgba(239,83,80,0.32)",
+    heroGradient: "bg-gradient-to-br from-em-coral-dark via-em-coral to-em-coral-light",
+    heroPattern: "/images/3d/pattern-dense.webp",
+    heroEyebrow: "text-em-yellow",
   },
 };
 
@@ -57,6 +76,9 @@ const FALLBACK_THEME: BrandTheme = {
   pale: "bg-em-green-pale",
   accent: "text-em-green-dark",
   radial: "rgba(140,195,74,0.34)",
+  heroGradient: "bg-gradient-to-br from-em-green-dark via-em-green to-em-green-light",
+  heroPattern: "/images/3d/pattern-dense.webp",
+  heroEyebrow: "text-em-yellow",
 };
 
 const CARD_TILTS = ["lg:tilt-l1", "lg:tilt-r1", "lg:tilt-l1"] as const;
@@ -87,17 +109,25 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-[#fafafa]">
-      {/* Hero */}
-      <section className="relative bg-em-dark pt-24 pb-28 sm:pb-32 px-4 sm:px-6 rounded-b-[46px] overflow-hidden">
-        {/* Accent radial na cor da categoria */}
+      {/* Hero , gradient + pattern da cor da frente (em vez do navy genérico) */}
+      <section
+        className={`relative pt-24 pb-28 sm:pb-32 px-4 sm:px-6 rounded-b-[46px] overflow-hidden ${theme.heroGradient}`}
+      >
+        {/* pattern decorativo sutil sobre o gradient */}
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-15 bg-repeat pointer-events-none mix-blend-overlay"
+          style={{ backgroundImage: `url(${theme.heroPattern})`, backgroundSize: "520px" }}
+        />
+        {/* highlight radial mais escuro no topo direito pra dar profundidade */}
         <div
           aria-hidden
           className="absolute inset-0 pointer-events-none"
-          style={{ background: `radial-gradient(ellipse 50% 40% at 92% 12%, ${theme.radial}, transparent 65%)` }}
+          style={{ background: `radial-gradient(ellipse 55% 45% at 92% 12%, rgba(26,39,68,0.35), transparent 65%)` }}
         />
         <div className="relative max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <FadeIn>
-            <p className={`eyebrow mb-4 ${theme.accent}`}>{category.subtitle}</p>
+            <p className={`eyebrow mb-4 ${theme.heroEyebrow}`}>{category.subtitle}</p>
             <h1 className="text-[clamp(2rem,4.4vw,3.25rem)] font-black tracking-tight text-white mb-6 max-w-[640px]">
               {category.title}
             </h1>
