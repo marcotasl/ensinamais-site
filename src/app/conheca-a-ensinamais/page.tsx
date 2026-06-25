@@ -12,6 +12,10 @@ export default function ConhecaPage() {
       eyebrow="Conheça a Ensina Mais"
       title="Aprender é mais divertido com a Turma da Mônica"
       lead="Combinamos reforço escolar, tecnologia e habilidades do futuro num só lugar. Material exclusivo, instrutores capacitados, ambiente acolhedor e licenciamento oficial Turma da Mônica."
+      validation={{
+        title: "Aguardando conteúdo textual",
+        message: "Headings, lead e blocos abaixo são propostas da Virtus. Aguardando o conteúdo oficial do cliente pra substituir.",
+      }}
       blocks={[
         { title: "Apoio Escolar", desc: "Português e Matemática individualizados, com avaliação diagnóstica e plano de estudos personalizado." },
         { title: "Robótica", desc: "Metodologia STEAM com kits completos, projetos práticos e participação em competições." },

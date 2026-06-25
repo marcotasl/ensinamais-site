@@ -13,7 +13,8 @@ export default function BeneficiosPage() {
       title="Por que escolher a Ensina Mais"
       lead="Mais que reforço escolar, somos uma rede de aprendizado que combina personalização, tecnologia e cuidado humano. Conheça os benefícios reais para o seu filho."
       validation={{
-        message: "A página /beneficios existe no site atual mas precisa ser confirmada com o cliente se permanece como página standalone ou vira section dentro de Metodologia ou Conheça a Ensina Mais.",
+        title: "Aguardando conteúdo textual",
+        message: "Headings, lead e blocos abaixo são propostas da Virtus. Aguardando o conteúdo oficial do cliente pra substituir. (Pendência adicional: confirmar se /beneficios fica standalone ou vira section dentro de Metodologia ou Conheça a Ensina Mais.)",
       }}
       blocks={[
         { title: "Ensino individualizado", desc: "Cada aluno avança no seu ritmo, com plano de estudos personalizado a partir de avaliação diagnóstica." },
