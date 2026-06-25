@@ -79,17 +79,27 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mega menu */}
+      {/* Mega menu , cada coluna pinta com o pastel da frente, título e
+          hover em tom sólido da própria cor pra criar a hierarquia visual */}
       {megaOpen && (
         <div className="hidden lg:block bg-white border-t border-wire-100">
-          <div className="max-w-[1200px] mx-auto px-6 py-8 grid grid-cols-4 gap-8">
+          <div className="max-w-[1200px] mx-auto px-6 py-8 grid grid-cols-4 gap-4">
             {COURSE_CATEGORIES.map((cat) => (
-              <div key={cat.title}>
-                <a href={cat.href} className="block text-sm font-black text-em-dark uppercase tracking-widest mb-3 hover:text-em-green transition-colors">
+              <div key={cat.title} className={`${cat.bgPale} rounded-2xl p-5`}>
+                <a
+                  href={cat.href}
+                  className={`block text-sm font-black uppercase tracking-widest mb-3 transition-opacity hover:opacity-70 ${cat.textBrand}`}
+                >
                   {cat.title}
                 </a>
                 {cat.courses.map((c) => (
-                  <a key={c.label} href={c.href} className="block text-sm text-em-dark-soft hover:text-em-dark py-1.5">{c.label}</a>
+                  <a
+                    key={c.label}
+                    href={c.href}
+                    className={`block text-sm text-em-dark-soft hover:text-em-dark px-2 py-1.5 rounded-md transition-colors ${cat.hoverBg}`}
+                  >
+                    {c.label}
+                  </a>
                 ))}
               </div>
             ))}
