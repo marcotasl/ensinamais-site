@@ -134,8 +134,11 @@ export default function LearningPaths({ leadHref = "#lead", className = "" }: Le
               className="absolute inset-0 opacity-12 bg-repeat"
               style={{ backgroundImage: "url(/images/3d/pattern-dense.webp)", backgroundSize: "520px" }}
             />
-            <div className="relative grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-8 lg:gap-10">
-              <div className="flex flex-col justify-between gap-8">
+            <div className="relative grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-8 lg:gap-10 lg:items-start">
+              {/* slot de texto fica sticky no desktop enquanto a coluna dos
+                  combos rola , o usuário sempre vê o que é "contraturno
+                  completo" e o selo "14 combinações" mesmo lendo o último card */}
+              <div className="flex flex-col gap-8 lg:sticky lg:top-24 lg:self-start">
                 <div>
                   <p className="eyebrow text-em-yellow mb-3">Contraturno completo</p>
                   <h3 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-4">
