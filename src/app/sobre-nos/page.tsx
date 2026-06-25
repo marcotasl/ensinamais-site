@@ -189,66 +189,51 @@ export default function SobreNosPage() {
         </div>
       </section>
 
-      {/* PARTE 3 , Como ajudamos: BENTO alternado (1 hero card + 4 mini) */}
+      {/* PARTE 3 , Como ajudamos: lista editorial vertical com number + sticker, dentro de painel único */}
       <section className="bg-em-green-pale px-4 sm:px-6 py-16 sm:py-20 lg:py-24">
-        <div className="max-w-[1200px] mx-auto">
-          <FadeIn>
-            <div className="max-w-[820px] mb-10 lg:mb-12">
+        <div className="max-w-[1100px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-14 items-start">
+            <FadeIn>
               <p className="eyebrow text-em-green-dark mb-3">Apoio escolar no dia a dia</p>
               <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-black tracking-tight text-em-dark leading-[1.1] mb-6">
                 Apoio escolar pra aprender melhor, <span className="marker-green">com mais confiança</span>
               </h2>
-              <p className="text-base sm:text-lg text-em-dark-soft/85 leading-relaxed">
-                As dificuldades escolares podem aparecer de várias formas: queda nas notas, falta de rotina, insegurança pra tirar dúvidas. Na Ensina Mais, seu filho recebe acompanhamento individualizado pra fortalecer a base, organizar os estudos e desenvolver autonomia.
-              </p>
-            </div>
-          </FadeIn>
-
-          {/* Bento: card hero (col-span-2) + 4 mini cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-            {/* Card hero ocupando 2 colunas */}
-            <FadeIn>
-              <article className={`group h-full bg-em-dark rounded-3xl p-7 sm:p-8 lg:col-span-2 md:col-span-2 relative overflow-clip shadow-[0_18px_42px_-22px_rgba(26,39,68,0.4)]`}>
-                <div aria-hidden className="absolute inset-0 opacity-15 bg-repeat" style={{ backgroundImage: "url(/images/3d/pattern-confetti.webp)", backgroundSize: "320px" }} />
-                <div className="relative">
-                  <span className="sticker-icon bg-em-yellow text-em-dark mb-5 shadow-[0_12px_24px_-12px_rgba(0,0,0,0.4)]">
-                    <Sparkles size={26} strokeWidth={1.8} />
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-black text-white mb-3 leading-tight">
-                    Mais do que revisar conteúdos, ajudamos seu filho a construir uma <span className="marker-yellow">relação positiva com o aprendizado</span>
-                  </h3>
-                  <p className="text-sm sm:text-base text-white/80 leading-relaxed">
-                    Com apoio, paciência e orientação em cada etapa, o aluno se sente acolhido pra tentar, errar e tentar de novo.
-                  </p>
-                </div>
-              </article>
+              <div className="space-y-4 text-base sm:text-lg text-em-dark-soft/85 leading-relaxed">
+                <p>
+                  As dificuldades escolares podem aparecer de várias formas: queda nas notas, falta de rotina, insegurança pra tirar dúvidas ou sensação de que aprender está ficando cada vez mais difícil.
+                </p>
+                <p>
+                  Na Ensina Mais, seu filho recebe acompanhamento individualizado pra fortalecer a base, organizar os estudos e desenvolver autonomia, com acolhimento e método.
+                </p>
+                <p className="font-semibold text-em-dark">
+                  Mais do que revisar conteúdo, ajudamos a construir uma relação positiva com o aprendizado.
+                </p>
+              </div>
             </FadeIn>
 
-            {DIA_A_DIA.slice(0, 2).map((b, i) => {
-              const Icon = b.Icon;
-              return (
-                <FadeIn key={b.title} delay={(i + 1) * 0.06}>
-                  <article className={`group h-full ${b.bg} rounded-3xl p-6 ${i % 2 === 0 ? "tilt-l1" : "tilt-r1"} tilt-hover-straighten shadow-[0_18px_42px_-22px_rgba(26,39,68,0.3)]`}>
-                    <Icon size={28} strokeWidth={1.8} className="text-white mb-4" />
-                    <h3 className="text-lg font-black text-white mb-2 leading-tight">{b.title}</h3>
-                    <p className="text-sm text-white/85 leading-relaxed">{b.desc}</p>
-                  </article>
-                </FadeIn>
-              );
-            })}
-
-            {DIA_A_DIA.slice(2).map((b, i) => {
-              const Icon = b.Icon;
-              return (
-                <FadeIn key={b.title} delay={(i + 3) * 0.06}>
-                  <article className={`group h-full ${b.bg} rounded-3xl p-6 ${i % 2 === 0 ? "tilt-r1" : "tilt-l1"} tilt-hover-straighten shadow-[0_18px_42px_-22px_rgba(26,39,68,0.3)]`}>
-                    <Icon size={28} strokeWidth={1.8} className="text-white mb-4" />
-                    <h3 className="text-lg font-black text-white mb-2 leading-tight">{b.title}</h3>
-                    <p className="text-sm text-white/85 leading-relaxed">{b.desc}</p>
-                  </article>
-                </FadeIn>
-              );
-            })}
+            <FadeIn delay={0.12}>
+              <ol className="bg-white rounded-3xl p-3 sm:p-4 shadow-[0_18px_42px_-22px_rgba(26,39,68,0.18)] divide-y divide-em-dark/8">
+                {DIA_A_DIA.map((b, i) => {
+                  const Icon = b.Icon;
+                  return (
+                    <li key={b.title} className="flex items-start gap-4 p-4 sm:p-5">
+                      <span aria-hidden className="shrink-0 text-3xl sm:text-4xl font-black leading-none text-em-dark/15 w-9 sm:w-10 pt-0.5">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className={`shrink-0 sticker-icon ${b.bg} text-white shadow-[0_8px_18px_-10px_rgba(26,39,68,0.4)]`}>
+                        <Icon size={22} strokeWidth={1.8} />
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base sm:text-lg font-black text-em-dark mb-1 leading-tight">
+                          {b.title}
+                        </h3>
+                        <p className="text-sm text-em-dark-soft/82 leading-relaxed">{b.desc}</p>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ol>
+            </FadeIn>
           </div>
         </div>
       </section>
