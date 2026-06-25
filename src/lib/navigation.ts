@@ -107,7 +107,6 @@ export const MAIN_NAV: NavDropdown[] = [
       { label: "Conheça a Ensina Mais", href: "/conheca-a-ensinamais" },
       { label: "Nossa História", href: "/nossa-historia" },
       { label: "Metodologia", href: "/metodologia" },
-      { label: "Benefícios", href: "/beneficios" },
     ],
   },
   {
