@@ -10,6 +10,7 @@ import TurmaDaMonica from "@/components/sections/TurmaDaMonica";
 import Testimonials from "@/components/sections/Testimonials";
 import SchoolFinder from "@/components/sections/SchoolFinder";
 import BlogPreview from "@/components/sections/BlogPreview";
+import TrustBar from "@/components/sections/TrustBar";
 import CloudDivider from "@/components/ui/CloudDivider";
 import FloatingIcon from "@/components/ui/FloatingIcon";
 import { getBanners } from "@/lib/wordpress";
@@ -127,6 +128,8 @@ export default async function Home() {
         <div className="pt-12 sm:pt-16">
           <BlogPreview />
         </div>
+
+        <TrustBar />
       </div>
     </main>
   );

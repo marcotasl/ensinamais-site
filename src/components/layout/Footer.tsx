@@ -79,6 +79,10 @@ export default function Footer() {
             <p className="text-sm text-white/60 leading-relaxed max-w-[360px]">
               Rede de apoio escolar licenciada pela Turma da Mônica. Desenvolvemos crianças e adolescentes para o futuro desde 2012.
             </p>
+            <div className="mt-6">
+              <span className="block text-xs text-white/50 mb-2">Uma marca do grupo</span>
+              <img src="/images/moveedu/logo-moveedu-white.svg" alt="Grupo MoveEdu" className="h-7 w-auto opacity-80" />
+            </div>
           </div>
           <div className="flex gap-2">
             {SOCIALS.map((s) => (
@@ -114,6 +118,22 @@ export default function Footer() {
                   <span className="text-sm text-white/70 leading-relaxed">{item.text}</span>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Reconhecimentos: selos em chip branco (footer é escuro) */}
+        <div className="py-8 border-t border-white/10">
+          <h4 className="text-xs font-bold text-white/40 mb-4 uppercase tracking-widest">Reconhecimentos</h4>
+          <div className="flex flex-wrap gap-3">
+            <div className="bg-white rounded-xl p-2.5">
+              <img src="/images/selos/selo-abf-excelencia.webp" alt="Selo ABF de Excelência em Franchising" className="h-14 sm:h-16 w-auto object-contain" />
+            </div>
+            <div className="bg-white rounded-xl p-2.5">
+              <img src="/images/selos/selo-melhores-franquias.webp" alt="Selo Melhores Franquias do Brasil" className="h-14 sm:h-16 w-auto object-contain" />
+            </div>
+            <div className="bg-white rounded-xl p-2.5">
+              <img src="/images/selos/selo-melhor-microfranquia.webp" alt="Selo Melhor Microfranquia do Brasil" className="h-14 sm:h-16 w-auto object-contain" />
             </div>
           </div>
         </div>
