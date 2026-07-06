@@ -20,6 +20,7 @@ const FOOTER_COLUMNS = [
       { label: "Nossa História", href: "/nossa-historia" },
       { label: "Metodologia", href: "/metodologia" },
       { label: "App dos Pais", href: "/app-dos-pais/" },
+      { label: "Super Aluno", href: "/super-aluno/" },
       { label: "Benefícios", href: "/beneficios" },
       { label: "Blog", href: "/blog" },
     ],

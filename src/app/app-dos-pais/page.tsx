@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {
+  ArrowRight,
   Award,
   Bell,
   Calendar,
@@ -316,9 +317,18 @@ export default function AppDosPaisPage() {
                   })}
                 </div>
 
-                <p className="mt-8 text-sm text-white/75">
-                  Regulamento completo sempre disponível dentro do app.
-                </p>
+                <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+                  <a
+                    href="/super-aluno/"
+                    className="inline-flex items-center justify-center gap-2 text-sm font-black text-em-coral bg-white rounded-full px-6 py-3 hover:bg-em-yellow hover:text-em-dark transition-colors w-full sm:w-auto"
+                  >
+                    Conheça o programa Super Aluno
+                    <ArrowRight size={16} strokeWidth={2.4} />
+                  </a>
+                  <p className="text-sm text-white/75">
+                    Regulamento completo sempre disponível dentro do app.
+                  </p>
+                </div>
               </div>
             </div>
           </FadeIn>

@@ -108,6 +108,7 @@ export const MAIN_NAV: NavDropdown[] = [
       { label: "Nossa História", href: "/nossa-historia" },
       { label: "Metodologia", href: "/metodologia" },
       { label: "App dos Pais", href: "/app-dos-pais/" },
+      { label: "Super Aluno", href: "/super-aluno/" },
     ],
   },
   {

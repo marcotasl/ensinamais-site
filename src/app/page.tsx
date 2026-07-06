@@ -9,6 +9,7 @@ import Reasons from "@/components/sections/Reasons";
 import TurmaDaMonica from "@/components/sections/TurmaDaMonica";
 import Testimonials from "@/components/sections/Testimonials";
 import AppPaisTeaser from "@/components/sections/AppPaisTeaser";
+import SuperAlunoTeaser from "@/components/sections/SuperAlunoTeaser";
 import SchoolFinder from "@/components/sections/SchoolFinder";
 import BlogPreview from "@/components/sections/BlogPreview";
 import TrustBar from "@/components/sections/TrustBar";
@@ -113,6 +114,8 @@ export default async function Home() {
         </div>
 
         <AppPaisTeaser />
+
+        <SuperAlunoTeaser />
 
         {/* Floater 7: english-globe à direita entre Testimonials e SchoolFinder */}
         <div className="relative h-0 max-w-[1400px] mx-auto">
