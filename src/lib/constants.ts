@@ -92,24 +92,12 @@ export const STATS: Stat[] = [
 
 // Placeholders: substituir pelos videoIds finais curados do canal EnsinaMaisBrasil
 export const TESTIMONIALS: Testimonial[] = [
-  {
-    videoId: "NyV7ZvE6GlI",
-    name: "Eliana e Marcelo",
-    city: "Franqueados Ensina Mais",
-    title: "Depoimento de franqueados",
-  },
-  {
-    videoId: "NyV7ZvE6GlI",
-    name: "Placeholder 2",
-    city: "A definir",
-    title: "Depoimento em vídeo",
-  },
-  {
-    videoId: "NyV7ZvE6GlI",
-    name: "Placeholder 3",
-    city: "A definir",
-    title: "Depoimento em vídeo",
-  },
+  { videoId: "NyV7ZvE6GlI", name: "Eliana e Marcelo", city: "Franqueados Ensina Mais", title: "Depoimento de franqueados" },
+  { videoId: "NyV7ZvE6GlI", name: "Placeholder 2", city: "A definir" },
+  { videoId: "NyV7ZvE6GlI", name: "Placeholder 3", city: "A definir" },
+  { videoId: "NyV7ZvE6GlI", name: "Placeholder 4", city: "A definir" },
+  { videoId: "NyV7ZvE6GlI", name: "Placeholder 5", city: "A definir" },
+  { videoId: "NyV7ZvE6GlI", name: "Placeholder 6", city: "A definir" },
 ];
 
 export const NAV_LINKS: NavLink[] = [

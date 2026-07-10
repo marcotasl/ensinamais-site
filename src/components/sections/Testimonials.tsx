@@ -2,8 +2,9 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { TESTIMONIALS } from "@/lib/constants";
+import type { Testimonial } from "@/types";
 
 function VideoLightbox({ videoId, onClose }: { videoId: string; onClose: () => void }) {
   useEffect(() => {
@@ -46,25 +47,81 @@ function VideoLightbox({ videoId, onClose }: { videoId: string; onClose: () => v
   );
 }
 
+function VideoCard({ t, onPlay }: { t: Testimonial; onPlay: () => void }) {
+  return (
+    <div className="text-center">
+      <div
+        className="aspect-video rounded-2xl overflow-hidden relative cursor-pointer group shadow-[0_18px_42px_-22px_rgba(26,39,68,0.28)]"
+        onClick={onPlay}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`https://img.youtube.com/vi/${t.videoId}/maxresdefault.jpg`}
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = `https://img.youtube.com/vi/${t.videoId}/hqdefault.jpg`;
+          }}
+          alt={t.title ?? `Depoimento de ${t.name}`}
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+          <button
+            aria-label="Assistir depoimento"
+            className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform cursor-pointer"
+          >
+            <Play size={24} className="text-em-coral ml-1" strokeWidth={2} />
+          </button>
+        </div>
+      </div>
+
+      {t.title && (
+        <p className="text-sm font-semibold text-em-coral-dark mt-5">{t.title}</p>
+      )}
+      <div className="text-base font-extrabold text-em-dark mt-1">{t.name}</div>
+      <div className="text-sm text-em-dark-soft/70">{t.city}</div>
+    </div>
+  );
+}
+
+function useItemsPerView() {
+  const [items, setItems] = useState(1);
+  useEffect(() => {
+    const mqDesktop = window.matchMedia("(min-width: 1024px)");
+    const mqTablet = window.matchMedia("(min-width: 640px)");
+    const update = () => setItems(mqDesktop.matches ? 3 : mqTablet.matches ? 2 : 1);
+    update();
+    mqDesktop.addEventListener("change", update);
+    mqTablet.addEventListener("change", update);
+    return () => {
+      mqDesktop.removeEventListener("change", update);
+      mqTablet.removeEventListener("change", update);
+    };
+  }, []);
+  return items;
+}
+
 export default function Testimonials() {
   const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState(1);
   const [openVideoId, setOpenVideoId] = useState<string | null>(null);
+  const itemsPerView = useItemsPerView();
   const total = TESTIMONIALS.length;
+  const maxIndex = Math.max(0, total - itemsPerView);
+
+  useEffect(() => {
+    if (current > maxIndex) setCurrent(maxIndex);
+  }, [current, maxIndex]);
 
   const next = useCallback(() => {
-    setDirection(1);
-    setCurrent((p) => (p + 1) % total);
-  }, [total]);
+    setCurrent((p) => Math.min(p + 1, maxIndex));
+  }, [maxIndex]);
 
   const prev = useCallback(() => {
-    setDirection(-1);
-    setCurrent((p) => (p - 1 + total) % total);
-  }, [total]);
+    setCurrent((p) => Math.max(p - 1, 0));
+  }, []);
 
   const closeVideo = useCallback(() => setOpenVideoId(null), []);
-
-  const t = TESTIMONIALS[current];
 
   return (
     <section id="depoimentos" className="relative px-4 sm:px-6">
@@ -74,7 +131,7 @@ export default function Testimonials() {
         style={{ backgroundImage: "url(/images/3d/pattern-confetti.webp)", backgroundSize: "560px" }}
       />
 
-      <div className="relative max-w-[880px] mx-auto">
+      <div className="relative max-w-[1200px] mx-auto">
         <div className="text-center mb-10 sm:mb-14">
           <p className="eyebrow text-em-coral-dark mb-3">Depoimentos</p>
           <h2 className="text-2xl sm:text-[1.875rem] lg:text-[2.5rem] font-black tracking-tight text-em-dark leading-[1.1]">
@@ -82,75 +139,48 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        {/* Card carrossel com bg pale + tilt */}
-        <div className="relative rounded-3xl bg-em-yellow/20 border-2 border-em-yellow/40 px-6 sm:px-12 py-10 sm:py-14 shadow-[0_18px_42px_-22px_rgba(26,39,68,0.22)]">
-          <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={current}
-              custom={direction}
-              variants={{
-                enter: (dir: number) => ({ x: dir > 0 ? 40 : -40, opacity: 0 }),
-                center: { x: 0, opacity: 1 },
-                exit: (dir: number) => ({ x: dir > 0 ? -40 : 40, opacity: 0 }),
-              }}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="text-center"
-            >
-              <div
-                className="max-w-[640px] mx-auto aspect-video rounded-2xl overflow-hidden relative cursor-pointer group"
-                onClick={() => setOpenVideoId(t.videoId)}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`https://img.youtube.com/vi/${t.videoId}/maxresdefault.jpg`}
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = `https://img.youtube.com/vi/${t.videoId}/hqdefault.jpg`;
-                  }}
-                  alt={t.title ?? `Depoimento de ${t.name}`}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                  <button
-                    aria-label="Assistir depoimento"
-                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform cursor-pointer"
-                  >
-                    <Play size={28} className="text-em-coral ml-1" strokeWidth={2} />
-                  </button>
-                </div>
+        <div className="overflow-hidden -mx-3">
+          <motion.div
+            className="flex"
+            animate={{ x: `-${current * (100 / total)}%` }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            style={{ width: `${(total / itemsPerView) * 100}%` }}
+          >
+            {TESTIMONIALS.map((t, i) => (
+              <div key={i} className="px-3" style={{ width: `${100 / total}%` }}>
+                <VideoCard t={t} onPlay={() => setOpenVideoId(t.videoId)} />
               </div>
-
-              {t.title && (
-                <p className="text-sm font-semibold text-em-coral-dark mt-6">{t.title}</p>
-              )}
-              <div className="text-base font-extrabold text-em-dark mt-2">{t.name}</div>
-              <div className="text-sm text-em-dark-soft/70">{t.city}</div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        <div className="flex items-center justify-center gap-6 mt-10">
-          <button onClick={prev} className="w-11 h-11 rounded-full bg-white border-2 border-em-coral/30 flex items-center justify-center text-em-coral hover:bg-em-coral hover:text-white transition-colors cursor-pointer shadow-sm">
-            <ChevronLeft size={18} />
-          </button>
-          <div className="flex gap-2">
-            {TESTIMONIALS.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
-                className={`h-2 rounded-full transition-all cursor-pointer ${i === current ? "w-8 bg-em-coral" : "w-2 bg-em-coral/30"}`}
-              />
             ))}
-          </div>
-          <button onClick={next} className="w-11 h-11 rounded-full bg-white border-2 border-em-coral/30 flex items-center justify-center text-em-coral hover:bg-em-coral hover:text-white transition-colors cursor-pointer shadow-sm">
-            <ChevronRight size={18} />
-          </button>
+          </motion.div>
         </div>
+
+        {total > itemsPerView && (
+          <div className="flex items-center justify-center gap-6 mt-10">
+            <button
+              onClick={prev}
+              disabled={current === 0}
+              className="w-11 h-11 rounded-full bg-white border-2 border-em-coral/30 flex items-center justify-center text-em-coral hover:bg-em-coral hover:text-white transition-colors cursor-pointer shadow-sm disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-em-coral"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <div className="flex gap-2">
+              {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  className={`h-2 rounded-full transition-all cursor-pointer ${i === current ? "w-8 bg-em-coral" : "w-2 bg-em-coral/30"}`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={next}
+              disabled={current === maxIndex}
+              className="w-11 h-11 rounded-full bg-white border-2 border-em-coral/30 flex items-center justify-center text-em-coral hover:bg-em-coral hover:text-white transition-colors cursor-pointer shadow-sm disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-em-coral"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        )}
       </div>
 
       {openVideoId && <VideoLightbox videoId={openVideoId} onClose={closeVideo} />}
