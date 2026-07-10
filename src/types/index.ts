@@ -23,13 +23,22 @@ export interface Stat {
   label: string;
 }
 
-export interface Testimonial {
-  quote: string;
-  name: string;
-  city: string;
-  img: string;
-  stars: number;
-}
+export type Testimonial =
+  | {
+      type: "text";
+      quote: string;
+      name: string;
+      city: string;
+      img: string;
+      stars: number;
+    }
+  | {
+      type: "video";
+      videoId: string;
+      name: string;
+      city: string;
+      title?: string;
+    };
 
 export interface NavLink {
   label: string;
