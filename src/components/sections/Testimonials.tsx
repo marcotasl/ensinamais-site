@@ -1,18 +1,9 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import { Star, ChevronLeft, ChevronRight, Quote, Play, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { TESTIMONIALS } from "@/lib/constants";
-
-function Attribution({ name, city, nameClassName = "" }: { name: string; city: string; nameClassName?: string }) {
-  return (
-    <>
-      <div className={`text-base font-extrabold text-em-dark ${nameClassName}`}>{name}</div>
-      <div className="text-sm text-em-dark-soft/70">{city}</div>
-    </>
-  );
-}
 
 function VideoLightbox({ videoId, onClose }: { videoId: string; onClose: () => void }) {
   useEffect(() => {
@@ -108,63 +99,37 @@ export default function Testimonials() {
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               className="text-center"
             >
-              {t.type === "text" ? (
-                <>
-                  <Quote size={36} className="text-em-coral mx-auto mb-5" />
-
-                  <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-em-dark mb-7 max-w-[640px] mx-auto">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-
-                  <div className="flex items-center justify-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-em-green flex items-center justify-center text-white font-black text-sm">
-                      {t.name.split(" ").map((s) => s[0]).slice(0, 2).join("")}
-                    </div>
-                    <div className="text-left">
-                      <Attribution name={t.name} city={t.city} />
-                    </div>
-                  </div>
-
-                  <div className="flex gap-0.5 justify-center mt-4">
-                    {Array(t.stars).fill(0).map((_, j) => (
-                      <Star key={j} size={16} fill="#FFCC00" color="#FFCC00" />
-                    ))}
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div
-                    className="max-w-[640px] mx-auto aspect-video rounded-2xl overflow-hidden relative cursor-pointer group"
-                    onClick={() => setOpenVideoId(t.videoId)}
+              <div
+                className="max-w-[640px] mx-auto aspect-video rounded-2xl overflow-hidden relative cursor-pointer group"
+                onClick={() => setOpenVideoId(t.videoId)}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`https://img.youtube.com/vi/${t.videoId}/maxresdefault.jpg`}
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = `https://img.youtube.com/vi/${t.videoId}/hqdefault.jpg`;
+                  }}
+                  alt={t.title ?? `Depoimento de ${t.name}`}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                  <button
+                    aria-label="Assistir depoimento"
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform cursor-pointer"
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={`https://img.youtube.com/vi/${t.videoId}/maxresdefault.jpg`}
-                      onError={(e) => {
-                        e.currentTarget.onerror = null;
-                        e.currentTarget.src = `https://img.youtube.com/vi/${t.videoId}/hqdefault.jpg`;
-                      }}
-                      alt={t.title ?? `Depoimento de ${t.name}`}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                      <button
-                        aria-label="Assistir depoimento"
-                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform cursor-pointer"
-                      >
-                        <Play size={28} className="text-em-coral ml-1" strokeWidth={2} />
-                      </button>
-                    </div>
-                  </div>
+                    <Play size={28} className="text-em-coral ml-1" strokeWidth={2} />
+                  </button>
+                </div>
+              </div>
 
-                  {t.title && (
-                    <p className="text-sm font-semibold text-em-coral-dark mt-6">{t.title}</p>
-                  )}
-                  <Attribution name={t.name} city={t.city} nameClassName="mt-2" />
-                </>
+              {t.title && (
+                <p className="text-sm font-semibold text-em-coral-dark mt-6">{t.title}</p>
               )}
+              <div className="text-base font-extrabold text-em-dark mt-2">{t.name}</div>
+              <div className="text-sm text-em-dark-soft/70">{t.city}</div>
             </motion.div>
           </AnimatePresence>
         </div>

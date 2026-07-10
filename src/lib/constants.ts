@@ -90,37 +90,25 @@ export const STATS: Stat[] = [
   { icon: Building2, number: "100", prefix: "+", suffix: "", label: "Escolas no Brasil" },
 ];
 
+// Placeholders: substituir pelos videoIds finais curados do canal EnsinaMaisBrasil
 export const TESTIMONIALS: Testimonial[] = [
   {
-    type: "text",
-    quote: "Meu filho estava com muita dificuldade em matemática. Em poucos meses na Ensina Mais, a evolução foi incrível, ele ganhou confiança e as notas subiram de verdade!",
-    name: "Carla Mendes",
-    city: "São Paulo, SP",
-    img: "/images/turma-da-monica/pose-14.webp",
-    stars: 5,
-  },
-  {
-    type: "text",
-    quote: "A robótica despertou no meu filho um interesse que eu nunca tinha visto. Ele chega em casa animado, querendo construir coisas e explicar como tudo funciona.",
-    name: "Roberto Silva",
-    city: "Campinas, SP",
-    img: "/images/turma-da-monica/pose-4.webp",
-    stars: 5,
-  },
-  {
-    type: "video",
     videoId: "NyV7ZvE6GlI",
     name: "Eliana e Marcelo",
     city: "Franqueados Ensina Mais",
     title: "Depoimento de franqueados",
   },
   {
-    type: "text",
-    quote: "A metodologia individualizada faz toda a diferença. Minha filha tem acompanhamento personalizado e agora adora ir pra aula. Recomendo de olhos fechados!",
-    name: "Juliana Ferreira",
-    city: "Rio de Janeiro, RJ",
-    img: "/images/turma-da-monica/pose-15.webp",
-    stars: 5,
+    videoId: "NyV7ZvE6GlI",
+    name: "Placeholder 2",
+    city: "A definir",
+    title: "Depoimento em vídeo",
+  },
+  {
+    videoId: "NyV7ZvE6GlI",
+    name: "Placeholder 3",
+    city: "A definir",
+    title: "Depoimento em vídeo",
   },
 ];
 
