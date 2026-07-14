@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   title: "Sobre Nós · Ensina Mais Turma da Mônica",
   description:
     "Cada criança aprende de um jeito. A Ensina Mais Turma da Mônica acompanha o seu filho de perto, com escuta, método e cuidado.",
-  alternates: { canonical: "/sobre-nos" },
+  alternates: { canonical: "/sobre-nos/" },
 };
 
 /* PARTE 3 , 5 itens "como ajudamos no dia a dia" em bento alternado */

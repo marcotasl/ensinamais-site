@@ -1,8 +1,8 @@
 import type { Category, Course } from "@/lib/courses-data";
 import type { BlogPost } from "@/lib/blog-data";
 
-// Domínio de produção; sobreponível por env. Confirmar apex vs www com o cliente antes do go-live.
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ensinamais.com.br";
+// Domínio de produção (apex, mesma convenção do MoveEdu); sobreponível por env.
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ensinamais.com.br";
 
 export const SITE_NAME = "Ensina Mais";
 
@@ -17,6 +17,13 @@ export const SOCIAL_PROFILES = [
 
 export function abs(path: string): string {
   return new URL(path, SITE_URL).toString();
+}
+
+// Garante barra final em paths de PÁGINA (trailingSlash: true no next.config).
+// Só em rotas navegáveis, não usar em assets (ex: logo.svg).
+export function withTrailingSlash(path: string): string {
+  if (path === "/" || path === "") return "/";
+  return path.endsWith("/") ? path : `${path}/`;
 }
 
 // Sem @context: reaproveitado como sub-nó (provider/publisher) dentro de outros schemas.
@@ -84,7 +91,7 @@ export function breadcrumbSchema(items: { name: string; url: string }[]): Record
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
-      item: abs(item.url),
+      item: abs(withTrailingSlash(item.url)),
     })),
   };
 }
@@ -98,6 +105,6 @@ export function blogPostingSchema(post: BlogPost): Record<string, unknown> {
     datePublished: post.date,
     author: { "@type": "Organization", name: SITE_NAME },
     publisher: organizationNode(),
-    mainEntityOfPage: abs(`/blog/${post.slug}`),
+    mainEntityOfPage: abs(withTrailingSlash(`/blog/${post.slug}`)),
   };
 }

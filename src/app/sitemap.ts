@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/seo";
+import { abs, withTrailingSlash } from "@/lib/seo";
 import { CATEGORIES, COURSES } from "@/lib/courses-data";
 import { BLOG_POSTS } from "@/lib/blog-data";
 
@@ -30,28 +30,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((route) => ({
-    url: `${SITE_URL}${route.path}`,
+    url: abs(withTrailingSlash(route.path)),
     lastModified: now,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));
 
   const categoryEntries: MetadataRoute.Sitemap = CATEGORIES.map((category) => ({
-    url: `${SITE_URL}/cursos/${category.slug}`,
+    url: abs(withTrailingSlash(`/cursos/${category.slug}`)),
     lastModified: now,
     changeFrequency: "monthly",
     priority: 0.8,
   }));
 
   const courseEntries: MetadataRoute.Sitemap = COURSES.map((course) => ({
-    url: `${SITE_URL}/cursos/${course.categorySlug}/${course.slug}`,
+    url: abs(withTrailingSlash(`/cursos/${course.categorySlug}/${course.slug}`)),
     lastModified: now,
     changeFrequency: "monthly",
     priority: 0.8,
   }));
 
   const blogEntries: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
-    url: `${SITE_URL}/blog/${post.slug}`,
+    url: abs(withTrailingSlash(`/blog/${post.slug}`)),
     lastModified: new Date(post.date),
     changeFrequency: "monthly",
     priority: 0.5,

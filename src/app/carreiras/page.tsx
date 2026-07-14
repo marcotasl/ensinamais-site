@@ -4,7 +4,7 @@ import InstitutionalStub from "@/components/ui/InstitutionalStub";
 export const metadata: Metadata = {
   title: "Carreiras",
   description: "Trabalhe na Ensina Mais: oportunidades para educadores, instrutores e profissionais administrativos na rede e na franqueadora.",
-  alternates: { canonical: "/carreiras" },
+  alternates: { canonical: "/carreiras/" },
 };
 
 export default function CarreirasPage() {

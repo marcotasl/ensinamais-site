@@ -1,0 +1,4 @@
+interface:
+  display_name: "Simplify"
+  short_description: "Revisa qualidade e simplicidade do diff"
+  default_prompt: "Use $simplify para revisar o diff desta tarefa antes de concluí-la."

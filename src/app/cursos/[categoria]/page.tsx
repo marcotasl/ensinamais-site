@@ -96,7 +96,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${category.title} | Ensina Mais – Turma da Mônica`,
     description: category.desc,
-    alternates: { canonical: `/cursos/${categoria}` },
+    alternates: { canonical: `/cursos/${categoria}/` },
   };
 }
 

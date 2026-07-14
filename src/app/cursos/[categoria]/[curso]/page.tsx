@@ -75,7 +75,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${course.title} | Ensina Mais – Turma da Mônica`,
     description: course.desc,
-    alternates: { canonical: `/cursos/${categoria}/${curso}` },
+    alternates: { canonical: `/cursos/${categoria}/${curso}/` },
   };
 }
 
