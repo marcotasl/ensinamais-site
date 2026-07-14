@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: "Conheça a Ensina Mais Turma da Mônica",
   description:
     "Por trás de cada criança que evolui na Ensina Mais existe um time que se importa. Conheça quem somos, nossos valores e a cultura que sustenta a rede.",
+  alternates: { canonical: "/conheca-a-ensinamais" },
 };
 
 const VALORES: { Icon: LucideIcon; title: string; desc: string; bg: string; iconBg: string; textTone: string }[] = [

@@ -4,6 +4,7 @@ import InstitutionalStub from "@/components/ui/InstitutionalStub";
 export const metadata: Metadata = {
   title: "Seja um Franqueado",
   description: "Abra uma franquia Ensina Mais · Turma da Mônica na sua cidade. Negócio com mais de 10 anos de mercado, suporte completo MoveEdu e marca consolidada.",
+  alternates: { canonical: "/seja-um-franqueado" },
 };
 
 export default function FranquiaPage() {

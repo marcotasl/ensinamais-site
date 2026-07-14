@@ -5,6 +5,8 @@ import FadeIn from "@/components/ui/FadeIn";
 import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 import { CATEGORIES, getCategoryBySlug, getCoursesByCategory } from "@/lib/courses-data";
 import type { Metadata } from "next";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ categoria: string }>;
@@ -94,6 +96,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${category.title} | Ensina Mais – Turma da Mônica`,
     description: category.desc,
+    alternates: { canonical: `/cursos/${categoria}` },
   };
 }
 
@@ -109,6 +112,13 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-[#fafafa]">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Início", url: "/" },
+          { name: "Cursos", url: "/cursos" },
+          { name: category.title, url: `/cursos/${category.slug}` },
+        ])}
+      />
       {/* Hero , gradient + pattern da cor da frente (em vez do navy genérico) */}
       <section
         className={`relative pt-24 pb-28 sm:pb-32 px-4 sm:px-6 rounded-b-[46px] overflow-hidden ${theme.heroGradient}`}

@@ -9,6 +9,7 @@ import { CONTACT_CHANNELS, OPENING_HOURS } from "@/lib/contact-data";
 export const metadata: Metadata = {
   title: "Fale Conosco | Ensina Mais – Turma da Mônica",
   description: "Entre em contato com a franqueadora Ensina Mais. Dúvidas sobre cursos, franquias, SAC e ouvidoria. Atendimento em São José do Rio Preto/SP.",
+  alternates: { canonical: "/fale-conosco" },
 };
 
 // Cor de marca por canal, na ordem dos cards (franqueadora, SAC, franquia)

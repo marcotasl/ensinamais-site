@@ -5,6 +5,8 @@ import Placeholder from "@/components/ui/Placeholder";
 import FadeIn from "@/components/ui/FadeIn";
 import { BLOG_POSTS, getPostBySlug, formatDate } from "@/lib/blog-data";
 import type { Metadata } from "next";
+import JsonLd from "@/components/seo/JsonLd";
+import { blogPostingSchema, breadcrumbSchema } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -55,6 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${post.title} | Blog Ensina Mais`,
     description: post.excerpt,
+    alternates: { canonical: `/blog/${slug}` },
   };
 }
 
@@ -69,6 +72,16 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-[#fafafa]">
+      <JsonLd
+        data={[
+          blogPostingSchema(post),
+          breadcrumbSchema([
+            { name: "Início", url: "/" },
+            { name: "Blog", url: "/blog" },
+            { name: post.title, url: `/blog/${post.slug}` },
+          ]),
+        ]}
+      />
       {/* Hero */}
       <section className="relative bg-em-dark pt-28 pb-36 px-4 sm:px-6 overflow-hidden">
         <div

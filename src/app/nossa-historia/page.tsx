@@ -5,6 +5,7 @@ import FadeIn from "@/components/ui/FadeIn";
 export const metadata: Metadata = {
   title: "Nossa História",
   description: "A trajetória da Ensina Mais · Turma da Mônica desde a fundação até se tornar uma das maiores redes de apoio escolar do Brasil.",
+  alternates: { canonical: "/nossa-historia" },
 };
 
 export default function NossaHistoriaPage() {

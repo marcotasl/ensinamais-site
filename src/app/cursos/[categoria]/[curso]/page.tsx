@@ -6,6 +6,8 @@ import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 import { COURSES, getCourseBySlug, getCategoryBySlug, getCoursesByCategory } from "@/lib/courses-data";
 import type { Metadata } from "next";
 import CourseFAQ from "./CourseFAQ";
+import JsonLd from "@/components/seo/JsonLd";
+import { courseSchema, breadcrumbSchema } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ categoria: string; curso: string }>;
@@ -73,6 +75,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${course.title} | Ensina Mais – Turma da Mônica`,
     description: course.desc,
+    alternates: { canonical: `/cursos/${categoria}/${curso}` },
   };
 }
 
@@ -96,6 +99,17 @@ export default async function CoursePage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-[#fafafa]">
+      <JsonLd
+        data={[
+          courseSchema(course, category),
+          breadcrumbSchema([
+            { name: "Início", url: "/" },
+            { name: "Cursos", url: "/cursos" },
+            { name: category.title, url: `/cursos/${category.slug}` },
+            { name: course.title, url: `/cursos/${category.slug}/${course.slug}` },
+          ]),
+        ]}
+      />
       {/* Hero */}
       <section className="relative bg-em-dark pt-24 pb-28 sm:pb-32 px-4 sm:px-6 rounded-b-[46px] overflow-hidden">
         <div

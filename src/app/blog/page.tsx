@@ -4,6 +4,7 @@ import BlogHubClient from "./BlogHubClient";
 export const metadata: Metadata = {
   title: "Blog | Ensina Mais – Turma da Mônica",
   description: "Conteúdo para pais e educadores: dicas de educação, novidades dos cursos, histórias de aprendizado e muito mais.",
+  alternates: { canonical: "/blog" },
 };
 
 export default function BlogPage() {
