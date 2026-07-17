@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   title: "App dos Pais Ensina Mais: acompanhe seu filho em tempo real",
   description:
     "Baixe o App dos Pais da Ensina Mais Turma da Mônica e acompanhe agenda, financeiro, desempenho escolar e as conquistas do Super Aluno, tudo em um só lugar.",
+  alternates: { canonical: "/app-dos-pais/" },
 };
 
 /* Selos de loja repetem no hero e no CTA final: as artes oficiais entram no lugar dos Placeholders depois. */

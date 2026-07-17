@@ -18,11 +18,14 @@ import type { LucideIcon } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import Placeholder from "@/components/ui/Placeholder";
 import FaqAccordion from "@/components/ui/FaqAccordion";
+import JsonLd from "@/components/seo/JsonLd";
+import { faqSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Sobre Nós · Ensina Mais Turma da Mônica",
   description:
     "Cada criança aprende de um jeito. A Ensina Mais Turma da Mônica acompanha o seu filho de perto, com escuta, método e cuidado.",
+  alternates: { canonical: "/sobre-nos/" },
 };
 
 /* PARTE 3 , 5 itens "como ajudamos no dia a dia" em bento alternado */
@@ -131,6 +134,7 @@ const FAQ = [
 export default function SobreNosPage() {
   return (
     <main className="min-h-screen bg-[#fafafa]">
+      <JsonLd data={faqSchema(FAQ)} />
       {/* HERO , bg navy com pattern */}
       <section className="relative bg-em-dark pt-24 pb-16 sm:pb-20 px-4 sm:px-6 rounded-b-[46px] overflow-clip">
         <div aria-hidden className="absolute inset-0 opacity-12 bg-repeat pointer-events-none" style={{ backgroundImage: "url(/images/3d/pattern-dense.webp)", backgroundSize: "520px" }} />

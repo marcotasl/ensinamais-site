@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: "Super Aluno Ensina Mais: gamificação que motiva a aprender",
   description:
     "Conheça o Super Aluno da Ensina Mais: o programa de gamificação que transforma conquistas escolares em pontos, cupons e prêmios reais.",
+  alternates: { canonical: "/super-aluno/" },
 };
 
 /* Ordenadas por peso de conquistas: o número em destaque é o valor de venda da tabela. */

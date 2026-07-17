@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/verify_types.py\"",
+            "timeout": 180,
+            "statusMessage": "Verificando tipos alterados"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   title: "Metodologia · Ensina Mais Turma da Mônica",
   description:
     "Um jeito de ensinar que começa pelo aluno, não pelo conteúdo. Acompanhamento individualizado, ensino híbrido e tecnologia com propósito.",
+  alternates: { canonical: "/metodologia/" },
 };
 
 /* SECTION 1 , 5 passos do acompanhamento (numbered steps) */
