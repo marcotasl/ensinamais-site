@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
+import AppScreensSlider from "@/components/sections/AppScreensSlider";
 
 export const metadata: Metadata = {
   title: "App dos Pais Ensina Mais: acompanhe seu filho em tempo real",
@@ -218,31 +219,13 @@ export default function AppDosPaisPage() {
               );
             })}
 
-            {/* Carrossel de prints: bloco horizontal com telas retrato + legendas */}
+            {/* Slideshow automático: uma tela grande por vez com ken-burns */}
             <FadeIn delay={0.24}>
               <div className="bg-white rounded-3xl p-5 sm:p-6 h-full flex flex-col shadow-[0_18px_42px_-22px_rgba(26,39,68,0.18)]">
                 <h3 className="text-lg sm:text-xl font-black text-em-dark mb-4 leading-tight">
                   As telas do app
                 </h3>
-                <div className="flex gap-3 overflow-x-auto pb-1 -mx-1 px-1">
-                  {TELAS.map((tela) => (
-                    <div key={tela.label} className="shrink-0 w-44 sm:w-52">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={tela.src}
-                        alt={tela.alt}
-                        className="w-full h-auto rounded-2xl shadow-[0_16px_32px_-18px_rgba(26,39,68,0.35)]"
-                        loading="lazy"
-                      />
-                      <p className="text-[10px] sm:text-xs font-semibold text-em-dark-soft/70 text-center mt-2">
-                        {tela.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-xs text-em-dark-soft/60 mt-4">
-                  Home, Agenda, Financeiro e Desempenho.
-                </p>
+                <AppScreensSlider telas={TELAS} />
               </div>
             </FadeIn>
           </div>

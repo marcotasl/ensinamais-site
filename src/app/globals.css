@@ -271,6 +271,19 @@ h4 { line-height: 1.25; }
 }
 .animate-float { animation: float-y 6s ease-in-out infinite; transform-origin: center; }
 
+/* Ken Burns: zoom lento no slideshow de telas do app (AppScreensSlider) */
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+.animate-kenburns {
+  animation: kenburns 3.5s ease-out forwards;
+  transform-origin: center center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-kenburns { animation: none; }
+}
+
 /* Scribble underline reutilizável (svg inline via class + background) */
 .scribble-underline {
   position: relative;
