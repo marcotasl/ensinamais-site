@@ -103,11 +103,14 @@ export default function SuperAlunoPage() {
           </FadeIn>
 
           <FadeIn delay={0.12}>
-            <div className="relative mx-auto w-full max-w-[320px]">
-              <div className="absolute inset-x-6 inset-y-8 bg-em-yellow rounded-[2.5rem] rotate-3" />
-              <Placeholder
-                label="Ilustração Turma da Mônica em traje de super-herói"
-                className="relative w-full aspect-square rounded-[2.5rem] bg-white/15"
+            <div className="relative mx-auto w-full max-w-[300px]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/super-aluno/mockups/super-aluno-cutout.webp"
+                alt="App dos Pais, tela do programa Super Aluno"
+                className="w-full h-auto drop-shadow-[0_18px_28px_rgba(0,0,0,0.28)]"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </FadeIn>
