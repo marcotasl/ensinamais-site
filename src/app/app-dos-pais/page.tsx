@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 /* Selos de loja (artes oficiais) reaproveitados no hero e no CTA final. */
 function StoreBadges() {
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="flex flex-wrap items-center gap-3">
       <a href="#" aria-label="Baixar na App Store">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/images/selos/badge-app-store.svg" alt="Baixar na App Store" className="h-14 w-auto" />
