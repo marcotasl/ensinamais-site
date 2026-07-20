@@ -221,7 +221,7 @@ export default function AppDosPaisPage() {
 
             {/* Slideshow automático: uma tela grande por vez com ken-burns */}
             <FadeIn delay={0.24}>
-              <div className="bg-white rounded-3xl p-5 sm:p-6 h-full flex flex-col justify-center shadow-[0_18px_42px_-22px_rgba(26,39,68,0.18)]">
+              <div className="h-full flex flex-col justify-center">
                 <AppScreensSlider telas={TELAS} />
               </div>
             </FadeIn>
