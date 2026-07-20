@@ -148,12 +148,12 @@ export default function AppDosPaisPage() {
           </FadeIn>
 
           <FadeIn delay={0.12}>
-            <div className="relative mx-auto w-full max-w-[480px]">
+            <div className="relative mx-auto w-full max-w-[520px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/app-dos-pais/mockups/showcase.webp"
-                alt="App dos Pais em três telas: agenda, início e financeiro"
-                className="w-full h-auto rounded-[1.8rem] shadow-[0_30px_60px_-28px_rgba(26,39,68,0.5)]"
+                alt="App dos Pais em três telas: desempenho, início e financeiro"
+                className="w-full h-auto drop-shadow-[0_18px_28px_rgba(0,0,0,0.28)]"
                 loading="lazy"
                 decoding="async"
               />
