@@ -284,6 +284,18 @@ h4 { line-height: 1.25; }
   .animate-kenburns { animation: none; }
 }
 
+/* Barra de progresso do slideshow (estilo stories): preenche na duração do slide */
+@keyframes progressfill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+.animate-progressfill {
+  animation: progressfill 3.5s linear forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-progressfill { animation: none; width: 100%; }
+}
+
 /* Scribble underline reutilizável (svg inline via class + background) */
 .scribble-underline {
   position: relative;
