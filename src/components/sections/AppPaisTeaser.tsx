@@ -44,7 +44,7 @@ export default function AppPaisTeaser() {
                   })}
                 </ul>
 
-                <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+                <div className="flex flex-col items-start gap-4">
                   <a
                     href="/app-dos-pais/"
                     className="inline-flex items-center justify-center gap-2 text-sm sm:text-base font-black text-white bg-em-blue rounded-full px-7 py-3.5 hover:bg-em-blue-dark transition-colors shadow-button w-full sm:w-auto whitespace-nowrap"
@@ -52,14 +52,14 @@ export default function AppPaisTeaser() {
                     Conhecer o App dos Pais
                     <ArrowRight size={16} strokeWidth={2.4} />
                   </a>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex items-center gap-3">
                     <a href="#" aria-label="Baixar na App Store">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/images/selos/badge-app-store.svg" alt="Baixar na App Store" className="h-12 w-auto" />
+                      <img src="/images/selos/badge-app-store.svg" alt="Baixar na App Store" className="h-11 w-auto" />
                     </a>
                     <a href="#" aria-label="Disponível no Google Play">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/images/selos/badge-google-play.png" alt="Disponível no Google Play" className="h-12 w-auto" />
+                      <img src="/images/selos/badge-google-play.png" alt="Disponível no Google Play" className="h-[3.35rem] w-auto" />
                     </a>
                   </div>
                 </div>

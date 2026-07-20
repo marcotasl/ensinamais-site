@@ -32,7 +32,7 @@ function StoreBadges() {
       </a>
       <a href="#" aria-label="Disponível no Google Play">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/selos/badge-google-play.png" alt="Disponível no Google Play" className="h-14 w-auto" />
+        <img src="/images/selos/badge-google-play.png" alt="Disponível no Google Play" className="h-[4.25rem] w-auto" />
       </a>
     </div>
   );
