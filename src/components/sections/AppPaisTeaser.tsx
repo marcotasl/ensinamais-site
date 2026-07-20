@@ -54,10 +54,12 @@ export default function AppPaisTeaser() {
                   </a>
                   <div className="flex flex-wrap gap-3">
                     <a href="#" aria-label="Baixar na App Store">
-                      <Placeholder label="Selo App Store" className="h-12 w-36 rounded-xl" />
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/images/selos/badge-app-store.svg" alt="Baixar na App Store" className="h-12 w-auto" />
                     </a>
-                    <a href="#" aria-label="Baixar no Google Play">
-                      <Placeholder label="Selo Google Play" className="h-12 w-36 rounded-xl" />
+                    <a href="#" aria-label="Disponível no Google Play">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/images/selos/badge-google-play.png" alt="Disponível no Google Play" className="h-12 w-auto" />
                     </a>
                   </div>
                 </div>

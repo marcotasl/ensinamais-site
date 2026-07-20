@@ -148,12 +148,7 @@ export default function ConhecaPage() {
           </FadeIn>
           <FadeIn delay={0.12}>
             <div className="relative">
-              <img
-                src="/images/3d/scene-studio.webp"
-                alt="Ambiente de estudo Ensina Mais"
-                loading="lazy"
-                className="relative w-full h-auto rounded-3xl"
-              />
+              <Placeholder label="Ambiente de estudo Ensina Mais" className="w-full aspect-[4/3] rounded-3xl" />
             </div>
           </FadeIn>
         </div>
