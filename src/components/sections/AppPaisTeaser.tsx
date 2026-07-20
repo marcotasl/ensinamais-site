@@ -1,7 +1,6 @@
 import { ArrowRight, Bell, Calendar, Trophy, TrendingUp, Wallet } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
-import PhoneMockup from "@/components/ui/PhoneMockup";
 
 const ITENS: { Icon: LucideIcon; label: string }[] = [
   { Icon: Calendar, label: "Agenda de aulas" },
@@ -66,12 +65,14 @@ export default function AppPaisTeaser() {
               </div>
 
               <FadeIn delay={0.12}>
-                <div className="relative mx-auto w-full max-w-[260px]">
-                  <div className="absolute inset-x-6 inset-y-8 bg-em-yellow rounded-[2.5rem] rotate-3" />
-                  <PhoneMockup
-                    src="/images/app-dos-pais/app-home.webp"
+                <div className="relative mx-auto w-full max-w-[380px]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/images/app-dos-pais/mockups/home.webp"
                     alt="App dos Pais, tela inicial"
-                    className="relative w-full"
+                    className="w-full max-w-[380px] h-auto rounded-[1.8rem] shadow-[0_30px_60px_-28px_rgba(26,39,68,0.5)]"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </FadeIn>

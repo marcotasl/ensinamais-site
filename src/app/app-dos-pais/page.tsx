@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
-import PhoneMockup from "@/components/ui/PhoneMockup";
 
 export const metadata: Metadata = {
   title: "App dos Pais Ensina Mais: acompanhe seu filho em tempo real",
@@ -84,22 +83,22 @@ const ACOMPANHA: { Icon: LucideIcon; title: string; desc: string; bg: string; ic
 const TELAS: { label: string; src: string; alt: string }[] = [
   {
     label: "Home",
-    src: "/images/app-dos-pais/app-home.webp",
+    src: "/images/app-dos-pais/mockups/home.webp",
     alt: "App dos Pais, tela inicial",
   },
   {
     label: "Agenda",
-    src: "/images/app-dos-pais/app-agenda.webp",
+    src: "/images/app-dos-pais/mockups/agenda.webp",
     alt: "App dos Pais, tela de agenda",
   },
   {
     label: "Financeiro",
-    src: "/images/app-dos-pais/app-financeiro.webp",
+    src: "/images/app-dos-pais/mockups/financeiro.webp",
     alt: "App dos Pais, tela financeira",
   },
   {
     label: "Desempenho",
-    src: "/images/app-dos-pais/app-desempenho.webp",
+    src: "/images/app-dos-pais/mockups/desempenho.webp",
     alt: "App dos Pais, tela de desempenho por matéria",
   },
 ];
@@ -149,12 +148,14 @@ export default function AppDosPaisPage() {
           </FadeIn>
 
           <FadeIn delay={0.12}>
-            <div className="relative mx-auto w-full max-w-[300px]">
-              <div className="absolute inset-x-6 inset-y-8 bg-em-yellow rounded-[2.5rem] rotate-3" />
-              <PhoneMockup
-                src="/images/app-dos-pais/app-home.webp"
-                alt="App dos Pais, tela inicial"
-                className="relative w-full"
+            <div className="relative mx-auto w-full max-w-[480px]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/app-dos-pais/mockups/showcase.webp"
+                alt="App dos Pais em três telas: agenda, início e financeiro"
+                className="w-full h-auto rounded-[1.8rem] shadow-[0_30px_60px_-28px_rgba(26,39,68,0.5)]"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </FadeIn>
@@ -225,11 +226,13 @@ export default function AppDosPaisPage() {
                 </h3>
                 <div className="flex gap-3 overflow-x-auto pb-1 -mx-1 px-1">
                   {TELAS.map((tela) => (
-                    <div key={tela.label} className="shrink-0 w-24 sm:w-28">
-                      <PhoneMockup
+                    <div key={tela.label} className="shrink-0 w-44 sm:w-52">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
                         src={tela.src}
                         alt={tela.alt}
-                        className="w-full"
+                        className="w-full h-auto rounded-2xl shadow-[0_16px_32px_-18px_rgba(26,39,68,0.35)]"
+                        loading="lazy"
                       />
                       <p className="text-[10px] sm:text-xs font-semibold text-em-dark-soft/70 text-center mt-2">
                         {tela.label}
@@ -284,12 +287,14 @@ export default function AppDosPaisPage() {
           </FadeIn>
 
           <FadeIn delay={0.12}>
-            <div className="relative mx-auto w-full max-w-[300px]">
-              <div className="absolute inset-x-6 inset-y-8 bg-em-orange rounded-[2.5rem] -rotate-3" />
-              <PhoneMockup
-                src="/images/app-dos-pais/app-desempenho.webp"
+            <div className="relative mx-auto w-full max-w-[420px]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/app-dos-pais/mockups/desempenho.webp"
                 alt="App dos Pais, tela de desempenho por matéria"
-                className="relative w-full"
+                className="w-full max-w-[420px] h-auto rounded-[1.8rem] shadow-[0_30px_60px_-28px_rgba(26,39,68,0.5)]"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </FadeIn>
