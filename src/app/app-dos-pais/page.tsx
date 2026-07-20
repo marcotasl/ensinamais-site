@@ -14,7 +14,6 @@ import {
 import type { LucideIcon } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import PhoneMockup from "@/components/ui/PhoneMockup";
-import Placeholder from "@/components/ui/Placeholder";
 
 export const metadata: Metadata = {
   title: "App dos Pais Ensina Mais: acompanhe seu filho em tempo real",
@@ -23,7 +22,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/app-dos-pais/" },
 };
 
-/* Selos de loja repetem no hero e no CTA final: as artes oficiais entram no lugar dos Placeholders depois. */
+/* Selos de loja (artes oficiais) reaproveitados no hero e no CTA final. */
 function StoreBadges() {
   return (
     <div className="flex flex-wrap gap-3">
@@ -322,9 +321,11 @@ export default function AppDosPaisPage() {
                     </p>
                   </div>
                   <div className="flex justify-center">
-                    <Placeholder
-                      label="Ilustração Turma da Mônica em traje de super-herói"
-                      className="w-full max-w-[280px] aspect-square rounded-[2rem] bg-white/15"
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/images/turma-da-monica/pose-12.webp"
+                      alt="Turma da Mônica"
+                      className="w-full max-w-[300px] h-auto drop-shadow-[0_18px_24px_rgba(0,0,0,0.25)]"
                     />
                   </div>
                 </div>
