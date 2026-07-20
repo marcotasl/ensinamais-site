@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
+import PhoneMockup from "@/components/ui/PhoneMockup";
 import Placeholder from "@/components/ui/Placeholder";
 
 export const metadata: Metadata = {
@@ -81,8 +82,28 @@ const ACOMPANHA: { Icon: LucideIcon; title: string; desc: string; bg: string; ic
   },
 ];
 
-/* Telas representadas pelo carrossel de prints (Placeholders enquanto as imagens não chegam). */
-const TELAS = ["Home", "Agenda", "Financeiro", "Menu"];
+const TELAS: { label: string; src: string; alt: string }[] = [
+  {
+    label: "Home",
+    src: "/images/app-dos-pais/app-home.webp",
+    alt: "App dos Pais, tela inicial",
+  },
+  {
+    label: "Agenda",
+    src: "/images/app-dos-pais/app-agenda.webp",
+    alt: "App dos Pais, tela de agenda",
+  },
+  {
+    label: "Financeiro",
+    src: "/images/app-dos-pais/app-financeiro.webp",
+    alt: "App dos Pais, tela financeira",
+  },
+  {
+    label: "Desempenho",
+    src: "/images/app-dos-pais/app-desempenho.webp",
+    alt: "App dos Pais, tela de desempenho por matéria",
+  },
+];
 
 const SUPER_ALUNO: { Icon: LucideIcon; title: string; desc: string }[] = [
   {
@@ -131,9 +152,10 @@ export default function AppDosPaisPage() {
           <FadeIn delay={0.12}>
             <div className="relative mx-auto w-full max-w-[300px]">
               <div className="absolute inset-x-6 inset-y-8 bg-em-yellow rounded-[2.5rem] rotate-3" />
-              <Placeholder
-                label="Mockup do app: tela Home"
-                className="relative w-full aspect-[9/19] rounded-[2.5rem]"
+              <PhoneMockup
+                src="/images/app-dos-pais/app-home.webp"
+                alt="App dos Pais, tela inicial"
+                className="relative w-full"
               />
             </div>
           </FadeIn>
@@ -204,16 +226,20 @@ export default function AppDosPaisPage() {
                 </h3>
                 <div className="flex gap-3 overflow-x-auto pb-1 -mx-1 px-1">
                   {TELAS.map((tela) => (
-                    <div key={tela} className="shrink-0 w-24 sm:w-28">
-                      <Placeholder
-                        label={tela}
-                        className="w-full aspect-[9/19] rounded-2xl"
+                    <div key={tela.label} className="shrink-0 w-24 sm:w-28">
+                      <PhoneMockup
+                        src={tela.src}
+                        alt={tela.alt}
+                        className="w-full"
                       />
+                      <p className="text-[10px] sm:text-xs font-semibold text-em-dark-soft/70 text-center mt-2">
+                        {tela.label}
+                      </p>
                     </div>
                   ))}
                 </div>
                 <p className="text-xs text-em-dark-soft/60 mt-4">
-                  Home, Agenda, Financeiro e Menu, prints reais entram aqui.
+                  Home, Agenda, Financeiro e Desempenho.
                 </p>
               </div>
             </FadeIn>
@@ -261,9 +287,10 @@ export default function AppDosPaisPage() {
           <FadeIn delay={0.12}>
             <div className="relative mx-auto w-full max-w-[300px]">
               <div className="absolute inset-x-6 inset-y-8 bg-em-orange rounded-[2.5rem] -rotate-3" />
-              <Placeholder
-                label="Mockup: tela de Desempenho por matéria"
-                className="relative w-full aspect-[9/19] rounded-[2.5rem]"
+              <PhoneMockup
+                src="/images/app-dos-pais/app-desempenho.webp"
+                alt="App dos Pais, tela de desempenho por matéria"
+                className="relative w-full"
               />
             </div>
           </FadeIn>
