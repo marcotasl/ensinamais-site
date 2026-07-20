@@ -325,7 +325,7 @@ export default function AppDosPaisPage() {
                     <img
                       src="/images/turma-da-monica/pose-12.webp"
                       alt="Turma da Mônica"
-                      className="w-full max-w-[300px] h-auto drop-shadow-[0_18px_24px_rgba(0,0,0,0.25)]"
+                      className="w-full max-w-[440px] h-auto drop-shadow-[0_18px_24px_rgba(0,0,0,0.25)]"
                     />
                   </div>
                 </div>
