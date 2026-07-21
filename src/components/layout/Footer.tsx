@@ -162,7 +162,7 @@ export default function Footer() {
               <span className="block text-[11px] font-black uppercase tracking-widest text-em-yellow mb-4">
                 Cola com a gente
               </span>
-              <div className="flex flex-wrap gap-2.5 mb-8">
+              <div className="flex flex-wrap gap-2.5">
                 {SOCIALS.map((s) => (
                   <a
                     key={s.name}
@@ -175,22 +175,6 @@ export default function Footer() {
                       <path d={s.path} />
                     </svg>
                   </a>
-                ))}
-              </div>
-
-              {/* Selos como adesivos tortos */}
-              <span className="block text-[11px] uppercase tracking-widest text-white/45 mb-3">
-                Rede premiada
-              </span>
-              <div className="flex flex-wrap gap-4">
-                {SEALS.map((seal) => (
-                  <div
-                    key={seal.src}
-                    className={`bg-white rounded-2xl px-3 py-2.5 shadow-[0_12px_26px_-10px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:rotate-0 ${seal.tilt}`}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={seal.src} alt={seal.alt} className="h-12 sm:h-14 w-auto object-contain" />
-                  </div>
                 ))}
               </div>
             </div>
@@ -231,6 +215,24 @@ export default function Footer() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+
+          {/* Reconhecimentos: selos transparentes direto no fundo (o texto branco embutido some no chip claro) */}
+          <div className="py-9 border-t border-dashed border-white/15">
+            <span className="block text-[11px] font-black uppercase tracking-widest text-em-yellow mb-6">
+              Reconhecimentos
+            </span>
+            <div className="flex flex-wrap items-center gap-x-12 gap-y-7">
+              {SEALS.map((seal) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  key={seal.src}
+                  src={seal.src}
+                  alt={seal.alt}
+                  className="h-16 sm:h-[74px] w-auto object-contain"
+                />
+              ))}
             </div>
           </div>
 
