@@ -143,7 +143,7 @@ export default function Footer() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/images/logo-ensina-mais.svg" alt="Ensina Mais" className="h-16 sm:h-[70px] w-auto mb-5" />
               <h2 className="font-black text-2xl sm:text-[1.75rem] leading-[1.15] tracking-tight">
-                Bora <span className="marker-yellow text-em-dark">crescer</span> com a gente
+                Bora <span className="marker-yellow text-white">crescer</span> com a gente
               </h2>
               <p className="mt-3 text-sm sm:text-[15px] text-white/65 leading-relaxed">
                 Rede de apoio escolar licenciada pela Turma da Mônica. Desenvolvemos crianças e
@@ -175,6 +175,22 @@ export default function Footer() {
                       <path d={s.path} />
                     </svg>
                   </a>
+                ))}
+              </div>
+
+              {/* Reconhecimentos: selos transparentes, na mesma linha da marca do grupo */}
+              <span className="block text-[11px] font-black uppercase tracking-widest text-em-yellow mt-8 mb-4">
+                Reconhecimentos
+              </span>
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-5">
+                {SEALS.map((seal) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    key={seal.src}
+                    src={seal.src}
+                    alt={seal.alt}
+                    className="h-12 sm:h-[52px] w-auto object-contain"
+                  />
                 ))}
               </div>
             </div>
@@ -215,24 +231,6 @@ export default function Footer() {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-
-          {/* Reconhecimentos: selos transparentes direto no fundo (o texto branco embutido some no chip claro) */}
-          <div className="py-9 border-t border-dashed border-white/15">
-            <span className="block text-[11px] font-black uppercase tracking-widest text-em-yellow mb-6">
-              Reconhecimentos
-            </span>
-            <div className="flex flex-wrap items-center gap-x-12 gap-y-7">
-              {SEALS.map((seal) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={seal.src}
-                  src={seal.src}
-                  alt={seal.alt}
-                  className="h-16 sm:h-[74px] w-auto object-contain"
-                />
-              ))}
             </div>
           </div>
 
