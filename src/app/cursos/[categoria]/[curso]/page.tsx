@@ -1,9 +1,8 @@
 import { notFound } from "next/navigation";
 import { ArrowRight, Star, Clock, MapPin, Calendar, Check, Timer } from "lucide-react";
-import Placeholder from "@/components/ui/Placeholder";
 import FadeIn from "@/components/ui/FadeIn";
 import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
-import { COURSES, getCourseBySlug, getCategoryBySlug, getCoursesByCategory } from "@/lib/courses-data";
+import { COURSES, getCourseBySlug, getCategoryBySlug, getCoursesByCategory, getCourseImage } from "@/lib/courses-data";
 import type { Metadata } from "next";
 import CourseFAQ from "./CourseFAQ";
 import JsonLd from "@/components/seo/JsonLd";
@@ -336,7 +335,8 @@ export default async function CoursePage({ params }: Props) {
                       className={`group block rounded-3xl bg-white overflow-hidden shadow-[0_18px_42px_-22px_rgba(26,39,68,0.24)] card-tilt`}
                       data-tilt={i % 2 === 0 ? "left" : "right"}
                     >
-                      <Placeholder className="w-full h-36 rounded-none" label={c.title} />
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={getCourseImage(c)} alt={c.title} className="w-full h-36 object-cover" loading="lazy" />
                       <div className="p-6">
                         <div className="flex items-center gap-3 mb-2">
                           <span className={`sticker-icon ${theme.sticker} text-white shrink-0`} style={{ width: 40, height: 40 }}>

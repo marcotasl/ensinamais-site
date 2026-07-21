@@ -2,10 +2,9 @@
 
 import { useState, useMemo } from "react";
 import { Search, ArrowRight, SlidersHorizontal, X } from "lucide-react";
-import Placeholder from "@/components/ui/Placeholder";
 import FadeIn from "@/components/ui/FadeIn";
 import LearningPaths from "@/components/sections/LearningPaths";
-import { CATEGORIES, COURSES, type Course } from "@/lib/courses-data";
+import { CATEGORIES, COURSES, getCourseImage, type Course } from "@/lib/courses-data";
 
 const MODALITIES = ["Presencial", "Semi-presencial"];
 const AGE_GROUPS = [
@@ -406,7 +405,8 @@ function CourseCard({ course, index }: { course: Course; index: number }) {
         className="card-lift group bg-white rounded-3xl overflow-hidden shadow-[0_18px_42px_-22px_rgba(26,39,68,0.24)] hover:shadow-[0_24px_52px_-22px_rgba(26,39,68,0.32)] transition-all block h-full"
       >
         <div className="relative">
-          <Placeholder className="w-full h-40 rounded-none" label={course.title} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={getCourseImage(course)} alt={course.title} className="w-full h-40 object-cover" loading="lazy" />
           <span className={`absolute top-3 left-3 text-[11px] font-black uppercase tracking-widest text-white ${s.badge} rounded-full px-3 py-1.5 shadow-[0_8px_18px_-12px_rgba(26,39,68,0.4)]`}>
             {course.ageRange}
           </span>

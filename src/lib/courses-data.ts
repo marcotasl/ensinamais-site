@@ -31,7 +31,7 @@ export const CATEGORIES: Category[] = [
     color: "#039BE5",
     light: "#E1F5FE",
     ageRange: "4 a 15 anos",
-    img: "/images/courses/apoio-escolar.jpg",
+    img: "/images/cursos/apoio-escolar.webp",
     skills: [
       { icon: Brain, title: "Raciocínio Lógico", desc: "Resolução de problemas matemáticos com pensamento estruturado." },
       { icon: BookOpen, title: "Leitura e Escrita", desc: "Compreensão textual, produção de texto e gramática aplicada." },
@@ -57,7 +57,7 @@ export const CATEGORIES: Category[] = [
     color: "#7CB342",
     light: "#F1F8E9",
     ageRange: "4 a 15 anos",
-    img: "/images/courses/robotica.jpg",
+    img: "/images/cursos/robotica.webp",
     skills: [
       { icon: Puzzle, title: "Resolução de Problemas", desc: "Desafios práticos que exigem criatividade e pensamento crítico." },
       { icon: Brain, title: "Raciocínio Lógico", desc: "Sequências, condicionais e loops aplicados à construção de robôs." },
@@ -83,7 +83,7 @@ export const CATEGORIES: Category[] = [
     color: "#FF9800",
     light: "#FFF3E0",
     ageRange: "6 a 14 anos",
-    img: "/images/courses/programacao.jpg",
+    img: "/images/cursos/programacao.webp",
     skills: [
       { icon: Code, title: "Lógica de Programação", desc: "Algoritmos, variáveis, condicionais e loops de forma visual e prática." },
       { icon: Gamepad2, title: "Criação de Games", desc: "Desenvolvimento de jogos 2D e 3D com ferramentas profissionais." },
@@ -109,7 +109,7 @@ export const CATEGORIES: Category[] = [
     color: "#EF5350",
     light: "#FFEBEE",
     ageRange: "4 a 15 anos",
-    img: "/images/courses/ingles.jpg",
+    img: "/images/cursos/ingles.webp",
     skills: [
       { icon: Languages, title: "Comunicação Oral", desc: "Conversação, pronúncia e fluência desde as primeiras aulas." },
       { icon: BookOpen, title: "Leitura e Escrita", desc: "Compreensão de textos e produção escrita progressiva." },
@@ -686,4 +686,14 @@ export function getCourseBySlug(categorySlug: string, courseSlug: string): Cours
 
 export function getCoursesByCategory(categorySlug: string): Course[] {
   return COURSES.filter((c) => c.categorySlug === categorySlug);
+}
+
+/** Resolve imagem por matéria (Apoio Escolar) ou pela categoria. */
+export function getCourseImage(course: Course): string {
+  if (course.categorySlug === "apoio-escolar") {
+    return course.slug.startsWith("matematica")
+      ? "/images/cursos/matematica.webp"
+      : "/images/cursos/portugues.webp";
+  }
+  return getCategoryBySlug(course.categorySlug)?.img ?? "/images/cursos/apoio-escolar.webp";
 }

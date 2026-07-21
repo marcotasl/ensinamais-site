@@ -1,9 +1,8 @@
 import { notFound } from "next/navigation";
 import { ArrowRight, Check, Calendar } from "lucide-react";
-import Placeholder from "@/components/ui/Placeholder";
 import FadeIn from "@/components/ui/FadeIn";
 import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
-import { CATEGORIES, getCategoryBySlug, getCoursesByCategory } from "@/lib/courses-data";
+import { CATEGORIES, getCategoryBySlug, getCoursesByCategory, getCourseImage } from "@/lib/courses-data";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/seo";
@@ -186,7 +185,8 @@ export default async function CategoryPage({ params }: Props) {
                     href={`/cursos/${category.slug}/${course.slug}`}
                     className={`group block h-full rounded-3xl bg-white overflow-hidden shadow-[0_18px_42px_-22px_rgba(26,39,68,0.24)] card-lift ${CARD_TILTS[i % CARD_TILTS.length]} tilt-hover-straighten`}
                   >
-                    <Placeholder className="w-full h-40 rounded-none" label={course.title} />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={getCourseImage(course)} alt={course.title} className="w-full h-40 object-cover" loading="lazy" />
                     <div className="p-6">
                       <div className="flex items-center gap-3 mb-3">
                         <span className={`sticker-icon ${theme.sticker} text-white shrink-0`} style={{ width: 44, height: 44 }}>
@@ -270,7 +270,8 @@ export default async function CategoryPage({ params }: Props) {
                 </div>
               </div>
 
-              <Placeholder className="w-full h-[300px] sm:h-[360px] rounded-3xl" label={`Foto ${category.title}`} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={category.img} alt={category.title} className="w-full h-[300px] sm:h-[360px] object-cover rounded-3xl" />
             </div>
           </div>
         </FadeIn>
@@ -295,7 +296,8 @@ export default async function CategoryPage({ params }: Props) {
                     className={`group block rounded-3xl bg-white overflow-hidden shadow-[0_18px_42px_-22px_rgba(26,39,68,0.24)] card-tilt`}
                     data-tilt={i % 2 === 0 ? "left" : "right"}
                   >
-                    <Placeholder className="w-full h-36 rounded-none" label={c.title} />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={c.img} alt={c.title} className="w-full h-36 object-cover" loading="lazy" />
                     <div className="p-6">
                       <div className="flex items-center gap-3 mb-2">
                         <span className={`sticker-icon ${otherTheme.sticker} text-white shrink-0`} style={{ width: 40, height: 40 }}>
