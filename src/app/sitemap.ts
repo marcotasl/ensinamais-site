@@ -18,6 +18,7 @@ const STATIC_ROUTES: StaticRoute[] = [
   { path: "/app-dos-pais", priority: 0.6, changeFrequency: "monthly" },
   { path: "/carreiras", priority: 0.6, changeFrequency: "monthly" },
   { path: "/conheca-a-ensinamais", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/escolas", priority: 0.8, changeFrequency: "weekly" },
   { path: "/fale-conosco", priority: 0.6, changeFrequency: "monthly" },
   { path: "/metodologia", priority: 0.6, changeFrequency: "monthly" },
   { path: "/nossa-historia", priority: 0.6, changeFrequency: "monthly" },

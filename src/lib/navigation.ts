@@ -98,7 +98,7 @@ export const MAIN_NAV: NavDropdown[] = [
   },
   {
     label: "Escolas",
-    href: "/escolas",
+    href: "https://escolas.ensinamais.com.br/",
   },
   {
     label: "Sobre Nós",
