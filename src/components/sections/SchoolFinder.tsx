@@ -28,14 +28,16 @@ export default function SchoolFinder() {
           <div className="w-full lg:max-w-[480px]">
             <div className="relative">
               <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-em-blue-dark/70" />
+              <label htmlFor="school-search" className="sr-only">Cidade ou CEP</label>
               <input
+                id="school-search"
                 type="text"
                 placeholder="Digite sua cidade ou CEP..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full text-base sm:text-lg pl-11 sm:pl-12 pr-28 py-4 sm:py-5 rounded-full border-2 border-em-blue/30 bg-white outline-none focus:border-em-blue transition-colors shadow-sm"
+                className="w-full text-base sm:text-lg text-em-dark placeholder:text-em-dark-soft/70 caret-em-dark pl-11 sm:pl-12 pr-28 py-4 sm:py-5 rounded-full border-2 border-em-blue-dark bg-white outline-none focus:border-em-dark focus:ring-2 focus:ring-em-blue-light/60 transition-colors shadow-sm"
               />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 text-sm font-bold text-white bg-em-blue rounded-full px-5 py-2.5 cursor-pointer hover:bg-em-blue-dark transition-colors">
+              <button type="button" className="absolute right-2 top-1/2 -translate-y-1/2 text-sm font-bold text-em-dark bg-em-blue rounded-full px-5 py-2.5 cursor-pointer hover:bg-em-blue-light transition-colors">
                 Buscar
               </button>
             </div>

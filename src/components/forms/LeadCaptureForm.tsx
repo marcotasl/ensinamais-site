@@ -49,18 +49,28 @@ export default function LeadCaptureForm({ layout = "horizontal", buttonText, dar
       <div className={`grid gap-3 mb-4 ${layout === "vertical" ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"}`}>
         {fields.map((field) => (
           <div key={field.name}>
+            <label htmlFor={`lead-${field.name}`} className="sr-only">
+              {field.placeholder}
+            </label>
             <input
+              id={`lead-${field.name}`}
               type={field.type}
               placeholder={field.placeholder}
+              aria-invalid={Boolean(errors[field.name])}
+              aria-describedby={errors[field.name] ? `lead-${field.name}-error` : undefined}
               {...register(field.name)}
               className={`w-full text-base font-medium px-4 py-3.5 rounded-xl border outline-none transition-all duration-200 ${
                 dark
-                  ? "border-white/20 bg-white/10 text-white placeholder:text-wire-500 focus:border-white/40 focus:ring-2 focus:ring-white/10"
-                  : "border-wire-300 bg-white focus:border-em-green focus:ring-2 focus:ring-em-green-light/20"
+                  ? "border-white/40 bg-em-dark/85 text-white placeholder:text-white/70 caret-white focus:border-em-yellow focus:ring-2 focus:ring-em-yellow/30"
+                  : "border-em-dark-soft/55 bg-white text-em-dark placeholder:text-em-dark-soft/70 caret-em-dark focus:border-em-green-dark focus:ring-2 focus:ring-em-green-light/50"
               }`}
             />
             {errors[field.name] && (
-              <p className="text-xs text-em-coral mt-1 ml-1">
+              <p
+                id={`lead-${field.name}-error`}
+                role="alert"
+                className={`text-xs font-semibold mt-1 ml-1 ${dark ? "text-em-coral-light" : "text-em-coral-dark"}`}
+              >
                 {errors[field.name]?.message}
               </p>
             )}

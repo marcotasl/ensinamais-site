@@ -16,12 +16,12 @@ const AGE_GROUPS = [
 // Cor de marca por categoria — cards, badges e ícones herdam o hue do curso
 const CATEGORY_STYLES: Record<
   string,
-  { badge: string; iconBg: string; accent: string }
+  { badge: string; badgeText: string; iconBg: string; accent: string }
 > = {
-  "apoio-escolar": { badge: "bg-em-blue", iconBg: "bg-em-blue", accent: "text-em-blue-dark" },
-  "robotica-ensina": { badge: "bg-em-green", iconBg: "bg-em-green", accent: "text-em-green-dark" },
-  "programacao-ensina": { badge: "bg-em-orange", iconBg: "bg-em-orange", accent: "text-em-orange" },
-  "ingles-ensina": { badge: "bg-em-coral", iconBg: "bg-em-coral", accent: "text-em-coral-dark" },
+  "apoio-escolar": { badge: "bg-em-blue", badgeText: "text-em-dark", iconBg: "bg-em-blue", accent: "text-em-blue-dark" },
+  "robotica-ensina": { badge: "bg-em-green", badgeText: "text-em-dark", iconBg: "bg-em-green", accent: "text-em-green-dark" },
+  "programacao-ensina": { badge: "bg-em-orange", badgeText: "text-em-dark", iconBg: "bg-em-orange", accent: "text-em-orange" },
+  "ingles-ensina": { badge: "bg-em-coral-dark", badgeText: "text-white", iconBg: "bg-em-coral", accent: "text-em-coral-dark" },
 };
 
 const FALLBACK_STYLE = CATEGORY_STYLES["apoio-escolar"];
@@ -112,13 +112,14 @@ export default function CoursesHubClient() {
           <FadeIn delay={0.15}>
             <div className="max-w-[640px] mx-auto">
               <div className="relative">
-                <Search size={20} strokeWidth={2.4} className="absolute left-5 top-1/2 -translate-y-1/2 text-white/70 pointer-events-none z-10" />
+                <Search size={20} strokeWidth={2.4} className="absolute left-5 top-1/2 -translate-y-1/2 text-em-dark-soft/70 pointer-events-none z-10" />
                 <input
                   type="text"
+                  aria-label="Buscar curso"
                   placeholder="Buscar curso (ex: matemática, robótica, games...)"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="w-full text-base pl-14 pr-5 py-5 rounded-2xl border border-white/15 bg-white/10 backdrop-blur text-white placeholder:text-white/50 outline-none focus:border-em-yellow/60 focus:ring-2 focus:ring-em-yellow/20 transition-all"
+                  className="w-full text-base pl-14 pr-5 py-5 rounded-2xl border border-white/35 bg-white text-em-dark placeholder:text-em-dark-soft/70 caret-em-dark outline-none focus:border-em-yellow-dark focus:ring-2 focus:ring-em-yellow/40 transition-all shadow-[0_18px_42px_-22px_rgba(0,0,0,0.45)]"
                 />
               </div>
             </div>
@@ -136,7 +137,7 @@ export default function CoursesHubClient() {
                     onClick={() => toggleCategory(cat.slug)}
                     className={`text-xs sm:text-sm font-black rounded-full px-4 py-2 transition-colors cursor-pointer ${
                       checked
-                        ? `${s.badge} text-white shadow-[0_8px_18px_-12px_rgba(0,0,0,0.5)]`
+                        ? `${s.badge} ${s.badgeText} shadow-[0_8px_18px_-12px_rgba(0,0,0,0.5)]`
                         : "bg-white/10 text-white/85 hover:bg-white/20"
                     }`}
                   >
@@ -171,7 +172,7 @@ export default function CoursesHubClient() {
             >
               <SlidersHorizontal size={16} strokeWidth={1.8} /> Filtros
               {activeCount > 0 && (
-                <span className="ml-1 text-xs bg-em-blue text-white rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="ml-1 text-xs bg-em-dark text-white rounded-full w-5 h-5 flex items-center justify-center">
                   {activeCount}
                 </span>
               )}
@@ -205,7 +206,7 @@ export default function CoursesHubClient() {
                 >
                   <div className="flex items-center justify-between p-5 border-b border-em-blue-pale">
                     <h3 className="text-lg font-black text-em-dark">Filtros</h3>
-                    <button onClick={() => setFiltersOpen(false)} className="text-em-dark-soft/60 hover:text-em-dark cursor-pointer">
+                    <button onClick={() => setFiltersOpen(false)} className="text-em-dark-soft/75 hover:text-em-dark cursor-pointer">
                       <X size={20} />
                     </button>
                   </div>
@@ -232,7 +233,7 @@ export default function CoursesHubClient() {
                   <strong className="text-em-dark font-black">{filtered.length}</strong> {filtered.length === 1 ? "curso encontrado" : "cursos encontrados"}
                 </span>
                 {activeCount > 0 && (
-                  <button onClick={clearAll} className="text-sm font-bold text-em-coral-dark hover:text-em-coral cursor-pointer underline">
+                  <button onClick={clearAll} className="text-sm font-bold text-em-coral-dark hover:text-em-dark cursor-pointer underline">
                     Limpar filtros
                   </button>
                 )}
@@ -291,7 +292,7 @@ function FilterSidebar({
       {activeCount > 0 && (
         <button
           onClick={clearAll}
-          className="text-xs font-bold text-em-coral-dark hover:text-em-coral underline text-left cursor-pointer"
+          className="text-xs font-bold text-em-coral-dark hover:text-em-dark underline text-left cursor-pointer"
         >
           Limpar {activeCount} {activeCount === 1 ? "filtro" : "filtros"}
         </button>
@@ -299,17 +300,16 @@ function FilterSidebar({
 
       {/* Categories */}
       <div>
-        <h4 className="eyebrow text-em-dark-soft/60 mb-4 text-xs">Categoria</h4>
+        <h4 className="eyebrow text-em-dark-soft/75 mb-4 text-xs">Categoria</h4>
         <div className="flex flex-col gap-2.5">
           {CATEGORIES.map((cat) => {
             const count = COURSES.filter((c) => c.categorySlug === cat.slug).length;
             const checked = selectedCategories.includes(cat.slug);
-            const s = styleFor(cat.slug);
             return (
               <label key={cat.slug} className="flex items-center gap-3 cursor-pointer group">
                 <span
                   className={`flex items-center justify-center w-5 h-5 rounded-md shrink-0 transition-colors ${
-                    checked ? `${s.badge} text-white` : "bg-em-blue-pale/60 group-hover:bg-em-blue-pale"
+                    checked ? "bg-em-dark text-white" : "bg-em-blue-pale/60 group-hover:bg-em-blue-pale"
                   }`}
                 >
                   {checked && (
@@ -322,7 +322,7 @@ function FilterSidebar({
                 <span className={`text-sm transition-colors ${checked ? "font-black text-em-dark" : "font-semibold text-em-dark-soft/80 group-hover:text-em-dark"}`}>
                   {cat.title}
                 </span>
-                <span className="text-xs font-semibold text-em-dark-soft/45 ml-auto">{count}</span>
+                <span className="text-xs font-semibold text-em-dark-soft/70 ml-auto">{count}</span>
               </label>
             );
           })}
@@ -331,7 +331,7 @@ function FilterSidebar({
 
       {/* Age */}
       <div>
-        <h4 className="eyebrow text-em-dark-soft/60 mb-4 text-xs">Faixa Etária</h4>
+        <h4 className="eyebrow text-em-dark-soft/75 mb-4 text-xs">Faixa Etária</h4>
         <div className="flex flex-col gap-2.5">
           {AGE_GROUPS.map((age) => {
             const checked = selectedAges.includes(age.label);
@@ -339,7 +339,7 @@ function FilterSidebar({
               <label key={age.label} className="flex items-center gap-3 cursor-pointer group">
                 <span
                   className={`flex items-center justify-center w-5 h-5 rounded-md shrink-0 transition-colors ${
-                    checked ? "bg-em-green text-white" : "bg-em-green-pale/70 group-hover:bg-em-green-pale"
+                    checked ? "bg-em-dark text-white" : "bg-em-green-pale/70 group-hover:bg-em-green-pale"
                   }`}
                 >
                   {checked && (
@@ -360,7 +360,7 @@ function FilterSidebar({
 
       {/* Modality */}
       <div>
-        <h4 className="eyebrow text-em-dark-soft/60 mb-4 text-xs">Modalidade</h4>
+        <h4 className="eyebrow text-em-dark-soft/75 mb-4 text-xs">Modalidade</h4>
         <div className="flex flex-col gap-2.5">
           {MODALITIES.map((m) => {
             const count = COURSES.filter((c) => c.modality === m).length;
@@ -369,7 +369,7 @@ function FilterSidebar({
               <label key={m} className="flex items-center gap-3 cursor-pointer group">
                 <span
                   className={`flex items-center justify-center w-5 h-5 rounded-md shrink-0 transition-colors ${
-                    checked ? "bg-em-coral text-white" : "bg-em-coral-pale/70 group-hover:bg-em-coral-pale"
+                    checked ? "bg-em-dark text-white" : "bg-em-coral-pale/70 group-hover:bg-em-coral-pale"
                   }`}
                 >
                   {checked && (
@@ -382,7 +382,7 @@ function FilterSidebar({
                 <span className={`text-sm transition-colors ${checked ? "font-black text-em-dark" : "font-semibold text-em-dark-soft/80 group-hover:text-em-dark"}`}>
                   {m}
                 </span>
-                <span className="text-xs font-semibold text-em-dark-soft/45 ml-auto">{count}</span>
+                <span className="text-xs font-semibold text-em-dark-soft/70 ml-auto">{count}</span>
               </label>
             );
           })}
@@ -407,7 +407,7 @@ function CourseCard({ course, index }: { course: Course; index: number }) {
         <div className="relative">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={getCourseImage(course)} alt={course.title} className="w-full h-40 object-cover" loading="lazy" />
-          <span className={`absolute top-3 left-3 text-[11px] font-black uppercase tracking-widest text-white ${s.badge} rounded-full px-3 py-1.5 shadow-[0_8px_18px_-12px_rgba(26,39,68,0.4)]`}>
+          <span className={`absolute top-3 left-3 text-[11px] font-black uppercase tracking-widest ${s.badgeText} ${s.badge} rounded-full px-3 py-1.5 shadow-[0_8px_18px_-12px_rgba(26,39,68,0.4)]`}>
             {course.ageRange}
           </span>
         </div>

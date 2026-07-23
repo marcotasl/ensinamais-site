@@ -49,51 +49,55 @@ export default function ContactForm() {
     setTimeout(() => setSubmitted(false), 4000);
   }
 
-  const inputClass = "w-full text-base font-medium px-4 py-3.5 rounded-xl border border-wire-300 bg-white outline-none transition-all duration-200 focus:border-wire-600 focus:ring-2 focus:ring-wire-200";
-  const labelClass = "block text-xs font-bold text-wire-500 uppercase tracking-widest mb-1.5";
+  const inputClass = "w-full text-base font-medium text-em-dark placeholder:text-em-dark-soft/70 caret-em-dark px-4 py-3.5 rounded-xl border border-em-dark-soft/55 bg-white outline-none transition-all duration-200 focus:border-em-blue-dark focus:ring-2 focus:ring-em-blue-light/60";
+  const labelClass = "block text-xs font-bold text-em-dark-soft/80 uppercase tracking-widest mb-1.5";
+  const errorClass = "text-xs font-semibold text-em-coral-dark mt-1";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className={labelClass}>Nome completo</label>
-          <input type="text" placeholder="Seu nome" {...register("nome")} className={inputClass} />
-          {errors.nome && <p className="text-xs text-red-500 mt-1">{errors.nome.message}</p>}
+          <label htmlFor="contact-nome" className={labelClass}>Nome completo</label>
+          <input id="contact-nome" type="text" placeholder="Seu nome" aria-invalid={Boolean(errors.nome)} aria-describedby={errors.nome ? "contact-nome-error" : undefined} {...register("nome")} className={inputClass} />
+          {errors.nome && <p id="contact-nome-error" role="alert" className={errorClass}>{errors.nome.message}</p>}
         </div>
         <div>
-          <label className={labelClass}>E-mail</label>
-          <input type="email" placeholder="seu@email.com" {...register("email")} className={inputClass} />
-          {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>}
+          <label htmlFor="contact-email" className={labelClass}>E-mail</label>
+          <input id="contact-email" type="email" placeholder="seu@email.com" aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "contact-email-error" : undefined} {...register("email")} className={inputClass} />
+          {errors.email && <p id="contact-email-error" role="alert" className={errorClass}>{errors.email.message}</p>}
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className={labelClass}>Celular</label>
-          <input type="tel" placeholder="(00) 00000-0000" {...register("celular")} className={inputClass} />
-          {errors.celular && <p className="text-xs text-red-500 mt-1">{errors.celular.message}</p>}
+          <label htmlFor="contact-celular" className={labelClass}>Celular</label>
+          <input id="contact-celular" type="tel" placeholder="(00) 00000-0000" aria-invalid={Boolean(errors.celular)} aria-describedby={errors.celular ? "contact-celular-error" : undefined} {...register("celular")} className={inputClass} />
+          {errors.celular && <p id="contact-celular-error" role="alert" className={errorClass}>{errors.celular.message}</p>}
         </div>
         <div>
-          <label className={labelClass}>Assunto</label>
-          <select {...register("assunto")} className={`${inputClass} cursor-pointer`} defaultValue="">
+          <label htmlFor="contact-assunto" className={labelClass}>Assunto</label>
+          <select id="contact-assunto" aria-invalid={Boolean(errors.assunto)} aria-describedby={errors.assunto ? "contact-assunto-error" : undefined} {...register("assunto")} className={`${inputClass} cursor-pointer [&>option]:bg-white [&>option]:text-em-dark`} defaultValue="">
             <option value="" disabled>Selecione...</option>
             {SUBJECTS.map((s) => (
               <option key={s} value={s}>{s}</option>
             ))}
           </select>
-          {errors.assunto && <p className="text-xs text-red-500 mt-1">{errors.assunto.message}</p>}
+          {errors.assunto && <p id="contact-assunto-error" role="alert" className={errorClass}>{errors.assunto.message}</p>}
         </div>
       </div>
 
       <div>
-        <label className={labelClass}>Mensagem</label>
+        <label htmlFor="contact-mensagem" className={labelClass}>Mensagem</label>
         <textarea
+          id="contact-mensagem"
           rows={5}
           placeholder="Conte para nós como podemos ajudar..."
+          aria-invalid={Boolean(errors.mensagem)}
+          aria-describedby={errors.mensagem ? "contact-mensagem-error" : undefined}
           {...register("mensagem")}
           className={`${inputClass} resize-none`}
         />
-        {errors.mensagem && <p className="text-xs text-red-500 mt-1">{errors.mensagem.message}</p>}
+        {errors.mensagem && <p id="contact-mensagem-error" role="alert" className={errorClass}>{errors.mensagem.message}</p>}
       </div>
 
       <button
@@ -112,8 +116,8 @@ export default function ContactForm() {
         )}
       </button>
 
-      <p className="text-xs text-wire-400">
-        Ao enviar, você concorda com nossa <a href="/politica-de-privacidade" className="underline hover:text-wire-600">política de privacidade</a>.
+      <p className="text-xs text-em-dark-soft/70">
+        Ao enviar, você concorda com nossa <a href="/politica-de-privacidade" className="underline hover:text-em-dark">política de privacidade</a>.
       </p>
     </form>
   );

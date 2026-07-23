@@ -152,7 +152,7 @@ export default function CommentOverlay() {
                   <div className="flex items-start justify-between mb-2">
                     <div>
                       <span className="text-sm font-bold text-gray-900">{c.author}</span>
-                      <span className="text-xs text-gray-400 ml-2">
+                      <span className="text-xs text-gray-600 ml-2">
                         {new Date(c.createdAt).toLocaleDateString("pt-BR", {
                           day: "2-digit",
                           month: "short",
@@ -163,7 +163,7 @@ export default function CommentOverlay() {
                     </div>
                     <button
                       onClick={() => setOpenPin(null)}
-                      className="text-gray-400 hover:text-gray-600 cursor-pointer"
+                      className="text-gray-600 hover:text-gray-900 cursor-pointer"
                     >
                       <X size={14} />
                     </button>
@@ -205,13 +205,15 @@ export default function CommentOverlay() {
           <div className="w-80 bg-white rounded-xl shadow-2xl border border-gray-200 p-4">
             <input
               type="text"
+              aria-label="Seu nome"
               placeholder="Seu nome"
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
-              className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 mb-2 outline-none focus:border-blue-400"
+              className="w-full text-sm text-gray-900 placeholder:text-gray-600 bg-white border border-gray-500 rounded-lg px-3 py-2 mb-2 outline-none focus:border-blue-700"
             />
             <textarea
               ref={inputRef}
+              aria-label="Comentário"
               placeholder="Escreva seu comentário..."
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -221,12 +223,12 @@ export default function CommentOverlay() {
                   submitComment();
                 }
               }}
-              className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 outline-none focus:border-blue-400 resize-none h-20"
+              className="w-full text-sm text-gray-900 placeholder:text-gray-600 bg-white border border-gray-500 rounded-lg px-3 py-2 outline-none focus:border-blue-700 resize-none h-20"
             />
             <div className="flex justify-between items-center mt-2">
               <button
                 onClick={() => { setPlacing(null); setText(""); }}
-                className="text-xs text-gray-400 hover:text-gray-600 cursor-pointer"
+                className="text-xs text-gray-600 hover:text-gray-900 cursor-pointer"
               >
                 Cancelar
               </button>
@@ -252,7 +254,7 @@ export default function CommentOverlay() {
             <span className="text-gray-300">|</span>
             <button
               onClick={() => setShowResolved(!showResolved)}
-              className="text-xs text-gray-400 hover:text-gray-600 cursor-pointer"
+              className="text-xs text-gray-600 hover:text-gray-900 cursor-pointer"
             >
               {showResolved ? "Ocultar resolvidos" : "Ver resolvidos"}
             </button>

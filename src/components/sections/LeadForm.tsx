@@ -10,7 +10,7 @@ export default function LeadForm() {
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-wire-black mb-2">
             Agende uma aula<br className="hidden sm:block" /> experimental gratuita
           </h2>
-          <p className="text-base text-wire-500">
+          <p className="text-base text-em-dark-soft/75">
             Conheça a unidade mais perto de você. Sem compromisso.
           </p>
         </div>

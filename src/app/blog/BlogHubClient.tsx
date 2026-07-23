@@ -61,10 +61,11 @@ export default function BlogHubClient() {
                 <Search size={20} strokeWidth={2.4} className="absolute left-5 top-1/2 -translate-y-1/2 text-em-purple-dark pointer-events-none z-10" />
                 <input
                   type="text"
+                  aria-label="Buscar artigo"
                   placeholder="Buscar artigo..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="w-full text-base pl-14 pr-5 py-5 rounded-full bg-white text-em-dark placeholder:text-em-dark-soft/45 outline-none shadow-[0_18px_42px_-22px_rgba(26,39,68,0.5)] focus:ring-4 focus:ring-em-yellow/40 transition-all"
+                  className="w-full text-base pl-14 pr-5 py-5 rounded-full bg-white text-em-dark placeholder:text-em-dark-soft/70 caret-em-dark outline-none shadow-[0_18px_42px_-22px_rgba(26,39,68,0.5)] focus:ring-4 focus:ring-em-yellow/40 transition-all"
                 />
               </div>
             </div>

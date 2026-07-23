@@ -153,7 +153,7 @@ export default async function CoursePage({ params }: Props) {
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <div id="lead" className="bg-white/10 backdrop-blur rounded-3xl p-6 sm:p-8 border border-white/15 shadow-[0_24px_56px_-28px_rgba(0,0,0,0.5)]">
+              <div id="lead" className="bg-em-dark/90 backdrop-blur rounded-3xl p-6 sm:p-8 border border-white/20 shadow-[0_24px_56px_-28px_rgba(0,0,0,0.5)]">
                 <h3 className="text-lg font-extrabold text-white mb-1">Agende uma aula grátis</h3>
                 <p className="text-sm text-white/70 mb-5">Preencha e entraremos em contato em até 24h.</p>
                 <LeadCaptureForm layout="vertical" dark buttonText={`Quero aula de ${course.title}`} />

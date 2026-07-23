@@ -27,27 +27,29 @@ export default function Newsletter() {
           <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-6 lg:gap-12 items-center">
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <Mail size={18} className="text-wire-500" />
-                <p className="text-xs font-bold text-wire-500 uppercase tracking-widest">Newsletter</p>
+                <Mail size={18} className="text-em-dark-soft/80" />
+                <p className="text-xs font-bold text-em-dark-soft/80 uppercase tracking-widest">Newsletter</p>
               </div>
               <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-wire-black mb-2">
                 Receba conteúdo sobre educação infantil
               </h2>
-              <p className="text-base text-wire-500 leading-relaxed max-w-[460px]">
+              <p className="text-base text-em-dark-soft/80 leading-relaxed max-w-[460px]">
                 Dicas para pais, novidades dos cursos e histórias de sucesso direto no seu e-mail. Sem spam.
               </p>
             </div>
 
             <form onSubmit={handleSubmit} className="w-full">
               <div className="flex flex-col sm:flex-row gap-2">
+                <label htmlFor="newsletter-email" className="sr-only">Seu e-mail</label>
                 <input
+                  id="newsletter-email"
                   type="email"
                   required
                   placeholder="seu@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={submitted}
-                  className="flex-1 text-base font-medium px-5 py-4 rounded-xl border border-wire-300 bg-white outline-none transition-all focus:border-wire-600 focus:ring-2 focus:ring-wire-200 disabled:opacity-60"
+                  className="flex-1 text-base font-medium text-em-dark placeholder:text-em-dark-soft/70 caret-em-dark px-5 py-4 rounded-xl border border-em-dark-soft/55 bg-white outline-none transition-all focus:border-em-blue-dark focus:ring-2 focus:ring-em-blue-light/60 disabled:text-em-dark-soft/70 disabled:placeholder:text-em-dark-soft/55"
                 />
                 <button
                   type="submit"
@@ -65,7 +67,7 @@ export default function Newsletter() {
                   )}
                 </button>
               </div>
-              <p className="text-xs text-wire-400 mt-3">Ao se inscrever, você concorda com nossa política de privacidade.</p>
+              <p className="text-xs text-em-dark-soft/80 mt-3">Ao se inscrever, você concorda com nossa política de privacidade.</p>
             </form>
           </div>
         </div>

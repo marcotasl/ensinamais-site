@@ -102,8 +102,12 @@ body {
   font-synthesis: none;
 }
 
-input::placeholder {
-  color: #a3a3a3;
+@layer base {
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-wire-600);
+    opacity: 1;
+  }
 }
 
 /* Tight leading + 'pretty' wrap (menos encaixotado que balance) em headings */
