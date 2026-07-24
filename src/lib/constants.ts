@@ -90,14 +90,12 @@ export const STATS: Stat[] = [
   { icon: Building2, number: "100", prefix: "+", suffix: "", label: "Escolas no Brasil" },
 ];
 
-// Placeholders: substituir pelos videoIds finais curados do canal EnsinaMaisBrasil
 export const TESTIMONIALS: Testimonial[] = [
-  { videoId: "NyV7ZvE6GlI", name: "Eliana e Marcelo", city: "Franqueados Ensina Mais", title: "Depoimento de franqueados" },
-  { videoId: "NyV7ZvE6GlI", name: "Placeholder 2", city: "A definir" },
-  { videoId: "NyV7ZvE6GlI", name: "Placeholder 3", city: "A definir" },
-  { videoId: "NyV7ZvE6GlI", name: "Placeholder 4", city: "A definir" },
-  { videoId: "NyV7ZvE6GlI", name: "Placeholder 5", city: "A definir" },
-  { videoId: "NyV7ZvE6GlI", name: "Placeholder 6", city: "A definir" },
+  { videoId: "BW3QoWHZWFw", name: "Mães da Ensina Mais", city: "", title: "Depoimentos das nossas mães" },
+  { videoId: "adLb1sREeDM", name: "Ana Paula", city: "", title: "Ana Paula" },
+  { videoId: "WU9gVWwi0P4", name: "Margarete", city: "", title: "Margarete" },
+  { videoId: "PEhEp407vsQ", name: "Eliana", city: "", title: "Eliana, mãe do aluno Kauê" },
+  { videoId: "a3u0LA3TU9E", name: "Gabriele", city: "", title: "Gabriele, mãe do aluno Lucas" },
 ];
 
 export const NAV_LINKS: NavLink[] = [
