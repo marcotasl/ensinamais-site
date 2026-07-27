@@ -6,6 +6,7 @@ import {
   Rocket,
   Sparkles,
 } from "lucide-react";
+import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import Placeholder from "@/components/ui/Placeholder";
@@ -18,7 +19,13 @@ interface InstitutionalStubProps {
   title: string;
   lead: string;
   validation?: { message: string; title?: string };
-  blocks: { title: string; desc: string }[];
+  blocks: {
+    title: string;
+    desc: string;
+    image?: string;
+    imageAlt?: string;
+    imagePosition?: string;
+  }[];
   /** palavra-chave do título destacada com marcador; default = últimas 2 palavras */
   highlight?: string;
   /** cor do marcador sobre o título */
@@ -101,7 +108,20 @@ export default function InstitutionalStub({
                   <article
                     className={`group relative h-full bg-white rounded-3xl p-6 sm:p-7 shadow-[0_18px_42px_-22px_rgba(26,39,68,0.24)] ${style.tilt} tilt-hover-straighten`}
                   >
-                    <Placeholder className="w-full aspect-[16/10] rounded-2xl mb-6" />
+                    {block.image ? (
+                      <div className="relative w-full aspect-[16/10] rounded-2xl mb-6 overflow-hidden">
+                        <Image
+                          src={block.image}
+                          alt={block.imageAlt ?? ""}
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                          className="object-cover"
+                          style={{ objectPosition: block.imagePosition ?? "center" }}
+                        />
+                      </div>
+                    ) : (
+                      <Placeholder className="w-full aspect-[16/10] rounded-2xl mb-6" />
+                    )}
                     <span className={`sticker-icon ${style.iconBg} text-white -mt-12 mb-5 relative`}>
                       <Icon size={26} strokeWidth={1.8} />
                     </span>
