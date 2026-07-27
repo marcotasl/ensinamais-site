@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   ArrowRight,
   GraduationCap,
@@ -12,7 +13,6 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
-import Placeholder from "@/components/ui/Placeholder";
 import { SCHOOL_LOCATOR_URL } from "@/lib/navigation";
 
 export const metadata: Metadata = {
@@ -73,13 +73,6 @@ const VALORES: { Icon: LucideIcon; title: string; desc: string; bg: string; icon
   },
 ];
 
-const TIME = [
-  { name: "Liderança Ensina Mais", role: "Direção da rede" },
-  { name: "Equipe Pedagógica", role: "Currículo, formação e qualidade" },
-  { name: "Time de Suporte", role: "Acompanhamento das unidades" },
-  { name: "Marketing e Comunicação", role: "Marca, conteúdo e relacionamento" },
-];
-
 export default function ConhecaPage() {
   return (
     <main className="min-h-screen bg-[#fafafa]">
@@ -110,7 +103,16 @@ export default function ConhecaPage() {
           <FadeIn delay={0.12}>
             <div className="relative">
               <div className="absolute inset-x-8 inset-y-12 bg-em-yellow rounded-3xl rotate-3" />
-              <Placeholder className="relative w-full aspect-[4/5] rounded-3xl" />
+              <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_24px_56px_-28px_rgba(26,39,68,0.45)]">
+                <Image
+                  src="/images/conheca/hero-educadora-aluna.webp"
+                  alt="Educadora e aluna da Ensina Mais em uma atividade de robótica"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                  className="object-cover object-[66%_center]"
+                />
+              </div>
               <span className="absolute -bottom-5 -left-3 sm:-left-6 bg-white rounded-full pl-2 pr-5 py-2 shadow-[0_18px_42px_-22px_rgba(26,39,68,0.3)] flex items-center gap-3">
                 <span className="sticker-icon bg-em-coral text-white">
                   <HeartHandshake size={18} strokeWidth={2} />
@@ -148,8 +150,14 @@ export default function ConhecaPage() {
             </div>
           </FadeIn>
           <FadeIn delay={0.12}>
-            <div className="relative">
-              <Placeholder label="Ambiente de estudo Ensina Mais" className="w-full aspect-[4/3] rounded-3xl" />
+            <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_24px_56px_-28px_rgba(26,39,68,0.35)]">
+              <Image
+                src="/images/conheca/ambiente-estudo.webp"
+                alt="Educadora acompanhando alunas durante uma atividade na Ensina Mais"
+                fill
+                sizes="(min-width: 1024px) 45vw, 100vw"
+                className="object-cover object-center"
+              />
             </div>
           </FadeIn>
         </div>
@@ -196,44 +204,6 @@ export default function ConhecaPage() {
         </div>
       </section>
 
-      {/* EQUIPE , grid 4 cards com foto retrato + nome + cargo */}
-      <section className="px-4 sm:px-6 py-16 sm:py-20 lg:py-24">
-        <div className="max-w-[1200px] mx-auto">
-          <FadeIn>
-            <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-8 lg:gap-12 items-start mb-10 lg:mb-12">
-              <div>
-                <p className="eyebrow text-em-coral-dark mb-3">Nossa equipe</p>
-                <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-black tracking-tight text-em-dark leading-[1.1]">
-                  Gente que faz a <span className="marker-coral">Ensina Mais acontecer</span>
-                </h2>
-              </div>
-              <p className="text-base sm:text-lg text-em-dark-soft/85 leading-relaxed lg:max-w-[560px] lg:ml-auto lg:pt-3">
-                Da liderança ao time pedagógico, do suporte às unidades à equipe de comunicação,
-                cada área trabalha pra que o aluno tenha a melhor experiência possível, da matrícula
-                até o último módulo.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-            {TIME.map((member, i) => (
-              <FadeIn key={member.name} delay={Math.min(i * 0.07, 0.28)}>
-                <article className="group">
-                  <div className="relative mb-4">
-                    <div className={`absolute inset-x-3 inset-y-4 ${["bg-em-coral", "bg-em-blue", "bg-em-green", "bg-em-orange"][i % 4]} rounded-3xl ${i % 2 === 0 ? "-rotate-2" : "rotate-2"}`} />
-                    <Placeholder className="relative w-full aspect-[3/4] rounded-3xl" />
-                  </div>
-                  <h3 className="text-base sm:text-lg font-black text-em-dark leading-tight">
-                    {member.name}
-                  </h3>
-                  <p className="text-sm text-em-dark-soft/70 mt-1 leading-snug">{member.role}</p>
-                </article>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CULTURA , mosaico de fotos (5 imagens em tamanhos variados) */}
       <section className="bg-em-blue-pale px-4 sm:px-6 py-16 sm:py-20 lg:py-24">
         <div className="max-w-[1200px] mx-auto">
@@ -254,11 +224,51 @@ export default function ConhecaPage() {
           {/* Mosaico assimétrico: 1 grande (col 6, row 2) + 4 pequenos */}
           <FadeIn delay={0.1}>
             <div className="grid grid-cols-2 lg:grid-cols-4 grid-rows-[200px_200px_200px] sm:grid-rows-[260px_260px_260px] gap-3 sm:gap-4">
-              <Placeholder className="col-span-2 row-span-2 rounded-3xl h-full" />
-              <Placeholder className="rounded-3xl h-full" />
-              <Placeholder className="rounded-3xl h-full" />
-              <Placeholder className="col-span-2 lg:col-span-1 rounded-3xl h-full" />
-              <Placeholder className="col-span-2 lg:col-span-3 rounded-3xl h-full" />
+              <div className="relative col-span-2 row-span-2 rounded-3xl h-full overflow-hidden">
+                <Image
+                  src="/images/conheca/cultura-encontro-rede.webp"
+                  alt="Encontro nacional da equipe Ensina Mais"
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="relative rounded-3xl h-full overflow-hidden">
+                <Image
+                  src="/images/conheca/cultura-formacao.webp"
+                  alt="Momento de formação da equipe Ensina Mais"
+                  fill
+                  sizes="(min-width: 1024px) 25vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="relative rounded-3xl h-full overflow-hidden">
+                <Image
+                  src="/images/conheca/cultura-mascotes.webp"
+                  alt="Equipe com os personagens Mônica e Cebolinha"
+                  fill
+                  sizes="(min-width: 1024px) 25vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="relative col-span-2 lg:col-span-1 rounded-3xl h-full overflow-hidden">
+                <Image
+                  src="/images/conheca/cultura-escola.webp"
+                  alt="Fachada de uma escola Ensina Mais Turma da Mônica"
+                  fill
+                  sizes="(min-width: 1024px) 25vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="relative col-span-2 lg:col-span-3 rounded-3xl h-full overflow-hidden">
+                <Image
+                  src="/images/conheca/cultura-alunos.webp"
+                  alt="Alunos da Ensina Mais com materiais da Turma da Mônica"
+                  fill
+                  sizes="(min-width: 1024px) 75vw, 100vw"
+                  className="object-cover object-center"
+                />
+              </div>
             </div>
           </FadeIn>
         </div>
