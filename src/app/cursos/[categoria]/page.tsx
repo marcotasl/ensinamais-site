@@ -158,7 +158,17 @@ export default async function CategoryPage({ params }: Props) {
             <div id="lead" className="bg-em-dark/90 backdrop-blur rounded-3xl p-6 sm:p-8 border border-white/20 shadow-[0_24px_56px_-28px_rgba(0,0,0,0.5)]">
               <h3 className="text-lg font-extrabold text-white mb-1">Agende uma aula grátis</h3>
               <p className="text-sm text-white/70 mb-5">Preencha e entraremos em contato em até 24h.</p>
-              <LeadCaptureForm layout="vertical" dark buttonText={`Quero aula de ${category.title}`} />
+              <LeadCaptureForm
+                layout="vertical"
+                dark
+                category={category.title}
+                courseOptions={courses.map((course) => ({
+                  value: course.slug,
+                  label: course.title,
+                }))}
+                campaign={`site-ensina-mais-${category.slug}`}
+                buttonText={`Quero aula de ${category.title}`}
+              />
             </div>
           </FadeIn>
         </div>

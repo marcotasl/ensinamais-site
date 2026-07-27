@@ -4,6 +4,7 @@ import FadeIn from "@/components/ui/FadeIn";
 import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 import { COURSES, getCourseBySlug, getCategoryBySlug, getCoursesByCategory, getCourseImage } from "@/lib/courses-data";
 import type { Metadata } from "next";
+import Link from "next/link";
 import CourseFAQ from "./CourseFAQ";
 import JsonLd from "@/components/seo/JsonLd";
 import { courseSchema, breadcrumbSchema } from "@/lib/seo";
@@ -60,8 +61,6 @@ const FALLBACK_THEME: BrandTheme = {
   accent: "text-em-green-dark",
   radial: "rgba(140,195,74,0.34)",
 };
-
-const CARD_TILTS = ["lg:tilt-l1", "lg:tilt-r1", "lg:tilt-l1"] as const;
 
 export function generateStaticParams() {
   return COURSES.map((c) => ({ categoria: c.categorySlug, curso: c.slug }));
@@ -120,9 +119,9 @@ export default async function CoursePage({ params }: Props) {
           {/* Breadcrumb */}
           <FadeIn>
             <div className="flex flex-wrap items-center gap-2 text-sm font-medium text-white/55 mb-6">
-              <a href="/cursos" className="hover:text-white transition-colors">Cursos</a>
+              <Link href="/cursos" className="hover:text-white transition-colors">Cursos</Link>
               <span aria-hidden>·</span>
-              <a href={`/cursos/${category.slug}`} className="hover:text-white transition-colors">{category.title}</a>
+              <Link href={`/cursos/${category.slug}`} className="hover:text-white transition-colors">{category.title}</Link>
               <span aria-hidden>·</span>
               <span className="text-white/85">{course.title}</span>
             </div>
@@ -156,7 +155,15 @@ export default async function CoursePage({ params }: Props) {
               <div id="lead" className="bg-em-dark/90 backdrop-blur rounded-3xl p-6 sm:p-8 border border-white/20 shadow-[0_24px_56px_-28px_rgba(0,0,0,0.5)]">
                 <h3 className="text-lg font-extrabold text-white mb-1">Agende uma aula grátis</h3>
                 <p className="text-sm text-white/70 mb-5">Preencha e entraremos em contato em até 24h.</p>
-                <LeadCaptureForm layout="vertical" dark buttonText={`Quero aula de ${course.title}`} />
+                <LeadCaptureForm
+                  layout="vertical"
+                  dark
+                  course={course.slug}
+                  courseLabel={course.title}
+                  category={category.title}
+                  campaign={`site-ensina-mais-${course.slug}`}
+                  buttonText={`Quero aula de ${course.title}`}
+                />
               </div>
             </FadeIn>
           </div>

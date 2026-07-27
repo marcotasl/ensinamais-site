@@ -1,6 +1,5 @@
-"use client";
-
 import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
+import { COURSES } from "@/lib/courses-data";
 
 export default function LeadForm() {
   return (
@@ -14,7 +13,13 @@ export default function LeadForm() {
             Conheça a unidade mais perto de você. Sem compromisso.
           </p>
         </div>
-        <LeadCaptureForm />
+        <LeadCaptureForm
+          courseOptions={COURSES.map((course) => ({
+            value: course.slug,
+            label: course.title,
+          }))}
+          campaign="site-ensina-mais-home"
+        />
       </div>
     </section>
   );

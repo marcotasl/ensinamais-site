@@ -1,8 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Search, User } from "lucide-react";
+import { Menu, X, ChevronDown, User } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { MAIN_NAV, COURSE_CATEGORIES } from "@/lib/navigation";
+
+function externalLinkProps(href: string) {
+  return /^https?:\/\//i.test(href)
+    ? { target: "_blank" as const, rel: "noopener noreferrer" }
+    : {};
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,9 +33,16 @@ export default function Navbar() {
     >
       <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-20">
         {/* Logo */}
-        <a href="/" className="flex items-center" aria-label="Ensina Mais">
-          <img src="/images/logo-ensina-mais.svg" alt="Ensina Mais" className="h-14 w-auto" />
-        </a>
+        <Link href="/" className="flex items-center" aria-label="Ensina Mais">
+          <Image
+            src="/images/logo-ensina-mais.svg"
+            alt="Ensina Mais"
+            width={156}
+            height={56}
+            priority
+            className="h-14 w-auto"
+          />
+        </Link>
 
         {/* Nav links */}
         <div className="hidden lg:flex items-center gap-1">
@@ -45,6 +60,7 @@ export default function Navbar() {
             >
               <a
                 href={item.href}
+                {...externalLinkProps(item.href)}
                 className={`flex items-center gap-1 text-sm font-semibold px-3 py-2 rounded-lg transition-colors ${isDark ? "text-em-dark-soft hover:text-em-dark hover:bg-em-green-pale" : "text-white/80 hover:text-white"}`}
               >
                 {item.label}
@@ -56,7 +72,7 @@ export default function Navbar() {
                 <div className="absolute top-full left-0 pt-2">
                   <div className="bg-white rounded-xl shadow-lg border border-wire-100 py-2 min-w-[200px]">
                     {item.children.map((c) => (
-                      <a key={c.label} href={c.href} className="block px-4 py-2 text-sm text-em-dark-soft hover:bg-em-green-pale hover:text-em-dark">{c.label}</a>
+                      <a key={c.label} href={c.href} {...externalLinkProps(c.href)} className="block px-4 py-2 text-sm text-em-dark-soft hover:bg-em-green-pale hover:text-em-dark">{c.label}</a>
                     ))}
                   </div>
                 </div>
@@ -88,6 +104,7 @@ export default function Navbar() {
               <div key={cat.title} className={`${cat.bgPale} rounded-2xl p-5`}>
                 <a
                   href={cat.href}
+                  {...externalLinkProps(cat.href)}
                   className={`block text-sm font-black uppercase tracking-widest mb-3 transition-opacity hover:opacity-70 ${cat.textBrand}`}
                 >
                   {cat.title}
@@ -96,6 +113,7 @@ export default function Navbar() {
                   <a
                     key={c.label}
                     href={c.href}
+                    {...externalLinkProps(c.href)}
                     className={`block text-sm text-em-dark-soft hover:text-em-dark px-2 py-1.5 rounded-md transition-colors ${cat.hoverBg}`}
                   >
                     {c.label}
@@ -112,7 +130,7 @@ export default function Navbar() {
         <div className="lg:hidden bg-white border-t border-wire-100 max-h-[80vh] overflow-y-auto">
           <div className="px-6 py-4 flex flex-col gap-1">
             {MAIN_NAV.map((item) => (
-              <a key={item.label} href={item.href} onClick={() => setMobileOpen(false)} className="text-sm font-semibold text-em-dark-soft py-3 border-b border-wire-100">{item.label}</a>
+              <a key={item.label} href={item.href} {...externalLinkProps(item.href)} onClick={() => setMobileOpen(false)} className="text-sm font-semibold text-em-dark-soft py-3 border-b border-wire-100">{item.label}</a>
             ))}
             <a href="#lead" onClick={() => setMobileOpen(false)} className="mt-4 text-center text-sm font-bold text-em-dark bg-em-yellow rounded-lg py-3 shadow-button">Agendar Aula Grátis</a>
           </div>
