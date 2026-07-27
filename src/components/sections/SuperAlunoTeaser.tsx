@@ -44,7 +44,7 @@ export default function SuperAlunoTeaser() {
                 </ul>
 
                 <a
-                  href="/super-aluno/"
+                  href="/super-aluno"
                   className="inline-flex items-center justify-center gap-2 text-sm sm:text-base font-black text-white bg-em-coral rounded-full px-7 py-3.5 hover:bg-em-coral-dark transition-colors shadow-button whitespace-nowrap"
                 >
                   Conhecer o Super Aluno

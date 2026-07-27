@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${post.title} | Blog Ensina Mais`,
     description: post.excerpt,
-    alternates: { canonical: `/blog/${slug}/` },
+    alternates: { canonical: `/blog/${slug}` },
   };
 }
 
@@ -210,7 +210,7 @@ export default async function BlogPostPage({ params }: Props) {
               <p className="text-base sm:text-lg text-em-dark-soft/80 mb-8 max-w-[480px] mx-auto leading-relaxed">
                 Quer saber mais sobre como a Ensina Mais pode ajudar seu filho? Agende uma aula experimental gratuita.
               </p>
-              <a href="/cursos" className="text-sm sm:text-base font-black text-em-dark bg-em-yellow rounded-full px-8 py-4 inline-flex items-center gap-2 hover:bg-white transition-colors shadow-button">
+              <a href="/cursos.html" className="text-sm sm:text-base font-black text-em-dark bg-em-yellow rounded-full px-8 py-4 inline-flex items-center gap-2 hover:bg-white transition-colors shadow-button">
                 Ver todos os cursos <ArrowRight size={16} strokeWidth={2.4} />
               </a>
             </div>

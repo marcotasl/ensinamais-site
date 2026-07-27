@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: "App dos Pais Ensina Mais: acompanhe seu filho em tempo real",
   description:
     "Baixe o App dos Pais da Ensina Mais Turma da Mônica e acompanhe agenda, financeiro, desempenho escolar e as conquistas do Super Aluno, tudo em um só lugar.",
-  alternates: { canonical: "/app-dos-pais/" },
+  alternates: { canonical: "/app-dos-pais" },
 };
 
 /* Selos de loja (artes oficiais) reaproveitados no hero e no CTA final. */
@@ -335,7 +335,7 @@ export default function AppDosPaisPage() {
 
                 <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
                   <a
-                    href="/super-aluno/"
+                    href="/super-aluno"
                     className="inline-flex items-center justify-center gap-2 text-sm font-black text-em-coral bg-white rounded-full px-6 py-3 hover:bg-em-yellow hover:text-em-dark transition-colors w-full sm:w-auto"
                   >
                     Conheça o programa Super Aluno

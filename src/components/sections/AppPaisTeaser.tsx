@@ -45,7 +45,7 @@ export default function AppPaisTeaser() {
 
                 <div className="flex flex-col items-start gap-4">
                   <a
-                    href="/app-dos-pais/"
+                    href="/app-dos-pais"
                     className="inline-flex items-center justify-center gap-2 text-sm sm:text-base font-black text-white bg-em-blue rounded-full px-7 py-3.5 hover:bg-em-blue-dark transition-colors shadow-button w-full sm:w-auto whitespace-nowrap"
                   >
                     Conhecer o App dos Pais

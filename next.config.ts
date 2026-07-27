@@ -1,10 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* WP legado canoniza com barra final; migração preserva URLs indexadas
-     (mesma convenção do MoveEdu). App Router não normaliza <Link> automaticamente,
-     mas o 308 redirect cobre navegação direta/legada. */
-  trailingSlash: true,
+  /* O Magento atual publica as URLs sem barra final. Manter essa convenção evita
+     um 308 em todas as páginas já indexadas durante a migração. */
+  trailingSlash: false,
   async rewrites() {
     return [
       // Compatibilidade com URLs legadas do Magento (.html), preservando SEO sem redirects.

@@ -7,7 +7,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CourseFAQ from "./CourseFAQ";
 import JsonLd from "@/components/seo/JsonLd";
-import { courseSchema, breadcrumbSchema } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  courseCategoryPath,
+  coursePath,
+  courseSchema,
+  COURSES_HUB_PATH,
+} from "@/lib/seo";
 
 interface Props {
   params: Promise<{ categoria: string; curso: string }>;
@@ -73,7 +79,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${course.title} | Ensina Mais – Turma da Mônica`,
     description: course.desc,
-    alternates: { canonical: `/cursos/${categoria}/${curso}/` },
+    alternates: { canonical: coursePath(categoria, curso) },
   };
 }
 
@@ -102,9 +108,9 @@ export default async function CoursePage({ params }: Props) {
           courseSchema(course, category),
           breadcrumbSchema([
             { name: "Início", url: "/" },
-            { name: "Cursos", url: "/cursos" },
-            { name: category.title, url: `/cursos/${category.slug}` },
-            { name: course.title, url: `/cursos/${category.slug}/${course.slug}` },
+            { name: "Cursos", url: COURSES_HUB_PATH },
+            { name: category.title, url: courseCategoryPath(category.slug) },
+            { name: course.title, url: coursePath(category.slug, course.slug) },
           ]),
         ]}
       />
@@ -119,9 +125,9 @@ export default async function CoursePage({ params }: Props) {
           {/* Breadcrumb */}
           <FadeIn>
             <div className="flex flex-wrap items-center gap-2 text-sm font-medium text-white/55 mb-6">
-              <Link href="/cursos" className="hover:text-white transition-colors">Cursos</Link>
+              <Link href={COURSES_HUB_PATH} className="hover:text-white transition-colors">Cursos</Link>
               <span aria-hidden>·</span>
-              <Link href={`/cursos/${category.slug}`} className="hover:text-white transition-colors">{category.title}</Link>
+              <Link href={courseCategoryPath(category.slug)} className="hover:text-white transition-colors">{category.title}</Link>
               <span aria-hidden>·</span>
               <span className="text-white/85">{course.title}</span>
             </div>
@@ -338,7 +344,7 @@ export default async function CoursePage({ params }: Props) {
                 return (
                   <FadeIn key={c.slug} delay={Math.min(i * 0.08, 0.24)}>
                     <a
-                      href={`/cursos/${category.slug}/${c.slug}`}
+                      href={coursePath(category.slug, c.slug)}
                       className={`group block rounded-3xl bg-white overflow-hidden shadow-[0_18px_42px_-22px_rgba(26,39,68,0.24)] card-tilt`}
                       data-tilt={i % 2 === 0 ? "left" : "right"}
                     >

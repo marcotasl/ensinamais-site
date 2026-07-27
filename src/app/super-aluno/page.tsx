@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: "Super Aluno Ensina Mais: gamificação que motiva a aprender",
   description:
     "Conheça o Super Aluno da Ensina Mais: o programa de gamificação que transforma conquistas escolares em pontos, cupons e prêmios reais.",
-  alternates: { canonical: "/super-aluno/" },
+  alternates: { canonical: "/super-aluno" },
 };
 
 /* Ordenadas por peso de conquistas: o número em destaque é o valor de venda da tabela. */
@@ -319,7 +319,7 @@ export default function SuperAlunoPage() {
             {/* CTA secundário para o App dos Pais, ocupando a última célula do grid */}
             <FadeIn delay={0.24}>
               <a
-                href="/app-dos-pais/"
+                href="/app-dos-pais"
                 className="group flex flex-col justify-center gap-3 bg-em-blue rounded-3xl p-6 sm:p-7 h-full text-white shadow-[0_18px_42px_-22px_rgba(2,136,209,0.6)] hover:bg-em-blue-dark transition-colors"
               >
                 <span className="text-lg sm:text-xl font-black leading-tight">
@@ -355,7 +355,7 @@ export default function SuperAlunoPage() {
                   aprender
                 </h2>
                 <a
-                  href="/fale-conosco/"
+                  href="/fale-conosco"
                   className="inline-flex items-center justify-center gap-2 text-base font-black text-white bg-em-coral rounded-full px-8 py-4 hover:bg-em-coral-dark transition-colors shadow-button"
                 >
                   Quero agendar a aula gratuita

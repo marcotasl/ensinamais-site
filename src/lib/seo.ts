@@ -1,8 +1,9 @@
 import type { Category, Course } from "@/lib/courses-data";
 import type { BlogPost } from "@/lib/blog-data";
 
-// Domínio de produção (apex, mesma convenção do MoveEdu); sobreponível por env.
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ensinamais.com.br";
+// O site atual canoniza em www; manter o host evita um redirect adicional na migração.
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ensinamais.com.br";
 
 export const SITE_NAME = "Ensina Mais";
 
@@ -19,11 +20,20 @@ export function abs(path: string): string {
   return new URL(path, SITE_URL).toString();
 }
 
-// Garante barra final em paths de PÁGINA (trailingSlash: true no next.config).
-// Só em rotas navegáveis, não usar em assets (ex: logo.svg).
-export function withTrailingSlash(path: string): string {
-  if (path === "/" || path === "") return "/";
-  return path.endsWith("/") ? path : `${path}/`;
+export const COURSES_HUB_PATH = "/cursos.html";
+
+export function courseCategoryPath(slug: string): string {
+  return `/cursos/${slug}.html`;
+}
+
+export function coursePath(categorySlug: string, courseSlug: string): string {
+  return `/cursos/${categorySlug}/${courseSlug}`;
+}
+
+// O site atual usa páginas sem barra final; a raiz é a única exceção.
+export function canonicalPagePath(path: string): string {
+  if (path === "" || path === "/") return "/";
+  return path.replace(/\/+$/, "");
 }
 
 // Sem @context: reaproveitado como sub-nó (provider/publisher) dentro de outros schemas.
@@ -91,7 +101,7 @@ export function breadcrumbSchema(items: { name: string; url: string }[]): Record
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
-      item: abs(withTrailingSlash(item.url)),
+      item: abs(canonicalPagePath(item.url)),
     })),
   };
 }
@@ -105,6 +115,6 @@ export function blogPostingSchema(post: BlogPost): Record<string, unknown> {
     datePublished: post.date,
     author: { "@type": "Organization", name: SITE_NAME },
     publisher: organizationNode(),
-    mainEntityOfPage: abs(withTrailingSlash(`/blog/${post.slug}`)),
+    mainEntityOfPage: abs(`/blog/${post.slug}`),
   };
 }

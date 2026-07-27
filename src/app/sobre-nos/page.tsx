@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   title: "Sobre Nós · Ensina Mais Turma da Mônica",
   description:
     "Cada criança aprende de um jeito. A Ensina Mais Turma da Mônica acompanha o seu filho de perto, com escuta, método e cuidado.",
-  alternates: { canonical: "/sobre-nos/" },
+  alternates: { canonical: "/sobre-nos" },
 };
 
 /* PARTE 3 , 5 itens "como ajudamos no dia a dia" em bento alternado */
@@ -155,7 +155,7 @@ export default function SobreNosPage() {
           </FadeIn>
           <FadeIn delay={0.12}>
             <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-              <Link href="/cursos" className="inline-flex items-center justify-center text-sm sm:text-base font-black text-em-dark bg-em-yellow rounded-full px-6 sm:px-7 py-3 sm:py-3.5 hover:bg-white transition-colors shadow-button">
+              <Link href="/cursos.html" className="inline-flex items-center justify-center text-sm sm:text-base font-black text-em-dark bg-em-yellow rounded-full px-6 sm:px-7 py-3 sm:py-3.5 hover:bg-white transition-colors shadow-button">
                 Conheça nossos cursos
               </Link>
               <Link href={SCHOOL_LOCATOR_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center text-sm sm:text-base font-bold text-white bg-white/10 backdrop-blur rounded-full px-6 sm:px-7 py-3 sm:py-3.5 hover:bg-white/20 transition-colors">

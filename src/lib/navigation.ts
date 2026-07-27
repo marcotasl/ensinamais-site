@@ -33,7 +33,7 @@ export const COURSE_CATEGORIES: CourseCategory[] = [
   {
     title: "Apoio Escolar",
     slug: "apoio-escolar",
-    href: "/cursos/apoio-escolar",
+    href: "/cursos/apoio-escolar.html",
     color: "#039BE5",
     bgPale: "bg-em-blue-pale",
     textBrand: "text-em-blue-dark",
@@ -49,7 +49,7 @@ export const COURSE_CATEGORIES: CourseCategory[] = [
   {
     title: "Robótica",
     slug: "robotica-ensina",
-    href: "/cursos/robotica-ensina",
+    href: "/cursos/robotica-ensina.html",
     color: "#7CB342",
     bgPale: "bg-em-green-pale",
     textBrand: "text-em-green-dark",
@@ -64,7 +64,7 @@ export const COURSE_CATEGORIES: CourseCategory[] = [
   {
     title: "Programação",
     slug: "programacao-ensina",
-    href: "/cursos/programacao-ensina",
+    href: "/cursos/programacao-ensina.html",
     color: "#FF9800",
     bgPale: "bg-em-orange-pale",
     textBrand: "text-em-orange-dark",
@@ -81,7 +81,7 @@ export const COURSE_CATEGORIES: CourseCategory[] = [
   {
     title: "Inglês",
     slug: "ingles-ensina",
-    href: "/cursos/ingles-ensina",
+    href: "/cursos/ingles-ensina.html",
     color: "#EF5350",
     bgPale: "bg-em-coral-pale",
     textBrand: "text-em-coral-dark",
@@ -96,7 +96,7 @@ export const COURSE_CATEGORIES: CourseCategory[] = [
 export const MAIN_NAV: NavDropdown[] = [
   {
     label: "Cursos",
-    href: "/cursos",
+    href: "/cursos.html",
   },
   {
     label: "Escolas",
@@ -109,8 +109,8 @@ export const MAIN_NAV: NavDropdown[] = [
       { label: "Conheça a Ensina Mais", href: "/conheca-a-ensinamais" },
       { label: "Nossa História", href: "/nossa-historia" },
       { label: "Metodologia", href: "/metodologia" },
-      { label: "App dos Pais", href: "/app-dos-pais/" },
-      { label: "Super Aluno", href: "/super-aluno/" },
+      { label: "App dos Pais", href: "/app-dos-pais" },
+      { label: "Super Aluno", href: "/super-aluno" },
     ],
   },
   {

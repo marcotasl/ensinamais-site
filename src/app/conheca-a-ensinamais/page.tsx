@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: "Conheça a Ensina Mais Turma da Mônica",
   description:
     "Por trás de cada criança que evolui na Ensina Mais existe um time que se importa. Conheça quem somos, nossos valores e a cultura que sustenta a rede.",
-  alternates: { canonical: "/conheca-a-ensinamais/" },
+  alternates: { canonical: "/conheca-a-ensinamais" },
 };
 
 const VALORES: { Icon: LucideIcon; title: string; desc: string; bg: string; iconBg: string; textTone: string }[] = [
@@ -327,13 +327,13 @@ export default function ConhecaPage() {
                     Família
                   </a>
                   <a
-                    href="/seja-um-franqueado"
+                    href="/seja-um-franqueado.html"
                     className="inline-flex items-center justify-center gap-2 text-sm font-bold text-white bg-white/10 backdrop-blur rounded-2xl px-5 py-4 hover:bg-white/20 transition-colors"
                   >
                     Quero ser franqueado
                   </a>
                   <a
-                    href="/carreiras"
+                    href="/carreiras.html"
                     className="inline-flex items-center justify-center gap-2 text-sm font-bold text-white bg-white/10 backdrop-blur rounded-2xl px-5 py-4 hover:bg-white/20 transition-colors"
                   >
                     Quero trabalhar aqui

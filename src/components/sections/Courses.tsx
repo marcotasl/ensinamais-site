@@ -17,7 +17,7 @@ interface Course {
 
 const COURSES: Course[] = [
   {
-    href: "/cursos/apoio-escolar",
+    href: "/cursos/apoio-escolar.html",
     title: "Apoio Escolar",
     age: "6 a 14 anos",
     desc: "Português e Matemática com plano feito para cada criança, com acompanhamento contínuo e evolução real.",
@@ -28,7 +28,7 @@ const COURSES: Course[] = [
     tilt: "lg:tilt-l1",
   },
   {
-    href: "/cursos/robotica-ensina",
+    href: "/cursos/robotica-ensina.html",
     title: "Robótica Educacional",
     age: "4 a 14 anos",
     desc: "Raciocínio lógico, criatividade e resolução de problemas na prática, habilidades que o futuro vai exigir.",
@@ -39,7 +39,7 @@ const COURSES: Course[] = [
     tilt: "lg:tilt-r1",
   },
   {
-    href: "/cursos/programacao-ensina",
+    href: "/cursos/programacao-ensina.html",
     title: "Programação",
     age: "8 a 14 anos",
     desc: "Aprende a criar e resolver. Games, apps e lógica que ensinam a pensar.",
@@ -50,7 +50,7 @@ const COURSES: Course[] = [
     tilt: "lg:tilt-l1",
   },
   {
-    href: "/cursos/ingles-ensina",
+    href: "/cursos/ingles-ensina.html",
     title: "Inglês",
     age: "6 a 14 anos",
     desc: "Fluência desde a infância com abordagem comunicativa.",

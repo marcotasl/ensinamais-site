@@ -19,11 +19,11 @@ const FOOTER_COLUMNS = [
     title: "Cursos",
     dot: "bg-em-coral",
     links: [
-      { label: "Apoio Escolar", href: "/cursos/apoio-escolar" },
-      { label: "Robótica Educacional", href: "/cursos/robotica-ensina" },
-      { label: "Programação", href: "/cursos/programacao-ensina" },
-      { label: "Inglês", href: "/cursos/ingles-ensina" },
-      { label: "Todos os cursos", href: "/cursos" },
+      { label: "Apoio Escolar", href: "/cursos/apoio-escolar.html" },
+      { label: "Robótica Educacional", href: "/cursos/robotica-ensina.html" },
+      { label: "Programação", href: "/cursos/programacao-ensina.html" },
+      { label: "Inglês", href: "/cursos/ingles-ensina.html" },
+      { label: "Todos os cursos", href: "/cursos.html" },
     ],
   },
   {
@@ -34,8 +34,8 @@ const FOOTER_COLUMNS = [
       { label: "Conheça a Ensina Mais", href: "/conheca-a-ensinamais" },
       { label: "Nossa História", href: "/nossa-historia" },
       { label: "Metodologia", href: "/metodologia" },
-      { label: "App dos Pais", href: "/app-dos-pais/" },
-      { label: "Super Aluno", href: "/super-aluno/" },
+      { label: "App dos Pais", href: "/app-dos-pais" },
+      { label: "Super Aluno", href: "/super-aluno" },
       { label: "Benefícios", href: "/beneficios" },
       { label: "Blog", href: "/blog" },
     ],
@@ -44,8 +44,8 @@ const FOOTER_COLUMNS = [
     title: "Franquia",
     dot: "bg-em-blue",
     links: [
-      { label: "Seja um Franqueado", href: "/seja-um-franqueado" },
-      { label: "Depoimentos", href: "/depoimentos" },
+      { label: "Seja um Franqueado", href: "/seja-um-franqueado.html" },
+      { label: "Depoimentos", href: "/#depoimentos" },
     ],
   },
   {
@@ -54,7 +54,7 @@ const FOOTER_COLUMNS = [
     links: [
       { label: "Encontre uma Escola", href: SCHOOL_LOCATOR_URL },
       { label: "Fale Conosco", href: "/fale-conosco" },
-      { label: "Trabalhe Conosco", href: "/carreiras" },
+      { label: "Trabalhe Conosco", href: "/carreiras.html" },
       { label: "Portal do Aluno", href: "#" },
     ],
   },

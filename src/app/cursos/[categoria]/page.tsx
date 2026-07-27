@@ -5,7 +5,12 @@ import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 import { CATEGORIES, getCategoryBySlug, getCoursesByCategory, getCourseImage } from "@/lib/courses-data";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbSchema } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  courseCategoryPath,
+  coursePath,
+  COURSES_HUB_PATH,
+} from "@/lib/seo";
 
 interface Props {
   params: Promise<{ categoria: string }>;
@@ -95,7 +100,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${category.title} | Ensina Mais – Turma da Mônica`,
     description: category.desc,
-    alternates: { canonical: `/cursos/${categoria}/` },
+    alternates: { canonical: courseCategoryPath(categoria) },
   };
 }
 
@@ -114,8 +119,8 @@ export default async function CategoryPage({ params }: Props) {
       <JsonLd
         data={breadcrumbSchema([
           { name: "Início", url: "/" },
-          { name: "Cursos", url: "/cursos" },
-          { name: category.title, url: `/cursos/${category.slug}` },
+          { name: "Cursos", url: COURSES_HUB_PATH },
+          { name: category.title, url: courseCategoryPath(category.slug) },
         ])}
       />
       {/* Hero , gradient + pattern da cor da frente (em vez do navy genérico) */}
@@ -192,7 +197,7 @@ export default async function CategoryPage({ params }: Props) {
               return (
                 <FadeIn key={course.slug} delay={Math.min(i * 0.08, 0.24)}>
                   <a
-                    href={`/cursos/${category.slug}/${course.slug}`}
+                    href={coursePath(category.slug, course.slug)}
                     className={`group block h-full rounded-3xl bg-white overflow-hidden shadow-[0_18px_42px_-22px_rgba(26,39,68,0.24)] card-lift ${CARD_TILTS[i % CARD_TILTS.length]} tilt-hover-straighten`}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -302,7 +307,7 @@ export default async function CategoryPage({ params }: Props) {
               return (
                 <FadeIn key={c.slug} delay={Math.min(i * 0.08, 0.24)}>
                   <a
-                    href={`/cursos/${c.slug}`}
+                    href={courseCategoryPath(c.slug)}
                     className={`group block rounded-3xl bg-white overflow-hidden shadow-[0_18px_42px_-22px_rgba(26,39,68,0.24)] card-tilt`}
                     data-tilt={i % 2 === 0 ? "left" : "right"}
                   >

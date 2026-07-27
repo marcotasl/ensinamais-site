@@ -37,11 +37,11 @@ export const LEARNING_PATHS: LearningPath[] = [
     color: "bg-em-blue",
     light: "bg-em-blue-pale",
     ctaLabel: "Ver cursos de apoio",
-    ctaHref: "/cursos/apoio-escolar",
+    ctaHref: "/cursos/apoio-escolar.html",
     items: [
       { label: "Português", href: "/cursos/apoio-escolar/portugues-apoio-escolar-2-horas-semanais-presencial" },
       { label: "Matemática", href: "/cursos/apoio-escolar/matematica-apoio-escolar-2-horas-presencial" },
-      { label: "Inglês", href: "/cursos/ingles-ensina" },
+      { label: "Inglês", href: "/cursos/ingles-ensina.html" },
     ],
   },
   {
@@ -53,10 +53,10 @@ export const LEARNING_PATHS: LearningPath[] = [
     color: "bg-em-orange",
     light: "bg-[#FFF7E6]",
     ctaLabel: "Ver cursos de tecnologia",
-    ctaHref: "/cursos/programacao-ensina",
+    ctaHref: "/cursos/programacao-ensina.html",
     items: [
-      { label: "Programação", href: "/cursos/programacao-ensina" },
-      { label: "Robótica", href: "/cursos/robotica-ensina" },
+      { label: "Programação", href: "/cursos/programacao-ensina.html" },
+      { label: "Robótica", href: "/cursos/robotica-ensina.html" },
       { label: "Informática" },
       { label: "Youtuber", href: "/cursos/programacao-ensina/curso-youtuber" },
       { label: "Internet e redes sociais" },
