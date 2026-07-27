@@ -3,8 +3,7 @@ import { z } from "zod";
 
 const RD_ENDPOINT = "https://api.rd.services/platform/conversions";
 const OFFICIAL_ENSINA_RD_TOKEN = "4a8c862bc4866c09231511203a4e1549";
-const DEFAULT_CONVERSION_IDENTIFIER =
-  "lp-ensina-mais-544ce3fc5e40111a045a";
+const DEFAULT_CONVERSION_IDENTIFIER = "curso-ensina-mais";
 
 const leadSchema = z.object({
   nome: z.string().trim().min(2).max(120),
