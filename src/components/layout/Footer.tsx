@@ -12,7 +12,7 @@ import {
   GraduationCap,
 } from "lucide-react";
 import CloudDivider from "@/components/ui/CloudDivider";
-import { SCHOOL_LOCATOR_URL } from "@/lib/navigation";
+import { SCHOOL_LOCATOR_URL, STUDENT_PORTAL_URL } from "@/lib/navigation";
 
 const FOOTER_COLUMNS = [
   {
@@ -54,8 +54,7 @@ const FOOTER_COLUMNS = [
     links: [
       { label: "Encontre uma Escola", href: SCHOOL_LOCATOR_URL },
       { label: "Fale Conosco", href: "/fale-conosco" },
-      { label: "Trabalhe Conosco", href: "/carreiras.html" },
-      { label: "Portal do Aluno", href: "#" },
+      { label: "Portal do Aluno", href: STUDENT_PORTAL_URL },
     ],
   },
 ];

@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { Menu, X, ChevronDown, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { MAIN_NAV, COURSE_CATEGORIES } from "@/lib/navigation";
+import { MAIN_NAV, COURSE_CATEGORIES, STUDENT_PORTAL_URL } from "@/lib/navigation";
 import { useAdaptiveNavbarTone } from "@/hooks/useAdaptiveNavbarTone";
 
 function externalLinkProps(href: string) {
@@ -96,7 +96,12 @@ export default function Navbar() {
 
         {/* Right */}
         <div className="flex items-center gap-2">
-          <a href="#" className={`hidden lg:flex items-center gap-1.5 text-sm font-semibold px-3 py-2 rounded-lg transition-colors ${useLightText ? "text-white/75 hover:text-white" : "text-em-dark-soft hover:text-em-dark"}`}>
+          <a
+            href={STUDENT_PORTAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`hidden lg:flex items-center gap-1.5 text-sm font-semibold px-3 py-2 rounded-lg transition-colors ${useLightText ? "text-white/75 hover:text-white" : "text-em-dark-soft hover:text-em-dark"}`}
+          >
             <User size={15} /> Portal
           </a>
           <a href="#lead" className="text-sm font-bold text-em-dark bg-em-yellow rounded-lg px-5 py-2.5 hover:bg-em-yellow-dark transition-colors shadow-button">
@@ -145,6 +150,15 @@ export default function Navbar() {
             {MAIN_NAV.map((item) => (
               <a key={item.label} href={item.href} {...externalLinkProps(item.href)} onClick={() => setMobileOpen(false)} className="text-sm font-semibold text-em-dark-soft py-3 border-b border-wire-100">{item.label}</a>
             ))}
+            <a
+              href={STUDENT_PORTAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center gap-2 text-sm font-semibold text-em-dark-soft py-3 border-b border-wire-100"
+            >
+              <User size={15} /> Portal do Aluno
+            </a>
             <a href="#lead" onClick={() => setMobileOpen(false)} className="mt-4 text-center text-sm font-bold text-em-dark bg-em-yellow rounded-lg py-3 shadow-button">Agendar Aula Grátis</a>
           </div>
         </div>

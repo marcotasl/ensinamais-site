@@ -77,7 +77,7 @@ export default function BlogHubClient() {
 
       {/* Featured post */}
       {!search && activeCategory === "Todos" && (
-        <section className="px-4 sm:px-6 pt-4 sm:pt-6 pb-14 sm:pb-16">
+        <section id="artigos" className="px-4 sm:px-6 pt-4 sm:pt-6 pb-14 sm:pb-16">
           <FadeIn>
             <a
               href={`/blog/${featured.slug}`}

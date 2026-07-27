@@ -21,7 +21,6 @@ const STATIC_ROUTES: StaticRoute[] = [
   { path: "/beneficios", priority: 0.6, changeFrequency: "monthly" },
   { path: "/blog", priority: 0.6, changeFrequency: "weekly" },
   { path: "/app-dos-pais", priority: 0.6, changeFrequency: "monthly" },
-  { path: "/carreiras.html", priority: 0.6, changeFrequency: "monthly" },
   { path: "/conheca-a-ensinamais", priority: 0.6, changeFrequency: "monthly" },
   { path: "/fale-conosco", priority: 0.6, changeFrequency: "monthly" },
   { path: "/metodologia", priority: 0.6, changeFrequency: "monthly" },

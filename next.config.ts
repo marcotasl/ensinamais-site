@@ -12,7 +12,6 @@ const nextConfig: NextConfig = {
       { source: "/cursos/:categoria.html", destination: "/cursos/:categoria" },
       { source: "/fale-conosco.html", destination: "/fale-conosco" },
       { source: "/seja-um-franqueado.html", destination: "/seja-um-franqueado" },
-      { source: "/carreiras.html", destination: "/carreiras" },
       { source: "/sobre-nos/conheca-a-ensina-mais/metodologia.html", destination: "/metodologia" },
       { source: "/sobre-nos/conheca-a-ensina-mais/beneficios.html", destination: "/beneficios" },
     ];

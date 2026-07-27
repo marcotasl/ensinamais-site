@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import {
-  ArrowRight,
   GraduationCap,
   HandHeart,
   Headphones,
@@ -13,6 +12,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
+import InstitutionalHeroCarousel from "@/components/sections/InstitutionalHeroCarousel";
 import { SCHOOL_LOCATOR_URL } from "@/lib/navigation";
 
 export const metadata: Metadata = {
@@ -103,16 +103,7 @@ export default function ConhecaPage() {
           <FadeIn delay={0.12}>
             <div className="relative">
               <div className="absolute inset-x-8 inset-y-12 bg-em-yellow rounded-3xl rotate-3" />
-              <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_24px_56px_-28px_rgba(26,39,68,0.45)]">
-                <Image
-                  src="/images/conheca/hero-educadora-aluna.webp"
-                  alt="Educadora e aluna da Ensina Mais em uma atividade de robótica"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 45vw, 100vw"
-                  className="object-cover object-[66%_center]"
-                />
-              </div>
+              <InstitutionalHeroCarousel />
               <span className="absolute -bottom-5 -left-3 sm:-left-6 bg-white rounded-full pl-2 pr-5 py-2 shadow-[0_18px_42px_-22px_rgba(26,39,68,0.3)] flex items-center gap-3">
                 <span className="sticker-icon bg-em-coral text-white">
                   <HeartHandshake size={18} strokeWidth={2} />
@@ -205,7 +196,7 @@ export default function ConhecaPage() {
       </section>
 
       {/* CULTURA , mosaico de fotos (5 imagens em tamanhos variados) */}
-      <section className="bg-em-blue-pale px-4 sm:px-6 py-16 sm:py-20 lg:py-24">
+      <section id="cultura" className="bg-em-blue-pale px-4 sm:px-6 py-16 sm:py-20 lg:py-24">
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <div className="max-w-[820px] mb-10 lg:mb-12 text-center mx-auto">
@@ -223,7 +214,7 @@ export default function ConhecaPage() {
 
           {/* Mosaico assimétrico: 1 grande (col 6, row 2) + 4 pequenos */}
           <FadeIn delay={0.1}>
-            <div className="grid grid-cols-2 lg:grid-cols-4 grid-rows-[200px_200px_200px] sm:grid-rows-[260px_260px_260px] gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 grid-rows-[200px_200px] sm:grid-rows-[260px_260px] gap-3 sm:gap-4">
               <div className="relative col-span-2 row-span-2 rounded-3xl h-full overflow-hidden">
                 <Image
                   src="/images/conheca/cultura-encontro-rede.webp"
@@ -260,13 +251,13 @@ export default function ConhecaPage() {
                   className="object-cover"
                 />
               </div>
-              <div className="relative col-span-2 lg:col-span-3 rounded-3xl h-full overflow-hidden">
+              <div className="relative col-span-2 lg:col-span-1 rounded-3xl h-full overflow-hidden">
                 <Image
                   src="/images/conheca/cultura-alunos.webp"
                   alt="Alunos da Ensina Mais com materiais da Turma da Mônica"
                   fill
-                  sizes="(min-width: 1024px) 75vw, 100vw"
-                  className="object-cover object-center"
+                  sizes="(min-width: 1024px) 25vw, 100vw"
+                  className="object-cover object-top"
                 />
               </div>
             </div>
@@ -325,10 +316,10 @@ export default function ConhecaPage() {
                   <span className="marker-yellow">da Ensina Mais.</span>
                 </h2>
                 <p className="text-base sm:text-lg text-white/85 leading-relaxed mb-8">
-                  Como família, como franqueado ou como parte do nosso time. Escolha o caminho que
+                  Como família ou como franqueado. Escolha o caminho que
                   faz sentido pra você.
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <a
                     href="#lead"
                     className="inline-flex items-center justify-center gap-2 text-sm font-black text-em-dark bg-em-yellow rounded-2xl px-5 py-4 hover:bg-white transition-colors shadow-button"
@@ -341,13 +332,6 @@ export default function ConhecaPage() {
                     className="inline-flex items-center justify-center gap-2 text-sm font-bold text-white bg-white/10 backdrop-blur rounded-2xl px-5 py-4 hover:bg-white/20 transition-colors"
                   >
                     Quero ser franqueado
-                  </a>
-                  <a
-                    href="/carreiras.html"
-                    className="inline-flex items-center justify-center gap-2 text-sm font-bold text-white bg-white/10 backdrop-blur rounded-2xl px-5 py-4 hover:bg-white/20 transition-colors"
-                  >
-                    Quero trabalhar aqui
-                    <ArrowRight size={14} strokeWidth={2.4} />
                   </a>
                 </div>
               </div>

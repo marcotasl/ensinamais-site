@@ -29,7 +29,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Equipe Ensina Mais",
     date: "2026-03-28",
     readTime: "6 min",
-    cover: "/images/blog/cover-1.jpg",
+    cover: "/images/blog/apoio-escolar.webp",
     content: "Conteúdo do post aqui...",
   },
   {
@@ -40,7 +40,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Equipe Ensina Mais",
     date: "2026-03-22",
     readTime: "5 min",
-    cover: "/images/blog/cover-2.jpg",
+    cover: "/images/blog/robotica.webp",
     content: "Conteúdo do post aqui...",
   },
   {
@@ -51,7 +51,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Equipe Ensina Mais",
     date: "2026-03-15",
     readTime: "8 min",
-    cover: "/images/blog/cover-3.jpg",
+    cover: "/images/blog/franquia.webp",
     content: "Conteúdo do post aqui...",
   },
   {
@@ -62,7 +62,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Equipe Ensina Mais",
     date: "2026-03-10",
     readTime: "7 min",
-    cover: "/images/blog/cover-4.jpg",
+    cover: "/images/courses/apoio-escolar.jpg",
     content: "Conteúdo do post aqui...",
   },
   {
@@ -73,7 +73,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Equipe Ensina Mais",
     date: "2026-03-05",
     readTime: "6 min",
-    cover: "/images/blog/cover-5.jpg",
+    cover: "/images/courses/programacao.jpg",
     content: "Conteúdo do post aqui...",
   },
   {
@@ -84,7 +84,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Equipe Ensina Mais",
     date: "2026-02-28",
     readTime: "5 min",
-    cover: "/images/blog/cover-6.jpg",
+    cover: "/images/courses/ingles.jpg",
     content: "Conteúdo do post aqui...",
   },
   {
@@ -95,7 +95,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Equipe Ensina Mais",
     date: "2026-02-20",
     readTime: "6 min",
-    cover: "/images/blog/cover-7.jpg",
+    cover: "/images/about/sala-aula-panoramica.jpg",
     content: "Conteúdo do post aqui...",
   },
   {
@@ -106,7 +106,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Equipe Ensina Mais",
     date: "2026-02-14",
     readTime: "7 min",
-    cover: "/images/blog/cover-8.jpg",
+    cover: "/images/conheca/hero-alunas-personagens.webp",
     content: "Conteúdo do post aqui...",
   },
   {
@@ -117,7 +117,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Equipe Ensina Mais",
     date: "2026-02-08",
     readTime: "6 min",
-    cover: "/images/blog/cover-9.jpg",
+    cover: "/images/courses/bento-programacao.webp",
     content: "Conteúdo do post aqui...",
   },
 ];

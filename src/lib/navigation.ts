@@ -28,6 +28,7 @@ export interface NavDropdown {
 }
 
 export const SCHOOL_LOCATOR_URL = "https://escolas.ensinamais.com.br/";
+export const STUDENT_PORTAL_URL = "https://portaldoaluno.ensinamais.com.br/login/";
 
 export const COURSE_CATEGORIES: CourseCategory[] = [
   {
@@ -124,5 +125,5 @@ export const MAIN_NAV: NavDropdown[] = [
 ];
 
 export const PORTAL_LINKS = [
-  { label: "Portal do Aluno", href: "#" },
+  { label: "Portal do Aluno", href: STUDENT_PORTAL_URL },
 ];

@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 import { ArrowLeft, ArrowRight, Calendar, Clock, MessageCircle, Share2 } from "lucide-react";
 import type { ComponentType } from "react";
-import Placeholder from "@/components/ui/Placeholder";
 import FadeIn from "@/components/ui/FadeIn";
 import { BLOG_POSTS, getPostBySlug, formatDate } from "@/lib/blog-data";
 import type { Metadata } from "next";
@@ -91,9 +92,9 @@ export default async function BlogPostPage({ params }: Props) {
         />
         <div className="relative max-w-[800px] mx-auto">
           <FadeIn>
-            <a href="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-white/70 hover:text-em-yellow mb-8 transition-colors">
+            <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-white/70 hover:text-em-yellow mb-8 transition-colors">
               <ArrowLeft size={15} strokeWidth={2.2} /> Voltar para o blog
-            </a>
+            </Link>
 
             <p className="eyebrow text-em-yellow mb-4">{post.category}</p>
 
@@ -124,8 +125,15 @@ export default async function BlogPostPage({ params }: Props) {
       {/* Cover image */}
       <section className="px-4 sm:px-6 -mt-24 relative z-10 mb-12">
         <FadeIn>
-          <div className="max-w-[960px] mx-auto">
-            <Placeholder className="w-full aspect-[16/9] rounded-3xl shadow-[0_24px_56px_-28px_rgba(26,39,68,0.45)]" label={post.title} />
+          <div className="relative max-w-[960px] mx-auto aspect-[16/9] rounded-3xl overflow-hidden shadow-[0_24px_56px_-28px_rgba(26,39,68,0.45)]">
+            <Image
+              src={post.cover}
+              alt={post.title}
+              fill
+              priority
+              sizes="(min-width: 1024px) 960px, 100vw"
+              className="object-cover"
+            />
           </div>
         </FadeIn>
       </section>
@@ -136,7 +144,8 @@ export default async function BlogPostPage({ params }: Props) {
           <article className="max-w-[720px] mx-auto">
             <div className="prose-article">
               <p className="text-lg text-em-dark-soft leading-relaxed mb-6">
-                Este é um post do blog da Ensina Mais. O conteúdo real virá do WordPress headless via API, permitindo que a equipe editorial publique artigos sem precisar mexer no código.
+                Este é um post do blog da Ensina Mais. O conteúdo editorial será sincronizado com o
+                blog mantido no Magento.
               </p>
               <p className="text-base text-em-dark-soft/85 leading-relaxed mb-6">
                 {post.excerpt}
@@ -170,7 +179,7 @@ export default async function BlogPostPage({ params }: Props) {
 
               <h2 className="text-2xl font-black text-em-dark mt-10 mb-4">Considerações finais</h2>
               <p className="text-base text-em-dark-soft/85 leading-relaxed mb-6">
-                O conteúdo editorial completo será carregado do WordPress. Este é apenas um wireframe demonstrando a estrutura visual do post individual dentro do nosso design system.
+                Em breve, o conteúdo editorial completo deste artigo estará disponível nesta página.
               </p>
             </div>
 
@@ -233,7 +242,15 @@ export default async function BlogPostPage({ params }: Props) {
                   className="card-lift group bg-white rounded-3xl overflow-hidden shadow-[0_14px_36px_-22px_rgba(26,39,68,0.24)] hover:shadow-[0_24px_52px_-26px_rgba(26,39,68,0.36)] transition-all block h-full"
                 >
                   <div className="relative">
-                    <Placeholder className="w-full aspect-[16/10] rounded-none" label={p.title} />
+                    <div className="relative w-full aspect-[16/10]">
+                      <Image
+                        src={p.cover}
+                        alt=""
+                        fill
+                        sizes="(min-width: 640px) 33vw, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
                     <span className={`absolute top-3 left-3 ${RELATED_ACCENTS[i % RELATED_ACCENTS.length]} text-white text-[11px] font-bold uppercase tracking-widest rounded-full px-3 py-1`}>
                       {p.category}
                     </span>
