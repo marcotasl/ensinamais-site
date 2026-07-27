@@ -5,6 +5,7 @@ import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ArrowRight, Check, LoaderCircle } from "lucide-react";
+import { formatBrazilianPhone } from "@/lib/input-masks";
 
 const schema = z.object({
   nome: z.string().min(2, "Informe seu nome"),
@@ -294,6 +295,7 @@ export default function LeadCaptureForm({
       : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
   const stateRegistration = register("estado");
   const cityRegistration = register("cidadeId");
+  const phoneRegistration = register("celular");
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -347,14 +349,19 @@ export default function LeadCaptureForm({
           <input
             id="lead-celular"
             type="tel"
-            placeholder="Celular"
+            placeholder="(00) 00000-0000"
             autoComplete="tel"
             inputMode="tel"
+            maxLength={15}
             aria-invalid={Boolean(errors.celular)}
             aria-describedby={
               errors.celular ? "lead-celular-error" : undefined
             }
-            {...register("celular")}
+            {...phoneRegistration}
+            onChange={(event) => {
+              event.target.value = formatBrazilianPhone(event.target.value);
+              void phoneRegistration.onChange(event);
+            }}
             className={inputClass}
           />
           {errors.celular && (

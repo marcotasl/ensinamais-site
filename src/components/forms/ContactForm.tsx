@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Send, Check } from "lucide-react";
 import { useState } from "react";
+import { formatBrazilianPhone } from "@/lib/input-masks";
 
 const schema = z.object({
   nome: z.string().min(2, "Informe seu nome"),
@@ -52,6 +53,7 @@ export default function ContactForm() {
   const inputClass = "w-full text-base font-medium text-em-dark placeholder:text-em-dark-soft/70 caret-em-dark px-4 py-3.5 rounded-xl border border-em-dark-soft/55 bg-white outline-none transition-all duration-200 focus:border-em-blue-dark focus:ring-2 focus:ring-em-blue-light/60";
   const labelClass = "block text-xs font-bold text-em-dark-soft/80 uppercase tracking-widest mb-1.5";
   const errorClass = "text-xs font-semibold text-em-coral-dark mt-1";
+  const phoneRegistration = register("celular");
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
@@ -71,7 +73,22 @@ export default function ContactForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="contact-celular" className={labelClass}>Celular</label>
-          <input id="contact-celular" type="tel" placeholder="(00) 00000-0000" aria-invalid={Boolean(errors.celular)} aria-describedby={errors.celular ? "contact-celular-error" : undefined} {...register("celular")} className={inputClass} />
+          <input
+            id="contact-celular"
+            type="tel"
+            placeholder="(00) 00000-0000"
+            autoComplete="tel"
+            inputMode="tel"
+            maxLength={15}
+            aria-invalid={Boolean(errors.celular)}
+            aria-describedby={errors.celular ? "contact-celular-error" : undefined}
+            {...phoneRegistration}
+            onChange={(event) => {
+              event.target.value = formatBrazilianPhone(event.target.value);
+              void phoneRegistration.onChange(event);
+            }}
+            className={inputClass}
+          />
           {errors.celular && <p id="contact-celular-error" role="alert" className={errorClass}>{errors.celular.message}</p>}
         </div>
         <div>
