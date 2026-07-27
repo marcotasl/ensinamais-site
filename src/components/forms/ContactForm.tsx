@@ -56,7 +56,11 @@ export default function ContactForm() {
   const phoneRegistration = register("celular");
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+    <form
+      data-primary-form="contact"
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-5"
+    >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="contact-nome" className={labelClass}>Nome completo</label>

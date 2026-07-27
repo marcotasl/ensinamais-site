@@ -6,6 +6,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { MAIN_NAV, COURSE_CATEGORIES, STUDENT_PORTAL_URL } from "@/lib/navigation";
 import { useAdaptiveNavbarTone } from "@/hooks/useAdaptiveNavbarTone";
+import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
+
+const COURSE_OPTIONS = COURSE_CATEGORIES.flatMap((category) =>
+  category.courses.map((course) => ({
+    value: course.href.split("/").filter(Boolean).at(-1) ?? course.href,
+    label: course.label,
+  })),
+);
 
 function externalLinkProps(href: string) {
   return /^https?:\/\//i.test(href)
@@ -19,6 +27,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [scheduleModalOpen, setScheduleModalOpen] = useState(false);
   const backgroundTone = useAdaptiveNavbarTone(navRef);
 
   useEffect(() => {
@@ -26,6 +35,38 @@ export default function Navbar() {
     window.addEventListener("scroll", h, { passive: true });
     return () => window.removeEventListener("scroll", h);
   }, []);
+
+  useEffect(() => {
+    if (!scheduleModalOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setScheduleModalOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [scheduleModalOpen]);
+
+  const handleScheduleClick = () => {
+    const formTarget =
+      document.getElementById("lead") ??
+      document.querySelector<HTMLElement>("[data-primary-form]");
+
+    setMobileOpen(false);
+
+    if (formTarget) {
+      formTarget.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    setScheduleModalOpen(true);
+  };
 
   const panelOpen = Boolean(megaOpen || activeDropdown || mobileOpen);
   const useLightText = !panelOpen && backgroundTone === "dark";
@@ -38,12 +79,13 @@ export default function Navbar() {
       : "bg-transparent";
 
   return (
-    <nav
-      ref={navRef}
-      data-background-tone={backgroundTone}
-      className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-300 ${surfaceClass}`}
-      onMouseLeave={() => { setMegaOpen(false); setActiveDropdown(null); }}
-    >
+    <>
+      <nav
+        ref={navRef}
+        data-background-tone={backgroundTone}
+        className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-300 ${surfaceClass}`}
+        onMouseLeave={() => { setMegaOpen(false); setActiveDropdown(null); }}
+      >
       <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-20">
         {/* Logo */}
         <Link href="/" className="flex items-center" aria-label="Ensina Mais">
@@ -104,9 +146,13 @@ export default function Navbar() {
           >
             <User size={15} /> Portal
           </a>
-          <a href="#lead" className="text-sm font-bold text-em-dark bg-em-yellow rounded-lg px-5 py-2.5 hover:bg-em-yellow-dark transition-colors shadow-button">
+          <button
+            type="button"
+            onClick={handleScheduleClick}
+            className="text-sm font-bold text-em-dark bg-em-yellow rounded-lg px-5 py-2.5 hover:bg-em-yellow-dark transition-colors shadow-button cursor-pointer"
+          >
             Agendar Aula
-          </a>
+          </button>
           <button onClick={() => setMobileOpen(!mobileOpen)} className={`lg:hidden p-2 cursor-pointer transition-colors ${useLightText ? "text-white" : "text-em-dark"}`}>
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -159,10 +205,61 @@ export default function Navbar() {
             >
               <User size={15} /> Portal do Aluno
             </a>
-            <a href="#lead" onClick={() => setMobileOpen(false)} className="mt-4 text-center text-sm font-bold text-em-dark bg-em-yellow rounded-lg py-3 shadow-button">Agendar Aula Grátis</a>
+            <button
+              type="button"
+              onClick={handleScheduleClick}
+              className="mt-4 text-center text-sm font-bold text-em-dark bg-em-yellow rounded-lg py-3 shadow-button cursor-pointer"
+            >
+              Agendar Aula Grátis
+            </button>
           </div>
         </div>
       )}
-    </nav>
+      </nav>
+
+      {scheduleModalOpen && (
+        <div
+          className="fixed inset-0 z-[1000] flex items-center justify-center bg-em-dark/75 backdrop-blur-sm p-3 sm:p-6"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setScheduleModalOpen(false);
+          }}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="schedule-modal-title"
+            className="relative w-full max-w-[960px] max-h-[92vh] overflow-y-auto rounded-3xl bg-white p-5 sm:p-8 lg:p-10 shadow-2xl"
+          >
+            <button
+              type="button"
+              onClick={() => setScheduleModalOpen(false)}
+              aria-label="Fechar formulário"
+              className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-em-dark/8 text-em-dark hover:bg-em-dark/15 transition-colors cursor-pointer"
+            >
+              <X size={20} />
+            </button>
+
+            <div className="mb-6 pr-12">
+              <p className="eyebrow text-em-coral-dark mb-2">Aula experimental</p>
+              <h2
+                id="schedule-modal-title"
+                className="text-2xl sm:text-3xl font-black tracking-tight text-em-dark leading-tight"
+              >
+                Agende uma aula experimental gratuita
+              </h2>
+              <p className="mt-2 text-sm sm:text-base text-em-dark-soft/75">
+                Escolha o curso e encontre a unidade mais próxima de você.
+              </p>
+            </div>
+
+            <LeadCaptureForm
+              courseOptions={COURSE_OPTIONS}
+              campaign="site-ensina-mais-popup"
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

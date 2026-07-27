@@ -77,7 +77,7 @@ export default function InstitutionalStub({
         />
       )}
 
-      <section className="relative bg-em-dark pt-24 pb-10 sm:pb-14 px-4 sm:px-6 rounded-b-[46px] mt-6 overflow-hidden">
+      <section className="relative bg-em-dark pt-24 pb-10 sm:pb-14 px-4 sm:px-6 rounded-b-[46px] overflow-hidden">
         <div
           aria-hidden
           className="absolute inset-0 opacity-12 bg-repeat pointer-events-none"
