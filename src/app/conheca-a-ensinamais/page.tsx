@@ -13,6 +13,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import Placeholder from "@/components/ui/Placeholder";
+import { SCHOOL_LOCATOR_URL } from "@/lib/navigation";
 
 export const metadata: Metadata = {
   title: "Conheça a Ensina Mais Turma da Mônica",
@@ -286,7 +287,9 @@ export default function ConhecaPage() {
                     Mônica. Quer conhecer uma de perto?
                   </p>
                   <a
-                    href="/escolas"
+                    href={SCHOOL_LOCATOR_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-sm sm:text-base font-black text-em-dark bg-em-yellow rounded-full px-6 sm:px-7 py-3 sm:py-3.5 hover:bg-white transition-colors shadow-button"
                   >
                     <MapPin size={18} strokeWidth={2} />

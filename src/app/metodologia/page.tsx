@@ -18,6 +18,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import FaqAccordion from "@/components/ui/FaqAccordion";
+import { SCHOOL_LOCATOR_URL } from "@/lib/navigation";
 
 export const metadata: Metadata = {
   title: "Metodologia · Ensina Mais Turma da Mônica",
@@ -279,7 +280,7 @@ export default function MetodologiaPage() {
                   <a href="#lead" className="inline-flex items-center justify-center gap-2 text-sm sm:text-base font-black text-em-dark bg-em-yellow rounded-full px-7 sm:px-8 py-3.5 sm:py-4 hover:bg-white transition-colors shadow-button w-full sm:w-auto">
                     Agendar aula experimental gratuita <ArrowRight size={16} strokeWidth={2.4} />
                   </a>
-                  <a href="/escolas" className="inline-flex items-center justify-center text-sm sm:text-base font-bold text-white bg-white/10 backdrop-blur rounded-full px-7 sm:px-8 py-3.5 sm:py-4 hover:bg-white/20 transition-colors w-full sm:w-auto">
+                  <a href={SCHOOL_LOCATOR_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center text-sm sm:text-base font-bold text-white bg-white/10 backdrop-blur rounded-full px-7 sm:px-8 py-3.5 sm:py-4 hover:bg-white/20 transition-colors w-full sm:w-auto">
                     Encontrar a unidade mais próxima
                   </a>
                 </div>

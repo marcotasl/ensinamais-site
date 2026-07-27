@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   ArrowRight,
   BookOpen,
@@ -20,6 +21,7 @@ import Placeholder from "@/components/ui/Placeholder";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 import JsonLd from "@/components/seo/JsonLd";
 import { faqSchema } from "@/lib/seo";
+import { SCHOOL_LOCATOR_URL } from "@/lib/navigation";
 
 export const metadata: Metadata = {
   title: "Sobre Nós · Ensina Mais Turma da Mônica",
@@ -153,12 +155,12 @@ export default function SobreNosPage() {
           </FadeIn>
           <FadeIn delay={0.12}>
             <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-              <a href="/cursos" className="inline-flex items-center justify-center text-sm sm:text-base font-black text-em-dark bg-em-yellow rounded-full px-6 sm:px-7 py-3 sm:py-3.5 hover:bg-white transition-colors shadow-button">
+              <Link href="/cursos" className="inline-flex items-center justify-center text-sm sm:text-base font-black text-em-dark bg-em-yellow rounded-full px-6 sm:px-7 py-3 sm:py-3.5 hover:bg-white transition-colors shadow-button">
                 Conheça nossos cursos
-              </a>
-              <a href="/escolas" className="inline-flex items-center justify-center text-sm sm:text-base font-bold text-white bg-white/10 backdrop-blur rounded-full px-6 sm:px-7 py-3 sm:py-3.5 hover:bg-white/20 transition-colors">
+              </Link>
+              <Link href={SCHOOL_LOCATOR_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center text-sm sm:text-base font-bold text-white bg-white/10 backdrop-blur rounded-full px-6 sm:px-7 py-3 sm:py-3.5 hover:bg-white/20 transition-colors">
                 Encontre a unidade mais próxima
-              </a>
+              </Link>
             </div>
           </FadeIn>
         </div>
@@ -385,9 +387,9 @@ export default function SobreNosPage() {
                   <a href="#lead" className="inline-flex items-center justify-center gap-2 text-sm sm:text-base font-black text-em-dark bg-em-yellow rounded-full px-7 sm:px-8 py-3.5 sm:py-4 hover:bg-white transition-colors shadow-button w-full sm:w-auto">
                     Agendar aula experimental gratuita <ArrowRight size={16} strokeWidth={2.4} />
                   </a>
-                  <a href="/escolas" className="inline-flex items-center justify-center text-sm sm:text-base font-bold text-white bg-white/10 backdrop-blur rounded-full px-7 sm:px-8 py-3.5 sm:py-4 hover:bg-white/20 transition-colors w-full sm:w-auto">
+                  <Link href={SCHOOL_LOCATOR_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center text-sm sm:text-base font-bold text-white bg-white/10 backdrop-blur rounded-full px-7 sm:px-8 py-3.5 sm:py-4 hover:bg-white/20 transition-colors w-full sm:w-auto">
                     Encontrar a unidade mais próxima
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

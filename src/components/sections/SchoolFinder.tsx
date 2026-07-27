@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Search, ArrowRight, MapPin, Phone } from "lucide-react";
 import Placeholder from "@/components/ui/Placeholder";
+import { SCHOOL_LOCATOR_URL } from "@/lib/navigation";
 
 const SCHOOLS = [
   { name: "Ensina Mais São José do Rio Preto", address: "Av. Bady Bassitt, 4960", city: "São José do Rio Preto, SP", phone: "(17) 3214-8699" },
@@ -63,7 +64,9 @@ export default function SchoolFinder() {
 
         <div className="text-center mt-10">
           <a
-            href="/escolas"
+            href={SCHOOL_LOCATOR_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-base font-bold text-em-blue-dark bg-white border-2 border-em-blue/40 rounded-full px-8 py-3.5 inline-flex items-center gap-2 hover:bg-em-blue hover:text-white hover:border-em-blue transition-all"
           >
             Ver todas as escolas <ArrowRight size={15} />

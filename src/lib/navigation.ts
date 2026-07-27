@@ -27,6 +27,8 @@ export interface NavDropdown {
   children?: { label: string; href: string }[];
 }
 
+export const SCHOOL_LOCATOR_URL = "https://escolas.ensinamais.com.br/";
+
 export const COURSE_CATEGORIES: CourseCategory[] = [
   {
     title: "Apoio Escolar",
@@ -98,7 +100,7 @@ export const MAIN_NAV: NavDropdown[] = [
   },
   {
     label: "Escolas",
-    href: "https://escolas.ensinamais.com.br/",
+    href: SCHOOL_LOCATOR_URL,
   },
   {
     label: "Sobre Nós",
