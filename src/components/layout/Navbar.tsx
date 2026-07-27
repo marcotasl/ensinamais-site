@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Menu, X, ChevronDown, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { MAIN_NAV, COURSE_CATEGORIES } from "@/lib/navigation";
+import { useAdaptiveNavbarTone } from "@/hooks/useAdaptiveNavbarTone";
 
 function externalLinkProps(href: string) {
   return /^https?:\/\//i.test(href)
@@ -13,10 +14,12 @@ function externalLinkProps(href: string) {
 }
 
 export default function Navbar() {
+  const navRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const backgroundTone = useAdaptiveNavbarTone(navRef);
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 30);
@@ -24,11 +27,21 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", h);
   }, []);
 
-  const isDark = scrolled || megaOpen || activeDropdown;
+  const panelOpen = Boolean(megaOpen || activeDropdown || mobileOpen);
+  const useLightText = !panelOpen && backgroundTone === "dark";
+  const surfaceClass = panelOpen
+    ? "bg-white border-b border-wire-200"
+    : scrolled
+      ? backgroundTone === "dark"
+        ? "bg-em-dark/95 border-b border-white/10 backdrop-blur-md"
+        : "bg-white/95 border-b border-wire-200 backdrop-blur-md"
+      : "bg-transparent";
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-300 ${isDark ? "bg-white border-b border-wire-200" : "bg-transparent"}`}
+      ref={navRef}
+      data-background-tone={backgroundTone}
+      className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-300 ${surfaceClass}`}
       onMouseLeave={() => { setMegaOpen(false); setActiveDropdown(null); }}
     >
       <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-20">
@@ -61,7 +74,7 @@ export default function Navbar() {
               <a
                 href={item.href}
                 {...externalLinkProps(item.href)}
-                className={`flex items-center gap-1 text-sm font-semibold px-3 py-2 rounded-lg transition-colors ${isDark ? "text-em-dark-soft hover:text-em-dark hover:bg-em-green-pale" : "text-white/80 hover:text-white"}`}
+                className={`flex items-center gap-1 text-sm font-semibold px-3 py-2 rounded-lg transition-colors ${useLightText ? "text-white/85 hover:text-white hover:bg-white/10" : "text-em-dark-soft hover:text-em-dark hover:bg-em-green-pale"}`}
               >
                 {item.label}
                 {(item.label === "Cursos" || item.children) && <ChevronDown size={14} />}
@@ -83,13 +96,13 @@ export default function Navbar() {
 
         {/* Right */}
         <div className="flex items-center gap-2">
-          <a href="#" className={`hidden lg:flex items-center gap-1.5 text-sm font-semibold px-3 py-2 rounded-lg ${isDark ? "text-em-dark-soft" : "text-white/70"}`}>
+          <a href="#" className={`hidden lg:flex items-center gap-1.5 text-sm font-semibold px-3 py-2 rounded-lg transition-colors ${useLightText ? "text-white/75 hover:text-white" : "text-em-dark-soft hover:text-em-dark"}`}>
             <User size={15} /> Portal
           </a>
           <a href="#lead" className="text-sm font-bold text-em-dark bg-em-yellow rounded-lg px-5 py-2.5 hover:bg-em-yellow-dark transition-colors shadow-button">
             Agendar Aula
           </a>
-          <button onClick={() => setMobileOpen(!mobileOpen)} className={`lg:hidden p-2 cursor-pointer ${isDark ? "text-em-dark" : "text-white"}`}>
+          <button onClick={() => setMobileOpen(!mobileOpen)} className={`lg:hidden p-2 cursor-pointer transition-colors ${useLightText ? "text-white" : "text-em-dark"}`}>
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
