@@ -205,7 +205,7 @@ export default function BeneficiosPage() {
               className="bg-em-dark rounded-3xl p-6 sm:p-8 shadow-[0_24px_56px_-28px_rgba(26,39,68,0.48)]"
             >
               <h3 className="text-xl font-black text-white mb-1">
-                Agende uma aula grátis
+                Agende uma aula experimental gratuita
               </h3>
               <p className="text-sm text-white/72 mb-5">
                 Preencha os dados e a unidade entrará em contato.

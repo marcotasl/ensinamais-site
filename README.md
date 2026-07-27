@@ -32,6 +32,13 @@ token público e o identificador oficial do RD possuem os mesmos valores de
 fallback usados pelo site oficial, mas também podem ser sobrescritos pelas
 variáveis documentadas em `.env.example`.
 
+O código da campanha cadastrada no HUB deve ser configurado no servidor para
+preencher o campo `codigo_campanha_sistema` do RD:
+
+```dotenv
+RD_STATION_CAMPAIGN_CODE=428
+```
+
 ## Verificação
 
 ```bash

@@ -4,6 +4,7 @@ import { z } from "zod";
 const RD_ENDPOINT = "https://api.rd.services/platform/conversions";
 const OFFICIAL_ENSINA_RD_TOKEN = "4a8c862bc4866c09231511203a4e1549";
 const DEFAULT_CONVERSION_IDENTIFIER = "interesse-curso";
+const DEFAULT_CAMPAIGN_SYSTEM_CODE = "428";
 
 const leadSchema = z.object({
   nome: z.string().trim().min(2).max(120),
@@ -62,6 +63,9 @@ export async function POST(request: Request) {
   const conversionIdentifier =
     process.env.RD_STATION_CONVERSION_IDENTIFIER ||
     DEFAULT_CONVERSION_IDENTIFIER;
+  const campaignSystemCode =
+    process.env.RD_STATION_CAMPAIGN_CODE?.trim() ||
+    DEFAULT_CAMPAIGN_SYSTEM_CODE;
 
   const payload = compact({
     conversion_identifier: conversionIdentifier,
@@ -87,6 +91,7 @@ export async function POST(request: Request) {
     cf_codigo_cidade_sistema: lead.cidadeId,
     cf_codigo_unidade_sistema: lead.unidadeId,
     cf_campanha: lead.campanha,
+    cf_codigo_campanha_sistema: campaignSystemCode,
     cf_pagina_origem: lead.pagina,
     cf_utm_term: lead.utm_term,
     cf_utm_content: lead.utm_content,
