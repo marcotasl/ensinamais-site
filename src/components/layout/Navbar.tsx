@@ -89,14 +89,38 @@ export default function Navbar() {
       <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-20">
         {/* Logo */}
         <Link href="/" className="flex items-center" aria-label="Ensina Mais">
-          <Image
-            src="/images/logo-ensina-mais.svg"
-            alt="Ensina Mais"
-            width={156}
-            height={56}
-            priority
-            className="h-14 w-auto"
-          />
+          <span className="relative block h-14 w-[119px]">
+            <Image
+              src="/images/logo-ensina-mais.svg"
+              alt="Ensina Mais"
+              width={156}
+              height={56}
+              priority
+              className="absolute inset-0 h-14 w-auto"
+            />
+            {useLightText && (
+              <>
+                <Image
+                  src="/images/logo-ensina-mais.svg"
+                  alt=""
+                  aria-hidden
+                  width={156}
+                  height={56}
+                  className="absolute inset-0 h-14 w-auto invert"
+                  style={{ clipPath: "inset(0 38% 55% 0)" }}
+                />
+                <Image
+                  src="/images/logo-ensina-mais.svg"
+                  alt=""
+                  aria-hidden
+                  width={156}
+                  height={56}
+                  className="absolute inset-0 h-14 w-auto invert"
+                  style={{ clipPath: "inset(82% 0 0 0)" }}
+                />
+              </>
+            )}
+          </span>
         </Link>
 
         {/* Nav links */}
