@@ -96,21 +96,46 @@ export async function POST(request: Request) {
     cf_utm_term: lead.utm_term,
     cf_utm_content: lead.utm_content,
   });
+  const traceId = crypto.randomUUID();
+  const rdRequestBody = {
+    event_type: "CONVERSION",
+    event_family: "CDP",
+    payload,
+  };
 
   try {
+    console.info(
+      `[leads][rd-outgoing] ${JSON.stringify({
+        traceId,
+        conversionIdentifier,
+        payloadFields: Object.keys(rdRequestBody.payload).sort(),
+        courseFieldPresent: Object.hasOwn(rdRequestBody.payload, "cf_curso"),
+        courseNameFieldPresent: Object.hasOwn(
+          rdRequestBody.payload,
+          "cf_nome_curso",
+        ),
+      })}`,
+    );
+
     const response = await fetch(`${RD_ENDPOINT}?api_key=${token}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        event_type: "CONVERSION",
-        event_family: "CDP",
-        payload,
-      }),
+      body: JSON.stringify(rdRequestBody),
       cache: "no-store",
     });
 
+    console.info(
+      `[leads][rd-response] ${JSON.stringify({
+        traceId,
+        status: response.status,
+        ok: response.ok,
+      })}`,
+    );
+
     if (!response.ok) {
-      console.error(`[leads] RD Station respondeu ${response.status}`);
+      console.error(
+        `[leads] RD Station respondeu ${response.status} (${traceId})`,
+      );
       return NextResponse.json(
         { ok: false, error: "rd_error" },
         { status: 502 },
@@ -119,7 +144,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
   } catch {
-    console.error("[leads] falha de rede ao enviar conversão");
+    console.error(
+      `[leads] falha de rede ao enviar conversão (${traceId})`,
+    );
     return NextResponse.json(
       { ok: false, error: "rd_unavailable" },
       { status: 502 },
