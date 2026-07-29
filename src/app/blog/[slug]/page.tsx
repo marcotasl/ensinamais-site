@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, Calendar, Clock, MessageCircle, Share2 } from "lucide-react";
 import type { ComponentType } from "react";
 import FadeIn from "@/components/ui/FadeIn";
+import ArticleContent from "@/components/blog/ArticleContent";
 import { BLOG_POSTS, getPostBySlug, formatDate } from "@/lib/blog-data";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
@@ -142,46 +143,7 @@ export default async function BlogPostPage({ params }: Props) {
       <section className="px-4 sm:px-6 pb-16 sm:pb-20">
         <FadeIn>
           <article className="max-w-[720px] mx-auto">
-            <div className="prose-article">
-              <p className="text-lg text-em-dark-soft leading-relaxed mb-6">
-                Este é um post do blog da Ensina Mais. O conteúdo editorial será sincronizado com o
-                blog mantido no Magento.
-              </p>
-              <p className="text-base text-em-dark-soft/85 leading-relaxed mb-6">
-                {post.excerpt}
-              </p>
-
-              <h2 className="text-2xl font-black text-em-dark mt-10 mb-4">Introdução ao tema</h2>
-              <p className="text-base text-em-dark-soft/85 leading-relaxed mb-6">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis nisi quis est tempus faucibus. Vivamus sit amet turpis quis sapien malesuada commodo. Fusce eget sapien quis metus aliquet ultricies.
-              </p>
-              <p className="text-base text-em-dark-soft/85 leading-relaxed mb-6">
-                Duis eget augue a augue aliquam ultrices. Sed euismod mauris nec est commodo, sit amet facilisis eros sagittis. Integer efficitur mauris vel dolor posuere, ut vehicula enim commodo.
-              </p>
-
-              <h2 className="text-2xl font-black text-em-dark mt-10 mb-4">Pontos principais</h2>
-              <ul className="flex flex-col gap-2 mb-6">
-                {[
-                  "Primeiro ponto importante que todo pai deve saber",
-                  "Como identificar os sinais nas crianças",
-                  "Estratégias práticas para aplicar no dia a dia",
-                  "Quando procurar ajuda especializada",
-                ].map((item) => (
-                  <li key={item} className="text-base text-em-dark-soft/85 leading-relaxed pl-5 relative before:content-['•'] before:absolute before:left-0 before:text-em-green-dark before:font-black">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              <blockquote className="border-l-4 border-em-yellow pl-6 my-8 italic text-xl text-em-dark leading-relaxed">
-                &ldquo;A educação é a arma mais poderosa que você pode usar para mudar o mundo.&rdquo;
-              </blockquote>
-
-              <h2 className="text-2xl font-black text-em-dark mt-10 mb-4">Considerações finais</h2>
-              <p className="text-base text-em-dark-soft/85 leading-relaxed mb-6">
-                Em breve, o conteúdo editorial completo deste artigo estará disponível nesta página.
-              </p>
-            </div>
+            <ArticleContent content={post.content} />
 
             {/* Share */}
             <div className="mt-12 pt-8 border-t border-em-dark/10 flex items-center justify-between">
@@ -219,9 +181,9 @@ export default async function BlogPostPage({ params }: Props) {
               <p className="text-base sm:text-lg text-em-dark-soft/80 mb-8 max-w-[480px] mx-auto leading-relaxed">
                 Quer saber mais sobre como a Ensina Mais pode ajudar seu filho? Agende uma aula experimental gratuita.
               </p>
-              <a href="/cursos.html" className="text-sm sm:text-base font-black text-em-dark bg-em-yellow rounded-full px-8 py-4 inline-flex items-center gap-2 hover:bg-white transition-colors shadow-button">
+              <Link href="/cursos" className="text-sm sm:text-base font-black text-em-dark bg-em-yellow rounded-full px-8 py-4 inline-flex items-center gap-2 hover:bg-white transition-colors shadow-button">
                 Ver todos os cursos <ArrowRight size={16} strokeWidth={2.4} />
-              </a>
+              </Link>
             </div>
           </div>
         </section>

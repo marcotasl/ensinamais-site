@@ -1,33 +1,7 @@
-"use client";
-
 import { ArrowRight } from "lucide-react";
+import { BLOG_POSTS, formatDate } from "@/lib/blog-data";
 
-const POSTS = [
-  {
-    title: "5 sinais de que seu filho precisa de apoio escolar",
-    category: "Apoio Escolar",
-    date: "28 Mar 2026",
-    href: "/blog/sinais-apoio-escolar",
-    tagBg: "bg-em-coral",
-    cover: "/images/blog/apoio-escolar.webp",
-  },
-  {
-    title: "Robótica educacional: por que crianças de 4 anos já podem começar",
-    category: "Robótica",
-    date: "22 Mar 2026",
-    href: "/blog/robotica-para-criancas",
-    tagBg: "bg-em-green",
-    cover: "/images/blog/robotica.webp",
-  },
-  {
-    title: "Como escolher a melhor franquia de educação em 2026",
-    category: "Franquia",
-    date: "15 Mar 2026",
-    href: "/blog/melhor-franquia-educacao",
-    tagBg: "bg-em-purple",
-    cover: "/images/blog/franquia.webp",
-  },
-];
+const TAG_BG = ["bg-em-coral", "bg-em-green", "bg-em-purple"] as const;
 
 export default function BlogPreview() {
   return (
@@ -48,16 +22,16 @@ export default function BlogPreview() {
           </a>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {POSTS.map((post, i) => (
-            <a key={i} href={post.href} className="group block">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {BLOG_POSTS.slice(0, 3).map((post, i) => (
+            <a key={`/blog/${post.slug}`} href={`/blog/${post.slug}`} className="group block">
               <div className="relative overflow-hidden rounded-3xl mb-4 shadow-[0_14px_36px_-22px_rgba(26,39,68,0.25)]">
                 <img src={post.cover} alt={post.title} className="w-full aspect-[16/10] object-cover group-hover:scale-[1.03] transition-transform duration-500" />
-                <span className={`absolute top-3 left-3 ${post.tagBg} text-white text-[11px] font-bold uppercase tracking-widest rounded-full px-3 py-1`}>
+                <span className={`absolute top-3 left-3 ${TAG_BG[i % TAG_BG.length]} text-white text-[11px] font-bold uppercase tracking-widest rounded-full px-3 py-1`}>
                   {post.category}
                 </span>
               </div>
-              <p className="text-xs font-semibold text-em-dark-soft/60 uppercase tracking-wide mb-2">{post.date}</p>
+              <p className="text-xs font-semibold text-em-dark-soft/60 uppercase tracking-wide mb-2">{formatDate(post.date)}</p>
               <h3 className="text-base sm:text-lg font-extrabold text-em-dark group-hover:text-em-purple-dark transition-colors leading-snug">
                 {post.title}
               </h3>
