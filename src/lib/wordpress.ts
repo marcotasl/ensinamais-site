@@ -92,6 +92,7 @@ export interface BlogPostMeta {
   date: string; // ISO
   readTime: string; // "N min" (~200 palavras/min do content)
   cover: string; // source_url da featured image ("" se não houver)
+  author: string; // display name do autor WP
 }
 
 export interface BlogPostFull extends BlogPostMeta {
@@ -112,6 +113,7 @@ interface WPPost {
   _embedded?: {
     "wp:featuredmedia"?: Array<{ source_url?: string }>;
     "wp:term"?: WPTerm[][];
+    author?: Array<{ name?: string }>;
   };
 }
 
@@ -143,6 +145,10 @@ function coverUrl(embedded: WPPost["_embedded"]): string {
   return embedded?.["wp:featuredmedia"]?.[0]?.source_url ?? "";
 }
 
+function authorName(embedded: WPPost["_embedded"]): string {
+  return embedded?.author?.[0]?.name ?? "Equipe Ensina Mais";
+}
+
 function mapMeta(post: WPPost): BlogPostMeta {
   return {
     slug: post.slug,
@@ -152,10 +158,11 @@ function mapMeta(post: WPPost): BlogPostMeta {
     date: post.date,
     readTime: calcReadTime(post.content.rendered),
     cover: coverUrl(post._embedded),
+    author: authorName(post._embedded),
   };
 }
 
-const EMBED = "_embed=wp:featuredmedia,wp:term";
+const EMBED = "_embed=wp:featuredmedia,wp:term,author";
 
 export async function getBlogPosts(): Promise<BlogPostMeta[]> {
   try {

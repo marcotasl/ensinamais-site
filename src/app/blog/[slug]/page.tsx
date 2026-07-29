@@ -14,8 +14,6 @@ interface Props {
 
 export const revalidate = 300;
 
-const AUTHOR_NAME = "Equipe Ensina Mais";
-
 // Accent de marca rotativo nos cards de "Leia também"
 const RELATED_ACCENTS = ["bg-em-coral", "bg-em-green", "bg-em-blue"] as const;
 
@@ -109,7 +107,7 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="flex flex-wrap items-center gap-5 text-sm text-white/70 pt-6 border-t border-white/12">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-em-yellow" />
-                <span className="font-bold text-white">{AUTHOR_NAME}</span>
+                <span className="font-bold text-white">{post.author}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <Calendar size={14} strokeWidth={1.8} /> {formatDate(post.date)}
