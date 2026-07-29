@@ -233,7 +233,8 @@ h1, h2 {
    Museo é ultra-thin (weight 100), sombra menor (2px) preserva a leveza do traço. */
 h1.text-em-dark, h2.text-em-dark,
 h1.text-em-dark-soft, h2.text-em-dark-soft,
-h1.text-wire-black, h2.text-wire-black {
+h1.text-wire-black, h2.text-wire-black,
+.prose-article h2 {
   text-shadow: 2px 2px 0 var(--color-em-blue-light);
 }
 
