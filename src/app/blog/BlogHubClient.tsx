@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from "react";
 import { Search, ArrowRight, Clock, Calendar, Newspaper } from "lucide-react";
-import Placeholder from "@/components/ui/Placeholder";
 import FadeIn from "@/components/ui/FadeIn";
 import CloudDivider from "@/components/ui/CloudDivider";
 import { BLOG_POSTS, BLOG_CATEGORIES, formatDate, type BlogPost } from "@/lib/blog-data";
@@ -84,7 +83,7 @@ export default function BlogHubClient() {
               className="card-lift block max-w-[1200px] mx-auto bg-white rounded-3xl overflow-hidden shadow-[0_18px_42px_-22px_rgba(26,39,68,0.28)] hover:shadow-[0_28px_60px_-26px_rgba(26,39,68,0.38)] transition-all"
             >
               <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-0">
-                <Placeholder className="w-full h-64 lg:h-full min-h-[340px] rounded-none" label={featured.title} />
+                <img src={featured.cover} alt={featured.title} className="w-full h-64 lg:h-full min-h-[340px] object-cover" />
                 <div className="p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-4">
                     <span className="text-[11px] font-black uppercase tracking-widest text-white bg-em-yellow-dark rounded-full px-3 py-1.5">Destaque</span>
@@ -175,7 +174,7 @@ function PostCard({ post, index }: { post: BlogPost; index: number }) {
         className="card-lift group bg-white rounded-3xl overflow-hidden shadow-[0_14px_36px_-22px_rgba(26,39,68,0.24)] hover:shadow-[0_24px_52px_-26px_rgba(26,39,68,0.36)] transition-all h-full flex flex-col"
       >
         <div className="relative">
-          <Placeholder className="w-full aspect-[16/10] rounded-none" label={post.title} />
+          <img src={post.cover} alt={post.title} className="w-full aspect-[16/10] object-cover group-hover:scale-[1.03] transition-transform duration-500" />
           <span className={`absolute top-3 left-3 ${accent.tag} text-white text-[11px] font-bold uppercase tracking-widest rounded-full px-3 py-1`}>
             {post.category}
           </span>
