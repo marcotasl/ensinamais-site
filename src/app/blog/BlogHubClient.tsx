@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { Search, ArrowRight, Clock, Calendar, Newspaper } from "lucide-react";
+import { useState, useMemo, useRef } from "react";
+import { Search, ArrowRight, Clock, Calendar, Newspaper, ChevronLeft, ChevronRight } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import CloudDivider from "@/components/ui/CloudDivider";
 import { formatDate, type BlogPostMeta } from "@/lib/wordpress";
+
+const PER_PAGE = 12;
 
 // Cada card de post recebe um accent de marca rotativo (pílula de categoria + hover do título)
 const POST_ACCENTS = [
@@ -14,9 +16,27 @@ const POST_ACCENTS = [
   { tag: "bg-em-blue", hover: "group-hover:text-em-blue-dark" },
 ] as const;
 
+/** Janela de páginas: sempre 1 e última; vizinhos da atual; reticências quando há salto. */
+function getPageItems(current: number, total: number): (number | "…")[] {
+  if (total <= 1) return [1];
+  const show = new Set<number>([1, total]);
+  for (let i = current - 1; i <= current + 1; i++) {
+    if (i >= 1 && i <= total) show.add(i);
+  }
+  const sorted = [...show].sort((a, b) => a - b);
+  const items: (number | "…")[] = [];
+  for (let i = 0; i < sorted.length; i++) {
+    if (i > 0 && sorted[i] - sorted[i - 1] > 1) items.push("…");
+    items.push(sorted[i]);
+  }
+  return items;
+}
+
 export default function BlogHubClient({ posts }: { posts: BlogPostMeta[] }) {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("Todos");
+  const [page, setPage] = useState(1);
+  const gridRef = useRef<HTMLElement | null>(null);
 
   const categories = useMemo(() => {
     const counts = new Map<string, number>();
@@ -40,6 +60,16 @@ export default function BlogHubClient({ posts }: { posts: BlogPostMeta[] }) {
       return true;
     });
   }, [posts, search, activeCategory]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+  const safePage = Math.min(page, totalPages);
+  const paginated = filtered.slice((safePage - 1) * PER_PAGE, safePage * PER_PAGE);
+  const pageItems = getPageItems(safePage, totalPages);
+
+  function goToPage(next: number) {
+    setPage(next);
+    gridRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
 
   const featured = posts[0];
 
@@ -75,7 +105,10 @@ export default function BlogHubClient({ posts }: { posts: BlogPostMeta[] }) {
                   aria-label="Buscar artigo"
                   placeholder="Buscar artigo..."
                   value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                    setPage(1);
+                  }}
                   className="w-full text-base pl-14 pr-5 py-5 rounded-full bg-white text-em-dark placeholder:text-em-dark-soft/70 caret-em-dark outline-none shadow-[0_18px_42px_-22px_rgba(26,39,68,0.5)] focus:ring-4 focus:ring-em-yellow/40 transition-all"
                 />
               </div>
@@ -134,7 +167,10 @@ export default function BlogHubClient({ posts }: { posts: BlogPostMeta[] }) {
             {categories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => {
+                  setActiveCategory(cat);
+                  setPage(1);
+                }}
                 className={`text-sm font-bold px-5 py-2.5 rounded-full transition-all cursor-pointer ${
                   activeCategory === cat
                     ? "bg-em-purple text-white shadow-[0_10px_24px_-14px_rgba(26,39,68,0.5)]"
@@ -149,7 +185,7 @@ export default function BlogHubClient({ posts }: { posts: BlogPostMeta[] }) {
       </section>
 
       {/* Posts grid */}
-      <section className="px-4 sm:px-6 pb-16 sm:pb-24">
+      <section ref={gridRef} className="px-4 sm:px-6 pb-16 sm:pb-24">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex items-center justify-between mb-6">
             <span className="text-sm text-em-dark-soft/70">
@@ -161,18 +197,78 @@ export default function BlogHubClient({ posts }: { posts: BlogPostMeta[] }) {
             <div className="text-center py-16 bg-white rounded-3xl shadow-[0_18px_42px_-26px_rgba(26,39,68,0.28)]">
               <p className="text-base text-em-dark-soft/75 mb-5">Nenhum artigo encontrado</p>
               <button
-                onClick={() => { setSearch(""); setActiveCategory("Todos"); }}
+                onClick={() => {
+                  setSearch("");
+                  setActiveCategory("Todos");
+                  setPage(1);
+                }}
                 className="text-sm font-black text-em-dark bg-em-yellow rounded-full px-6 py-3 cursor-pointer hover:bg-white transition-colors shadow-button"
               >
                 Ver todos os artigos
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-              {filtered.map((post, i) => (
-                <PostCard key={post.slug} post={post} index={i} />
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+                {paginated.map((post, i) => (
+                  <PostCard key={post.slug} post={post} index={i} />
+                ))}
+              </div>
+
+              {totalPages > 1 && (
+                <nav
+                  className="flex items-center justify-center gap-2 mt-10 flex-wrap"
+                  aria-label="Paginação de artigos"
+                >
+                  <button
+                    type="button"
+                    aria-label="Página anterior"
+                    disabled={safePage <= 1}
+                    onClick={() => goToPage(safePage - 1)}
+                    className={`w-10 h-10 rounded-full bg-white shadow flex items-center justify-center transition-opacity ${
+                      safePage <= 1 ? "opacity-40 cursor-default" : "cursor-pointer hover:opacity-90"
+                    }`}
+                  >
+                    <ChevronLeft size={18} strokeWidth={2.2} className="text-em-dark-soft" />
+                  </button>
+
+                  {pageItems.map((item, idx) =>
+                    item === "…" ? (
+                      <span key={`ellipsis-${idx}`} className="w-10 h-10 flex items-center justify-center text-em-dark-soft/60 text-sm font-bold" aria-hidden>
+                        …
+                      </span>
+                    ) : (
+                      <button
+                        key={item}
+                        type="button"
+                        aria-label={`Página ${item}`}
+                        aria-current={item === safePage ? "page" : undefined}
+                        onClick={() => goToPage(item)}
+                        className={`w-10 h-10 rounded-full text-sm font-bold transition-all cursor-pointer ${
+                          item === safePage
+                            ? "bg-em-purple text-white shadow-[0_10px_24px_-14px_rgba(26,39,68,0.5)]"
+                            : "bg-white text-em-dark-soft shadow-[0_8px_20px_-16px_rgba(26,39,68,0.3)] hover:text-em-purple-dark"
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    ),
+                  )}
+
+                  <button
+                    type="button"
+                    aria-label="Próxima página"
+                    disabled={safePage >= totalPages}
+                    onClick={() => goToPage(safePage + 1)}
+                    className={`w-10 h-10 rounded-full bg-white shadow flex items-center justify-center transition-opacity ${
+                      safePage >= totalPages ? "opacity-40 cursor-default" : "cursor-pointer hover:opacity-90"
+                    }`}
+                  >
+                    <ChevronRight size={18} strokeWidth={2.2} className="text-em-dark-soft" />
+                  </button>
+                </nav>
+              )}
+            </>
           )}
         </div>
       </section>
