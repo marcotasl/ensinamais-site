@@ -1,5 +1,5 @@
 import type { Category, Course } from "@/lib/courses-data";
-import type { BlogPost } from "@/lib/blog-data";
+import type { BlogPostMeta } from "@/lib/wordpress";
 
 // O site atual canoniza em www; manter o host evita um redirect adicional na migração.
 export const SITE_URL =
@@ -106,7 +106,7 @@ export function breadcrumbSchema(items: { name: string; url: string }[]): Record
   };
 }
 
-export function blogPostingSchema(post: BlogPost): Record<string, unknown> {
+export function blogPostingSchema(post: Pick<BlogPostMeta, "title" | "excerpt" | "date" | "slug">): Record<string, unknown> {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",

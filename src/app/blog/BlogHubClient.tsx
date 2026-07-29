@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { Search, ArrowRight, Clock, Calendar, Newspaper } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import CloudDivider from "@/components/ui/CloudDivider";
-import { BLOG_POSTS, BLOG_CATEGORIES, formatDate, type BlogPost } from "@/lib/blog-data";
+import { formatDate, type BlogPostMeta } from "@/lib/wordpress";
 
 // Cada card de post recebe um accent de marca rotativo (pílula de categoria + hover do título)
 const POST_ACCENTS = [
@@ -14,12 +14,24 @@ const POST_ACCENTS = [
   { tag: "bg-em-blue", hover: "group-hover:text-em-blue-dark" },
 ] as const;
 
-export default function BlogHubClient() {
+export default function BlogHubClient({ posts }: { posts: BlogPostMeta[] }) {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("Todos");
 
+  const categories = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const p of posts) {
+      if (!p.category) continue;
+      counts.set(p.category, (counts.get(p.category) ?? 0) + 1);
+    }
+    const sorted = [...counts.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .map(([name]) => name);
+    return ["Todos", ...sorted];
+  }, [posts]);
+
   const filtered = useMemo(() => {
-    return BLOG_POSTS.filter((p) => {
+    return posts.filter((p) => {
       if (activeCategory !== "Todos" && p.category !== activeCategory) return false;
       if (search.trim()) {
         const q = search.toLowerCase();
@@ -27,9 +39,9 @@ export default function BlogHubClient() {
       }
       return true;
     });
-  }, [search, activeCategory]);
+  }, [posts, search, activeCategory]);
 
-  const featured = BLOG_POSTS[0];
+  const featured = posts[0];
 
   return (
     <main className="min-h-screen bg-[#fafafa]">
@@ -75,7 +87,7 @@ export default function BlogHubClient() {
       <CloudDivider variant={3} cloudColor="#5C6BC0" flip height={120} className="mt-[-1px]" />
 
       {/* Featured post */}
-      {!search && activeCategory === "Todos" && (
+      {featured && !search && activeCategory === "Todos" && (
         <section id="artigos" className="px-4 sm:px-6 pt-4 sm:pt-6 pb-14 sm:pb-16">
           <FadeIn>
             <a
@@ -83,7 +95,11 @@ export default function BlogHubClient() {
               className="card-lift block max-w-[1200px] mx-auto bg-white rounded-3xl overflow-hidden shadow-[0_18px_42px_-22px_rgba(26,39,68,0.28)] hover:shadow-[0_28px_60px_-26px_rgba(26,39,68,0.38)] transition-all"
             >
               <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-0">
-                <img src={featured.cover} alt={featured.title} className="w-full h-64 lg:h-full min-h-[340px] object-cover" />
+                <div className="w-full h-64 lg:h-full min-h-[340px] bg-em-dark/5">
+                  {featured.cover ? (
+                    <img src={featured.cover} alt={featured.title} className="w-full h-full min-h-[340px] object-cover" />
+                  ) : null}
+                </div>
                 <div className="p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-4">
                     <span className="text-[11px] font-black uppercase tracking-widest text-white bg-em-yellow-dark rounded-full px-3 py-1.5">Destaque</span>
@@ -115,7 +131,7 @@ export default function BlogHubClient() {
       <section className="px-4 sm:px-6 mb-8">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex flex-wrap gap-2 justify-center">
-            {BLOG_CATEGORIES.map((cat) => (
+            {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
@@ -164,7 +180,7 @@ export default function BlogHubClient() {
   );
 }
 
-function PostCard({ post, index }: { post: BlogPost; index: number }) {
+function PostCard({ post, index }: { post: BlogPostMeta; index: number }) {
   const accent = POST_ACCENTS[index % POST_ACCENTS.length];
 
   return (
@@ -173,11 +189,15 @@ function PostCard({ post, index }: { post: BlogPost; index: number }) {
         href={`/blog/${post.slug}`}
         className="card-lift group bg-white rounded-3xl overflow-hidden shadow-[0_14px_36px_-22px_rgba(26,39,68,0.24)] hover:shadow-[0_24px_52px_-26px_rgba(26,39,68,0.36)] transition-all h-full flex flex-col"
       >
-        <div className="relative">
-          <img src={post.cover} alt={post.title} className="w-full aspect-[16/10] object-cover group-hover:scale-[1.03] transition-transform duration-500" />
-          <span className={`absolute top-3 left-3 ${accent.tag} text-white text-[11px] font-bold uppercase tracking-widest rounded-full px-3 py-1`}>
-            {post.category}
-          </span>
+        <div className="relative bg-em-dark/5 aspect-[16/10]">
+          {post.cover ? (
+            <img src={post.cover} alt={post.title} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
+          ) : null}
+          {post.category ? (
+            <span className={`absolute top-3 left-3 ${accent.tag} text-white text-[11px] font-bold uppercase tracking-widest rounded-full px-3 py-1`}>
+              {post.category}
+            </span>
+          ) : null}
         </div>
         <div className="p-5 sm:p-6 flex flex-col flex-1">
           <p className="text-xs font-semibold text-em-dark-soft/55 uppercase tracking-wide mb-2">

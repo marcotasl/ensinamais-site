@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import BlogHubClient from "./BlogHubClient";
+import { getBlogPosts } from "@/lib/wordpress";
+
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Blog | Ensina Mais – Turma da Mônica",
@@ -7,6 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
 };
 
-export default function BlogPage() {
-  return <BlogHubClient />;
+export default async function BlogPage() {
+  const posts = await getBlogPosts();
+  return <BlogHubClient posts={posts} />;
 }

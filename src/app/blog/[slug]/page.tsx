@@ -1,11 +1,9 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Calendar, Clock, MessageCircle, Share2 } from "lucide-react";
 import type { ComponentType } from "react";
 import FadeIn from "@/components/ui/FadeIn";
-import ArticleContent from "@/components/blog/ArticleContent";
-import { BLOG_POSTS, getPostBySlug, formatDate } from "@/lib/blog-data";
+import { formatDate, getBlogPost, getBlogPosts } from "@/lib/wordpress";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { blogPostingSchema, breadcrumbSchema } from "@/lib/seo";
@@ -13,6 +11,10 @@ import { blogPostingSchema, breadcrumbSchema } from "@/lib/seo";
 interface Props {
   params: Promise<{ slug: string }>;
 }
+
+export const revalidate = 300;
+
+const AUTHOR_NAME = "Equipe Ensina Mais";
 
 // Accent de marca rotativo nos cards de "Leia também"
 const RELATED_ACCENTS = ["bg-em-coral", "bg-em-green", "bg-em-blue"] as const;
@@ -48,13 +50,9 @@ const SOCIALS: { label: string; Icon: ComponentType<IconProps> }[] = [
   { label: "WhatsApp", Icon: MessageCircle },
 ];
 
-export function generateStaticParams() {
-  return BLOG_POSTS.map((p) => ({ slug: p.slug }));
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getBlogPost(slug);
   if (!post) return {};
   return {
     title: `${post.title} | Blog Ensina Mais`,
@@ -65,11 +63,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const [post, allPosts] = await Promise.all([getBlogPost(slug), getBlogPosts()]);
   if (!post) notFound();
 
-  const related = BLOG_POSTS.filter((p) => p.slug !== slug && p.category === post.category).slice(0, 3);
-  const fallbackRelated = BLOG_POSTS.filter((p) => p.slug !== slug).slice(0, 3);
+  const related = allPosts.filter((p) => p.slug !== slug && p.category === post.category).slice(0, 3);
+  const fallbackRelated =
+    related.length < 2 ? allPosts.filter((p) => p.slug !== slug).slice(0, 3) : [];
   const relatedPosts = related.length >= 2 ? related : fallbackRelated;
 
   return (
@@ -97,7 +96,7 @@ export default async function BlogPostPage({ params }: Props) {
               <ArrowLeft size={15} strokeWidth={2.2} /> Voltar para o blog
             </Link>
 
-            <p className="eyebrow text-em-yellow mb-4">{post.category}</p>
+            {post.category ? <p className="eyebrow text-em-yellow mb-4">{post.category}</p> : null}
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white mb-6 leading-tight">
               {post.title}
@@ -110,7 +109,7 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="flex flex-wrap items-center gap-5 text-sm text-white/70 pt-6 border-t border-white/12">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-em-yellow" />
-                <span className="font-bold text-white">{post.author}</span>
+                <span className="font-bold text-white">{AUTHOR_NAME}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <Calendar size={14} strokeWidth={1.8} /> {formatDate(post.date)}
@@ -124,26 +123,28 @@ export default async function BlogPostPage({ params }: Props) {
       </section>
 
       {/* Cover image */}
-      <section className="px-4 sm:px-6 -mt-24 relative z-10 mb-12">
-        <FadeIn>
-          <div className="relative max-w-[960px] mx-auto aspect-[16/9] rounded-3xl overflow-hidden shadow-[0_24px_56px_-28px_rgba(26,39,68,0.45)]">
-            <Image
-              src={post.cover}
-              alt={post.title}
-              fill
-              priority
-              sizes="(min-width: 1024px) 960px, 100vw"
-              className="object-cover"
-            />
-          </div>
-        </FadeIn>
-      </section>
+      {post.cover ? (
+        <section className="px-4 sm:px-6 -mt-24 relative z-10 mb-12">
+          <FadeIn>
+            <div className="relative max-w-[960px] mx-auto aspect-[16/9] rounded-3xl overflow-hidden shadow-[0_24px_56px_-28px_rgba(26,39,68,0.45)] bg-em-dark/5">
+              <img
+                src={post.cover}
+                alt={post.title}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          </FadeIn>
+        </section>
+      ) : null}
 
       {/* Content */}
-      <section className="px-4 sm:px-6 pb-16 sm:pb-20">
+      <section className={`px-4 sm:px-6 pb-16 sm:pb-20${!post.cover ? " -mt-24 mb-12" : ""}`}>
         <FadeIn>
           <article className="max-w-[720px] mx-auto">
-            <ArticleContent content={post.content} />
+            <div
+              className="prose-article"
+              dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+            />
 
             {/* Share */}
             <div className="mt-12 pt-8 border-t border-em-dark/10 flex items-center justify-between">
@@ -203,19 +204,19 @@ export default async function BlogPostPage({ params }: Props) {
                   href={`/blog/${p.slug}`}
                   className="card-lift group bg-white rounded-3xl overflow-hidden shadow-[0_14px_36px_-22px_rgba(26,39,68,0.24)] hover:shadow-[0_24px_52px_-26px_rgba(26,39,68,0.36)] transition-all block h-full"
                 >
-                  <div className="relative">
-                    <div className="relative w-full aspect-[16/10]">
-                      <Image
+                  <div className="relative bg-em-dark/5 aspect-[16/10]">
+                    {p.cover ? (
+                      <img
                         src={p.cover}
                         alt=""
-                        fill
-                        sizes="(min-width: 640px) 33vw, 100vw"
-                        className="object-cover"
+                        className="absolute inset-0 w-full h-full object-cover"
                       />
-                    </div>
-                    <span className={`absolute top-3 left-3 ${RELATED_ACCENTS[i % RELATED_ACCENTS.length]} text-white text-[11px] font-bold uppercase tracking-widest rounded-full px-3 py-1`}>
-                      {p.category}
-                    </span>
+                    ) : null}
+                    {p.category ? (
+                      <span className={`absolute top-3 left-3 ${RELATED_ACCENTS[i % RELATED_ACCENTS.length]} text-white text-[11px] font-bold uppercase tracking-widest rounded-full px-3 py-1`}>
+                        {p.category}
+                      </span>
+                    ) : null}
                   </div>
                   <div className="p-5">
                     <p className="text-xs font-semibold text-em-dark-soft/55 uppercase tracking-wide mb-2">{formatDate(p.date)}</p>

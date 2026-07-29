@@ -7,7 +7,7 @@ import {
   COURSES_HUB_PATH,
 } from "@/lib/seo";
 import { CATEGORIES, COURSES } from "@/lib/courses-data";
-import { BLOG_POSTS } from "@/lib/blog-data";
+import { getBlogPosts } from "@/lib/wordpress";
 
 type StaticRoute = {
   path: string;
@@ -30,8 +30,9 @@ const STATIC_ROUTES: StaticRoute[] = [
   { path: "/super-aluno", priority: 0.6, changeFrequency: "monthly" },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
+  const blogPosts = await getBlogPosts();
 
   const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((route) => ({
     url: abs(canonicalPagePath(route.path)),
@@ -54,7 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const blogEntries: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
+  const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: abs(`/blog/${post.slug}`),
     lastModified: new Date(post.date),
     changeFrequency: "monthly",
