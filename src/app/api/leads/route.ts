@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 const RD_ENDPOINT = "https://api.rd.services/platform/conversions";
@@ -38,7 +38,17 @@ function compact<T extends Record<string, unknown>>(record: T) {
   );
 }
 
-export async function POST(request: Request) {
+function trafficSourceFromCookie(request: NextRequest) {
+  const raw = request.cookies.get("__trf.src")?.value;
+  if (!raw) return undefined;
+  try {
+    return decodeURIComponent(raw);
+  } catch {
+    return raw;
+  }
+}
+
+export async function POST(request: NextRequest) {
   let body: unknown;
   try {
     body = await request.json();
@@ -79,7 +89,7 @@ export async function POST(request: Request) {
     mobile_phone: lead.celular,
     state: lead.estado,
     city: lead.cidade,
-    traffic_source: lead.utm_source,
+    traffic_source: trafficSourceFromCookie(request) || lead.utm_source,
     traffic_medium: lead.utm_medium,
     traffic_campaign: lead.utm_campaign || lead.campanha,
     traffic_value: lead.utm_content,

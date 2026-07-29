@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Newsletter from "@/components/sections/Newsletter";
@@ -39,6 +40,10 @@ export default function RootLayout({
     <html lang="pt-BR" className="antialiased">
       <body className="min-h-screen bg-white overflow-x-hidden relative">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
+        <Script
+          src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/d305bb1d-f854-4c8d-9370-4bfb79e4073e-loader.js"
+          strategy="afterInteractive"
+        />
         <Navbar />
         {children}
         <Newsletter />
