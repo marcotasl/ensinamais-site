@@ -14,7 +14,7 @@ const schema = z.object({
     .string()
     .min(10, "Celular inválido")
     .regex(/^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/, "Formato inválido"),
-  curso: z.string().min(1, "Selecione um curso"),
+  cf_curso: z.string().min(1, "Selecione um curso"),
   estado: z.string().min(2, "Selecione seu estado"),
   cidadeId: z.string().min(1, "Selecione sua cidade"),
   unidadeId: z.string().min(1, "Selecione uma unidade"),
@@ -127,7 +127,7 @@ export default function LeadCaptureForm({
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
-      curso: initialCourse,
+      cf_curso: initialCourse,
       estado: "",
       cidadeId: "",
       unidadeId: "",
@@ -249,8 +249,8 @@ export default function LeadCaptureForm({
         unidade: selectedUnit.label,
         cursoNome:
           courseLabel ||
-          courseOptions.find((option) => option.value === data.curso)?.label ||
-          data.curso,
+          courseOptions.find((option) => option.value === data.cf_curso)
+            ?.label || data.cf_curso,
         categoria: category,
         campanha: campaign,
         pagina: window.location.href,
@@ -270,7 +270,7 @@ export default function LeadCaptureForm({
       nome: "",
       email: "",
       celular: "",
-      curso: initialCourse,
+      cf_curso: initialCourse,
       estado: "",
       cidadeId: "",
       unidadeId: "",
@@ -372,7 +372,7 @@ export default function LeadCaptureForm({
         </div>
 
         {fixedCourse ? (
-          <input type="hidden" {...register("curso")} value={fixedCourse} />
+          <input type="hidden" {...register("cf_curso")} value={fixedCourse} />
         ) : (
           <div>
             <label htmlFor="lead-curso" className="sr-only">
@@ -380,9 +380,11 @@ export default function LeadCaptureForm({
             </label>
             <select
               id="lead-curso"
-              aria-invalid={Boolean(errors.curso)}
-              aria-describedby={errors.curso ? "lead-curso-error" : undefined}
-              {...register("curso")}
+              aria-invalid={Boolean(errors.cf_curso)}
+              aria-describedby={
+                errors.cf_curso ? "lead-curso-error" : undefined
+              }
+              {...register("cf_curso")}
               className={`${inputClass} cursor-pointer`}
             >
               <option value="">Curso de interesse</option>
@@ -392,9 +394,9 @@ export default function LeadCaptureForm({
                 </option>
               ))}
             </select>
-            {errors.curso && (
+            {errors.cf_curso && (
               <p id="lead-curso-error" role="alert" className={errorClass}>
-                {errors.curso.message}
+                {errors.cf_curso.message}
               </p>
             )}
           </div>

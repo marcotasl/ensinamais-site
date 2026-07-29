@@ -15,7 +15,8 @@ const leadSchema = z.object({
   cidadeId: z.string().trim().min(1).max(100),
   unidade: z.string().trim().min(1).max(180),
   unidadeId: z.string().trim().max(100).optional(),
-  curso: z.string().trim().min(1).max(180),
+  cf_curso: z.string().trim().min(1).max(180).optional(),
+  curso: z.string().trim().min(1).max(180).optional(),
   cursoNome: z.string().trim().min(1).max(180),
   categoria: z.string().trim().max(120).optional(),
   campanha: z.string().trim().max(120).optional(),
@@ -26,6 +27,9 @@ const leadSchema = z.object({
   utm_content: z.string().trim().max(200).optional(),
   utm_term: z.string().trim().max(200).optional(),
   website: z.string().max(200).optional(),
+}).refine((lead) => lead.cf_curso || lead.curso, {
+  message: "course_required",
+  path: ["cf_curso"],
 });
 
 function compact<T extends Record<string, unknown>>(record: T) {
@@ -57,6 +61,7 @@ export async function POST(request: Request) {
   if (lead.website) {
     return NextResponse.json({ ok: true });
   }
+  const course = lead.cf_curso || lead.curso;
 
   const token =
     process.env.RD_STATION_PUBLIC_TOKEN || OFFICIAL_ENSINA_RD_TOKEN;
@@ -82,7 +87,7 @@ export async function POST(request: Request) {
     cf_codigo_marca_sistema: "em",
     cf_modalidade: "presencial",
     cf_modalidade_sistema: "P",
-    cf_curso: lead.curso,
+    cf_curso: course,
     cf_nome_curso: lead.cursoNome,
     cf_categoria: lead.categoria,
     cf_unidade: lead.unidade,
