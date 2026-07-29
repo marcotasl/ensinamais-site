@@ -25,9 +25,11 @@ const STATIC_ROUTES: StaticRoute[] = [
   { path: "/fale-conosco", priority: 0.6, changeFrequency: "monthly" },
   { path: "/metodologia", priority: 0.6, changeFrequency: "monthly" },
   { path: "/nossa-historia", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/politica-de-privacidade", priority: 0.3, changeFrequency: "yearly" },
   { path: "/seja-um-franqueado.html", priority: 0.6, changeFrequency: "monthly" },
   { path: "/sobre-nos", priority: 0.6, changeFrequency: "monthly" },
   { path: "/super-aluno", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/termos-de-uso", priority: 0.3, changeFrequency: "yearly" },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
