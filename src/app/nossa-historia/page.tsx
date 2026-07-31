@@ -94,10 +94,10 @@ export default function NossaHistoriaPage() {
                 <div className="flex justify-center lg:justify-end">
                   <div className="w-full max-w-[430px]">
                     <Image
-                      src="/images/moveedu/logo-moveedu.svg"
+                      src="/images/moveedu/logo-moveedu-dark.svg"
                       alt="Grupo MoveEdu"
-                      width={181}
-                      height={41}
+                      width={256}
+                      height={57}
                       className="mx-auto h-8 w-auto sm:h-10 lg:mx-0"
                     />
                     <div className="my-6 h-px bg-em-dark/10" />
