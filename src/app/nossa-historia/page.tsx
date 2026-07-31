@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import InstitutionalStub from "@/components/ui/InstitutionalStub";
 import FadeIn from "@/components/ui/FadeIn";
 
@@ -16,9 +17,27 @@ export default function NossaHistoriaPage() {
         title="Mais de uma década formando crianças para o futuro"
         lead="Da primeira unidade até a rede com mais de 100 escolas pelo país, conheça os marcos que transformaram a Ensina Mais numa referência em educação complementar com licenciamento Turma da Mônica."
         blocks={[
-          { title: "Fundação", desc: "Nascemos com a missão de oferecer reforço escolar de qualidade, com metodologia própria e parceria estratégica com a Mauricio de Sousa Produções." },
-          { title: "Expansão", desc: "Crescimento orgânico com franqueados parceiros em capitais e cidades médias, sempre mantendo padrão pedagógico e operacional." },
-          { title: "Hoje", desc: "Mais de 100 unidades em operação, integrando reforço, robótica, programação e inglês, preparando para escola e para a vida." },
+          {
+            title: "Fundação",
+            desc: "Nascemos com a missão de oferecer reforço escolar de qualidade, com metodologia própria e parceria estratégica com a Mauricio de Sousa Produções.",
+            image: "/images/about/professora.jpg",
+            imageAlt: "Educadora da Ensina Mais em ambiente com identidade da Turma da Mônica",
+            imagePosition: "center 38%",
+          },
+          {
+            title: "Expansão",
+            desc: "Crescimento orgânico com franqueados parceiros em capitais e cidades médias, sempre mantendo padrão pedagógico e operacional.",
+            image: "/images/about/sala-aula-panoramica.jpg",
+            imageAlt: "Alunos e educadores em uma sala de aula da Ensina Mais",
+            imagePosition: "center 46%",
+          },
+          {
+            title: "Hoje",
+            desc: "Mais de 100 unidades em operação, integrando reforço, robótica, programação e inglês, preparando para escola e para a vida.",
+            image: "/images/about/app-celular.jpg",
+            imageAlt: "Aplicativo da Ensina Mais sendo utilizado em um celular",
+            imagePosition: "center 42%",
+          },
         ]}
       />
 
@@ -38,7 +57,13 @@ export default function NossaHistoriaPage() {
                   </p>
                 </div>
                 <div className="flex justify-center lg:justify-end">
-                  <img src="/images/moveedu/logo-moveedu.svg" alt="Grupo MoveEdu" className="h-8 sm:h-10 w-auto" />
+                  <Image
+                    src="/images/moveedu/logo-moveedu.svg"
+                    alt="Grupo MoveEdu"
+                    width={181}
+                    height={41}
+                    className="h-8 sm:h-10 w-auto"
+                  />
                 </div>
               </div>
             </div>
