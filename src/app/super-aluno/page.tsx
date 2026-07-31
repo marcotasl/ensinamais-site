@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   ArrowRight,
   Award,
@@ -14,7 +15,6 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
-import Placeholder from "@/components/ui/Placeholder";
 
 export const metadata: Metadata = {
   title: "Super Aluno Ensina Mais: gamificação que motiva a aprender",
@@ -229,10 +229,15 @@ export default function SuperAlunoPage() {
                     </p>
                   </div>
                   <div className="flex justify-center">
-                    <Placeholder
-                      label="Hall da Fama: ranking de alunos com foto, cidade e pontuação"
-                      className="w-full max-w-[320px] aspect-[4/5] rounded-[2rem] bg-white/15"
-                    />
+                    <div className="relative w-full max-w-[320px] aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/25 bg-white shadow-[0_24px_48px_-24px_rgba(26,39,68,0.55)]">
+                      <Image
+                        src="/images/super-aluno/super-aluno-sorteios.webp"
+                        alt="Tela do Super Aluno com cupons e resultados dos sorteios"
+                        fill
+                        sizes="(max-width: 1024px) 320px, 28vw"
+                        className="object-cover object-top"
+                      />
+                    </div>
                   </div>
                 </div>
 

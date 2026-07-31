@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Clock, MapPin } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import CloudDivider from "@/components/ui/CloudDivider";
-import Placeholder from "@/components/ui/Placeholder";
 import ContactForm from "@/components/forms/ContactForm";
 import { CONTACT_CHANNELS, OPENING_HOURS } from "@/lib/contact-data";
 
@@ -156,10 +155,16 @@ export default function ContatoPage() {
                 Av. Bady Bassitt, 4960, Jardim Alto Rio Preto, São José do Rio Preto/SP
               </p>
             </div>
-            <Placeholder
-              className="w-full h-[360px] sm:h-[420px] rounded-3xl shadow-[0_18px_42px_-22px_rgba(26,39,68,0.24)]"
-              label="Mapa da sede, Av. Bady Bassitt, 4960"
-            />
+            <div className="w-full h-[360px] sm:h-[420px] overflow-hidden rounded-3xl bg-white shadow-[0_18px_42px_-22px_rgba(26,39,68,0.24)]">
+              <iframe
+                title="Mapa da sede da Ensina Mais"
+                src="https://www.google.com/maps?q=Av.%20Bady%20Bassitt%2C%204960%2C%20Jardim%20Alto%20Rio%20Preto%2C%20S%C3%A3o%20Jos%C3%A9%20do%20Rio%20Preto%2C%20SP&output=embed"
+                className="h-full w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
           </div>
         </FadeIn>
       </section>

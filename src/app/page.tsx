@@ -10,7 +10,6 @@ import TurmaDaMonica from "@/components/sections/TurmaDaMonica";
 import Testimonials from "@/components/sections/Testimonials";
 import AppPaisTeaser from "@/components/sections/AppPaisTeaser";
 import SuperAlunoTeaser from "@/components/sections/SuperAlunoTeaser";
-import SchoolFinder from "@/components/sections/SchoolFinder";
 import BlogPreview from "@/components/sections/BlogPreview";
 import TrustBar from "@/components/sections/TrustBar";
 import CloudDivider from "@/components/ui/CloudDivider";
@@ -117,16 +116,7 @@ export default async function Home() {
 
         <SuperAlunoTeaser />
 
-        {/* Floater 7: english-globe à direita entre Testimonials e SchoolFinder */}
-        <div className="relative h-0 max-w-[1400px] mx-auto">
-          <FloatingIcon src="/images/3d/english-globe.webp" side="right" offsetX={-30} offsetY={-20} size={200} delay={0.4} rotate={5} />
-        </div>
-
-        <div className="pt-12 sm:pt-16">
-          <SchoolFinder />
-        </div>
-
-        {/* Floater 8: hero-cluster à esquerda entre SchoolFinder e BlogPreview */}
+        {/* Floater 7: hero-cluster à esquerda entre Super Aluno e BlogPreview */}
         <div className="relative h-0 max-w-[1400px] mx-auto">
           <FloatingIcon src="/images/3d/hero-cluster.webp" side="left" offsetX={-40} offsetY={20} size={230} delay={2.2} rotate={-4} />
         </div>
