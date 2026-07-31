@@ -3,6 +3,41 @@ import Image from "next/image";
 import InstitutionalStub from "@/components/ui/InstitutionalStub";
 import FadeIn from "@/components/ui/FadeIn";
 
+const GROUP_BRANDS = [
+  {
+    name: "Microlins",
+    src: "/images/moveedu/brands/logo-microlins.svg",
+    width: 241,
+    height: 66,
+    background: "#F1F1FF",
+    className: "h-9",
+  },
+  {
+    name: "Prepara IA",
+    src: "/images/moveedu/brands/logo-prepara.svg",
+    width: 302,
+    height: 58,
+    background: "#FFEFEF",
+    className: "h-8",
+  },
+  {
+    name: "Ensina Mais Turma da Mônica",
+    src: "/images/moveedu/brands/logo-ensina-mais.webp",
+    width: 189,
+    height: 90,
+    background: "#F4FFCC",
+    className: "h-12",
+  },
+  {
+    name: "Yázigi",
+    src: "/images/moveedu/brands/logo-yazigi.webp",
+    width: 480,
+    height: 240,
+    background: "#F0EAFF",
+    className: "h-12",
+  },
+] as const;
+
 export const metadata: Metadata = {
   title: "Nossa História",
   description: "A trajetória da Ensina Mais · Turma da Mônica desde a fundação até se tornar uma das maiores redes de apoio escolar do Brasil.",
@@ -57,13 +92,36 @@ export default function NossaHistoriaPage() {
                   </p>
                 </div>
                 <div className="flex justify-center lg:justify-end">
-                  <Image
-                    src="/images/moveedu/logo-moveedu.svg"
-                    alt="Grupo MoveEdu"
-                    width={181}
-                    height={41}
-                    className="h-8 sm:h-10 w-auto"
-                  />
+                  <div className="w-full max-w-[430px]">
+                    <Image
+                      src="/images/moveedu/logo-moveedu.svg"
+                      alt="Grupo MoveEdu"
+                      width={181}
+                      height={41}
+                      className="mx-auto h-8 w-auto sm:h-10 lg:mx-0"
+                    />
+                    <div className="my-6 h-px bg-em-dark/10" />
+                    <div
+                      className="grid grid-cols-2 gap-3"
+                      aria-label="Marcas do Grupo MoveEdu"
+                    >
+                      {GROUP_BRANDS.map((brand) => (
+                        <div
+                          key={brand.name}
+                          className="flex min-h-24 items-center justify-center rounded-2xl px-4 py-5"
+                          style={{ backgroundColor: brand.background }}
+                        >
+                          <Image
+                            src={brand.src}
+                            alt={brand.name}
+                            width={brand.width}
+                            height={brand.height}
+                            className={`${brand.className} max-w-full w-auto object-contain`}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
