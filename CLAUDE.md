@@ -4,6 +4,10 @@
 
 Estamos redesenhando a landing page da **Ensina Mais – Turma da Mônica**, marca do grupo **MoveEdu**. A Ensina Mais é uma rede de franquias de apoio escolar com licenciamento da Turma da Mônica, com +100 escolas no Brasil.
 
+Regras de agentes deste repo (inclui a obrigatoriedade de solicitar review de `marcotasl` em todo PR):
+
+@AGENTS.md
+
 O site atual (ensinamais.com.br) roda em WordPress/Magento e está desatualizado. O redesign será implementado em **Next.js** (App Router) como parte de um projeto maior de migração digital das marcas MoveEdu (Microlins, Prepara, Yázigi).
 
 A agência responsável é a **Virtus Design** (virtusdesign.com.br).

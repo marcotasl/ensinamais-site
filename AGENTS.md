@@ -49,3 +49,19 @@ O agente principal consulta o `advisor` e retoma o trabalho com a decisão. Triv
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
+
+## Pull Requests: revisão do Marco é obrigatória
+
+Todo PR aberto neste repositório (por humano ou por agente) deve **solicitar review de
+`marcotasl`** no ato da criação:
+
+```bash
+gh pr create --reviewer marcotasl ...
+# ou, em PR já aberto:
+gh pr edit <numero> --add-reviewer marcotasl
+```
+
+Marcar `@marcotasl` no corpo/comentário ou atribuir o PR a ele também funciona. A marcação
+aciona a esteira de revisão da Virtus (parecer técnico automatizado + decisão do Marco).
+**Não faça merge** antes do review dele. PR sem a marcação fica invisível para a esteira e
+não será revisado.
