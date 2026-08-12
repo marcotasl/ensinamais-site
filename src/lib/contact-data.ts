@@ -36,7 +36,7 @@ export const CONTACT_CHANNELS: ContactChannel[] = [
     desc: "Quer abrir uma unidade Ensina Mais na sua cidade?",
     info: [
       { label: "E-mail", value: "franquia@moveedu.com.br", href: "mailto:franquia@moveedu.com.br" },
-      { label: "Página", value: "Saiba mais sobre franquia", href: "/seja-um-franqueado.html" },
+      { label: "Página", value: "Saiba mais sobre franquia", href: "https://moveedu.com.br/ensina-mais/" },
     ],
   },
 ];

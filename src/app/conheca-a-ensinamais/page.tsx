@@ -328,7 +328,9 @@ export default function ConhecaPage() {
                     Família
                   </a>
                   <a
-                    href="/seja-um-franqueado.html"
+                    href="https://moveedu.com.br/ensina-mais/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 text-sm font-bold text-white bg-white/10 backdrop-blur rounded-2xl px-5 py-4 hover:bg-white/20 transition-colors"
                   >
                     Quero ser franqueado
