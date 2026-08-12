@@ -44,7 +44,7 @@ const FOOTER_COLUMNS = [
     title: "Franquia",
     dot: "bg-em-blue",
     links: [
-      { label: "Seja um Franqueado", href: "/seja-um-franqueado.html" },
+      { label: "Seja um Franqueado", href: "https://moveedu.com.br/ensina-mais/" },
       { label: "Depoimentos", href: "/#depoimentos" },
     ],
   },

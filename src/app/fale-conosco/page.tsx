@@ -123,7 +123,13 @@ export default function ContatoPage() {
                         <div key={item.label}>
                           <p className={`text-[11px] font-black uppercase tracking-widest mb-0.5 ${style.eyebrow}`}>{item.label}</p>
                           {item.href ? (
-                            <a href={item.href} className="text-sm font-bold text-em-dark hover:text-em-dark-soft transition-colors break-words">
+                            <a
+                              href={item.href}
+                              {...(/^https?:\/\//i.test(item.href)
+                                ? { target: "_blank", rel: "noopener noreferrer" }
+                                : {})}
+                              className="text-sm font-bold text-em-dark hover:text-em-dark-soft transition-colors break-words"
+                            >
                               {item.value}
                             </a>
                           ) : (
