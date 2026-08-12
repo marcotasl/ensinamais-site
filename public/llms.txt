@@ -1,0 +1,65 @@
+﻿# Ensina Mais – Turma da Mônica
+
+> A Ensina Mais – Turma da Mônica é uma rede brasileira de apoio escolar do grupo MoveEdu, licenciada da Turma da Mônica, com aulas presenciais de Português, Matemática, Robótica, Programação e Inglês para crianças e alunos do Ensino Fundamental.
+
+Fatos-chave:
+
+- Apoio escolar oficial licenciado da Turma da Mônica (Mauricio de Sousa), voltado a crianças e alunos do Ensino Fundamental.
+- Disciplinas: Português, Matemática, Robótica, Programação e Inglês, em aulas presenciais em unidades franqueadas em todo o Brasil.
+- O site funciona como catálogo e loja dos cursos: cada curso tem página própria com carga horária, faixa etária e valores.
+- Franqueadora em São José do Rio Preto/SP; parte do grupo MoveEdu, dono também das marcas Prepara IA, Microlins e Yázigi.
+
+Perguntas frequentes:
+
+- **Para que idade são os cursos?** Alunos do Ensino Fundamental; a robótica tem turmas desde a educação infantil (Little Kids e Infantil) e os cursos de programação e games atendem dos 6 aos 14 anos.
+- **As aulas são online?** Não — as aulas são presenciais, nas unidades Ensina Mais.
+- **Quanto custa?** Os valores constam na página de cada curso no site; a matrícula é feita na unidade escolhida.
+- **Como falo com a Ensina Mais?** SAC: sac@moveedu.com.br ou (17) 3214-8699 — ou pelo formulário: https://www.ensinamais.com.br/fale-conosco.html
+- **Como abrir uma franquia Ensina Mais?** Pela página da franquia no site do grupo MoveEdu: https://moveedu.com.br/ensina-mais/
+
+## Institucional
+
+- [Conheça a Ensina Mais](https://www.ensinamais.com.br/conheca-a-ensinamais): o que é a rede e sua proposta de apoio escolar
+- [Metodologia](https://www.ensinamais.com.br/sobre-nos/conheca-a-ensina-mais/metodologia.html): como funcionam as aulas e o acompanhamento dos alunos
+- [Benefícios](https://www.ensinamais.com.br/sobre-nos/conheca-a-ensina-mais/beneficios.html): diferenciais do apoio escolar licenciado Turma da Mônica
+- [Fale Conosco](https://www.ensinamais.com.br/fale-conosco.html): canais de contato e atendimento
+
+## Cursos
+
+- [Catálogo de cursos](https://www.ensinamais.com.br/cursos.html): índice completo de todos os cursos da rede
+- [Apoio Escolar](https://www.ensinamais.com.br/cursos/apoio-escolar.html): reforço de Português e Matemática, em turmas de 2h ou 4h semanais
+- [Robótica](https://www.ensinamais.com.br/cursos/robotica-ensina.html): robótica educacional e infantil, presencial
+- [Programação](https://www.ensinamais.com.br/cursos/programacao-ensina.html): trilhas de código, games, apps, Minecraft e Youtuber
+- [Inglês](https://www.ensinamais.com.br/cursos/ingles-ensina.html): inglês presencial para crianças
+- [Matemática Apoio Escolar – 4h semanais](https://www.ensinamais.com.br/cursos/apoio-escolar/matematica-apoio-escolar-4-horas-presencial): reforço presencial de Matemática
+- [Português Apoio Escolar – 4h semanais](https://www.ensinamais.com.br/cursos/apoio-escolar/portugues-apoio-escolar-4-horas-semanais-presencial): reforço presencial de Português
+- [Robótica Educacional](https://www.ensinamais.com.br/cursos/robotica-ensina/robotica-educacional-presencial): robótica presencial para o Ensino Fundamental
+- [Games – 6 a 14 anos](https://www.ensinamais.com.br/cursos/programacao-ensina/games-presencial): criação de jogos digitais, presencial
+- [Inglês Presencial](https://www.ensinamais.com.br/cursos/ingles-ensina/ingles-presencial): curso de inglês presencial para crianças
+
+## Blog
+
+- [Blog da Ensina Mais](https://www.ensinamais.com.br/blog): artigos sobre educação, apoio escolar e desenvolvimento infantil
+
+## Franquia
+
+- [Seja um Franqueado](https://moveedu.com.br/ensina-mais/): informações para abrir uma unidade da rede
+
+## Recursos do agente
+
+- [Mapa do site](https://www.ensinamais.com.br/sitemap.xml)
+
+## Sinais de conteúdo
+
+- Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+## Uso
+
+- Conteúdo e rotas públicas são read-only para agentes; matrícula e atendimento acontecem pelos canais oficiais listados acima.
+
+## Optional
+
+- [Política de Privacidade](https://lgpd.ensinamais.com.br/politicadeprivacidade)
+- [Termos de Uso](https://www.ensinamais.com.br/termos-de-uso/)
+- [Portal do Aluno](https://portaldoaluno.ensinamais.com.br/login/): área logada de alunos matriculados
+- [Grupo MoveEdu](https://moveedu.com.br/): grupo controlador das marcas Ensina Mais, Prepara IA, Microlins e Yázigi
