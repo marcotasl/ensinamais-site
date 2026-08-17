@@ -1,13 +1,18 @@
-const WP_BASE = (
-  process.env.WP_API_URL || "https://cms.ensinamais.com.br/wp-json"
-).replace(/\/wp-json\/?$/, "");
+import { buildWpUrl } from "./wp-url";
 
 const WP_USER = process.env.WP_USER || "";
 const WP_APP_PASSWORD = process.env.WP_APP_PASSWORD || "";
 
+/** Tags de cache revalidadas pelo admin ao salvar. */
+export const CACHE_TAG_BANNERS = "banners";
+export const CACHE_TAG_POSTS = "posts";
+
 type WpFetchOptions = {
   /** Banners podem precisar de Basic Auth; rotas públicas do blog NÃO devem enviar. */
   auth?: boolean;
+  /** Tag de cache, para o admin invalidar só o que mudou ao salvar. */
+  tag?: string;
+  revalidate?: number;
 };
 
 /**
@@ -15,8 +20,7 @@ type WpFetchOptions = {
  * Sempre usar `?rest_route=<path>&params`.
  */
 async function wpRequest(endpoint: string, opts: WpFetchOptions = {}): Promise<Response> {
-  const [path, query = ""] = endpoint.split("?");
-  const url = `${WP_BASE}/?rest_route=${path}${query ? `&${query}` : ""}`;
+  const url = buildWpUrl(endpoint);
 
   const headers: HeadersInit = {
     "Content-Type": "application/json",
@@ -29,7 +33,10 @@ async function wpRequest(endpoint: string, opts: WpFetchOptions = {}): Promise<R
 
   const res = await fetch(url, {
     headers,
-    next: { revalidate: 300 },
+    next: {
+      revalidate: opts.revalidate ?? 300,
+      ...(opts.tag ? { tags: [opts.tag] } : {}),
+    },
   });
 
   if (!res.ok) {
@@ -73,7 +80,7 @@ export async function getBanners(): Promise<WPBanner[]> {
   try {
     const banners = await wpFetch<WPBanner[]>(
       "/wp/v2/banner?_fields=id,title,acf,menu_order&per_page=10&orderby=menu_order&order=asc",
-      { auth: true }
+      { auth: true, tag: CACHE_TAG_BANNERS, revalidate: 60 }
     );
     return banners;
   } catch {
@@ -172,7 +179,8 @@ export async function getBlogPosts(): Promise<BlogPostMeta[]> {
 
     while (page <= totalPages) {
       const { data: posts, headers } = await wpFetchWithHeaders<WPPost[]>(
-        `/wp/v2/posts?per_page=100&page=${page}&${EMBED}`
+        `/wp/v2/posts?per_page=100&page=${page}&${EMBED}`,
+        { tag: CACHE_TAG_POSTS }
       );
       if (page === 1) {
         totalPages = Number(headers.get("X-WP-TotalPages") || 1);
@@ -190,7 +198,8 @@ export async function getBlogPosts(): Promise<BlogPostMeta[]> {
 export async function getBlogPost(slug: string): Promise<BlogPostFull | null> {
   try {
     const posts = await wpFetch<WPPost[]>(
-      `/wp/v2/posts?slug=${encodeURIComponent(slug)}&${EMBED}`
+      `/wp/v2/posts?slug=${encodeURIComponent(slug)}&${EMBED}`,
+      { tag: CACHE_TAG_POSTS }
     );
     const post = posts[0];
     if (!post) return null;
