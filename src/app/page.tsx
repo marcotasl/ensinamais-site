@@ -16,24 +16,12 @@ import CloudDivider from "@/components/ui/CloudDivider";
 import FloatingIcon from "@/components/ui/FloatingIcon";
 import { getBanners } from "@/lib/wordpress";
 import { FALLBACK_BANNERS } from "@/lib/fallback-banners";
+import { wpBannerToSlide } from "@/lib/hero-banner-adapter";
 
 export default async function Home() {
   const wpBanners = await getBanners();
 
-  const banners =
-    wpBanners.length > 0
-      ? wpBanners.map((b) => ({
-          id: b.id,
-          title: b.title.rendered,
-          subtitle: b.acf.subtitulo,
-          desc: b.acf.descricao,
-          ctaText: b.acf.cta_texto,
-          ctaHref: b.acf.cta_link,
-          overlayColor: b.acf.cor_overlay,
-          image: b.acf.imagem_destaque,
-          bgImage: b.acf.imagem_fundo,
-        }))
-      : FALLBACK_BANNERS;
+  const banners = wpBanners.length > 0 ? wpBanners.map(wpBannerToSlide) : FALLBACK_BANNERS;
 
   return (
     <main className="relative min-h-screen bg-[#fafafa] overflow-x-clip">

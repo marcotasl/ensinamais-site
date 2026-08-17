@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import type { FallbackBanner } from "@/lib/fallback-banners";
+import { heroOverlayGradient } from "@/lib/hero-overlay";
 
 interface HeroProps {
   banners: FallbackBanner[];
@@ -16,13 +17,11 @@ export default function Hero({ banners }: HeroProps) {
         alt=""
         className="absolute inset-0 w-full h-full object-cover"
       />
-      {/* Overlay gradient: dark green on the left fading to transparent on the right */}
+      {/* Overlay gradient: derivado de overlayColor (editável no admin), com
+          fallback e correção de contraste em src/lib/hero-overlay.ts */}
       <div
         className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(95deg, rgba(26,39,68,0.92) 0%, rgba(26,39,68,0.78) 38%, rgba(26,39,68,0.32) 68%, rgba(26,39,68,0) 88%)",
-        }}
+        style={{ background: heroOverlayGradient(slide.overlayColor) }}
       />
       {/* Subtle accent radial in top-right */}
       <div
