@@ -83,16 +83,35 @@ function emha_register_banner_cpt() {
 add_action( 'init', 'emha_register_banner_cpt' );
 
 /**
- * Ativacao: concede EMHA_CAP somente ao Administrator. Nao cria nenhum post
+ * Ativacao: concede EMHA_CAP ao Administrator e cria o papel dedicado
+ * "hero_editor" (read + EMHA_CAP, nada alem disso). Nao cria nenhum post
  * "banner", nao altera conteudo, nao grava segredo. Reversivel: desativar o
- * plugin nao remove a capability (evita travar contas caso o plugin seja
- * temporariamente desligado); remocao manual, se um dia necessaria, e
- * `get_role('administrator')->remove_cap(EMHA_CAP)`.
+ * plugin nao remove a capability nem o papel (evita travar contas caso o
+ * plugin seja temporariamente desligado); remocao manual, se um dia
+ * necessaria, e `get_role('administrator')->remove_cap(EMHA_CAP)` e
+ * `remove_role('hero_editor')`.
+ *
+ * O papel existe porque o WP core nao tem tela de gerenciar capabilities:
+ * sem um papel pronto, o caminho manual mais obvio seria dar EMHA_CAP ao
+ * papel Editor, que tambem enxerga o blog inteiro. Com o "API Middleware" do
+ * Simple JWT Login ligado (exigido pelo fluxo do admin), isso faria um JWT
+ * de quem so deveria editar o hero valer como editor do blog inteiro.
  */
 function emha_on_activate() {
 	$admin_role = get_role( 'administrator' );
 	if ( $admin_role && ! $admin_role->has_cap( EMHA_CAP ) ) {
 		$admin_role->add_cap( EMHA_CAP );
+	}
+
+	if ( ! get_role( 'hero_editor' ) ) {
+		add_role(
+			'hero_editor',
+			__( 'Editor do Hero', 'ensina-mais-hero-api' ),
+			array(
+				'read'   => true,
+				EMHA_CAP => true,
+			)
+		);
 	}
 }
 register_activation_hook( __FILE__, 'emha_on_activate' );
@@ -144,7 +163,7 @@ function emha_register_acf_fields() {
 					'name'         => 'cta_link',
 					'type'         => 'text',
 					'required'     => 1,
-					'instructions' => 'Ancora (#id), caminho interno (/rota) ou URL HTTPS. Validado no servidor pelo admin Next.js (Stage 3), nao por este plugin.',
+					'instructions' => 'Ancora (#id), caminho interno (/rota) ou URL HTTPS. Esquema validado neste plugin na escrita (rejeita javascript:, data:, etc); o admin Next.js (Stage 3) e uma segunda camada.',
 				),
 				array(
 					'key'      => 'field_emha_cor_overlay',
@@ -240,6 +259,38 @@ function emha_get_acf_rest_value( $object ) {
 }
 
 /**
+ * cta_link so aceita ancora (#...), caminho interno de um unico separador
+ * (/...) ou HTTPS. Nunca javascript:, data: ou outro esquema executavel.
+ *
+ * Isso precisa ser recusado aqui dentro, nao so no admin Next.js (Stage 3):
+ * o valor vai direto pra um `<a href>` na home publica (Hero.tsx), e existem
+ * dois caminhos de escrita que nao passam pelo Stage 3 - PATCH direto em
+ * /wp/v2/banner com qualquer JWT que carregue EMHA_CAP, e a tela nativa do
+ * wp-admin (show_ui=true). Sem essa checagem aqui, e XSS armazenado.
+ *
+ * "Um unico separador" barra tanto "//evil.com" quanto "/\evil.com": o WHATWG
+ * URL Standard trata "\" como equivalente a "/" pra esquemas especiais
+ * (http/https), entao um navegador resolve "/\evil.com" como referencia
+ * absoluta pro host evil.com, nao como caminho interno - so bloquear "//"
+ * deixaria esse desvio aberto.
+ *
+ * @param string $value
+ * @return bool
+ */
+function emha_is_valid_cta_link( $value ) {
+	if ( 0 === strpos( $value, '#' ) ) {
+		return true;
+	}
+	if ( 0 === strpos( $value, '/' ) && ! in_array( substr( $value, 1, 1 ), array( '/', '\\' ), true ) ) {
+		return true;
+	}
+	if ( 0 === strpos( $value, 'https://' ) ) {
+		return true;
+	}
+	return false;
+}
+
+/**
  * PATCH/POST: grava via ACF quando disponivel, senao update_post_meta().
  * imagem_fundo aceita o ID do anexo (nao URL) - decisao que resolve o item em
  * aberto do Stage 1 "confirmar se imagem_fundo usa ID de anexo ou URL": grava
@@ -248,8 +299,11 @@ function emha_get_acf_rest_value( $object ) {
  *
  * O core ja bloqueia este callback para quem nao tem EMHA_CAP (a rota
  * PATCH/POST /wp/v2/banner/<id> so chega aqui apos current_user_can(
- * 'edit_post', $id ) passar). A checagem abaixo e redundancia proposital: um
- * limite de autorizacao nao deve depender apenas do controller que o chama.
+ * 'edit_post', $id ) passar, que sob map_meta_cap=false resolve direto pra
+ * EMHA_CAP). A checagem abaixo e redundancia proposital: um limite de
+ * autorizacao nao deve depender apenas do controller que o chama. Sem
+ * segundo parametro porque EMHA_CAP nao e meta cap reconhecida pelo core -
+ * o post ID nao muda o resultado, so seria ruido.
  *
  * @param mixed    $value  Valor recebido no corpo da requisicao para a chave "acf".
  * @param \WP_Post $object Post sendo atualizado.
@@ -260,7 +314,7 @@ function emha_update_acf_rest_value( $value, $object ) {
 		return new WP_Error( 'emha_invalid_acf', __( 'O campo acf precisa ser um objeto.', 'ensina-mais-hero-api' ), array( 'status' => 400 ) );
 	}
 
-	if ( ! current_user_can( EMHA_CAP, $object->ID ) ) {
+	if ( ! current_user_can( EMHA_CAP ) ) {
 		return new WP_Error( 'emha_forbidden', __( 'Sem permissao para editar o hero.', 'ensina-mais-hero-api' ), array( 'status' => rest_authorization_required_code() ) );
 	}
 
@@ -271,15 +325,33 @@ function emha_update_acf_rest_value( $value, $object ) {
 
 		$raw = $value[ $key ];
 
-		if ( 'imagem_fundo' === $key ) {
-			$raw = absint( $raw );
-		} elseif ( 'cor_overlay' === $key ) {
-			$raw = sanitize_hex_color( (string) $raw );
-			if ( null === $raw ) {
-				return new WP_Error( 'emha_invalid_color', __( 'cor_overlay precisa ser um hexadecimal valido.', 'ensina-mais-hero-api' ), array( 'status' => 400 ) );
-			}
-		} else {
-			$raw = sanitize_text_field( (string) $raw );
+		switch ( $key ) {
+			case 'imagem_fundo':
+				$raw = absint( $raw );
+				break;
+
+			case 'cor_overlay':
+				$raw = sanitize_hex_color( (string) $raw );
+				if ( null === $raw || '' === $raw ) {
+					return new WP_Error( 'emha_invalid_color', __( 'cor_overlay precisa ser um hexadecimal valido.', 'ensina-mais-hero-api' ), array( 'status' => 400 ) );
+				}
+				break;
+
+			case 'cta_link':
+				$raw = sanitize_text_field( (string) $raw );
+				if ( ! emha_is_valid_cta_link( $raw ) ) {
+					return new WP_Error( 'emha_invalid_cta_link', __( 'cta_link precisa ser uma ancora (#...), caminho interno (/...) ou URL HTTPS.', 'ensina-mais-hero-api' ), array( 'status' => 400 ) );
+				}
+				break;
+
+			case 'descricao':
+				// sanitize_text_field colapsaria as quebras de linha do textarea.
+				$raw = sanitize_textarea_field( (string) $raw );
+				break;
+
+			default:
+				$raw = sanitize_text_field( (string) $raw );
+				break;
 		}
 
 		if ( function_exists( 'update_field' ) ) {
