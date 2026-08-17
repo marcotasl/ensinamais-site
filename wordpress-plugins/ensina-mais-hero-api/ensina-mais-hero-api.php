@@ -301,6 +301,22 @@ function emha_is_valid_cta_link( $value ) {
 }
 
 /**
+ * WP_Error se cta_link for invalido, null se estiver ok. Um unico ponto pro
+ * codigo e a mensagem do erro, porque emha_is_valid_cta_link() precisa ser
+ * chamada duas vezes (F9: antes e depois do esc_url_raw()) e as duas
+ * chamadas devem falhar do mesmo jeito.
+ *
+ * @param string $value
+ * @return \WP_Error|null
+ */
+function emha_validate_cta_link( $value ) {
+	if ( emha_is_valid_cta_link( $value ) ) {
+		return null;
+	}
+	return new WP_Error( 'emha_invalid_cta_link', __( 'cta_link precisa ser uma ancora (#...), caminho interno (/...) ou URL HTTPS.', 'ensina-mais-hero-api' ), array( 'status' => 400 ) );
+}
+
+/**
  * PATCH/POST: grava via ACF quando disponivel, senao update_post_meta().
  * imagem_fundo aceita o ID do anexo (nao URL) - decisao que resolve o item em
  * aberto do Stage 1 "confirmar se imagem_fundo usa ID de anexo ou URL": grava
@@ -348,24 +364,33 @@ function emha_update_acf_rest_value( $value, $object ) {
 				break;
 
 			case 'cta_link':
-				// Valida o formato ANTES de limpar, nao depois: esc_url_raw() descarta
-				// "\" por nao estar na whitelist de caracteres do core, entao
-				// "/\evil.com" viraria "/evil.com" (inofensivo) se passasse por
-				// esc_url_raw() primeiro - o valor seria aceito e gravado calado,
-				// diferente do que o editor digitou, em vez de recusado com erro
-				// claro. Validando o bruto primeiro, emha_is_valid_cta_link() recusa
-				// esse caso (e "//evil.com") explicitamente, como qualquer outro
-				// esquema fora do allowlist.
+				// Valida duas vezes, antes E depois do esc_url_raw() - nao e'
+				// redundancia, e' o invariante certo: precisa validar o valor que
+				// efetivamente fica gravado, e esc_url_raw() nao e' uma limpeza
+				// neutra, ele REMOVE caractere (tab, %0d/%0a, "^", "{", "\", etc,
+				// tudo que estiver fora da whitelist de caracteres do core). Um
+				// valor como "/<TAB>/evil.com" passa na 1a checagem (o segundo
+				// caractere nao e' "/" nem "\"), mas esc_url_raw() apaga o TAB e
+				// sobra "//evil.com" (protocol-relative, sai do dominio) - so a 2a
+				// checagem, sobre o valor JA limpo, pega isso. A 1a checagem
+				// continua existindo pelo erro claro e imediato pro editor num
+				// esquema obviamente errado (javascript:, data:, etc), sem
+				// depender de enumerar cada caractere que o core descarta.
 				$candidate = (string) $raw;
-				if ( ! emha_is_valid_cta_link( $candidate ) ) {
-					return new WP_Error( 'emha_invalid_cta_link', __( 'cta_link precisa ser uma ancora (#...), caminho interno (/...) ou URL HTTPS.', 'ensina-mais-hero-api' ), array( 'status' => 400 ) );
+				$link_err  = emha_validate_cta_link( $candidate );
+				if ( $link_err ) {
+					return $link_err;
 				}
 				// esc_url_raw, nao sanitize_text_field: este e' um valor de URL, e
 				// sanitize_text_field descarta qualquer sequencia %XX (parte da
 				// limpeza de texto do core), corrompendo query strings com
-				// acento/emoji percent-encoded (ex.: link de WhatsApp). Roda so
-				// depois da validacao acima, sobre um valor ja aprovado.
-				$raw = esc_url_raw( $candidate );
+				// acento/emoji percent-encoded (ex.: link de WhatsApp).
+				$candidate = esc_url_raw( $candidate );
+				$link_err  = emha_validate_cta_link( $candidate );
+				if ( $link_err ) {
+					return $link_err;
+				}
+				$raw = $candidate;
 				break;
 
 			case 'descricao':
