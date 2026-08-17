@@ -84,11 +84,11 @@ add_action( 'init', 'emha_register_banner_cpt' );
 
 /**
  * Ativacao: concede EMHA_CAP ao Administrator e cria o papel dedicado
- * "hero_editor" (read + EMHA_CAP, nada alem disso). Nao cria nenhum post
- * "banner", nao altera conteudo, nao grava segredo. Reversivel: desativar o
- * plugin nao remove a capability nem o papel (evita travar contas caso o
- * plugin seja temporariamente desligado); remocao manual, se um dia
- * necessaria, e `get_role('administrator')->remove_cap(EMHA_CAP)` e
+ * "hero_editor" (read + EMHA_CAP + upload_files, nada alem disso). Nao cria
+ * nenhum post "banner", nao altera conteudo, nao grava segredo. Reversivel:
+ * desativar o plugin nao remove a capability nem o papel (evita travar
+ * contas caso o plugin seja temporariamente desligado); remocao manual, se
+ * um dia necessaria, e `get_role('administrator')->remove_cap(EMHA_CAP)` e
  * `remove_role('hero_editor')`.
  *
  * O papel existe porque o WP core nao tem tela de gerenciar capabilities:
@@ -96,6 +96,12 @@ add_action( 'init', 'emha_register_banner_cpt' );
  * papel Editor, que tambem enxerga o blog inteiro. Com o "API Middleware" do
  * Simple JWT Login ligado (exigido pelo fluxo do admin), isso faria um JWT
  * de quem so deveria editar o hero valer como editor do blog inteiro.
+ *
+ * upload_files e obrigatoria, nao opcional: tanto POST /wp/v2/media (upload
+ * da imagem de fundo pelo admin Next.js) quanto o seletor de midia do campo
+ * ACF na tela nativa do wp-admin exigem essa capability especifica no WP
+ * core, alem de edit_hero_banner. Sem ela o editor autentica e edita texto,
+ * mas o upload de imagem, que e o proprio motivo da issue, volta 403.
  */
 function emha_on_activate() {
 	$admin_role = get_role( 'administrator' );
@@ -108,8 +114,9 @@ function emha_on_activate() {
 			'hero_editor',
 			__( 'Editor do Hero', 'ensina-mais-hero-api' ),
 			array(
-				'read'   => true,
-				EMHA_CAP => true,
+				'read'         => true,
+				EMHA_CAP       => true,
+				'upload_files' => true,
 			)
 		);
 	}
@@ -284,7 +291,10 @@ function emha_is_valid_cta_link( $value ) {
 	if ( 0 === strpos( $value, '/' ) && ! in_array( substr( $value, 1, 1 ), array( '/', '\\' ), true ) ) {
 		return true;
 	}
-	if ( 0 === strpos( $value, 'https://' ) ) {
+	// stripos, nao strpos: esquema de URL nao tem caixa (HTTPS://... e valido
+	// pra qualquer navegador); rejeitar por causa de maiuscula so gera 400
+	// confuso pra quem colou o link assim, sem reduzir superficie de ataque.
+	if ( 0 === stripos( $value, 'https://' ) ) {
 		return true;
 	}
 	return false;
@@ -338,10 +348,24 @@ function emha_update_acf_rest_value( $value, $object ) {
 				break;
 
 			case 'cta_link':
-				$raw = sanitize_text_field( (string) $raw );
-				if ( ! emha_is_valid_cta_link( $raw ) ) {
+				// Valida o formato ANTES de limpar, nao depois: esc_url_raw() descarta
+				// "\" por nao estar na whitelist de caracteres do core, entao
+				// "/\evil.com" viraria "/evil.com" (inofensivo) se passasse por
+				// esc_url_raw() primeiro - o valor seria aceito e gravado calado,
+				// diferente do que o editor digitou, em vez de recusado com erro
+				// claro. Validando o bruto primeiro, emha_is_valid_cta_link() recusa
+				// esse caso (e "//evil.com") explicitamente, como qualquer outro
+				// esquema fora do allowlist.
+				$candidate = (string) $raw;
+				if ( ! emha_is_valid_cta_link( $candidate ) ) {
 					return new WP_Error( 'emha_invalid_cta_link', __( 'cta_link precisa ser uma ancora (#...), caminho interno (/...) ou URL HTTPS.', 'ensina-mais-hero-api' ), array( 'status' => 400 ) );
 				}
+				// esc_url_raw, nao sanitize_text_field: este e' um valor de URL, e
+				// sanitize_text_field descarta qualquer sequencia %XX (parte da
+				// limpeza de texto do core), corrompendo query strings com
+				// acento/emoji percent-encoded (ex.: link de WhatsApp). Roda so
+				// depois da validacao acima, sobre um valor ja aprovado.
+				$raw = esc_url_raw( $candidate );
 				break;
 
 			case 'descricao':
