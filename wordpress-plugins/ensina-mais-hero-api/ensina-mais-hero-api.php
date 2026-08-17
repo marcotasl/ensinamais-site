@@ -17,7 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'EMHA_CPT', 'banner' );
 define( 'EMHA_CAP', 'edit_hero_banner' );
-define( 'EMHA_VERSION', '1.0.0' );
 
 /**
  * CPT usado somente como fonte de dados REST para o hero da home.
@@ -61,16 +60,22 @@ function emha_register_banner_cpt() {
 			// map_meta_cap, previsivel de auditar.
 			'capability_type'      => EMHA_CPT,
 			'map_meta_cap'         => false,
-			'capabilities'         => array(
-				'edit_post'           => EMHA_CAP,
-				'read_post'           => EMHA_CAP,
-				'delete_post'         => EMHA_CAP,
-				'edit_posts'          => EMHA_CAP,
-				'edit_others_posts'   => EMHA_CAP,
-				'publish_posts'       => EMHA_CAP,
-				'read_private_posts'  => EMHA_CAP,
-				'delete_posts'        => EMHA_CAP,
-				'delete_others_posts' => EMHA_CAP,
+			// array_fill_keys em vez de repetir "=> EMHA_CAP" 9x: deixa o invariante
+			// "todas as acoes mapeiam pra mesma capability" impossivel de divergir
+			// por typo.
+			'capabilities'         => array_fill_keys(
+				array(
+					'edit_post',
+					'read_post',
+					'delete_post',
+					'edit_posts',
+					'edit_others_posts',
+					'publish_posts',
+					'read_private_posts',
+					'delete_posts',
+					'delete_others_posts',
+				),
+				EMHA_CAP
 			),
 		)
 	);
