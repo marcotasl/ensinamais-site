@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Ensina Mais - Hero API
  * Description: Registra o CPT "banner" do hero da home do Ensina Mais, expoe os 6 campos editoriais em REST sob a chave "acf" e cria a capability dedicada "edit_hero_banner". Nao inclui segredos e nao cria/altera nenhum conteudo ao ativar.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Virtus Design
  * Text Domain: ensina-mais-hero-api
  * Requires at least: 6.0
@@ -83,19 +83,24 @@ function emha_register_banner_cpt() {
 add_action( 'init', 'emha_register_banner_cpt' );
 
 /**
- * Ativacao: concede EMHA_CAP ao Administrator e cria o papel dedicado
- * "hero_editor" (read + EMHA_CAP + upload_files, nada alem disso). Nao cria
- * nenhum post "banner", nao altera conteudo, nao grava segredo. Reversivel:
- * desativar o plugin nao remove a capability nem o papel (evita travar
- * contas caso o plugin seja temporariamente desligado); remocao manual, se
- * um dia necessaria, e `get_role('administrator')->remove_cap(EMHA_CAP)` e
- * `remove_role('hero_editor')`.
+ * Ativacao: concede EMHA_CAP ao Administrator, ao papel nativo Editor e
+ * cria o papel dedicado "hero_editor" (read + EMHA_CAP + upload_files, nada
+ * alem disso). Nao cria nenhum post "banner", nao altera conteudo, nao
+ * grava segredo. Reversivel: desativar o plugin nao remove a capability nem
+ * os papeis (evita travar contas caso o plugin seja temporariamente
+ * desligado); remocao manual, se um dia necessaria, e
+ * `get_role('administrator')->remove_cap(EMHA_CAP)`,
+ * `get_role('editor')->remove_cap(EMHA_CAP)` e `remove_role('hero_editor')`.
  *
- * O papel existe porque o WP core nao tem tela de gerenciar capabilities:
- * sem um papel pronto, o caminho manual mais obvio seria dar EMHA_CAP ao
- * papel Editor, que tambem enxerga o blog inteiro. Com o "API Middleware" do
- * Simple JWT Login ligado (exigido pelo fluxo do admin), isso faria um JWT
- * de quem so deveria editar o hero valer como editor do blog inteiro.
+ * O admin Next.js autentica cada pessoa com a Application Password dela
+ * (core do WP, sem plugin de auth intermediario), entao as permissoes
+ * efetivas na API sao exatamente as do papel WP daquela pessoa, sem
+ * elevacao de escopo por um middleware de terceiros. Com o escopo do admin
+ * agora cobrindo tambem o blog, quem edita o blog ja precisa de
+ * edit_posts, ou seja, ja e Editor; negar EMHA_CAP a esse papel so
+ * forcaria duplicar conta para a mesma pessoa editar hero e blog. O papel
+ * "hero_editor" continua existindo para quem deve editar so o hero, sem
+ * acesso ao blog.
  *
  * upload_files e obrigatoria, nao opcional: tanto POST /wp/v2/media (upload
  * da imagem de fundo pelo admin Next.js) quanto o seletor de midia do campo
@@ -107,6 +112,11 @@ function emha_on_activate() {
 	$admin_role = get_role( 'administrator' );
 	if ( $admin_role && ! $admin_role->has_cap( EMHA_CAP ) ) {
 		$admin_role->add_cap( EMHA_CAP );
+	}
+
+	$editor_role = get_role( 'editor' );
+	if ( $editor_role && ! $editor_role->has_cap( EMHA_CAP ) ) {
+		$editor_role->add_cap( EMHA_CAP );
 	}
 
 	if ( ! get_role( 'hero_editor' ) ) {
