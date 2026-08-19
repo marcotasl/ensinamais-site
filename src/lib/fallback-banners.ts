@@ -19,7 +19,7 @@ export const FALLBACK_BANNERS: FallbackBanner[] = [
     desc: "Apoio escolar, inglês, robótica e programação com acompanhamento individualizado, rotina de estudos e uma metodologia que respeita o ritmo de cada criança.",
     ctaText: "Agende uma aula experimental gratuita",
     ctaHref: "#lead",
-    overlayColor: "#5A8A2A",
+    overlayColor: "#1A2744",
     image: "/images/turma-da-monica/pose-6.webp",
     bgImage: "/images/hero/heading.webp",
   },

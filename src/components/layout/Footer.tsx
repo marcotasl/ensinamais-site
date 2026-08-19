@@ -231,8 +231,8 @@ export default function Footer() {
           </div>
 
           {/* Marca do grupo MoveEdu */}
-          <div className="py-10 border-t border-dashed border-white/15 text-center">
-            <span className="block text-[11px] font-black uppercase tracking-widest text-white/45 mb-5">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 py-10 border-t border-dashed border-white/15 text-center">
+            <span className="text-[11px] font-black uppercase tracking-widest text-white/45">
               Uma marca do grupo
             </span>
             <a
