@@ -104,17 +104,6 @@ const SEALS = [
   { src: "/images/selos/selo-melhor-microfranquia.webp", alt: "Selo Melhor Microfranquia do Brasil", tilt: "-rotate-1" },
 ];
 
-/* Marcas do grupo MoveEdu, mesma ordem/tratamento do footer moveedu.com.br.
-   brightness-0 invert força branco pleno nos SVGs coloridos; os .webp já vêm brancos. */
-const BRAND_LOGOS = [
-  { src: "/images/brands/ensina-mais.webp", alt: "Ensina Mais Turma da Mônica", href: "/", external: false, className: "h-9 sm:h-11 w-auto" },
-  { src: "/images/brands/microlins.svg", alt: "Microlins", href: "https://www.microlins.com.br", external: true, className: "h-7 sm:h-9 w-auto brightness-0 invert" },
-  { src: "/images/brands/faculdade-microlins.svg", alt: "Faculdade Microlins", href: "https://www.microlins.com.br", external: true, className: "h-7 sm:h-8 w-auto brightness-0 invert" },
-  { src: "/images/brands/prepara.svg", alt: "Prepara Cursos", href: "https://www.prepara.com.br", external: true, className: "h-7 sm:h-9 w-auto brightness-0 invert" },
-  { src: "/images/brands/faculdade-prepara.svg", alt: "Faculdade Prepara", href: "https://www.prepara.com.br", external: true, className: "h-8 sm:h-10 w-auto brightness-0 invert" },
-  { src: "/images/brands/yazigi.webp", alt: "Yázigi", href: "https://www.yazigi.com.br", external: true, className: "h-8 sm:h-10 w-auto" },
-];
-
 /* Rabiscos de giz coloridos espalhados no quadro-negro (decorativo, atrás do conteúdo) */
 const DOODLES = [
   { Icon: GraduationCap, className: "top-10 left-[5%] w-16 h-16 text-em-yellow/25 -rotate-12" },
@@ -241,25 +230,26 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Marcas do grupo MoveEdu */}
+          {/* Marca do grupo MoveEdu */}
           <div className="py-10 border-t border-dashed border-white/15 text-center">
-            <span className="block text-[11px] font-black uppercase tracking-widest text-white/45 mb-7">
-              Uma marca do grupo MoveEdu
+            <span className="block text-[11px] font-black uppercase tracking-widest text-white/45 mb-5">
+              Uma marca do grupo
             </span>
-            <div className="flex flex-wrap items-center justify-center gap-x-10 sm:gap-x-14 gap-y-7">
-              {BRAND_LOGOS.map((b) => (
-                <a
-                  key={b.alt}
-                  href={b.href}
-                  aria-label={b.alt}
-                  {...(b.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="opacity-80 hover:opacity-100 transition-opacity"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={b.src} alt={b.alt} className={b.className} loading="lazy" />
-                </a>
-              ))}
-            </div>
+            <a
+              href="https://moveedu.com.br"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Grupo MoveEdu"
+              className="inline-flex opacity-90 transition-opacity hover:opacity-100"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/moveedu/logo-moveedu-white.svg"
+                alt="Grupo MoveEdu"
+                className="h-8 sm:h-10 w-auto"
+                loading="lazy"
+              />
+            </a>
           </div>
 
           {/* Barra inferior */}
