@@ -258,10 +258,10 @@ export default function Footer() {
               &copy; 2026 Ensina Mais · Turma da Mônica. Grupo MoveEdu. Todos os direitos reservados.
             </span>
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 items-center">
-              <a href="/politica-de-privacidade" className="text-xs text-white/50 hover:text-white transition-colors">
+              <a href="https://lgpd.ensinamais.com.br/politicadeprivacidade" className="text-xs text-white/50 hover:text-white transition-colors">
                 Política de Privacidade
               </a>
-              <a href="/termos-de-uso" className="text-xs text-white/50 hover:text-white transition-colors">
+              <a href="https://lgpd.ensinamais.com.br/termo-de-uso" className="text-xs text-white/50 hover:text-white transition-colors">
                 Termos de Uso
               </a>
               <span className="text-white/20 hidden sm:inline">·</span>

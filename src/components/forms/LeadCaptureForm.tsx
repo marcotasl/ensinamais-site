@@ -577,7 +577,7 @@ export default function LeadCaptureForm({
       >
         Ao enviar, você concorda com nossa{" "}
         <a
-          href="/politica-de-privacidade"
+          href="https://lgpd.ensinamais.com.br/politicadeprivacidade"
           className={`underline ${
             dark ? "hover:text-white" : "hover:text-em-dark"
           }`}

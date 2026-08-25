@@ -138,7 +138,7 @@ export default function ContactForm() {
       </button>
 
       <p className="text-xs text-em-dark-soft/70">
-        Ao enviar, você concorda com nossa <a href="/politica-de-privacidade" className="underline hover:text-em-dark">política de privacidade</a>.
+        Ao enviar, você concorda com nossa <a href="https://lgpd.ensinamais.com.br/politicadeprivacidade" className="underline hover:text-em-dark">política de privacidade</a>.
       </p>
     </form>
   );
