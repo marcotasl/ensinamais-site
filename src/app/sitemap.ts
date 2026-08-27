@@ -4,6 +4,7 @@ import {
   canonicalPagePath,
   courseCategoryPath,
   coursePath,
+  blogPostPath,
   COURSES_HUB_PATH,
 } from "@/lib/seo";
 import { CATEGORIES, COURSES } from "@/lib/courses-data";
@@ -58,7 +59,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: abs(`/blog/${post.slug}`),
+    url: abs(blogPostPath(post)),
     lastModified: new Date(post.date),
     changeFrequency: "monthly",
     priority: 0.5,

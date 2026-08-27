@@ -96,6 +96,7 @@ export interface BlogPostMeta {
   title: string;
   excerpt: string; // texto puro, sem tags
   category: string; // nome da categoria principal
+  categorySlug: string; // slug da categoria principal, usado na URL canônica
   date: string; // ISO
   readTime: string; // "N min" (~200 palavras/min do content)
   cover: string; // source_url da featured image ("" se não houver)
@@ -108,6 +109,7 @@ export interface BlogPostFull extends BlogPostMeta {
 
 interface WPTerm {
   name: string;
+  slug: string;
   taxonomy: string;
 }
 
@@ -139,13 +141,15 @@ function calcReadTime(html: string): string {
   return `${mins} min`;
 }
 
-function primaryCategory(embedded: WPPost["_embedded"]): string {
+function primaryCategory(embedded: WPPost["_embedded"]): Pick<BlogPostMeta, "category" | "categorySlug"> {
   const groups = embedded?.["wp:term"] ?? [];
   for (const group of groups) {
     const cat = group.find((t) => t.taxonomy === "category");
-    if (cat?.name) return cat.name;
+    if (cat?.name && cat.slug) {
+      return { category: cat.name, categorySlug: cat.slug };
+    }
   }
-  return "";
+  return { category: "", categorySlug: "sem-categoria" };
 }
 
 function coverUrl(embedded: WPPost["_embedded"]): string {
@@ -161,7 +165,7 @@ function mapMeta(post: WPPost): BlogPostMeta {
     slug: post.slug,
     title: stripHtml(post.title.rendered),
     excerpt: stripHtml(post.excerpt.rendered),
-    category: primaryCategory(post._embedded),
+    ...primaryCategory(post._embedded),
     date: post.date,
     readTime: calcReadTime(post.content.rendered),
     cover: coverUrl(post._embedded),

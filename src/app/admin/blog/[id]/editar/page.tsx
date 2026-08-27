@@ -19,6 +19,7 @@ interface WPPostFull {
 interface WPCategorySlim {
   id: number;
   name: string;
+  slug: string;
 }
 interface WPMediaSlim {
   id: number;
@@ -38,7 +39,7 @@ export default async function EditarPostPage({ params }: { params: Promise<{ id:
   if (!post) notFound();
 
   const [categories, media] = await Promise.all([
-    adminFetchWP<WPCategorySlim[]>("/wp/v2/categories", { query: { per_page: "100", _fields: "id,name" } }),
+    adminFetchWP<WPCategorySlim[]>("/wp/v2/categories", { query: { per_page: "100", _fields: "id,name,slug" } }),
     post.featured_media > 0
       ? adminFetchWP<WPMediaSlim>(`/wp/v2/media/${post.featured_media}`, { query: { context: "edit" } }).catch(
           () => null,
@@ -60,7 +61,11 @@ export default async function EditarPostPage({ params }: { params: Promise<{ id:
     content: rawContent,
   };
 
-  const categoryOptions: CategoryOption[] = categories.map((c) => ({ id: c.id, name: c.name }));
+  const categoryOptions: CategoryOption[] = categories.map((c) => ({
+    id: c.id,
+    name: c.name,
+    slug: c.slug,
+  }));
 
   return (
     <AdminShell displayName={session.displayName} canHero={session.canHero} canBlog={session.canBlog}>

@@ -22,6 +22,7 @@ import { CategoryChecklist, type CategoryOption } from "./CategoryChecklist";
 import { ImageUpload } from "./ImageUpload";
 import { useTogglePostStatus } from "./useTogglePostStatus";
 import { createPostAction, updatePostBodyAction, updatePostMetaAction } from "../_actions";
+import { blogPostPath } from "@/lib/seo";
 
 export function PostForm({
   mode,
@@ -72,6 +73,10 @@ export function PostForm({
 
   const featuredMedia = watch("featuredMedia");
   const featuredMediaUrl = watch("featuredMediaUrl");
+  const selectedCategories = watch("categories");
+  const previewCategorySlug =
+    categoryOptions.find((option) => selectedCategories.includes(option.id))?.slug ??
+    "sem-categoria";
 
   function clearFlash() {
     setServerError(null);
@@ -154,7 +159,7 @@ export function PostForm({
         </div>
         {mode === "edit" && postSlug && (
           <a
-            href={`/blog/${postSlug}`}
+            href={blogPostPath({ categorySlug: previewCategorySlug, slug: postSlug })}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[12px] font-semibold text-em-dark/70 shadow-[0_1px_3px_rgba(26,39,68,0.08)] hover:text-em-green-dark"
