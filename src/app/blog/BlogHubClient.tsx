@@ -5,6 +5,7 @@ import { Search, ArrowRight, Clock, Calendar, Newspaper, ChevronLeft, ChevronRig
 import FadeIn from "@/components/ui/FadeIn";
 import CloudDivider from "@/components/ui/CloudDivider";
 import { formatDate, type BlogPostMeta } from "@/lib/wordpress";
+import { blogPostPath } from "@/lib/seo";
 
 const PER_PAGE = 12;
 
@@ -124,7 +125,7 @@ export default function BlogHubClient({ posts }: { posts: BlogPostMeta[] }) {
         <section id="artigos" className="px-4 sm:px-6 pt-4 sm:pt-6 pb-14 sm:pb-16">
           <FadeIn>
             <a
-              href={`/blog/${featured.slug}`}
+              href={blogPostPath(featured)}
               className="card-lift block max-w-[1200px] mx-auto bg-white rounded-3xl overflow-hidden shadow-[0_18px_42px_-22px_rgba(26,39,68,0.28)] hover:shadow-[0_28px_60px_-26px_rgba(26,39,68,0.38)] transition-all"
             >
               <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-0">
@@ -282,7 +283,7 @@ function PostCard({ post, index }: { post: BlogPostMeta; index: number }) {
   return (
     <FadeIn delay={Math.min(index * 0.05, 0.3)}>
       <a
-        href={`/blog/${post.slug}`}
+        href={blogPostPath(post)}
         className="card-lift group bg-white rounded-3xl overflow-hidden shadow-[0_14px_36px_-22px_rgba(26,39,68,0.24)] hover:shadow-[0_24px_52px_-26px_rgba(26,39,68,0.36)] transition-all h-full flex flex-col"
       >
         <div className="relative bg-em-dark/5 aspect-[16/10]">

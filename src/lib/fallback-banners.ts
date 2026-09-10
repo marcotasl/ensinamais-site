@@ -3,12 +3,15 @@ export interface FallbackBanner {
   id: number;
   title: string;
   subtitle: string;
+  subtitleMobile?: string;
   desc: string;
   ctaText: string;
   ctaHref: string;
   overlayColor: string;
   image: string;
   bgImage: string;
+  bgImageMobile?: string;
+  backgroundIncludesOverlay?: boolean;
 }
 
 export const FALLBACK_BANNERS: FallbackBanner[] = [
@@ -16,12 +19,15 @@ export const FALLBACK_BANNERS: FallbackBanner[] = [
     id: 1,
     title: "Seu filho pode aprender com mais confiança",
     subtitle: "Apoio escolar com a Turma da Mônica",
+    subtitleMobile: "Com a Turma da Mônica",
     desc: "Apoio escolar, inglês, robótica e programação com acompanhamento individualizado, rotina de estudos e uma metodologia que respeita o ritmo de cada criança.",
     ctaText: "Agende uma aula experimental gratuita",
     ctaHref: "#lead",
-    overlayColor: "#5A8A2A",
+    overlayColor: "#007799",
     image: "/images/turma-da-monica/pose-6.webp",
-    bgImage: "/images/hero/heading.webp",
+    bgImage: "/images/hero/home-robotica-desktop.webp",
+    bgImageMobile: "/images/hero/home-robotica-mobile-7529d497.webp",
+    backgroundIncludesOverlay: true,
   },
   {
     id: 2,

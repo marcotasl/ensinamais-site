@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -17,7 +18,6 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
-import Placeholder from "@/components/ui/Placeholder";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 import JsonLd from "@/components/seo/JsonLd";
 import { faqSchema } from "@/lib/seo";
@@ -188,7 +188,15 @@ export default function SobreNosPage() {
             <FadeIn delay={0.12}>
               <div className="relative">
                 <div className="absolute inset-x-10 inset-y-14 bg-em-yellow rounded-3xl -rotate-3" />
-                <Placeholder className="relative w-full aspect-[4/5] rounded-3xl" />
+                <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_24px_56px_-28px_rgba(26,39,68,0.35)]">
+                  <Image
+                    src="/images/sobre/conheca-a-ensina-mais.webp"
+                    alt="Educadora acompanha uma aluna em uma atividade de leitura e robótica na Ensina Mais"
+                    fill
+                    sizes="(min-width: 1024px) 42vw, 100vw"
+                    className="object-cover object-center"
+                  />
+                </div>
               </div>
             </FadeIn>
           </div>
@@ -253,7 +261,15 @@ export default function SobreNosPage() {
           <FadeIn>
             <div className="relative">
               <div className="absolute inset-x-8 inset-y-12 bg-em-coral rounded-3xl rotate-2" />
-              <Placeholder className="relative w-full aspect-[4/5] rounded-3xl" />
+              <div className="relative w-full aspect-[3/2] rounded-3xl overflow-hidden shadow-[0_24px_56px_-28px_rgba(26,39,68,0.35)]">
+                <Image
+                  src="/images/sobre/aprender-com-turma-da-monica.webp"
+                  alt="Material didático da Ensina Mais com personagens da Turma da Mônica"
+                  fill
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                  className="object-cover object-center"
+                />
+              </div>
             </div>
           </FadeIn>
           <FadeIn delay={0.1}>
@@ -361,7 +377,15 @@ export default function SobreNosPage() {
                 </div>
                 <div className="relative">
                   <div className="absolute inset-x-8 inset-y-12 bg-em-yellow/30 rounded-3xl rotate-2" />
-                  <Placeholder className="relative w-full aspect-[4/5] rounded-3xl" />
+                  <div className="relative w-full aspect-[3/2] rounded-3xl overflow-hidden shadow-[0_24px_56px_-28px_rgba(26,39,68,0.5)]">
+                    <Image
+                      src="/images/sobre/acompanhamento-faz-diferenca.webp"
+                      alt="Responsável acessa o aplicativo de acompanhamento da Ensina Mais pelo celular"
+                      fill
+                      sizes="(min-width: 1024px) 40vw, 100vw"
+                      className="object-cover object-center"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

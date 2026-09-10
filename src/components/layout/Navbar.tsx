@@ -86,16 +86,16 @@ export default function Navbar() {
         className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-300 ${surfaceClass}`}
         onMouseLeave={() => { setMegaOpen(false); setActiveDropdown(null); }}
       >
-      <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-20">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex items-center justify-between gap-2 h-20">
         {/* Logo */}
-        <Link href="/" className="flex items-center" aria-label="Ensina Mais">
+        <Link href="/" className="flex shrink-0 items-center" aria-label="Ensina Mais">
           <Image
             src="/images/logo-ensina-mais.svg"
             alt="Ensina Mais"
             width={156}
             height={56}
             priority
-            className="h-14 w-auto"
+            className="h-10 w-auto sm:h-14"
           />
         </Link>
 
@@ -137,7 +137,7 @@ export default function Navbar() {
         </div>
 
         {/* Right */}
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <a
             href={STUDENT_PORTAL_URL}
             target="_blank"
@@ -149,7 +149,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={handleScheduleClick}
-            className="text-sm font-bold text-em-dark bg-em-yellow rounded-lg px-5 py-2.5 hover:bg-em-yellow-dark transition-colors shadow-button cursor-pointer"
+            className="whitespace-nowrap text-xs sm:text-sm font-bold text-em-dark bg-em-yellow rounded-lg px-3 sm:px-5 py-2 sm:py-2.5 hover:bg-em-yellow-dark transition-colors shadow-button cursor-pointer"
           >
             Agendar Aula
           </button>

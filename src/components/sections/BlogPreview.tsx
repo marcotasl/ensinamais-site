@@ -1,5 +1,7 @@
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { formatDate, getBlogPosts } from "@/lib/wordpress";
+import { blogPostPath } from "@/lib/seo";
 
 const TAG_BG = ["bg-em-coral", "bg-em-green", "bg-em-purple"] as const;
 
@@ -16,17 +18,17 @@ export default async function BlogPreview() {
               Conteúdo para <span className="marker-yellow">pais e educadores</span>
             </h2>
           </div>
-          <a
+          <Link
             href="/blog"
             className="hidden sm:inline-flex text-sm font-bold text-em-purple-dark border-2 border-em-purple/30 rounded-full px-5 py-2.5 items-center gap-1.5 hover:bg-em-purple hover:text-white hover:border-em-purple transition-colors"
           >
             Ver todos <ArrowRight size={13} />
-          </a>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post, i) => (
-            <a key={`/blog/${post.slug}`} href={`/blog/${post.slug}`} className="group block">
+            <Link key={post.slug} href={blogPostPath(post)} className="group block">
               <div className="relative overflow-hidden rounded-3xl mb-4 shadow-[0_14px_36px_-22px_rgba(26,39,68,0.25)] bg-em-dark/5 aspect-[16/10]">
                 {post.cover ? (
                   <img src={post.cover} alt={post.title} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
@@ -41,16 +43,16 @@ export default async function BlogPreview() {
               <h3 className="text-base sm:text-lg font-extrabold text-em-dark group-hover:text-em-purple-dark transition-colors leading-snug">
                 {post.title}
               </h3>
-            </a>
+            </Link>
           ))}
         </div>
 
-        <a
+        <Link
           href="/blog"
           className="sm:hidden mt-8 text-sm font-bold text-em-purple-dark border-2 border-em-purple/30 rounded-full px-5 py-3 flex items-center justify-center gap-1.5 hover:bg-em-purple hover:text-white hover:border-em-purple transition-colors"
         >
           Ver todos os posts <ArrowRight size={13} />
-        </a>
+        </Link>
       </div>
     </section>
   );

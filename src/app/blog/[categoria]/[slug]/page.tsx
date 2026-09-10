@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Calendar, Clock, MessageCircle, Share2 } from "lucide-react";
 import type { ComponentType } from "react";
@@ -6,10 +6,10 @@ import FadeIn from "@/components/ui/FadeIn";
 import { formatDate, getBlogPost, getBlogPosts } from "@/lib/wordpress";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
-import { blogPostingSchema, breadcrumbSchema } from "@/lib/seo";
+import { blogPostPath, blogPostingSchema, breadcrumbSchema } from "@/lib/seo";
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ categoria: string; slug: string }>;
 }
 
 export const revalidate = 300;
@@ -55,14 +55,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${post.title} | Blog Ensina Mais`,
     description: post.excerpt,
-    alternates: { canonical: `/blog/${slug}` },
+    alternates: { canonical: blogPostPath(post) },
   };
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params;
+  const { categoria, slug } = await params;
   const [post, allPosts] = await Promise.all([getBlogPost(slug), getBlogPosts()]);
   if (!post) notFound();
+  if (categoria !== post.categorySlug) permanentRedirect(blogPostPath(post));
 
   const related = allPosts.filter((p) => p.slug !== slug && p.category === post.category).slice(0, 3);
   const fallbackRelated =
@@ -77,7 +78,7 @@ export default async function BlogPostPage({ params }: Props) {
           breadcrumbSchema([
             { name: "Início", url: "/" },
             { name: "Blog", url: "/blog" },
-            { name: post.title, url: `/blog/${post.slug}` },
+            { name: post.title, url: blogPostPath(post) },
           ]),
         ]}
       />
@@ -199,7 +200,7 @@ export default async function BlogPostPage({ params }: Props) {
               {relatedPosts.map((p, i) => (
                 <a
                   key={p.slug}
-                  href={`/blog/${p.slug}`}
+                  href={blogPostPath(p)}
                   className="card-lift group bg-white rounded-3xl overflow-hidden shadow-[0_14px_36px_-22px_rgba(26,39,68,0.24)] hover:shadow-[0_24px_52px_-26px_rgba(26,39,68,0.36)] transition-all block h-full"
                 >
                   <div className="relative bg-em-dark/5 aspect-[16/10]">

@@ -30,6 +30,12 @@ export function coursePath(categorySlug: string, courseSlug: string): string {
   return `/cursos/${categorySlug}/${courseSlug}`;
 }
 
+export function blogPostPath(
+  post: Pick<BlogPostMeta, "categorySlug" | "slug">
+): string {
+  return `/blog/${post.categorySlug}/${post.slug}`;
+}
+
 // O site atual usa páginas sem barra final; a raiz é a única exceção.
 export function canonicalPagePath(path: string): string {
   if (path === "" || path === "/") return "/";
@@ -106,7 +112,7 @@ export function breadcrumbSchema(items: { name: string; url: string }[]): Record
   };
 }
 
-export function blogPostingSchema(post: Pick<BlogPostMeta, "title" | "excerpt" | "date" | "slug">): Record<string, unknown> {
+export function blogPostingSchema(post: Pick<BlogPostMeta, "title" | "excerpt" | "date" | "slug" | "categorySlug">): Record<string, unknown> {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -115,6 +121,6 @@ export function blogPostingSchema(post: Pick<BlogPostMeta, "title" | "excerpt" |
     datePublished: post.date,
     author: { "@type": "Organization", name: SITE_NAME },
     publisher: organizationNode(),
-    mainEntityOfPage: abs(`/blog/${post.slug}`),
+    mainEntityOfPage: abs(blogPostPath(post)),
   };
 }

@@ -1,0 +1,108 @@
+.responsive {
+  min-height: 0;
+  flex-direction: column;
+}
+
+.responsive .media {
+  position: relative;
+  inset: auto;
+  order: 2;
+  height: auto;
+}
+
+.responsive .media picture {
+  display: block;
+  width: 100%;
+  max-width: 30rem;
+  height: auto;
+  margin-inline: auto;
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+}
+
+.responsive .image {
+  height: auto;
+  object-position: center bottom;
+}
+
+.responsive .topShade {
+  display: none;
+}
+
+.responsive .content {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.responsive .eyebrow {
+  margin-bottom: 1rem;
+}
+
+.responsive .title {
+  font-size: clamp(2rem, 3.6vw, 3.25rem);
+  margin-bottom: 1.25rem;
+}
+
+.responsive .description {
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  margin-bottom: 1.5rem;
+}
+
+/* A troca de arte e a composição lateral começam no mesmo breakpoint. */
+@media (min-width: 640px) {
+  .responsive {
+    min-height: clamp(40rem, 50vw, 50rem);
+    flex-direction: row;
+  }
+
+  .responsive .media {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
+
+  .responsive .media picture {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    max-width: 100%;
+    height: min(100%, 56.25vw);
+    aspect-ratio: 16 / 9;
+    mask-image: linear-gradient(to right, transparent, black 35%);
+  }
+
+  .responsive .image {
+    height: 100%;
+    object-fit: contain;
+    object-position: right bottom;
+    mask-image: linear-gradient(to bottom, transparent, black 12%);
+  }
+
+  .responsive .mobileTransition {
+    display: none;
+  }
+
+  .responsive .topShade {
+    display: block;
+  }
+
+  .responsive .content {
+    grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
+    padding-top: clamp(2rem, 4vw, 4rem);
+    padding-bottom: 6rem;
+  }
+
+  .responsive .copy {
+    grid-column: 1;
+  }
+
+  .responsive .eyebrow {
+    font-size: clamp(0.75rem, 1vw, 0.875rem);
+    letter-spacing: 0.1em;
+  }
+
+  .responsive .cta {
+    font-size: clamp(0.875rem, 1.1vw, 1rem);
+    padding-inline: clamp(1.25rem, 2vw, 2rem);
+  }
+}
