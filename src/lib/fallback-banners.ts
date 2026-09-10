@@ -26,7 +26,7 @@ export const FALLBACK_BANNERS: FallbackBanner[] = [
     overlayColor: "#007799",
     image: "/images/turma-da-monica/pose-6.webp",
     bgImage: "/images/hero/home-robotica-desktop.webp",
-    bgImageMobile: "/images/hero/home-robotica-mobile.webp",
+    bgImageMobile: "/images/hero/home-robotica-mobile-7529d497.webp",
     backgroundIncludesOverlay: true,
   },
   {
