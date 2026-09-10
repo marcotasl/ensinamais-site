@@ -215,6 +215,83 @@ body {
   .prose-article strong {
     font-weight: 800;
   }
+
+  .prose-article .wp-block-table {
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    border: 1px solid var(--color-em-blue-light);
+    background: white;
+  }
+
+  .prose-article .wp-block-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  .prose-article .wp-block-table :is(th, td) {
+    min-width: 8rem;
+    padding: 1rem;
+    vertical-align: top;
+    overflow-wrap: break-word;
+  }
+
+  .prose-article .wp-block-table th {
+    background: color-mix(in srgb, var(--color-em-blue-dark) 80%, var(--color-em-dark));
+    color: white;
+    font-weight: 800;
+    text-align: inherit;
+  }
+
+  .prose-article .wp-block-table td {
+    border-top: 1px solid color-mix(in srgb, var(--color-em-blue-light) 55%, white);
+    color: var(--color-em-dark-soft);
+  }
+
+  .prose-article .wp-block-table tbody tr:nth-child(even) {
+    background: color-mix(in srgb, var(--color-em-blue-pale) 45%, white);
+  }
+
+  .prose-article .wp-block-table :is([data-align="left"], .has-text-align-left) {
+    text-align: left;
+  }
+
+  .prose-article .wp-block-table :is([data-align="center"], .has-text-align-center) {
+    text-align: center;
+  }
+
+  .prose-article .wp-block-table :is([data-align="right"], .has-text-align-right) {
+    text-align: right;
+  }
+
+  .prose-article .wp-block-table :is(p, li) {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+
+  .prose-article .wp-block-table :is(p, ul, ol) {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-article .wp-block-table :is(th, td) > :last-child {
+    margin-bottom: 0;
+  }
+
+  .prose-article .wp-block-table th a {
+    color: inherit;
+  }
+
+  .prose-article .wp-block-table :is(caption, figcaption) {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-em-dark-soft);
+    text-align: left;
+  }
 }
 
 /* Tight leading + 'pretty' wrap (menos encaixotado que balance) em headings */
