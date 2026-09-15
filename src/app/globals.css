@@ -148,6 +148,51 @@ body {
     color: color-mix(in srgb, var(--color-em-purple-dark) 70%, var(--color-em-dark));
   }
 
+  .prose-article .wp-block-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 2rem 0;
+  }
+
+  .prose-article .wp-block-button__link,
+  .prose-article .wp-element-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    border: 0;
+    border-radius: 9999px;
+    color: var(--color-em-dark);
+    background-color: var(--color-em-yellow);
+    font-size: 1rem;
+    font-weight: 900;
+    line-height: 1.25;
+    text-decoration: none;
+    box-shadow: 0 14px 30px -18px rgba(26, 39, 68, 0.5) !important;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .prose-article .wp-block-button__link:hover,
+  .prose-article .wp-element-button:hover {
+    color: var(--color-em-dark);
+    background-color: var(--color-em-yellow-dark);
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+
+  .prose-article .wp-block-button__link:focus-visible,
+  .prose-article .wp-element-button:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--color-em-blue) 65%, white);
+    outline-offset: 3px;
+  }
+
+  .prose-article .wp-block-button__link strong,
+  .prose-article .wp-element-button strong {
+    font-weight: inherit;
+  }
+
   .prose-article ul {
     display: flex;
     flex-direction: column;
