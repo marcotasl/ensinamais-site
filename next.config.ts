@@ -4,6 +4,21 @@ const nextConfig: NextConfig = {
   /* O Magento atual publica as URLs sem barra final. Manter essa convenção evita
      um 308 em todas as páginas já indexadas durante a migração. */
   trailingSlash: false,
+  async headers() {
+    return [
+      {
+        // HTML precisa revalidar; assets com hash continuam com cache longo.
+        source:
+          "/:path((?!_next/static|_next/image|figma|images|fonts|favicon.ico|robots.txt|sitemap.xml).*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=0, must-revalidate",
+          },
+        ],
+      },
+    ];
+  },
   async rewrites() {
     return [
       // Compatibilidade com URLs legadas do Magento (.html), preservando SEO sem redirects.
