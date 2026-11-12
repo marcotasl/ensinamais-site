@@ -298,7 +298,11 @@ export default function LeadCaptureForm({
   const phoneRegistration = register("celular");
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form
+      data-hs-do-not-collect="true"
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+    >
       <div className={`grid gap-3 mb-4 ${fieldGrid}`}>
         <div>
           <label htmlFor="lead-nome" className="sr-only">

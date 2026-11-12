@@ -17,10 +17,13 @@ Os formulários de aula experimental usam:
 
 - MoveEdu, com `marca=ensina-mais` e `modalidade=presencial`, para carregar
   estado, cidade e unidade;
-- RD Station Conversion API para registrar o lead, curso, unidade, campanha e
-  UTMs.
+- a API da MoveEdu (`POST /api/hubspot/novo`) para registrar o lead no HubSpot,
+  com os mesmos campos do plugin de formulários usado em Prepara e Microlins;
+- RD Station Conversion API em paralelo, mantida temporariamente até 15/11. O
+  resultado do RD não altera a resposta ao visitante.
 
-As credenciais Basic Auth da MoveEdu ficam exclusivamente no servidor:
+As credenciais Basic Auth da MoveEdu ficam exclusivamente no servidor e são as
+mesmas da API de unidades e do envio de leads ao HubSpot:
 
 ```dotenv
 MOVEEDU_API_USERNAME=
@@ -33,7 +36,7 @@ fallback usados pelo site oficial, mas também podem ser sobrescritos pelas
 variáveis documentadas em `.env.example`.
 
 O código da campanha cadastrada no HUB deve ser configurado no servidor para
-preencher o campo `codigo_campanha_sistema` do RD:
+preencher `codigo_campanha_sistema` no RD e `codigo_campanha` no HubSpot:
 
 ```dotenv
 RD_STATION_CAMPAIGN_CODE=428
@@ -42,6 +45,8 @@ RD_STATION_CAMPAIGN_CODE=428
 ## Verificação
 
 ```bash
+npm test
+npx tsc --noEmit
 npm run lint
 npm run build
 ```

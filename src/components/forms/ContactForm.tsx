@@ -58,6 +58,7 @@ export default function ContactForm() {
   return (
     <form
       data-primary-form="contact"
+      data-hs-do-not-collect="true"
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-5"
     >

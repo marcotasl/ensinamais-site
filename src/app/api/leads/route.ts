@@ -1,10 +1,12 @@
-import { type NextRequest, NextResponse } from "next/server";
+import { after, type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { sendLeadToHubSpot } from "@/lib/leads-hubspot";
 
 const RD_ENDPOINT = "https://api.rd.services/platform/conversions";
 const OFFICIAL_ENSINA_RD_TOKEN = "4a8c862bc4866c09231511203a4e1549";
 const DEFAULT_CONVERSION_IDENTIFIER = "interesse-curso";
 const DEFAULT_CAMPAIGN_SYSTEM_CODE = "428";
+const RD_TIMEOUT_MS = 5_000;
 
 const leadSchema = z.object({
   nome: z.string().trim().min(2).max(120),
@@ -48,6 +50,39 @@ function trafficSourceFromCookie(request: NextRequest) {
   }
 }
 
+/**
+ * RD Station, só até 15/11. Roda depois da resposta (fire-and-forget) e não
+ * decide o que o visitante recebe; falhas apenas entram no log. O timeout
+ * evita que o job fique pendurado.
+ */
+async function sendToRdStation(rdRequestBody: unknown, traceId: string) {
+  try {
+    const token =
+      process.env.RD_STATION_PUBLIC_TOKEN || OFFICIAL_ENSINA_RD_TOKEN;
+    const response = await fetch(`${RD_ENDPOINT}?api_key=${token}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(rdRequestBody),
+      cache: "no-store",
+      signal: AbortSignal.timeout(RD_TIMEOUT_MS),
+    });
+
+    console.info(
+      `[leads][rd-response] ${JSON.stringify({
+        traceId,
+        status: response.status,
+        ok: response.ok,
+      })}`,
+    );
+
+    if (!response.ok) {
+      console.error(`[leads][rd] RD Station respondeu ${response.status} (${traceId})`);
+    }
+  } catch {
+    console.error(`[leads][rd] falha de rede ao enviar conversão (${traceId})`);
+  }
+}
+
 export async function POST(request: NextRequest) {
   let body: unknown;
   try {
@@ -73,8 +108,6 @@ export async function POST(request: NextRequest) {
   }
   const course = lead.cf_curso || lead.curso;
 
-  const token =
-    process.env.RD_STATION_PUBLIC_TOKEN || OFFICIAL_ENSINA_RD_TOKEN;
   const conversionIdentifier =
     process.env.RD_STATION_CONVERSION_IDENTIFIER ||
     DEFAULT_CONVERSION_IDENTIFIER;
@@ -118,53 +151,54 @@ export async function POST(request: NextRequest) {
     payload,
   };
 
-  try {
+  console.info(
+    `[leads][rd-outgoing] ${JSON.stringify({
+      traceId,
+      conversionIdentifier,
+      payloadFields: Object.keys(rdRequestBody.payload).sort(),
+      courseFieldPresent: Object.hasOwn(rdRequestBody.payload, "cf_curso"),
+      courseNameFieldPresent: Object.hasOwn(
+        rdRequestBody.payload,
+        "cf_nome_curso",
+      ),
+    })}`,
+  );
+
+  // O RD roda depois da resposta (fire-and-forget) e não influencia o que o
+  // visitante recebe. O HubSpot é a fonte oficial do lead (a RD é desligada
+  // em 15/11).
+  after(() => sendToRdStation(rdRequestBody, traceId));
+
+  const hubspotResult = await sendLeadToHubSpot({
+    nome: lead.nome,
+    email: lead.email,
+    celular: lead.celular,
+    unidadeId: lead.unidadeId ?? "",
+    campanha: campaignSystemCode,
+    curso: course,
+    pagina: lead.pagina,
+    utm_source: lead.utm_source,
+    utm_medium: lead.utm_medium,
+    utm_campaign: lead.utm_campaign,
+    utm_content: lead.utm_content,
+    utm_term: lead.utm_term,
+  });
+
+  if (hubspotResult.ok) {
     console.info(
-      `[leads][rd-outgoing] ${JSON.stringify({
+      `[leads][hubspot-response] ${JSON.stringify({
         traceId,
-        conversionIdentifier,
-        payloadFields: Object.keys(rdRequestBody.payload).sort(),
-        courseFieldPresent: Object.hasOwn(rdRequestBody.payload, "cf_curso"),
-        courseNameFieldPresent: Object.hasOwn(
-          rdRequestBody.payload,
-          "cf_nome_curso",
-        ),
+        status: hubspotResult.status,
+        ok: true,
       })}`,
     );
-
-    const response = await fetch(`${RD_ENDPOINT}?api_key=${token}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(rdRequestBody),
-      cache: "no-store",
-    });
-
-    console.info(
-      `[leads][rd-response] ${JSON.stringify({
-        traceId,
-        status: response.status,
-        ok: response.ok,
-      })}`,
-    );
-
-    if (!response.ok) {
-      console.error(
-        `[leads] RD Station respondeu ${response.status} (${traceId})`,
-      );
-      return NextResponse.json(
-        { ok: false, error: "rd_error" },
-        { status: 502 },
-      );
-    }
-
-    return NextResponse.json({ ok: true });
-  } catch {
+  } else {
     console.error(
-      `[leads] falha de rede ao enviar conversão (${traceId})`,
-    );
-    return NextResponse.json(
-      { ok: false, error: "rd_unavailable" },
-      { status: 502 },
+      `[leads][hubspot] falha ao enviar lead (${traceId}): status ${hubspotResult.status} ${hubspotResult.error ?? ""}`.trim(),
     );
   }
+
+  // O lead já foi registrado (ou o erro ficou no log); o visitante recebe
+  // sucesso para não repetir o envio e perder a conversão visível.
+  return NextResponse.json({ ok: true });
 }

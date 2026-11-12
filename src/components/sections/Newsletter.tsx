@@ -38,7 +38,11 @@ export default function Newsletter() {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="w-full">
+            <form
+              data-hs-do-not-collect="true"
+              onSubmit={handleSubmit}
+              className="w-full"
+            >
               <div className="flex flex-col sm:flex-row gap-2">
                 <label htmlFor="newsletter-email" className="sr-only">Seu e-mail</label>
                 <input
