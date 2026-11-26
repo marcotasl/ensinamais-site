@@ -17,15 +17,35 @@ import FloatingIcon from "@/components/ui/FloatingIcon";
 import { getBanners } from "@/lib/wordpress";
 import { FALLBACK_BANNERS } from "@/lib/fallback-banners";
 import { wpBannerToSlide } from "@/lib/hero-banner-adapter";
+import BlackFridayHero from "@/components/campanhas/BlackFridayHero";
+import { isBlackFriday2026 } from "@/lib/campanhas/black-friday-2026";
 
-export default async function Home() {
+// A troca do hero de campanha por data depende da regeneração: sem isso, se o
+// fetch do WP não acontecer no build, a home vira estática e nunca troca.
+export const revalidate = 60;
+
+type HomeProps = { searchParams: Promise<{ simular?: string }> };
+
+// Só a prévia da Vercel aceita ?simular=<data ISO> para conferir as viradas da
+// campanha. Produção não lê searchParams e continua estática com ISR.
+async function campaignNow(searchParams: HomeProps["searchParams"]): Promise<number> {
+  if (process.env.VERCEL_ENV !== "preview") return Date.now();
+  const simulated = Date.parse((await searchParams).simular ?? "");
+  return Number.isNaN(simulated) ? Date.now() : simulated;
+}
+
+export default async function Home({ searchParams }: HomeProps) {
   const wpBanners = await getBanners();
 
   const banners = wpBanners.length > 0 ? wpBanners.map(wpBannerToSlide) : FALLBACK_BANNERS;
 
   return (
     <main className="relative min-h-screen bg-[#fafafa] overflow-x-clip">
-      <Hero banners={banners} />
+      {isBlackFriday2026(await campaignNow(searchParams)) ? (
+        <BlackFridayHero />
+      ) : (
+        <Hero banners={banners} />
+      )}
 
       <LeadForm />
 

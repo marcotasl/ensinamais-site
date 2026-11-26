@@ -1,0 +1,89 @@
+.hero {
+  background:
+    radial-gradient(ellipse 60% 55% at 32% 42%, #fde74a 0%, rgba(253, 231, 74, 0) 70%),
+    linear-gradient(180deg, #f2cf10 0%, #f7d817 55%, #f3d212 100%);
+  background-color: #f5d414;
+}
+
+/* Retícula e grade do KV: mais densas nas bordas, somem no centro para não
+   brigar com o texto. */
+.texture {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(150, 110, 0, 0.26) 1.7px, transparent 2.3px),
+    linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+  background-size: 12px 12px, 64px 64px, 64px 64px;
+  mask-image: radial-gradient(ellipse 75% 70% at 45% 50%, transparent 30%, black 95%);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "copy"
+    "cta"
+    "art";
+}
+
+.copy {
+  grid-area: copy;
+}
+
+.cta {
+  grid-area: cta;
+}
+
+.art {
+  grid-area: art;
+}
+
+/* A faixa escura é um ::before absoluto sem `top`: fica na posição estática
+   (logo abaixo do item que a carrega) e, como o item não é posicionado, a
+   largura se resolve contra a seção inteira. Assim a curva acompanha o fluxo
+   do conteúdo em qualquer largura, sem altura mágica. */
+.cta::before,
+.art::before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 2000px;
+  pointer-events: none;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 26C260 6 520 2 760 20C1010 38 1220 70 1440 44V80H0Z' fill='%23222222'/%3E%3C/svg%3E")
+      top / 100% 80px no-repeat,
+    radial-gradient(circle, rgba(255, 255, 255, 0.045) 3px, transparent 3.6px) 0 80px / 16px 16px,
+    linear-gradient(#222222, #222222) 0 79px / 100% 100% no-repeat;
+}
+
+/* No celular a arte vem depois do botão: a faixa nasce atrás das pernas. */
+.art::before {
+  content: "";
+  margin-top: calc(min(76vw, 360px) * 0.62);
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "copy art"
+      "cta art";
+    column-gap: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .art::before {
+    content: none;
+  }
+
+  .cta::before {
+    content: "";
+  }
+
+  .art {
+    align-self: end;
+  }
+}
