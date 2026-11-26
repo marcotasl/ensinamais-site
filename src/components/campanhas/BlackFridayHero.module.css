@@ -63,7 +63,7 @@
 /* No celular a arte vem depois do botão: a faixa nasce atrás das pernas. */
 .art::before {
   content: "";
-  margin-top: calc(min(76vw, 360px) * 0.62);
+  margin-top: calc(min(62vw, 300px) * 0.66);
 }
 
 @media (min-width: 1024px) {

@@ -29,7 +29,7 @@ export default function BlackFridayHero() {
       <div aria-hidden className="absolute inset-x-0 top-0 z-[2] h-20 bg-[#004c6a]" />
       <div aria-hidden className={styles.texture} />
       <Sparkle className="left-[3%] top-[30%] hidden w-9 lg:block" />
-      <Sparkle className="right-[6%] top-[26%] w-7 lg:right-auto lg:left-[52%] lg:top-[34%] lg:w-11" />
+      <Sparkle className="left-[52%] top-[34%] hidden w-11 lg:block" />
 
       <div className={`mx-auto max-w-[1200px] px-4 pb-24 pt-8 sm:px-6 lg:pb-28 lg:pt-10 ${styles.grid}`}>
         <div className={`relative z-[2] pb-8 text-[#1a1a1a] lg:pb-10 ${styles.copy}`}>
@@ -48,7 +48,7 @@ export default function BlackFridayHero() {
             {SEALS.map((seal) => (
               <li
                 key={seal.value}
-                className={`flex items-center justify-center gap-2 rounded-[18px] px-3 py-3 shadow-[0_6px_18px_rgba(120,80,0,0.18)] sm:gap-3 sm:rounded-[22px] sm:px-5 sm:py-4 ${seal.tone}`}
+                className={`flex flex-col items-center justify-center gap-1 rounded-[18px] px-3 py-3 text-center shadow-[0_6px_18px_rgba(120,80,0,0.18)] sm:flex-row sm:gap-3 sm:rounded-[22px] sm:px-5 sm:py-4 sm:text-left ${seal.tone}`}
               >
                 <span className="text-[clamp(1.75rem,3.2vw,2.75rem)] font-black leading-none tracking-tight">
                   {seal.value}
@@ -76,7 +76,7 @@ export default function BlackFridayHero() {
         <div className={styles.cta}>
           <a
             href="#lead"
-            className="relative z-[2] flex min-h-14 w-full lg:mt-20 items-center justify-center gap-3 rounded-full bg-[#1d1d1d] px-6 text-base font-black text-em-yellow shadow-button transition-colors hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1d1d1d] sm:text-lg lg:inline-flex lg:min-h-16 lg:w-auto lg:bg-em-yellow lg:px-10 lg:text-xl lg:text-[#1a1a1a] lg:hover:bg-[#ffe14d] lg:focus-visible:outline-em-yellow"
+            className="relative z-[2] flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1d] px-4 text-[0.9rem] font-black sm:gap-3 sm:px-6 text-em-yellow shadow-button transition-colors hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1d1d1d] sm:text-lg lg:mt-20 lg:inline-flex lg:min-h-16 lg:w-auto lg:bg-em-yellow lg:px-10 lg:text-xl lg:text-[#1a1a1a] lg:hover:bg-[#ffe14d] lg:focus-visible:outline-em-yellow"
           >
             Consultar oferta na minha unidade
             <ArrowRight size={22} strokeWidth={2.4} aria-hidden className="shrink-0" />
@@ -84,7 +84,7 @@ export default function BlackFridayHero() {
         </div>
 
         <div className={`mt-8 lg:mt-0 ${styles.art}`}>
-          <div className="relative z-[2] mx-auto w-[min(76vw,360px)] lg:w-[clamp(360px,34vw,500px)]">
+          <div className="relative z-[2] mx-auto w-[min(62vw,300px)] lg:w-[clamp(340px,32vw,500px)]">
             <img
               src={`${ART}/magali.webp`}
               alt="Magali, da Turma da Mônica, sentada e sorrindo"
@@ -94,7 +94,7 @@ export default function BlackFridayHero() {
               className="block h-auto w-full"
             />
             {/* Créditos de licenciamento da Turma da Mônica, obrigatórios junto da personagem. */}
-            <div className="absolute left-full top-[28%] ml-1 flex flex-col items-center gap-3 lg:ml-6">
+            <div className="absolute left-full top-[28%] ml-1 flex flex-col items-center gap-3 lg:ml-3">
               <span className="text-[9px] font-medium tracking-wide text-[#1a1a1a] [writing-mode:vertical-rl] rotate-180 sm:text-[10px]">
                 © MSP - BRASIL
               </span>
