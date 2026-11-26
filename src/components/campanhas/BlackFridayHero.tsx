@@ -1,4 +1,5 @@
 import { ArrowRight, Plus } from "lucide-react";
+import { SCHOOL_LOCATOR_URL } from "@/lib/navigation";
 import styles from "./BlackFridayHero.module.css";
 
 const ART = "/images/campanha/black-friday-2026";
@@ -75,7 +76,7 @@ export default function BlackFridayHero() {
 
         <div className={styles.cta}>
           <a
-            href="#lead"
+            href={SCHOOL_LOCATOR_URL}
             className="relative z-[2] flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1d] px-4 text-[0.9rem] font-black sm:gap-3 sm:px-6 text-em-yellow shadow-button transition-colors hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1d1d1d] sm:text-lg lg:mt-20 lg:inline-flex lg:min-h-16 lg:w-auto lg:bg-em-yellow lg:px-10 lg:text-xl lg:text-[#1a1a1a] lg:hover:bg-[#ffe14d] lg:focus-visible:outline-em-yellow"
           >
             Consultar oferta na minha unidade
